@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   css: ["~/assets/scss/_button.scss"],
   googleFonts: {
     families: {
-      Inter: true, // Enable the Inter font
+      Manrope: true, // Enable the IntManropeer font
     },
   },
   devtools: { enabled: true },

@@ -141,7 +141,7 @@ export default {
       },
 
       fontFamily: {
-        Inter: ["Inter", "sans-serif"],
+        Manrope: ["Manrope", "sans-serif"],
       },
       boxShadow: {
         base: "0px 0px 1px rgba(40, 41, 61, 0.08), 0px 0.5px 2px rgba(96, 97, 112, 0.16)",

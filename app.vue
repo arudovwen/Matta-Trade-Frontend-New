@@ -6,7 +6,7 @@
 
 <style>
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Manrope", sans-serif;
   color: #333333;
 }
 .recommended .carousel__viewport .carousel__track{

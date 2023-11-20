@@ -21,11 +21,11 @@
             data-aos-once="true"
           >
             <span
-              class="block font-bold text-[#2176FF] text-lg xl:text-[44px]"
+              class="block font-bold text-[#2176FF] text-lg xl:text-[44px] mb-[6px]"
               >{{ n.title }}</span
             >
             <span
-              class="block font-normal text-[#333] text-base xl:text-[20px]"
+              class="block font-normal text-[#333] text-sm xl:text-[20px]"
               >{{ n.text }}</span
             >
           </div>
