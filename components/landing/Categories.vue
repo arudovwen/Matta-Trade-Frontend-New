@@ -28,7 +28,7 @@
         <span
           v-for="(n, idx) in categories"
           :key="idx"
-          class="px-5 flex flex-col w-[140px] h-[140px] border-2 border-[#EAEAEA] rounded-full items-center justify-center hover:border-[#777] hover:bg-[rgba(33,118,255,0.04)]"
+          class="cursor-pointer px-5 flex flex-col w-[140px] h-[140px] border-2 border-[#EAEAEA] rounded-full items-center justify-center hover:border-[#777] hover:bg-[rgba(33,118,255,0.04)]"
         >
           <AppIcon :icon="n.icon" class="text-[40px] text-[#444444] mb-[6px]" />
           <span class="text-xs text-[#333] text-center">{{ n.title }}</span>
