@@ -72,14 +72,14 @@
                 <MenuItems
                   class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[30.5px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white rounded-b-[10px] px-[30px] py-5 text-sm"
                 >
-                  <div class="px-1 py-1">
+                  <div class="px-1 py-1" v-for="n in categories" :key="n.title">
                     <MenuItem v-slot="{ active }">
                       <button
                         :class="[
-                          'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px]',
+                          'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px] gap-x-2',
                         ]"
                       >
-                      Consumer Goods
+                      <AppIcon :icon="n.icon" />  {{ n.title }}
                       </button>
                     </MenuItem>
                   </div>
@@ -113,24 +113,6 @@
   </nav>
 </template>
 <script setup>
+import { categories, navigations } from "~/utils/data";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
-
-const navigations = [
-  {
-    name: "All categories",
-    key: "categories",
-  },
-  {
-    name: "Markets",
-    key: "markets",
-  },
-  {
-    name: "Applications",
-    key: "applications",
-  },
-  {
-    name: "Finance",
-    key: "finance",
-  },
-];
 </script>
