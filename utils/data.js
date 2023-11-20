@@ -85,3 +85,9 @@ export const navigations = [
     key: "finance",
   },
 ];
+export const mobileNavigation = [
+  {
+    name: "All categories",
+    key: "categories",
+  },
+];

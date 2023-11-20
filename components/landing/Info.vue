@@ -1,10 +1,12 @@
 <template>
   <div class="bg-[#222] py-20">
-    <div class="container grid grid-cols-4 gap-x-4">
+    <div class="container grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
       <div
         class="p-[30px] rounded-[16px] bg-[rgba(255,255,255,0.03)]"
         v-for="n in content"
         :key="n.title"
+        data-aos="fade-up"
+        data-aos-once="true"
       >
         <div>
           <span

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white rounded-[10px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.05)] max-w-[300px] overflow-hidden"
+    class="bg-white rounded-[10px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.05)] overflow-hidden"
   >
     <div class="h-[200px] bg-gray-200 bg-cover bg-center" :style="{ backgroundImage: `url('${imageSrc}')` }"></div>
     <div class="py-[30px] px-5">

@@ -11,6 +11,9 @@ body {
 }
 .carousel__track{
   column-gap: 34px;
+  @media(max-width:768px){
+    column-gap: 16px;
+  }
 }
 </style>
 

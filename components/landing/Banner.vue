@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-full">
     <div
-      class="bg-cover bg-center min-h-64 md:min-h-[600px]"
+      class="bg-cover bg-center min-h-[600px] lg:min-h-64 md:min-h-[600px]"
       :style="{ backgroundImage: `url('${imageSrc}')` }"
     >
       <!-- Overlay -->
@@ -29,19 +29,26 @@
                 placeholder="Search by product name or supplier"
                 class="px-6 flex-1 h-9 placeholder:text-[rgba(156, 163, 175, 1)] outline-none text-[#333]"
               />
-              <AppButton text="Search" btnClass="!px-10 btn-primary" />
+              <AppButton
+                text="Search"
+                btnClass="!px-10 btn-primary hidden md:flex"
+              />
+              <AppButton
+                icon="iconamoon:search-thin"
+                btnClass="!px-4 btn-primary md:hidden"
+              />
             </div>
 
-            <div class="flex gap-x-2 items-center">
-              <span>Frequently searched: </span>
-             <span class="flex gap-x-2 items-center flex-wrap">
+            <div class="flex gap-2 items-center flex-wrap">
+              <span class="whitespace-nowrap">Frequently searched: </span>
+              <span class="flex gap-x-2 items-center flex-wrap">
                 <span
-                v-for="i in frequentlySearched"
-                :key="i.name"
-                class="text-white border border-white rounded-full text-sm py-[5px] px-[10px]"
-                >{{ i.name }}</span
-              >
-             </span>
+                  v-for="i in frequentlySearched"
+                  :key="i.name"
+                  class="text-white border border-white rounded-full text-sm py-[5px] px-[10px]"
+                  >{{ i.name }}</span
+                >
+              </span>
             </div>
           </div>
         </div>
