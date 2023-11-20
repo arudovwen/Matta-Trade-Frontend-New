@@ -10,7 +10,7 @@
         <button class="text-sm lg:text-base font-medium">View more</button>
       </div>
       <div data-aos="fade-up" data-aos-once="true">
-        <carousel :items-to-show="4.9" :breakpoints="breakpoints">
+        <carousel :items-to-show="4.9" :breakpoints="breakpoints" class="recommended">
           <slide v-for="slide in 10" :key="slide">
             <div class="bg-white w-full">
               <div
@@ -49,7 +49,7 @@
 </template>
 <script setup>
 import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import { Carousel, Slide } from "vue3-carousel";
 
 const imageSrc = "/images/test.png";
 const breakpoints = {

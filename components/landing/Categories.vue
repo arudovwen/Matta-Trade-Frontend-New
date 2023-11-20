@@ -32,7 +32,9 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-5 justify-center">
+      <div
+        class="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-8 gap-4 md:gap-5 justify-center"
+      >
         <span
           v-for="(n, idx) in categories"
           :key="idx"
@@ -40,8 +42,13 @@
           data-aos-once="true"
           class="mx-auto cursor-pointer px-5 flex flex-col w-[100px] md:w-[140px] h-[100px] md:h-[140px] border-2 border-[#EAEAEA] rounded-full items-center justify-center hover:border-[#777] hover:bg-[rgba(33,118,255,0.04)]"
         >
-          <AppIcon :icon="n.icon" class="text-base md:text-[40px] text-[#444444] mb-[6px]" />
-          <span class="text-[10px] md:text-xs text-[#333] text-center">{{ n.title }}</span>
+          <AppIcon
+            :icon="n.icon"
+            class="text-base md:text-[40px] text-[#444444] mb-[6px]"
+          />
+          <span class="text-[10px] md:text-xs text-[#333] text-center">{{
+            n.title
+          }}</span>
         </span>
       </div>
     </div>

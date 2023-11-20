@@ -1,7 +1,7 @@
 <template>
   <div class="bg-[#061C5E] max-w-[1440px] mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-6 lg:gap-y-0">
-      <div class="py-10 lg:py-20 pl-[15px] pr-[15px] lg:pr-[0px] lg:pl-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-y-6 lg:gap-y-0">
+      <div class="py-10 lg:py-20 pl-8 pr-[15px] lg:pr-[0px] sm:pl-8 lg:pl-20">
         <p
           data-aos="fade-up"
           data-aos-once="true"
@@ -13,13 +13,13 @@
           data-aos="fade-up"
           data-aos-once="true"
           text="Start selling on Matta"
-          btnClass="bg-white text-[#333] !px-10"
+          btnClass="bg-white text-[#333] !px-10 !py-5"
         />
       </div>
       <div
         data-aos="fade-in"
         data-aos-once="true"
-        class="bg-cover bg-center hidden lg:inline-block"
+        class="bg-cover bg-center hidden md:inline-block h-full"
         :style="{ backgroundImage: `url('${CallBg}')` }"
       ></div>
      

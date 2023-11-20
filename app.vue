@@ -9,7 +9,7 @@ body {
   font-family: "Inter", sans-serif;
   color: #333333;
 }
-.carousel__track{
+.recommended .carousel__viewport .carousel__track{
   column-gap: 34px;
   @media(max-width:768px){
     column-gap: 16px;
