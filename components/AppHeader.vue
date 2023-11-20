@@ -92,7 +92,7 @@
                 </MenuItems>
               </transition>
             </Menu>
-            <span v-else> {{ n.name }}</span>
+            <span class="cursor-pointer hover:text-[#2176FF]" v-else> {{ n.name }}</span>
           </li>
         </ul>
         <ul class="items-center gap-x-6 lg:hidden">
