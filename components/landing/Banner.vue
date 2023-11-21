@@ -41,7 +41,7 @@
 
             <div class="flex gap-2 items-center flex-wrap">
               <span class="whitespace-nowrap">Frequently searched: </span>
-              <span class="flex gap-x-2 items-center flex-wrap">
+              <span class="flex gap-2 items-center flex-wrap">
                 <span
                   v-for="i in frequentlySearched"
                   :key="i.name"
