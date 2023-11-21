@@ -64,7 +64,7 @@
 
                     </span>
                   </div>
-                  <div class="flex-1">hELLP</div>
+                  <div class="flex-1"></div>
                 </div>
               </DialogPanel>
             </TransitionChild>

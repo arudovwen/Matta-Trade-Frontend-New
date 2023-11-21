@@ -10,7 +10,7 @@
       <div
         class="flex justify-between items-center gap-x-10"
         :class="{
-          'mb-7': view.atTopOfPage,
+          'md:mb-7': view.atTopOfPage,
           'mb-0': !view.atTopOfPage,
         }"
       >
@@ -23,8 +23,14 @@
             class="w-[100px] h-auto"
           />
         </div>
-        <div class="hidden lg:flex items-center gap-x-6 text-sm">
-          <span class="flex gap-x-1 items-center">
+        <div class="flex items-center gap-x-6 text-sm">
+          <span
+            :class="{
+              '': view.atTopOfPage,
+              hidden: !view.atTopOfPage,
+            }"
+            class="hidden md:flex gap-x-1 items-center"
+          >
             <img
               src="~/assets/images/nigeria.svg"
               width="20"
@@ -34,33 +40,65 @@
             />
             NGN</span
           >
-          <span class="flex gap-x-1 items-center">
+
+          <span
+            :class="{
+              '': view.atTopOfPage,
+              hidden: !view.atTopOfPage,
+            }"
+            class="hidden md:flex gap-x-1 items-center"
+          >
             <AppIcon class="text-lg" icon="ion:globe-outline" />
             <select class="appearance-none outline-none text-sm">
               <option value="">English-NGN</option>
             </select></span
           >
+          <span
+            :class="{
+              'md:hidden': view.atTopOfPage,
+              '': !view.atTopOfPage,
+            }"
+            class="flex items-center gap-x-[6px] relative"
+          >
+            <span class="relative">
+              <AppIcon
+                class="text-base text-[#333]"
+                icon="fa6-solid:cart-shopping"
+              />
+              <span
+                class="w-[14px] h-[14px] rounded-full bg-[#16F046] text-[8px] flex items-center justify-center absolute -top-[10px] -right-[6px]"
+                >2</span
+              >
+            </span>
+            <span class="text-sm">Cart</span>
+          </span>
 
-          <AppButton
-            link="/auth/register"
-            text="Become a Seller"
-            btnClass="!font-normal text-sm !p-0 !normal-case"
-          />
-          <AppButton
-            link="/auth/login"
-            text="Sign In"
-            btnClass="bg-primary-500 text-white !px-10 !py-[6px]"
-          />
+          <div class="hidden md:flex gap-x-3">
+            <AppButton
+              link="/auth/register"
+              text="Become a Seller"
+              btnClass="!font-semibold text-sm !px-[15px] !py-[5px] !normal-case border border-[#3B3B3B] rounded-[5px]"
+            />
+            <AppButton
+              link="/auth/login"
+              text="Sign In"
+              btnClass="bg-primary-500 text-white !px-10 !py-[6px]"
+            />
+          </div>
+          <span class="lg:hidden" @click="open = true">
+          <AppIcon icon="ci:menu-alt-01" class="text-[30px]" />
+        </span>
         </div>
 
-        <span class="lg:hidden" @click="open = true">
-          <AppIcon icon="pepicons-pop:menu" class="text-[30px]" />
-        </span>
+       
       </div>
-      <div :class="{
-          'flex': view.atTopOfPage,
-          'hidden': !view.atTopOfPage,
-        }" class="flex justify-between items-center gap-x-10">
+      <div
+        :class="{
+          'md:flex': view.atTopOfPage,
+          hidden: !view.atTopOfPage,
+        }"
+        class="hidden  justify-between items-center gap-x-10"
+      >
         <ul class="lg:flex items-center gap-x-6 hidden">
           <li
             v-for="n in navigations"
@@ -85,7 +123,7 @@
                 leave-to-class="transform scale-95 opacity-0"
               >
                 <MenuItems
-                  class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[30.5px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white rounded-b-[10px] px-[30px] py-5 text-sm"
+                  class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[20.5px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white rounded-b-[10px] px-[30px] py-5 text-sm"
                 >
                   <div class="px-1 py-1" v-for="n in categories" :key="n.title">
                     <MenuItem v-slot="{ active }">

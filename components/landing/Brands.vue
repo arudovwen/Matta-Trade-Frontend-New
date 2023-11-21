@@ -8,7 +8,7 @@
       Supplies from brands you can trust
     </h2>
 
-    <div class="flex gap-4 justify-between items-center grayscale flex-wrap">
+    <div class="grid grid-cols-3 lg:grid-cols-6 gap-6 justify-between items-center grayscale">
       <img
         data-aos="fade-up"
         data-aos-once="true"

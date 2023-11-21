@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="bg-white rounded-[20px] py-5 px-[32px] mb-[30px]">
+    <div class="bg-white rounded-[20px] py-5 px-4 md:px-[32px] mb-[30px]">
       <div
         data-aos="fade-up"
         data-aos-once="true"
@@ -19,11 +19,11 @@
               ></div>
               <div class="py-[20px] text-left">
                 <span
-                  class="text-sm md:text-base block mb-[6px] font-bold truncate max-w-max"
+                  class="text-sm md:text-base block mb-[10px] font-bold truncate max-w-max"
                   >Name</span
                 >
                 <span
-                  class="block mb-[19px] text-xs md:text-sm text-[#666] text-left"
+                  class="block mb-[25px] text-xs md:text-sm text-[#666] text-left"
                   >SubName</span
                 >
 
@@ -54,12 +54,12 @@ import { Carousel, Slide } from "vue3-carousel";
 const imageSrc = "/images/test.png";
 const breakpoints = {
   300: {
-    itemsToShow: 1.3,
-    snapAlign:"start"
+    itemsToShow: 1.6,
+    snapAlign:"center"
   },
   565: {
-    itemsToShow: 2.3,
-    snapAlign:"start"
+    itemsToShow: 2.6,
+    snapAlign:"center"
   },
   // 700px and up
   700: {

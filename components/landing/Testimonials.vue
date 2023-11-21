@@ -1,5 +1,5 @@
 <template>
-  <div class="container relative  mt-[72px] mb-[100px] pr-4">
+  <div class="container relative  mt-[72px] pb-[100px] md:pb-[120px] pr-4">
     <div
       class="hidden md:inline absolute md:h-[358px] w-[80%] md:w-[95%] rounded-[7px] bg-[rgba(198,226,250,0.3)] z-[1] top-8 left-6 max-w-[1152px]"
     ></div>
@@ -13,13 +13,13 @@
         <carousel class="max-w-[937px] mx-auto text-center">
           <slide v-for="slide in 4" :key="slide">
             <div class="carousel__item px-5">
-              <p class="text-base lg:text-2xl text-white font-semibold mb-8">
+              <p class="text-base lg:text-2xl text-white font-normal mb-8">
                 “Ever since we discovered Matta, our production process has been
                 more streamlined. From sourcing for materials, to logistics and
                 delivery. Matta handles all aspects with exemplary proficiency
                 and professionalism”
               </p>
-              <p class="font-medium text-xs md:text-sm xl:text-xl text-white mb-8">
+              <p class="font-light text-xs md:text-sm xl:text-xl text-white mb-8">
                 John Doe - CEO, Manufacturers Inc
               </p>
             </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full">
+  <div class="relative w-full bg-black-400">
     <div
       class="bg-cover bg-center min-h-[600px] lg:min-h-64 md:min-h-[600px]"
       :style="{ backgroundImage: `url('${imageSrc}')` }"
@@ -13,10 +13,10 @@
       >
         <div>
           <div class="max-w-[761px] mb-10">
-            <h1 class="text-4xl md:text-5xl lg:text-[56px] font-bold mb-6">
+            <h1 class="text-4xl md:text-5xl lg:text-[56px] lg:leading-[67px] font-bold mb-6">
               Discover and buy chemicals and raw materials all in one place.
             </h1>
-            <p class="text-lg md:text-xl lg:text-2xl">
+            <p class="text-base md:text-xl lg:text-2xl">
               Search, Compare, Sample, Quote, Supply, and Purchase Chemicals and
               Raw Materials
             </p>
@@ -40,7 +40,7 @@
             </div>
 
             <div class="flex gap-2 items-center flex-wrap">
-              <span class="whitespace-nowrap">Frequently searched: </span>
+              <span class="whitespace-nowrap text-sm md:text-base">Frequently searched: </span>
               <span class="flex gap-2 items-center flex-wrap">
                 <span
                   v-for="i in frequentlySearched"

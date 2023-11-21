@@ -2,17 +2,17 @@
   <div>
     <div class="container py-20">
       <div
-        class="flex flex-col xl:flex-row gap-y-6 xl:gap-y-0 justify-between mb-[90px]"
+        class="flex flex-col md:flex-row gap-y-9 xl:gap-y-0 justify-between mb-[90px]"
       >
         <h1
           data-aos="fade-up"
           data-aos-once="true"
-          class="max-w-[633px] text-[#222] text-2xl xl:text-[49px] font-bold xl:leading-[67.6px]"
+          class="max-w-[633px] text-[#222] text-3xl xl:text-[49px] font-bold leading-[44.6px] xl:leading-[67.6px]"
         >
           Explore our wide range of offerings tailored to your business needs
         </h1>
 
-        <div class="grid grid-cols-2 gap-5">
+        <div class="grid grid-cols-2 gap-5 md:min-w-[300px]">
           <div
             class="px-5 border-l-4 border-[rgba(81,32,11,0.05)]"
             v-for="n in content"
@@ -21,7 +21,7 @@
             data-aos-once="true"
           >
             <span
-              class="block font-bold text-[#2176FF] text-lg xl:text-[44px] mb-[6px]"
+              class="block font-bold text-[#2176FF] text-2xl xl:text-[44px] mb-2 xl:mb-[15px]"
               >{{ n.title }}</span
             >
             <span
@@ -33,7 +33,7 @@
       </div>
 
       <div
-        class="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-8 gap-4 md:gap-5 justify-center"
+        class="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-8 gap-4 md:gap-5 justify-center max-h-[350px] overflow-y-auto"
       >
         <span
           v-for="(n, idx) in categories"

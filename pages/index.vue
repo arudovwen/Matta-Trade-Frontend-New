@@ -1,12 +1,14 @@
 <template>
-  <div class="min-h-screen max-w-[1500px] mx-auto">
+  <div class="min-h-screen mx-auto">
     <LandingBanner />
   
-    <div class="bg-[#F4F4F4] pt-[60px] pb-10">
+    <div class="bg-[#F4F4F4] pt-[60px] md:pb-10">
       <LandingBoard />
-      <LandingHot />
+      <div class="pb-[70px]">
+        <LandingHot />
       <LandingRecommended  />
       <LandingHot />
+      </div>
       <LandingInfo />
     </div>
     <LandingCategories />
