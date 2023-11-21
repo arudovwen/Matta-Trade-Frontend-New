@@ -2,9 +2,10 @@
   <nav
     :class="{
       relative: view.atTopOfPage,
-      'sticky top-0 opacity-95 fade-in-top': !view.atTopOfPage,
+      'sticky top-0 opacity-95 fade-in-top pb-5 border-b border-[rgba(242, 242, 242, 1)]':
+        !view.atTopOfPage,
     }"
-    class="relative py-5 border-b border-[rgba(242, 242, 242, 1)] w-full bg-white z-[999] transition-all duration-500 ease-in-out"
+    class="relative pt-5 w-full bg-white z-[999] transition-all duration-500 ease-in-out"
   >
     <div class="container mx-auto">
       <div
@@ -15,21 +16,22 @@
         }"
       >
         <div class="logo">
-          <img
-            src="~/assets/images/logo.png"
-            width="100"
-            height="26"
-            alt="Matta"
-            class="w-[100px] h-auto"
-          />
+          <NuxtLink to="/">
+            <img
+              src="~/assets/images/logo.png"
+              width="100"
+              height="26"
+              alt="Matta"
+              class="w-[100px] h-auto"
+          /></NuxtLink>
         </div>
         <div class="flex items-center gap-x-6 text-sm">
           <span
             :class="{
-              'md:flex': view.atTopOfPage,
-              'md:hidden': !view.atTopOfPage,
+              flex: view.atTopOfPage,
+              hidden: !view.atTopOfPage,
             }"
-            class="hidden  gap-x-1 items-center"
+            class="gap-x-1 items-center"
           >
             <img
               src="~/assets/images/nigeria.svg"
@@ -73,37 +75,94 @@
             <span class="text-sm">Cart</span>
           </span>
 
-          <div class="hidden md:flex gap-x-3">
+          <div class="flex gap-x-3">
             <AppButton
               link="/auth/register"
               text="Become a Seller"
-              btnClass="!font-semibold text-sm !px-[15px] !py-[5px] !normal-case border border-[#3B3B3B] rounded-[5px]"
+              btnClass="text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] hidden md:flex"
             />
             <AppButton
+              v-if="!isLoggedIn"
               link="/auth/login"
               text="Sign In"
-              btnClass="bg-primary-500 text-white !px-10 !py-[6px]"
+              btnClass="bg-primary-500 text-white !px-6 !py-[6px]"
             />
-          </div>
-          <span class="lg:hidden" @click="open = true">
-          <AppIcon icon="ci:menu-alt-01" class="text-[30px]" />
-        </span>
-        </div>
 
-       
+            <Menu
+              as="div"
+              class="relative hidden lg:inline-flex text-left"
+              v-if="isLoggedIn"
+            >
+              <div>
+                <MenuButton
+                  class="bg-[#165EF0] text-white rounded-[5px] px-[24px] py-[9px] flex gap-x-1 items-center font-semibold"
+                >
+                  My account <AppIcon icon="mdi:chevron-down" class="text-lg" />
+                </MenuButton>
+              </div>
+
+              <transition
+                enter-active-class="transition duration-100 ease-out"
+                enter-from-class="transform scale-95 opacity-0"
+                enter-to-class="transform scale-100 opacity-100"
+                leave-active-class="transition duration-75 ease-in"
+                leave-from-class="transform scale-100 opacity-100"
+                leave-to-class="transform scale-95 opacity-0"
+              >
+                <MenuItems
+                  class="absolute right-0 mt-2 w-56 origin-top-right rounded-[5px] border border-[#F6F6F6] bg-white z-[99] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.06)]"
+                >
+                  <div
+                    class="flex items-center gap-x-2 px-[15px] pt-3 pb-[14px] border-b border-[#F4F4F4]"
+                  >
+                    <span
+                      class="h-8 w-8 rounded-full flex items-center justify-center text-sm text-white bg-[#f90] font-semibold"
+                      >JD</span
+                    >
+                    <div>
+                      <span
+                        class="text-[#333] text-[13px] font-semibold block capitalize"
+                        >John doe</span
+                      >
+                      <span class="block text-[11px] text-[#666]"
+                        >johndoe@gmail.com</span
+                      >
+                    </div>
+                  </div>
+                  <div class="px-[15px] pt-[14px] pb-5">
+                    <ul class="grid gap-y-3 text-[#555]">
+                      <li v-for="n in filteredMenu" :key="n.name" class="">
+                        <MenuItem v-slot="{ active }">
+                          <button
+                            class="flex gap-x-3 items-center text-[13px] font-medium"
+                          >
+                            <AppIcon :icon="n.icon" /> {{ n.name }}
+                          </button>
+                        </MenuItem>
+                      </li>
+                    </ul>
+                  </div>
+                </MenuItems>
+              </transition>
+            </Menu>
+            <span class="lg:hidden" @click="open = true">
+              <AppIcon icon="ci:menu-alt-01" class="text-[30px]" />
+            </span>
+          </div>
+        </div>
       </div>
       <div
         :class="{
           'md:flex': view.atTopOfPage,
           hidden: !view.atTopOfPage,
         }"
-        class="hidden  justify-between items-center gap-x-10"
+        class="hidden justify-between items-center gap-x-10"
       >
         <ul class="lg:flex items-center gap-x-6 hidden">
           <li
             v-for="n in navigations"
             :key="n.name"
-            class="flex gap-x-[6px] items-center text-sm"
+            class="flex gap-x-[6px] items-center text-sm border-b-2 border-transparent hover:border-[#165EF0] pb-5"
           >
             <Menu
               as="div"
@@ -123,7 +182,7 @@
                 leave-to-class="transform scale-95 opacity-0"
               >
                 <MenuItems
-                  class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[20.5px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white rounded-b-[10px] px-[30px] py-5 text-sm"
+                  class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white rounded-b-[10px] px-[30px] py-5 text-sm"
                 >
                   <div class="px-1 py-1" v-for="n in categories" :key="n.title">
                     <MenuItem v-slot="{ active }">
@@ -139,7 +198,7 @@
                 </MenuItems>
               </transition>
             </Menu>
-            <span class="cursor-pointer hover:text-[#2176FF]" v-else>
+            <span class="cursor-pointer hover:text-[#165EF0]" v-else>
               {{ n.name }}</span
             >
           </li>
@@ -148,14 +207,46 @@
           <li
             v-for="n in mobileNavigation"
             :key="n.name"
-            class="flex gap-x-[6px] items-center text-sm"
+            class="flex gap-x-[6px] items-center text-sm border-b-2 border-transparent hover:border-[#165EF0] pb-5"
           >
-            <AppIcon class="text-base" icon="tdesign:list" />
-            <span> {{ n.name }}</span>
+            <Menu
+              as="div"
+              v-if="n.key === 'categories'"
+              class="relative inline-block text-left"
+            >
+              <MenuButton class="flex gap-x-1 items-center"
+                ><AppIcon class="text-base" icon="tdesign:list" />
+                {{ n.name }}</MenuButton
+              >
+              <transition
+                enter-active-class="transition duration-100 ease-out"
+                enter-from-class="transform scale-95 opacity-0"
+                enter-to-class="transform scale-100 opacity-100"
+                leave-active-class="transition duration-75 ease-in"
+                leave-from-class="transform scale-100 opacity-100"
+                leave-to-class="transform scale-95 opacity-0"
+              >
+                <MenuItems
+                  class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white rounded-b-[10px] px-[30px] py-5 text-sm"
+                >
+                  <div class="px-1 py-1" v-for="n in categories" :key="n.title">
+                    <MenuItem v-slot="{ active }">
+                      <button
+                        :class="[
+                          'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px] gap-x-2',
+                        ]"
+                      >
+                        <AppIcon :icon="n.icon" /> {{ n.title }}
+                      </button>
+                    </MenuItem>
+                  </div>
+                </MenuItems>
+              </transition>
+            </Menu>
           </li>
         </ul>
 
-        <ul class="flex items-center gap-x-6">
+        <ul class="flex items-center gap-x-6 pb-5">
           <li class="text-sm hidden md:inline-block">Help Center</li>
           <li class="text-sm">
             <span class="flex items-center gap-x-[6px] relative">
@@ -178,14 +269,25 @@
   </nav>
 
   <div class="z-[999]" v-if="open">
-    <AppMobileMenu />
+    <AppSideMenu />
   </div>
 </template>
 <script setup>
+import { mobileMenu } from "~/utils/data";
 import { ref } from "vue";
 import { categories, navigations, mobileNavigation } from "~/utils/data";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 
+const isLoggedIn = ref(true);
+const filteredMenu = computed(() =>
+  mobileMenu.filter(
+    (i) =>
+      i.key === "profile" ||
+      i.key === "wallet" ||
+      i.key === "sign-out" ||
+      i.key === "my-orders"
+  )
+);
 const view = ref({
   atTopOfPage: true,
 });

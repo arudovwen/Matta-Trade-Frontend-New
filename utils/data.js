@@ -91,3 +91,60 @@ export const mobileNavigation = [
     key: "categories",
   },
 ];
+
+export const mobileMenu = [
+  {
+    name: "Profile",
+    key: "profile",
+    icon: "bxs:user",
+    url: "",
+  },
+  {
+    name: "My orders",
+    key: "my-orders",
+    icon: "solar:box-bold",
+    url: "",
+  },
+  {
+    name: "My requests",
+    key: "my-requests",
+    icon: "gridicons:cart",
+    url: "",
+  },
+  {
+    name: "Shipping address",
+    key: "shipping-address",
+    icon: "fa6-solid:address-book",
+    url: "",
+  },
+  {
+    name: "Wallet",
+    key: "wallet",
+    icon: "ion:wallet",
+    url: "",
+  },
+  {
+    name: "Saved items",
+    key: "saved-items",
+    icon: "ri:heart-fill",
+    url: "",
+  },
+  {
+    name: "Storefront",
+    key: "storefront",
+    icon: "fa6-solid:store",
+    url: "",
+  },
+  {
+    name: "Company settings",
+    key: "company-setting",
+    icon: "clarity:building-solid",
+    url: "",
+  },
+  {
+    name: "Sign out",
+    key: "sign-out",
+    icon: "fa-solid:sign-out-alt",
+    url: "",
+  },
+];

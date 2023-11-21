@@ -1,7 +1,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <TransitionRoot as="template" :show="open">
-    <Dialog as="div" class="relative z-[999]" @close="emits('toggleOpen')">
+    <Dialog as="div" class="relative z-[999]" @close="open = false">
       <TransitionChild
         as="template"
         enter="ease-in-out duration-500"
@@ -11,24 +11,22 @@
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div
-          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-        />
+        <div class="fixed inset-0 bg-[#333] transition-opacity" />
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
           <div
-            class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-20 md:pl-10"
+            class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pr-20 md:pr-10"
           >
             <TransitionChild
               as="template"
               enter="transform transition ease-in-out duration-500 sm:duration-700"
-              enter-from="translate-x-full"
-              enter-to="translate-x-0"
+              enter-from="-translate-x-full"
+              enter-to="-translate-x-0"
               leave="transform transition ease-in-out duration-500 sm:duration-700"
-              leave-from="translate-x-0"
-              leave-to="translate-x-full"
+              leave-from="-translate-x-0"
+              leave-to="-translate-x-full"
             >
               <DialogPanel
                 class="pointer-events-auto relative w-screen max-w-md"
@@ -42,44 +40,58 @@
                   leave-from="opacity-100"
                   leave-to="opacity-0"
                 >
-                  <div
-                    class="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 sm:-ml-10 sm:pr-4"
-                  >
+                  <div class="absolute top-0 right-0 -mr-11 flex pt-4">
                     <button
                       type="button"
-                      class="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
-                      @click="emits('toggleOpen')"
+                      class="rounded-md text-gray-300 hover:text-white outline-none"
+                      @click="open = false"
                     >
                       <span class="sr-only">Close</span>
-                      <AppIcon icon="ph:x" class="h-6 w-6" aria-hidden="true" />
+                      <AppIcon icon="ph:x" class="text-xl" aria-hidden="true" />
                     </button>
                   </div>
                 </TransitionChild>
                 <div
-                  class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl"
+                  class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl"
                 >
                   <div class="relative flex-1 px-4 sm:px-6">
                     <!-- Replace with your content -->
-                    <div class="absolute inset-0 px-4 sm:px-6">
+                    <div class="absolute inset-0">
                       <div
-                        class="h-full border-2 border-dashed border-gray-200"
-                        aria-hidden="true"
+                        class="flex gap-x-2 px-5 pt-4 pb-[14px] border-b border-[#F4F4F4]"
                       >
-                        <ul class="px-4 py-8">
-                          <router-link to="/login">
-                            <li
-                              class="px-3 py-2 text-base font-medium text-matta-black hover:text-gray-500"
-                            >
-                              Sign in
-                            </li></router-link
+                        <span
+                          class="h-10 w-10 rounded-full flex items-center justify-center text-white bg-[#f90] font-semibold"
+                          >JD</span
+                        >
+                        <div>
+                          <span
+                            class="text-[#333] text-sm font-semibold block capitalize"
+                            >John doe</span
                           >
-                          <router-link to="/select-role">
-                            <li
-                              class="px-3 py-2 text-base font-medium text-matta-black hover:text-gray-500"
-                            >
-                              Get started
-                            </li></router-link
+                          <span class="block text-xs text-[#666] mb-3"
+                            >johndoe@gmail.com</span
                           >
+                          <span
+                            class="flex gap-x-1 text-xs text-[#165EF0] font-medium"
+                            ><AppIcon
+                              icon="octicon:sign-out-16"
+                              class="text-sm"
+                            />Sign out</span
+                          >
+                        </div>
+                      </div>
+                      <div class="px-5 pt-5">
+                        <ul class="grid gap-y-5">
+                          <li
+                            v-for="n in mobileMenu.filter(
+                              (i) => i.key !== 'sign-out'
+                            )"
+                            :key="n.name"
+                            class="flex gap-x-3 items-center text-sm font-medium"
+                          >
+                            <AppIcon :icon="n.icon" /> {{ n.name }}
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -136,7 +148,7 @@
   </ModalsCenterModal>
 </template>
 <script setup>
-import { defineProps, defineEmits, computed, ref } from "vue";
+import { ref } from "vue";
 import {
   Dialog,
   DialogPanel,
@@ -144,10 +156,9 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
+import { mobileMenu } from "~/utils/data";
 
 const isSigniningOut = ref(false);
 
-
-defineProps(["open"]);
-const emits = defineEmits(["toggleOpen"]);
+const open = inject("open");
 </script>
