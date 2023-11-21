@@ -4,10 +4,16 @@
       relative: view.atTopOfPage,
       'sticky top-0 opacity-95 fade-in-top': !view.atTopOfPage,
     }"
-    class="relative py-5 md:py-[30px] border-b border-[rgba(242, 242, 242, 1)] w-full bg-white z-[999] transition-all duration-500 ease-in-out"
+    class="relative py-5 border-b border-[rgba(242, 242, 242, 1)] w-full bg-white z-[999] transition-all duration-500 ease-in-out"
   >
     <div class="container mx-auto">
-      <div class="flex justify-between items-center gap-x-10 mb-7">
+      <div
+        class="flex justify-between items-center gap-x-10"
+        :class="{
+          'mb-7': view.atTopOfPage,
+          'mb-0': !view.atTopOfPage,
+        }"
+      >
         <div class="logo">
           <img
             src="~/assets/images/logo.png"
@@ -51,7 +57,10 @@
           <AppIcon icon="pepicons-pop:menu" class="text-[30px]" />
         </span>
       </div>
-      <div class="flex justify-between items-center gap-x-10">
+      <div :class="{
+          'flex': view.atTopOfPage,
+          'hidden': !view.atTopOfPage,
+        }" class="flex justify-between items-center gap-x-10">
         <ul class="lg:flex items-center gap-x-6 hidden">
           <li
             v-for="n in navigations"
@@ -92,7 +101,9 @@
                 </MenuItems>
               </transition>
             </Menu>
-            <span class="cursor-pointer hover:text-[#2176FF]" v-else> {{ n.name }}</span>
+            <span class="cursor-pointer hover:text-[#2176FF]" v-else>
+              {{ n.name }}</span
+            >
           </li>
         </ul>
         <ul class="items-center gap-x-6 lg:hidden">

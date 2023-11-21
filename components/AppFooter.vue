@@ -47,7 +47,7 @@
           data-aos-once="true"
         >
           <div v-for="n in navs" :key="n.subject">
-            <span class="text-base uppercase text-[#333] font-bold mb-3 block">
+            <span class="text-base capitalize text-[#333] font-bold mb-3 block">
               {{ n.subject }}
             </span>
             <ul>

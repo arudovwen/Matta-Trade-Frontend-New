@@ -5,9 +5,14 @@
 </template>
 
 <style>
+html{
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
 body {
   font-family: "Manrope", sans-serif;
   color: #333333;
+  
 }
 .recommended .carousel__viewport .carousel__track{
   column-gap: 34px;

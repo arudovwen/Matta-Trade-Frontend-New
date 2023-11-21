@@ -13,7 +13,7 @@
           data-aos="fade-up"
           data-aos-once="true"
           text="Start selling on Matta"
-          btnClass="bg-white text-[#333] !px-10 !py-5"
+          btnClass="bg-white text-[#333] !px-10 !py-5 !normal-case !font-medium"
         />
       </div>
       <div
