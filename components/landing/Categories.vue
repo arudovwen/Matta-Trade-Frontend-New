@@ -2,7 +2,7 @@
   <div>
     <div class="container py-20">
       <div
-        class="flex flex-col md:flex-row gap-y-9 xl:gap-y-0 justify-between mb-[90px]"
+        class="flex flex-col md:flex-row gap-y-9 xl:gap-y-0 justify-between mb-[90px] md:gap-x-10"
       >
         <h1
           data-aos="fade-up"
@@ -33,13 +33,13 @@
       </div>
 
       <div
+        data-aos="fade-up"
+        data-aos-once="true"
         class="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-8 gap-4 md:gap-5 justify-center max-h-[350px] overflow-y-auto"
       >
         <span
           v-for="(n, idx) in categories"
           :key="idx"
-          data-aos="fade-up"
-          data-aos-once="true"
           class="mx-auto cursor-pointer px-5 flex flex-col w-[100px] md:w-[140px] h-[100px] md:h-[140px] border-2 border-[#EAEAEA] rounded-full items-center justify-center hover:border-[#777] hover:bg-[rgba(33,118,255,0.04)]"
         >
           <AppIcon
