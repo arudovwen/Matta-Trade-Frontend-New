@@ -2,7 +2,7 @@
   <span
     v-if="!view.atTopOfPage"
     @click="scroll"
-    class="cursor-pointer h-10 w-10 rounded-full bg-[#333333] opacity-50 hover:opacity-100 flex items-center justify-center fixed bottom-10 right-5"
+    class="cursor-pointer h-10 w-10 rounded-full bg-[#333333] opacity-50 hover:opacity-100 flex items-center justify-center fixed bottom-10 right-4 z-[999]"
     ><AppIcon icon="icon-park-outline:to-top" class="text-xl text-white"
   /></span>
 </template>
