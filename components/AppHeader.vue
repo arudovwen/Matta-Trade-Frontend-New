@@ -278,7 +278,7 @@ import { ref } from "vue";
 import { categories, navigations, mobileNavigation } from "~/utils/data";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 
-const isLoggedIn = ref(true);
+const isLoggedIn = ref(false);
 const filteredMenu = computed(() =>
   mobileMenu.filter(
     (i) =>

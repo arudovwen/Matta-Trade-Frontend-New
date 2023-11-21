@@ -1,14 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    "@nuxtjs/tailwindcss",
-    "@nuxtjs/color-mode",
-    "@nuxtjs/google-fonts",
-  ],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "@nuxtjs/google-fonts", "@pinia/nuxt"],
   colorMode: {
     classSuffix: "",
   },
-  css: ["~/assets/scss/_button.scss"],
+  css: ["~/assets/scss/_button.scss","~/assets/scss/_form.scss"],
   googleFonts: {
     families: {
       Manrope: [100, 200, 300, 400, 500, 600, 700, 800], // Enable the IntManropeer font
