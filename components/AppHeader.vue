@@ -26,10 +26,10 @@
         <div class="flex items-center gap-x-6 text-sm">
           <span
             :class="{
-              '': view.atTopOfPage,
-              hidden: !view.atTopOfPage,
+              'md:flex': view.atTopOfPage,
+              'md:hidden': !view.atTopOfPage,
             }"
-            class="hidden md:flex gap-x-1 items-center"
+            class="hidden  gap-x-1 items-center"
           >
             <img
               src="~/assets/images/nigeria.svg"
@@ -43,10 +43,10 @@
 
           <span
             :class="{
-              '': view.atTopOfPage,
-              hidden: !view.atTopOfPage,
+              'md:flex ': view.atTopOfPage,
+              'md:hidden': !view.atTopOfPage,
             }"
-            class="hidden md:flex gap-x-1 items-center"
+            class="hidden gap-x-1 items-center"
           >
             <AppIcon class="text-lg" icon="ion:globe-outline" />
             <select class="appearance-none outline-none text-sm">

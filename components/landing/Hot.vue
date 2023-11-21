@@ -6,7 +6,7 @@
         See all items
       </button>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-y-8 gap-x-4 md:gap-x-6 xl:gap-x-8">
+    <div class="grid grid-cols-2  lg:grid-cols-4 gap-y-8 gap-x-4 md:gap-x-6 xl:gap-x-8">
       <ProductCard
         data-aos="fade-up"
         data-aos-once="true"
