@@ -1,8 +1,8 @@
 <template>
   <section
-    class="container mx-auto min-h-screen flex flex-col p-2 bg-[#E7EBEE] gap-y-2 relative"
+    class="container mx-auto min-h-screen flex flex-col p-2  gap-y-2 relative"
   >
-    <div class="pt-10 pb-24 bg-white rounded-lg px-4 md:px-6">
+    <div class="pt-10 pb-24  px-4 md:px-6">
       <h1 class="font-bold text-center text-xl sm:text-2xl lg:text-3xl mb-10">
         TERMS AND CONDITIONS
       </h1>
@@ -504,7 +504,7 @@
         </ul>
       </article>
     </div>
-    <div><AppFooter /></div>
+   
   </section>
 </template>
 <style lang="scss" scoped>

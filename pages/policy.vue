@@ -1,9 +1,9 @@
 <template>
     <section
-      class="container mx-auto min-h-screen flex flex-col p-2 bg-[#E7EBEE] gap-y-2 relative"
+      class="container mx-auto min-h-screen flex flex-col p-2 gap-y-2 relative"
     >
      
-      <div class="bg-white rounded-lg px-4 md:px-6 pt-10 pb-24 mx-auto">
+      <div class=" px-4 md:px-6 pt-10 pb-24 mx-auto">
         <h1 class="font-bold text-center text-xl sm:text-2xl lg:text-3xl mb-10">
           PRIVACY POLICIES
         </h1>
@@ -500,7 +500,7 @@
           </p>
         </article>
       </div>
-      <div><AppFooter /></div>
+      
     </section>
   </template>
   <style lang="scss" scoped>

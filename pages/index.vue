@@ -5,9 +5,9 @@
     <div class="bg-[#F4F4F4] pt-[60px] md:pb-10">
       <LandingBoard />
       <div class="pb-[70px]">
-        <LandingHot />
-      <LandingRecommended  />
-      <LandingHot />
+        <LandingHot :content="hotDeals" />
+      <LandingRecommended  :content="reccomended" />
+      <LandingHot :content="bestSellers" title="Best sellers" />
       </div>
       <LandingInfo />
     </div>
@@ -17,3 +17,6 @@
     <LandingCall />
   </div>
 </template>
+<script setup>
+import {hotDeals} from "~/utils/data"
+</script>

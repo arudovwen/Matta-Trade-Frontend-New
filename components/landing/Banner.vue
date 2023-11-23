@@ -17,8 +17,8 @@
               Discover and buy chemicals and raw materials all in one place.
             </h1>
             <p class="text-base md:text-xl lg:text-2xl">
-              Search, Compare, Sample, Quote, Supply, and Purchase Chemicals and
-              Raw Materials
+              Search, compare, sample, quote, supply, and purchase chemicals and
+              raw materials
             </p>
           </div>
           <div class="max-w-[786px]">

@@ -134,16 +134,16 @@ const navs = [
         url: "/account/storefront/overview",
       },
       {
-        title: "Inventory Financing",
+        title: "Suppply Finance",
         url: "/account/storefront/overview",
       },
-      {
-        title: "Logistics",
-        url: "/account/storefront/overview",
-      },
-
+  
       {
         title: "Import Finance",
+        url: "/account/storefront/overview",
+      },
+      {
+        title: "Export Finance",
         url: "/account/storefront/overview",
       },
     ],
@@ -169,7 +169,7 @@ const navs = [
         url: "/applications",
       },
       {
-        title: "Become a Seller",
+        title: "Become an agent",
         url: "/faqs",
       },
     ],

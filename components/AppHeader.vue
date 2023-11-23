@@ -2,14 +2,14 @@
   <nav
     :class="{
       relative: view.atTopOfPage,
-      'sticky top-0 opacity-95 fade-in-top pb-5 border-b border-[rgba(242, 242, 242, 1)]':
+      'sticky top-0 opacity-95 fade-in-top pb-5 lg:pb-5 border-b border-[rgba(242, 242, 242, 1)]':
         !view.atTopOfPage,
     }"
-    class="relative pt-5 w-full bg-white z-[999] transition-all duration-500 ease-in-out"
+    class="relative pt-5 pb-5 lg:pb-0 w-full bg-white z-[999] transition-all duration-500 ease-in-out"
   >
     <div class="container mx-auto">
       <div
-        class="flex justify-between items-center gap-x-10"
+        class="flex justify-between items-center gap-x-5"
         :class="{
           'md:mb-7': view.atTopOfPage,
           'mb-0': !view.atTopOfPage,
@@ -72,7 +72,7 @@
                 >2</span
               >
             </span>
-            <span class="text-sm">Cart</span>
+            <span class="text-sm hidden sm:inline-flex">Cart</span>
           </span>
 
           <div class="flex gap-x-3">
@@ -85,7 +85,7 @@
               v-if="!isLoggedIn"
               link="/auth/login"
               text="Sign In"
-              btnClass="bg-primary-500 text-white !px-6 !py-[6px]"
+              btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm"
             />
 
             <Menu
@@ -145,7 +145,7 @@
                 </MenuItems>
               </transition>
             </Menu>
-            <span class="lg:hidden" @click="open = true">
+            <span v-if="isLoggedIn" class="lg:hidden" @click="open = true">
               <AppIcon icon="ci:menu-alt-01" class="text-[30px]" />
             </span>
           </div>
@@ -162,15 +162,22 @@
           <li
             v-for="n in navigations"
             :key="n.name"
-            class="flex gap-x-[6px] items-center text-sm border-b-2 border-transparent hover:border-[#165EF0] pb-5"
+            class="flex gap-x-[6px] items-center text-sm border-b-2 border-transparent group hover:border-[#165EF0] pb-5"
+            :class="`${currentRoute.name.toLowerCase() == n.name.toLowerCase() ? 'border-[#165EF0]' : ''}`"
           >
+          
             <Menu
               as="div"
-              v-if="n.key === 'categories'"
+              v-if="n.key === 'categories' || n.key === 'finance'"
               class="relative inline-block text-left"
             >
-              <MenuButton class="flex gap-x-1 items-center"
-                ><AppIcon class="text-base" icon="tdesign:list" />
+              <MenuButton
+                class="flex gap-x-1 items-center group-hover:text-[#165EF0]"
+                ><AppIcon
+                  v-if="n.key === 'categories'"
+                  class="text-base"
+                  icon="tdesign:list"
+                />
                 {{ n.name }}</MenuButton
               >
               <transition
@@ -184,23 +191,34 @@
                 <MenuItems
                   class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white rounded-b-[10px] px-[30px] py-5 text-sm"
                 >
-                  <div class="px-1 py-1" v-for="n in categories" :key="n.title">
+                  <div
+                    class="px-1 py-1"
+                    v-for="n in n.key === 'categories'
+                      ? categories
+                      : financeMenu"
+                    :key="n.title"
+                  >
                     <MenuItem v-slot="{ active }">
-                      <button
-                        :class="[
-                          'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px] gap-x-2',
-                        ]"
-                      >
-                        <AppIcon :icon="n.icon" /> {{ n.title }}
-                      </button>
+                      <NuxtLink :to="n.url">
+                        <button
+                          :class="[
+                            'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px] gap-x-2 text-[#333]',
+                          ]"
+                        >
+                          <AppIcon v-if="n?.icon" :icon="n.icon" />
+                          {{ n.title }}
+                        </button>
+                      </NuxtLink>
                     </MenuItem>
                   </div>
                 </MenuItems>
               </transition>
             </Menu>
-            <span class="cursor-pointer hover:text-[#165EF0]" v-else>
-              {{ n.name }}</span
-            >
+            <NuxtLink :to="n.url" v-else>
+              <span class="cursor-pointer hover:text-[#165EF0]">
+                {{ n.name }}</span
+              >
+            </NuxtLink>
           </li>
         </ul>
         <ul class="items-center gap-x-6 lg:hidden">
@@ -273,11 +291,19 @@
   </div>
 </template>
 <script setup>
-import { mobileMenu } from "~/utils/data";
 import { ref } from "vue";
-import { categories, navigations, mobileNavigation } from "~/utils/data";
+import {
+  categories,
+  navigations,
+  mobileNavigation,
+  financeMenu,
+  mobileMenu,
+} from "~/utils/data";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 
+const router = useRouter();
+const { currentRoute } = router;
+console.log("🚀 ~ file: AppHeader.vue:303 ~ router:", router);
 const isLoggedIn = ref(false);
 const filteredMenu = computed(() =>
   mobileMenu.filter(
@@ -307,7 +333,12 @@ function handleScroll() {
 }
 provide("open", open);
 </script>
-<style>
+<style lang="scss">
+nav {
+  .router-link-active.router-link-exact-active {
+    color: #165ef0;
+  }
+}
 /* Add the transition class for slide-down effect */
 .fade-in-top {
   -webkit-animation: fade-in-top 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
