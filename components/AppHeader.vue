@@ -2,10 +2,10 @@
   <nav
     :class="{
       relative: view.atTopOfPage,
-      'sticky top-0 opacity-95 fade-in-top pb-5 lg:pb-5 border-b border-[rgba(242, 242, 242, 1)]':
+      'sticky top-0 opacity-95 fade-in-top pb-5 lg:pb-5 border-b border-[rgba(242, 242, 242, 1)] dark:border-gray-900':
         !view.atTopOfPage,
     }"
-    class="relative pt-5 pb-5 lg:pb-0 w-full bg-white z-[999] transition-all duration-500 ease-in-out"
+    class="relative pt-5 pb-5 lg:pb-0 w-full bg-white dark:bg-gray-800 dark:text-white/90 z-[999] transition-all duration-500 ease-in-out"
   >
     <div class="container mx-auto">
       <div
@@ -24,6 +24,7 @@
               alt="Matta"
               class="w-[100px] h-auto"
           /></NuxtLink>
+        
         </div>
         <div class="flex items-center gap-x-6 text-sm">
           <span
@@ -51,7 +52,7 @@
             class="hidden gap-x-1 items-center"
           >
             <AppIcon class="text-lg" icon="ion:globe-outline" />
-            <select class="appearance-none outline-none text-sm">
+            <select class="appearance-none outline-none text-sm bg-transparent">
               <option value="">English-NGN</option>
             </select></span
           >
@@ -64,7 +65,7 @@
           >
             <span class="relative">
               <AppIcon
-                class="text-base text-[#333]"
+                class="text-base text-[#333] dark:text-white/90"
                 icon="fa6-solid:cart-shopping"
               />
               <span
@@ -77,13 +78,13 @@
 
           <div class="flex gap-x-3">
             <AppButton
-              link="/auth/register"
+              link="/auth/vendor-register"
               text="Become a Seller"
               btnClass="text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] hidden md:flex"
             />
             <AppButton
               v-if="!isLoggedIn"
-              link="/auth/login"
+              link="/auth/login" 
               text="Sign In"
               btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm"
             />
@@ -110,7 +111,7 @@
                 leave-to-class="transform scale-95 opacity-0"
               >
                 <MenuItems
-                  class="absolute right-0 mt-2 w-56 origin-top-right rounded-[5px] border border-[#F6F6F6] bg-white z-[99] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.06)]"
+                  class="absolute right-0 mt-2 w-56 origin-top-right rounded-[5px] border border-[#F6F6F6] bg-white dark:bg-gray-800 z-[99] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.06)]"
                 >
                   <div
                     class="flex items-center gap-x-2 px-[15px] pt-3 pb-[14px] border-b border-[#F4F4F4]"
@@ -121,16 +122,16 @@
                     >
                     <div>
                       <span
-                        class="text-[#333] text-[13px] font-semibold block capitalize"
+                        class="text-[#333] dark:text-white/90 text-[13px] font-semibold block capitalize"
                         >John doe</span
                       >
-                      <span class="block text-[11px] text-[#666]"
+                      <span class="block text-[11px] text-[#666] dark:text-white/70"
                         >johndoe@gmail.com</span
                       >
                     </div>
                   </div>
                   <div class="px-[15px] pt-[14px] pb-5">
-                    <ul class="grid gap-y-3 text-[#555]">
+                    <ul class="grid gap-y-3 text-[#555] dark:text-white/80">
                       <li v-for="n in filteredMenu" :key="n.name" class="">
                         <MenuItem v-slot="{ active }">
                           <button
@@ -189,7 +190,7 @@
                 leave-to-class="transform scale-95 opacity-0"
               >
                 <MenuItems
-                  class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white rounded-b-[10px] px-[30px] py-5 text-sm"
+                  class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white dark:bg-gray-800 rounded-b-[10px] px-[30px] py-5 text-sm"
                 >
                   <div
                     class="px-1 py-1"
@@ -202,7 +203,7 @@
                       <NuxtLink :to="n.url">
                         <button
                           :class="[
-                            'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px] gap-x-2 text-[#333]',
+                            'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px] gap-x-2 text-[#333] dark:text-white/90',
                           ]"
                         >
                           <AppIcon v-if="n?.icon" :icon="n.icon" />
@@ -245,7 +246,7 @@
                 leave-to-class="transform scale-95 opacity-0"
               >
                 <MenuItems
-                  class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white rounded-b-[10px] px-[30px] py-5 text-sm"
+                  class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white dark:bg-gray-800 rounded-b-[10px] px-[30px] py-5 text-sm"
                 >
                   <div class="px-1 py-1" v-for="n in categories" :key="n.title">
                     <MenuItem v-slot="{ active }">
@@ -270,7 +271,7 @@
             <span class="flex items-center gap-x-[6px] relative">
               <span class="relative">
                 <AppIcon
-                  class="text-base text-[#333]"
+                  class="text-base text-[#333] dark:text-white/90"
                   icon="fa6-solid:cart-shopping"
                 />
                 <span

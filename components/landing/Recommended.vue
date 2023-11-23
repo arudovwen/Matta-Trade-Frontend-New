@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <div class="bg-white rounded-[20px] py-5 px-4 md:px-[32px] mb-[30px]">
+    <div class="bg-white dark:bg-gray-800 rounded-[20px] py-5 px-4 md:px-[32px] mb-[30px]">
       <div
         data-aos="fade-up"
         data-aos-once="true"
         class="flex justify-between items-center mb-4"
       >
-        <h2 class="text-base lg:text-xl font-bold text-[#222]">Reccomended</h2>
-        <button class="text-sm lg:text-base font-medium">View more</button>
+        <h2 class="text-base lg:text-xl font-bold text-[#222] dark:text-white">Reccomended</h2>
+        <button class="text-sm lg:text-base font-medium dark:text-white">View more</button>
       </div>
       <div data-aos="fade-up" data-aos-once="true">
         <carousel
@@ -16,34 +16,34 @@
           class="recommended"
         >
           <slide v-for="slide in content" :key="slide">
-            <div class="bg-white w-full">
+            <div class="bg-white dark:bg-gray-800 w-full">
               <div
                 class="h-[185px] bg-gray-200 bg-cover bg-center rounded-[10px] overflow-hidden"
                 :style="{ backgroundImage: `url('${slide.img}')` }"
               ></div>
               <div class="py-[20px] text-left">
                 <span
-                  class="text-sm md:text-base block mb-[10px] font-bold truncate max-w-max"
+                  class="text-sm md:text-base block mb-[10px] font-bold dark:text-white truncate max-w-max"
                   >{{ slide.title }}</span
                 >
                 <span
-                  class="block mb-[25px] text-xs md:text-sm text-[#666] text-left"
+                  class="block mb-[25px] text-xs md:text-sm text-[#666] dark:text-white/80 text-left"
                   >{{ slide.company }}</span
                 >
 
                 <div class="flex justify-between items-center">
                   <span class="text-base flex gap-x-1 items-center"
-                    ><span class="text-xs md:text-sm xl:text-base text-[#666]"
+                    ><span class="text-xs md:text-sm xl:text-base text-[#666] dark:text-white/80"
                       >From</span
                     >
 
                     <span
-                      class="font-bold ml-[2px] text-base xl:text-xl text-[#333]"
+                      class="font-bold ml-[2px] text-base xl:text-xl text-[#333] dark:text-white"
                       >{{ currencyFormat(slide.newprice) }}/kg</span
                     ></span
                   >
 
-                  <span><AppIcon icon="ph:heart" /></span>
+                  <span><AppIcon icon="ph:heart" class="dark:text-white" /></span>
                 </div>
               </div>
             </div>

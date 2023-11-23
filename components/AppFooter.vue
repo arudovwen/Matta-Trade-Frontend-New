@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-white pt-16 pb-8">
+  <footer class="bg-white dark:bg-gray-800 pt-16 pb-8">
     <div class="rounded-lg container">
       <div
         class="grid text-center lg:text-left grid-cols-1 lg:grid-cols-4 gap-y-8 lg:gap-x-10 lg:pt-8 mb-14"
@@ -17,7 +17,7 @@
             </router-link>
           </div>
           <p
-            class="text-sm text-matta-black text-left mb-10"
+            class="text-sm dark:text-white text-left mb-10"
             data-aos="fade-up"
             data-aos-once="true"
           >
@@ -36,7 +36,7 @@
               <span class="">
                 <AppIcon
                   :icon="s.icon"
-                  class="cursor-pointer text-[#333]/80 text-[28px]"
+                  class="cursor-pointer text-[#333]/80 dark:text-white/80 text-[28px]"
               /></span>
             </a>
           </div>
@@ -47,14 +47,14 @@
           data-aos-once="true"
         >
           <div v-for="n in navs" :key="n.subject">
-            <span class="text-base capitalize text-[#333] font-bold mb-3 block">
+            <span class="text-base capitalize text-[#333] dark:text-white font-bold mb-3 block">
               {{ n.subject }}
             </span>
             <ul>
               <li
                 v-for="l in n.links"
                 :key="l.title"
-                class="text-[14px] font-normal capitlize text-[#333] mb-2"
+                class="text-[14px] font-normal capitlize text-[#333]/80 dark:text-white mb-2"
               >
                 <a
                   v-if="l.title.toLowerCase() !== 'contact'"
@@ -76,7 +76,7 @@
         class="flex flex-col-reverse lg:flex-row gap-4 lg:gap-0 justify-between lg:items-center"
       >
         <div
-          class="order-1 md:grid-cols-2 grid gap-y-3 lg:gap-y-6 md:gap-y-0 text-left md:gap-x-4"
+          class="order-1 md:grid-cols-2 grid gap-y-3 lg:gap-y-6 md:gap-y-0 text-left md:gap-x-4 dark:text-white/80"
         >
           <p class="order-2 lg:order-1 text-sm">
             © {{ new Date().getFullYear() }} Matta. All Rights Reserved.
@@ -85,7 +85,7 @@
             <router-link to="/privacy-policies" class="text-sm md:text-sm"
               >Privacy policy</router-link
             >
-            <span class="bg-[#333] w-[2px] h-[2px] rounded-full"></span>
+            <span class="bg-[#333] dark:text-white/80 w-[2px] h-[2px] rounded-full"></span>
             <router-link to="/terms-and-conditions" class="text-sm md:text-sm"
               >Terms of use</router-link
             >

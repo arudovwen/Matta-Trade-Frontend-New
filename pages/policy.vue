@@ -1,6 +1,6 @@
 <template>
     <section
-      class="container mx-auto min-h-screen flex flex-col p-2 gap-y-2 relative"
+      class="container mx-auto min-h-screen flex flex-col p-2 gap-y-2 relative dark:bg-gray-800"
     >
      
       <div class=" px-4 md:px-6 pt-10 pb-24 mx-auto">

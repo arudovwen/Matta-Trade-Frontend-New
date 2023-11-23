@@ -3,7 +3,7 @@
     <h2
       data-aos="fade-up"
       data-aos-once="true"
-      class="text-xl font-semibold mb-10 text-center"
+      class="text-xl font-semibold mb-10 text-center dark:text-white/80"
     >
       Supplies from brands you can trust
     </h2>

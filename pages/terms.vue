@@ -1,6 +1,6 @@
 <template>
   <section
-    class="container mx-auto min-h-screen flex flex-col p-2  gap-y-2 relative"
+    class="container mx-auto min-h-screen flex flex-col p-2  gap-y-2 relative dark:bg-gray-800"
   >
     <div class="pt-10 pb-24  px-4 md:px-6">
       <h1 class="font-bold text-center text-xl sm:text-2xl lg:text-3xl mb-10">

@@ -1,13 +1,13 @@
 <template>
   <div class="min-h-screen mx-auto">
     <LandingBanner />
-  
-    <div class="bg-[#F4F4F4] pt-[60px] md:pb-10">
+
+    <div class="bg-[#F4F4F4] dark:bg-gray-700 pt-[60px] md:pb-10">
       <LandingBoard />
       <div class="pb-[70px]">
         <LandingHot :content="hotDeals" />
-      <LandingRecommended  :content="reccomended" />
-      <LandingHot :content="bestSellers" title="Best sellers" />
+        <LandingRecommended :content="reccomended" />
+        <LandingHot :content="bestSellers" title="Best sellers" />
       </div>
       <LandingInfo />
     </div>
@@ -18,5 +18,5 @@
   </div>
 </template>
 <script setup>
-import {hotDeals} from "~/utils/data"
+import { hotDeals } from "~/utils/data";
 </script>

@@ -1,20 +1,13 @@
 <template>
-  <div class="pt-20 lg:pt-[140px] w-full max-w-[480px] mx-auto">
-    <span
-      class="hidden absolute top-10 right-10 lg:flex items-center text-center text-sm text-[#333] dark:text-white/80 gap-x-1 justify-center"
-    >
-      Need a vendor account?
-      <NuxtLink to="/auth/vendor-register" class="font-semibold text-[#2176FF]"
-        >Click here</NuxtLink
-      >
-    </span>
+  <div class="w-full  mx-auto">
+   
     <h1 class="text-[#333] dark:text-white mb-[10px] text-3xl font-bold">
-      Sign Up
+      Create a vendor account
     </h1>
     <p class="mb-[31px] text-sm text-[#666] dark:text-white/80">
       Enter your details to create an account.
     </p>
-    <form class="grid grid-cols-1 lg:grid-cols-2 gap-x-[18px] gap-y-5">
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-x-[18px] gap-y-5">
       <div>
         <Textinput
           placeholder="Provide your first name"
@@ -45,6 +38,14 @@
           label="Phone number"
           type="tel"
           name="phoneNumber"
+        />
+      </div>
+      <div class="md:col-span-2">
+        <Textinput
+          placeholder="Provide your company name"
+          label="Company name"
+          type="text"
+          name="companyName"
         />
       </div>
       <div>
@@ -80,7 +81,7 @@
 
       <div class="lg:col-span-2 grid gap-y-[22px] mb-9 mt-4">
         <AppButton
-          text="Create your account"
+          text="sign up"
           btnClass="normal-case btn-primary !py-3"
           :disabled="!agree"
         />
@@ -98,7 +99,7 @@
 </template>
 <script setup>
 definePageMeta({
-  layout: "auth",
+  layout: "register",
 });
 
 const agree = ref(false);
