@@ -27,7 +27,7 @@
                   >{{ slide.title }}</span
                 >
                 <span
-                  class="block mb-[25px] text-xs md:text-sm text-[#666] dark:text-white/80 text-left"
+                  class="block mb-[25px] text-xs md:text-sm truncate max-w-max text-[#666] dark:text-white/80 text-left"
                   >{{ slide.company }}</span
                 >
 

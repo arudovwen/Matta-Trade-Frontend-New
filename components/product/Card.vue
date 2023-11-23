@@ -11,7 +11,7 @@
         class="block mb-[10px] font-bold truncate max-w-max text-sm md:text-base dark:text-white"
         >{{ detail.title }}</span
       >
-      <span class="block mb-[25px] text-xs md:text-sm text-[#666  dark:text-white/80">{{
+      <span class="block mb-[25px] text-xs md:text-sm truncate max-w-max text-[#666  dark:text-white/80">{{
         detail.company
       }}</span>
 
