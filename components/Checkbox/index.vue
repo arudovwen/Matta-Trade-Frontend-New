@@ -19,8 +19,8 @@
         class="h-4 w-4 border flex-none border-slate-100 darks:border-slate-800 rounded inline-flex mr-3 relative transition-all duration-150"
         :class="
           ck
-            ? activeClass + ' ring-2 ring-offset-2 darks:ring-offset-slate-800 '
-            : 'bg-slate-100 darks:bg-slate-600 darks:border-slate-600'
+            ? activeClass + ' border-none '
+            : 'bg-white border border-[rgba(223,223,223,1)] darks:bg-slate-600 darks:border-slate-600'
         "
       >
         <img

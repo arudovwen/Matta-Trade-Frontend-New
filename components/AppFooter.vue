@@ -82,11 +82,11 @@
             © {{ new Date().getFullYear() }} Matta. All Rights Reserved.
           </p>
           <div class="order-1 lg:order-2 flex gap-x-2 md:gap-x-4 items-center">
-            <router-link to="/privacy-policies" class="text-sm md:text-sm"
+            <router-link to="/policy" class="text-sm md:text-sm"
               >Privacy policy</router-link
             >
             <span class="bg-[#333] darks:text-white/80 w-[2px] h-[2px] rounded-full"></span>
-            <router-link to="/terms-and-conditions" class="text-sm md:text-sm"
+            <router-link to="/terms" class="text-sm md:text-sm"
               >Terms of use</router-link
             >
           </div>

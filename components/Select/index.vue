@@ -12,7 +12,7 @@
     >
       {{ label }}</label
     >
-    <div class="relative">
+    <div class="relative flex items-center">
       <select
         :name="name"
         :class="`${classInput} input-control block w-full focus:outline-none min-h-[40px] `"
@@ -39,6 +39,7 @@
         </template>
         <slot v-if="$slots.default"></slot>
       </select>
+      <AppIcon icon="fa6-solid:angle-down" class="absolute right-[15px] text-[#667085]" />
     </div>
 
     <span
