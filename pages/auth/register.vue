@@ -1,5 +1,5 @@
 <template>
-  <div class="py-10 w-full max-w-[500px] mx-auto h-full flex flex-col gap-y-8  max-h-max overflow-y-auto">
+  <div class="py-8 w-full  h-full flex flex-col gap-y-8  max-h-max overflow-y-auto">
     <div
       class="hidden lg:flex items-center text-center text-sm text-[#333] darks:text-white/80 gap-x-1 justify-end"
     >
@@ -8,7 +8,7 @@
         >Click here</NuxtLink
       >
     </div>
-    <div class="flex-1 flex flex-col justify-center">
+    <div class="flex-1 flex flex-col justify-center w-full lg:max-w-[550px] 2xl:max-w-[600px] mx-auto">
       <div class="">
         <h1 class="text-[#333] darks:text-white mb-[10px] text-3xl font-bold">
           Sign Up

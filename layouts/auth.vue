@@ -14,15 +14,12 @@
             class="w-[100px] h-auto"
         /></NuxtLink>
       </div>
-      <!-- Overlay -->
-      <!-- <div class="absolute inset-0 bg-[rgba(3,14,46,0.85)]"></div> -->
-
-      <!-- assets/images/banner.pngContent in the banner -->
+      
       <div
         class="flex items-center text-white text-left container"
       >
         <div class="px-10">
-          <div class="max-w-[520px] mb-10">
+          <div class="max-w-[600px] 2xl:max-w-[700px] mb-10">
             <h1
               class="text-4xl leading-10 2xl:text-5xl font-bold mb-6 2xl:leading-[62px]"
             >
@@ -49,7 +46,9 @@
             class="w-[100px] h-auto z-10"
         /></NuxtLink>
       </div>
-      <slot />
+   <div class="flex-1 flex flex-col justify-center">
+    <slot />
+   </div>
     </div>
   </div>
 </template>
