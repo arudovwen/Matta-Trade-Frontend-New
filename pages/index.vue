@@ -2,7 +2,7 @@
   <div class="min-h-screen mx-auto">
     <LandingBanner />
 
-    <div class="bg-[#F4F4F4] dark:bg-gray-700 pt-[60px] md:pb-10">
+    <div class="bg-[#F4F4F4] darks:bg-gray-700 pt-[60px] md:pb-10">
       <LandingBoard />
       <div class="pb-[70px]">
         <LandingHot :content="hotDeals" />

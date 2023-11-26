@@ -1,8 +1,8 @@
 <template>
-  <div class="grid grid-cols-1 lg:grid-cols-2 h-screen w-screen">
+  <div class="grid grid-cols-1 lg:grid-cols-12 h-screen w-screen bg-cover bg-center " :style="{ backgroundImage: `url('${AuthBg}')` }">
     <div
-      class="bg-cover bg-center relative hidden lg:inline-block"
-      :style="{ backgroundImage: `url('${AuthBg}')` }"
+      class="relative hidden lg:flex items-center lg:col-span-7 bg-[rgba(3,14,46,0.85)]"
+      
     >
       <div class="top-10 left-10 logo absolute z-10">
         <NuxtLink to="/">
@@ -15,14 +15,14 @@
         /></NuxtLink>
       </div>
       <!-- Overlay -->
-      <div class="absolute inset-0 bg-[rgba(3,14,46,0.85)]"></div>
+      <!-- <div class="absolute inset-0 bg-[rgba(3,14,46,0.85)]"></div> -->
 
       <!-- assets/images/banner.pngContent in the banner -->
       <div
-        class="absolute inset-0 flex items-center justify-center text-white text-left container"
+        class="flex items-center text-white text-left container"
       >
-        <div class="px-16">
-          <div class="max-w-[625px] mb-10 mx-auto">
+        <div class="px-10">
+          <div class="max-w-[520px] mb-10">
             <h1
               class="text-4xl leading-10 2xl:text-5xl font-bold mb-6 2xl:leading-[62px]"
             >
@@ -38,15 +38,15 @@
         </div>
       </div>
     </div>
-    <div class="bg-white dark:bg-gray-800 container px-6 pb-10 flex flex-col">
-      <div class="pt-10 z-10 lg:hidden">
+    <div class="bg-white px-6 flex flex-col lg:col-span-5 lg:justify-center h-full overflow-y-auto">
+      <div class="pt-6 pb-2 z-10 lg:hidden">
         <NuxtLink to="/">
           <img
-            src="~/assets/images/logo-white.png"
+            src="~/assets/images/logo.png"
             width="100"
             height="26"
             alt="Matta"
-            class="w-[100px] h-auto"
+            class="w-[100px] h-auto z-10"
         /></NuxtLink>
       </div>
       <slot />

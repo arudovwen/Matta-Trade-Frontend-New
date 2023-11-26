@@ -1,13 +1,13 @@
 <template>
-  <div class="w-full  mx-auto">
+  <div class="w-full max-w-[550px]  mx-auto py-2 ">
    
-    <h1 class="text-[#333] dark:text-white mb-[10px] text-3xl font-bold">
+    <h1 class="text-[#333] darks:text-white mb-[10px] text-3xl font-bold">
       Create a vendor account
     </h1>
-    <p class="mb-[31px] text-sm text-[#666] dark:text-white/80">
+    <p class="mb-[31px] text-sm text-[#666] darks:text-white/80">
       Enter your details to create an account.
     </p>
-    <form class="grid grid-cols-1 md:grid-cols-2 gap-x-[18px] gap-y-5">
+    <form class="grid grid-cols-1 lg:grid-cols-2 gap-x-[18px] gap-y-5">
       <div>
         <Textinput
           placeholder="Provide your first name"
@@ -40,7 +40,7 @@
           name="phoneNumber"
         />
       </div>
-      <div class="md:col-span-2">
+      <div class="lg:col-span-2">
         <Textinput
           placeholder="Provide your company name"
           label="Company name"
@@ -65,12 +65,12 @@
         />
       </div>
       <div
-        class="lg:col-span-2 flex items-center text-[#333] dark:text-slate-400 text-xs md:text-sm gap-x-[2px]"
+        class="lg:col-span-2 flex items-center text-[#333] darks:text-slate-400 text-xs lg:text-sm gap-x-[2px]"
       >
         <Checkbox
           v-model.value="agree"
           label="I agree to the "
-          labelClass="text-xs md:text-sm"
+          labelClass="text-xs lg:text-sm"
         />
         <span
           ><NuxtLink to="/terms" class="text-[#2176FF]">Terms </NuxtLink> and
@@ -87,7 +87,7 @@
         />
       </div>
       <span
-        class="lg:col-span-2 flex items-center text-center text-sm text-[#333] dark:text-white/80 gap-x-1 justify-center"
+        class="lg:col-span-2 flex items-center text-center text-sm text-[#333] darks:text-white/80 gap-x-1 justify-center"
       >
         Already have an account?
         <NuxtLink to="/auth/login" class="font-semibold text-[#2176FF]"

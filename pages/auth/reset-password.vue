@@ -1,10 +1,10 @@
 <template>
-  <div class="pt-20 lg:pt-[140px] w-full max-w-[400px] mx-auto grid flex-1 items-center">
+  <div class="pt-0 lg:pt-0 w-full max-w-[400px] mx-auto grid flex-1 items-center">
     <div>
-      <h1 class="text-[#333] dark:text-white mb-[10px] text-[28px] font-bold">
+      <h1 class="text-[#333] darks:text-white mb-[10px] text-[28px] font-bold">
         Reset Password
       </h1>
-      <p class="mb-[25px] text-sm text-[#666] dark:text-white/80">
+      <p class="mb-[25px] text-sm text-[#666] darks:text-white/80">
         Enter the email associated with your account and we”ll send you
         instructions to reset your password
       </p>
@@ -17,7 +17,7 @@
             type="password"
           />
         </div>
-        <div class="mb-5">
+        <div class="mb-6">
           <Textinput
             hasicon
             placeholder="Confirm new password"
@@ -30,10 +30,10 @@
           <AppButton text="Submit" btnClass="btn-primary !py-3" />
         </div>
         <span
-          class="flex items-center text-center text-sm text-[#333] dark:text-white/80 gap-x-1 justify-center"
+          class="flex items-center text-center text-sm text-[#333] darks:text-white/80 gap-x-1 justify-center"
         >
           Have an account?
-          <NuxtLink to="/auth/login" class="font-semibold">Sign in</NuxtLink>
+          <NuxtLink to="/auth/login" class="font-semibold text-[#2176FF]">Sign in</NuxtLink>
         </span>
       </form>
     </div>

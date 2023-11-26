@@ -236,8 +236,8 @@ export default {
 </script>
 <style lang="scss">
 .input-group-control {
-  @apply bg-white dark:bg-slate-900 dark:placeholder:text-slate-400 transition duration-300 ease-in-out border border-slate-200 dark:border-slate-700 focus:ring-0  focus:outline-none  
-  rounded placeholder:text-slate-400 text-slate-900 text-sm px-3  placeholder:font-light focus:border-slate-600  dark:focus:border-slate-900 dark:text-white;
+  @apply bg-white darks:bg-slate-900 darks:placeholder:text-slate-400 transition duration-300 ease-in-out border border-slate-200 darks:border-slate-700 focus:ring-0  focus:outline-none  
+  rounded placeholder:text-slate-400 text-slate-900 text-sm px-3  placeholder:font-light focus:border-slate-600  darks:focus:border-slate-900 darks:text-white;
 }
 .input-label {
   @apply mb-2 text-slate-500 text-sm leading-6 capitalize cursor-pointer;
@@ -256,16 +256,16 @@ export default {
 }
 
 .input-group-control[readonly] {
-  @apply bg-slate-200 text-slate-400 dark:bg-slate-600;
+  @apply bg-slate-200 text-slate-400 darks:bg-slate-600;
 }
 
 .input-group-control[disabled] {
-  @apply cursor-not-allowed bg-slate-50 text-slate-400 placeholder:text-opacity-60 dark:bg-slate-600;
+  @apply cursor-not-allowed bg-slate-50 text-slate-400 placeholder:text-opacity-60 darks:bg-slate-600;
 }
 
 .input-group-text {
-  @apply bg-white dark:bg-slate-900 transition duration-300 ease-in-out  flex items-center justify-center px-3 border
-   border-slate-200 dark:border-slate-700 rounded-tl rounded-bl text-slate-400 text-base font-light;
+  @apply bg-white darks:bg-slate-900 transition duration-300 ease-in-out  flex items-center justify-center px-3 border
+   border-slate-200 darks:border-slate-700 rounded-tl rounded-bl text-slate-400 text-base font-light;
 }
 .inputGroup.has-prepend {
   .input-group-control {
@@ -275,12 +275,12 @@ export default {
 .inputGroup {
   &.has-prepend-slot {
     .input-group-control {
-      @apply border-l-0 rounded-tl-[0] rounded-bl-[0] focus:ring-0 focus:border-slate-600 dark:focus:border-slate-700;
+      @apply border-l-0 rounded-tl-[0] rounded-bl-[0] focus:ring-0 focus:border-slate-600 darks:focus:border-slate-700;
     }
   }
   &.has-append-slot {
     .input-group-control {
-      @apply border-r-0 rounded-tr-[0] rounded-br-[0] focus:ring-0 focus:border-slate-600 dark:focus:border-slate-700;
+      @apply border-r-0 rounded-tr-[0] rounded-br-[0] focus:ring-0 focus:border-slate-600 darks:focus:border-slate-700;
     }
   }
 }
@@ -296,7 +296,7 @@ export default {
 }
 
 .inputGroup:focus-within .input-group-text {
-  @apply border-black-500 dark:border-slate-900;
+  @apply border-black-500 darks:border-slate-900;
 }
 .merged .inputGroup:focus-within .input-group-text {
 }

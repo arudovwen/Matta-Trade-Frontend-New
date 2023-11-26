@@ -16,11 +16,11 @@
       />
 
       <span
-        class="h-4 w-4 border flex-none border-slate-100 dark:border-slate-800 rounded inline-flex mr-3 relative transition-all duration-150"
+        class="h-4 w-4 border flex-none border-slate-100 darks:border-slate-800 rounded inline-flex mr-3 relative transition-all duration-150"
         :class="
           ck
-            ? activeClass + ' ring-2 ring-offset-2 dark:ring-offset-slate-800 '
-            : 'bg-slate-100 dark:bg-slate-600 dark:border-slate-600'
+            ? activeClass + ' ring-2 ring-offset-2 darks:ring-offset-slate-800 '
+            : 'bg-slate-100 darks:bg-slate-600 darks:border-slate-600'
         "
       >
         <img
@@ -31,7 +31,7 @@
         />
       </span>
       <span
-        :class="`text-[#333] dark:text-slate-400 text-sm leading-6 ${labelClass}`"
+        :class="`text-[#333] darks:text-slate-400 text-sm leading-6 ${labelClass}`"
         v-if="label"
       >
         {{ label }}
@@ -63,7 +63,7 @@ export default defineComponent({
     activeClass: {
       type: String,
       default:
-        " ring-black-500  bg-slate-900 dark:bg-slate-700 dark:ring-slate-700 ",
+        " ring-black-500  bg-slate-900 darks:bg-slate-700 darks:ring-slate-700 ",
     },
     labelClass: {
       type: String,

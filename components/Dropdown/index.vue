@@ -16,18 +16,18 @@
     >
       <MenuItems
         :class="classMenuItems"
-        class="absolute right-0 origin-top-right rounded bg-white dark:bg-slate-800 dark:border dark:border-slate-700 shadow-dropdown z-[9999]"
+        class="absolute right-0 origin-top-right rounded bg-white darks:bg-slate-800 darks:border darks:border-slate-700 shadow-dropdown z-[9999]"
       >
         <div v-if="!$slots.menus">
           <MenuItem v-slot="{ active }" v-for="(item, i) in items" :key="i">
             <router-link
               :class="`${
                 active
-                  ? 'bg-slate-100 text-slate-900 dark:bg-slate-600 dark:text-slate-300 dark:bg-opacity-50'
-                  : 'text-slate-600 dark:text-slate-300'
+                  ? 'bg-slate-100 text-slate-900 darks:bg-slate-600 darks:text-slate-300 darks:bg-opacity-50'
+                  : 'text-slate-600 darks:text-slate-300'
               } block   ${classItem}  ${
                 item.hasDivider
-                  ? 'border-t border-slate-100 dark:border-slate-700'
+                  ? 'border-t border-slate-100 darks:border-slate-700'
                   : ''
               }`"
               :to="item.link"
@@ -44,7 +44,7 @@
             <span
               :class="`${active ? 'bg-slate-100 text-slate-800' : ''}  ${
                 item.hasDivider === true
-                  ? 'border-t border-gray-500 dark:border-slate-700'
+                  ? 'border-t border-gray-500 darks:border-slate-700'
                   : ''
               }  block ${classItem}`"
               v-else

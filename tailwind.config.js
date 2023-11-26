@@ -12,7 +12,7 @@ export default {
     "error.{js,ts,vue}",
     "content/**/*.md",
   ],
-  darkMode: "class",
+  // darkMode: "class",
   theme: {
     container: {
       center: true,
@@ -133,7 +133,7 @@ export default {
         },
         // light: "#425466",
         // "gray-f7": "#F7F8FC",
-        // dark: "#1E293B",
+        // darks: "#1E293B",
         // "dark-gray": "#0F172A",
         // gray2: "#EEF1F9",
         // gray3: "#FAFBFF",

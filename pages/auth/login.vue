@@ -1,9 +1,9 @@
 <template>
-  <div class="pt-20 lg:pt-[140px] w-full max-w-[400px] mx-auto">
-    <h1 class="text-[#333] dark:text-white mb-[10px] text-3xl font-bold">
+  <div class="pt-10 lg:pt-0 w-full max-w-[380px] mx-auto">
+    <h1 class="text-[#333] darks:text-white mb-[10px] text-3xl font-bold">
       Welcome back
     </h1>
-    <p class="mb-[31px] text-sm text-[#666] dark:text-white/80">
+    <p class="mb-[31px] text-sm text-[#666] darks:text-white/80">
       Please enter your details to sign in
     </p>
     <form>
@@ -25,7 +25,7 @@
           name="password"
         />
       </div>
-      <span class="block text-sm text-[#333] dark:text-white/80 mb-10">
+      <span class="block text-sm text-[#333] darks:text-white/80 mb-10">
         <NuxtLink to="/auth/forgot-password" class="font-medium"
           >Forgot password?</NuxtLink
         >
@@ -39,10 +39,10 @@
         />
       </div>
       <span
-        class="flex items-center text-center text-sm text-[#333] dark:text-white/80 gap-x-1 justify-center"
+        class="flex items-center text-center text-sm text-[#333] darks:text-white/80 gap-x-1 justify-center"
       >
         Don’t have an account?
-        <NuxtLink to="/auth/register" class="font-semibold">Sign Up</NuxtLink>
+        <NuxtLink to="/auth/register" class="font-semibold text-[#2176FF]">Sign Up</NuxtLink>
       </span>
     </form>
   </div>

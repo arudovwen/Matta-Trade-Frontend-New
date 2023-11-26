@@ -1,13 +1,13 @@
 <template>
-  <div class="pt-20 lg:pt-[140px] max-w-[400px] mx-auto items-center grid flex-1">
+  <div class="pt-0 lg:pt-0 max-w-[400px] mx-auto items-center grid flex-1">
   <div class="w-full">
     <div class="mb-6" v-if="isSent">
     <img src="~/assets/images/mail.svg" class="mx-auto" />
    </div>
-    <h1 class="text-[#333] dark:text-white mb-[10px] text-[28px] font-bold text-center">
+    <h1 class="text-[#333] darks:text-white mb-[10px] text-[28px] font-bold text-center">
       {{ isSent ? title2 : title1 }}
     </h1>
-    <p class="mb-[28px] text-sm text-[#666] dark:text-white/80 text-center">
+    <p class="mb-[28px] text-sm text-[#666] darks:text-white/80 text-center">
       {{ isSent ? text2 : text1 }}
     </p>
     <form v-if="!isSent">
@@ -24,10 +24,10 @@
         <AppButton text="Continue" btnClass="btn-primary !py-3" />
       </div>
       <span
-        class="flex items-center text-center text-sm text-[#333] dark:text-white/80 gap-x-1 justify-center"
+        class="flex items-center text-center text-sm text-[#333] darks:text-white/80 gap-x-1 justify-center"
       >
         Have an account?
-        <NuxtLink to="/auth/login" class="font-semibold">Sign in</NuxtLink>
+        <NuxtLink to="/auth/login" class="font-semibold text-[#2176FF]">Sign in</NuxtLink>
       </span>
     </form>
    <div class="pt-5" v-if="isSent">

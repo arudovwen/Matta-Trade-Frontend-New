@@ -7,7 +7,7 @@
         <h1
           data-aos="fade-up"
           data-aos-once="true"
-          class="max-w-[633px] text-[#222] dark:text-white text-3xl xl:text-[49px] font-bold leading-[44.6px] xl:leading-[67.6px]"
+          class="max-w-[633px] text-[#222] darks:text-white text-3xl xl:text-[49px] font-bold leading-[44.6px] xl:leading-[67.6px]"
         >
           Explore our wide range of offerings tailored to your business needs
         </h1>
@@ -25,7 +25,7 @@
               >{{ n.title }}</span
             >
             <span
-              class="block font-normal text-[#333] dark:text-white/80 text-sm xl:text-[20px]"
+              class="block font-normal text-[#333] darks:text-white/80 text-sm xl:text-[20px]"
               >{{ n.text }}</span
             >
           </div>
@@ -44,9 +44,9 @@
         >
           <AppIcon
             :icon="n.icon"
-            class="text-base md:text-[40px] text-[#444444] dark:text-white/80 mb-[6px]"
+            class="text-base md:text-[40px] text-[#444444] darks:text-white/80 mb-[6px]"
           />
-          <span class="text-[10px] md:text-xs text-[#333] dark:text-white text-center">{{
+          <span class="text-[10px] md:text-xs text-[#333] darks:text-white text-center">{{
             n.title
           }}</span>
         </span>
