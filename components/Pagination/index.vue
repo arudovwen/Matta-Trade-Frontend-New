@@ -1,59 +1,18 @@
 <template>
   <div
-    class="flex flex-col md:flex-row items-center md:space-y-0 space-y-5 relative z-[999]"
+    class="flex justify-center items-center relative z-[999]"
     :class="wrapperClass"
   >
-    <div
-      class="flex items-center space-x-4"
-      v-if="enableSearch"
-      :class="searchClasss"
+    <ul
+      class="pagination mx-auto bg-white border border-[#EFF1F5] p-[10px] rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.03)]"
+      :class="paginationClass"
     >
-      <div
-        class="flex items-center space-x-2"
-        v-if="enableSearch && enableInput"
-      >
-        <input
-          v-model.number="input"
-          class="form-control w-9 overflow-auto h-9"
-          type="text"
-          placeholder="0"
-        />
-        <div
-          @click.prevent="changePage(input)"
-          class="flex-0 cursor-pointer text-sm h-9 w-9 bg-primary-500 text-white flex items-center justify-center rounded"
-        >
-          Go
-        </div>
-      </div>
-
-      <!-- <div class="flex items-center" v-if="enableSearch && enableSelect">
-        <Select
-          v-model.number="input2"
-          @change="customPerPageChange(input2)"
-          placeholder="Go"
-          classInput=" w-[60px] h-9 "
-          :options="options"
-        >
-        </Select>
-
-        <span
-          class="text-sm text-slate-500 inline-block ml-2 whitespace-nowrap"
-        >
-          of {{ perPage }} entries</span
-        >
-      </div> -->
-    </div>
-    <ul class="pagination" :class="paginationClass">
-      <li class="text-xl leading-4 text-slate-900 dark:text-white">
+      <li class="text-sm leading-4 ">
         <button
           @click.prevent="changePage(prevPage)"
           :disabled="current === 1"
           :class="current === 1 ? ' opacity-50 cursor-not-allowed' : ''"
         >
-          <AppIcon
-            AppIcon="heroAppIcons-outline:chevron-left"
-            v-if="!enableText"
-          />
           <span v-if="enableText" class="text-sm">Previous</span>
         </button>
       </li>
@@ -85,7 +44,7 @@
           </div>
         </button>
       </li>
-      <li class="text-xl leading-4 text-slate-900 dark:text-white">
+      <li class="text-xl leading-4  dark:text-[#333]">
         <button
           @click.prevent="changePage(nextPage)"
           :disabled="current === totalPages"
@@ -93,10 +52,6 @@
             current === totalPages ? ' opacity-50 cursor-not-allowed' : ''
           "
         >
-          <AppIcon
-            AppIcon="heroAppIcons-outline:chevron-right"
-            v-if="!enableText"
-          />
           <span v-if="enableText" class="text-sm">Next</span>
         </button>
       </li>
@@ -239,13 +194,13 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .pagination {
-  @apply flex items-center space-x-4 flex-wrap;
+  @apply flex items-center space-x-1 flex-wrap;
   li {
     a,
     div {
-      @apply bg-slate-100 dark:bg-slate-700 dark:text-slate-400 text-slate-900 text-sm font-normal rounded leading-[16px] flex h-6 w-6 items-center justify-center transition-all duration-150;
+      @apply bg-transparent   text-sm font-normal rounded-lg leading-[16px] flex h-10 w-10 items-center justify-center transition-all duration-150;
       &.active {
-        @apply bg-primary-500 dark:bg-slate-600  dark:text-slate-200 text-white font-medium;
+        @apply bg-[#EFF1F5] text-[#333] font-medium;
       }
     }
   }
@@ -256,14 +211,14 @@ export default defineComponent({
       &:first-child,
       &:last-child {
         button {
-          @apply hover:bg-primary-500 hover:text-white transition duration-150 text-slate-500 h-6 w-6 flex items-center justify-center rounded;
+          @apply hover:bg-primary-500 hover:text-[#333] transition duration-150 text-slate-500 h-10 w-10 flex items-center justify-center rounded;
         }
       }
       a,
       div {
         @apply bg-transparent text-slate-500;
         &.active {
-          @apply bg-primary-500 text-white;
+          @apply bg-primary-500 text-[#333];
         }
       }
     }
@@ -274,9 +229,9 @@ export default defineComponent({
       @apply border-r border-[#D8DEE5] h-full flex flex-col  justify-center px-3  last:border-none text-slate-500;
       a,
       div {
-        @apply bg-transparent text-slate-500 dark:text-white h-auto w-auto;
+        @apply bg-transparent text-slate-500 dark:text-[#333] h-auto w-auto;
         &.active {
-          @apply text-slate-900 dark:text-white text-lg;
+          @apply  dark:text-[#333] text-lg;
         }
       }
     }

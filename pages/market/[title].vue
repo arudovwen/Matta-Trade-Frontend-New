@@ -23,10 +23,10 @@
 <script setup>
 const query = reactive({
   pageNumber: 1,
-  pageSize: 25,
+  pageSize: 20,
   searchParameter: "",
 });
-const total = 20;
+const total = 200;
 const pageRange = 5;
 function perPage({ currentPerPage }) {
   query.pageNumber = 1;
