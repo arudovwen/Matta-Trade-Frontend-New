@@ -3,7 +3,7 @@
     <Dialog
       as="div"
       class="fixed z-[999] inset-0 overflow-y-auto"
-      @close="togglePopup"
+     
     >
       <div
         class="flex items-center md:items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
@@ -38,15 +38,15 @@
           leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         >
           <div
-            class="inline-block relative align-bottom bg-white rounded-lg text-left invisible-scrollbar shadow-xl transform transition-all sm:my-8 sm:align-middle"
+            class="inline-block relative align-bottom bg-white rounded-lg text-left invisible-scrollbar shadow-xl transform transition-all sm:my-8 sm:align-middle max-w-max"
           >
-            <slot name="content"> </slot>
+            <slot> </slot>
             <span
               v-if="canClose"
-              class="cursor-pointer hover:border w-6 h-6 absolute top-4 right-3 rounded-full flex items-center justify-center"
-              @click="togglePopup"
+              class="cursor-pointer hover:border w-8 h-8 absolute top-[30px] right-[30px] rounded-full bg-[#F5F5F5] flex items-center justify-center"
+              @click="isOpen = false"
             >
-              <AppIcon icon="ph:x" class="h-6 w-6" aria-hidden="true" />
+              <AppIcon icon="heroicons-solid:x" class="text-lg text-[#8C8C8C]" aria-hidden="true" />
             </span>
           </div>
         </TransitionChild>
@@ -56,7 +56,6 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from "vue";
 import {
   TransitionRoot,
   TransitionChild,
@@ -64,16 +63,11 @@ import {
   DialogOverlay,
 } from "@headlessui/vue";
 
+const isOpen = inject("isOpen");
+
 defineProps({
   canClose: {
     default: true,
   },
-  isOpen: {
-    default: false,
-  },
 });
-const emit = defineEmits(["togglePopup"]);
-function togglePopup() {
-  emit("togglePopup");
-}
 </script>

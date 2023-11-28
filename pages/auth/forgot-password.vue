@@ -14,7 +14,7 @@
       <div class="mb-5">
         <Textinput
           icon="line-md:email"
-          placeholder="Provide your registered email address"
+          placeholder=""
           label="Email address"
           type="email"
         />

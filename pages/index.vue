@@ -18,5 +18,4 @@
   </div>
 </template>
 <script setup>
-import { hotDeals } from "~/utils/data";
 </script>

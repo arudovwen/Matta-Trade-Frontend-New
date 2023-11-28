@@ -191,7 +191,6 @@ export default defineComponent({
   },
 });
 </script>
-
 <style scoped lang="scss">
 .pagination {
   @apply flex items-center space-x-1 flex-wrap;

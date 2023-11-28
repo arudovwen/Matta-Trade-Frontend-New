@@ -19,7 +19,7 @@
       <form class="grid grid-cols-1 lg:grid-cols-2 gap-x-[18px] gap-y-5">
         <div>
           <Textinput
-            placeholder="Provide your first name"
+            placeholder=""
             label="First name"
             type="text"
             name="firstName"
@@ -27,7 +27,7 @@
         </div>
         <div>
           <Textinput
-            placeholder="Provide your last name"
+            placeholder=""
             label="Last name"
             type="text"
             name="lasttName"
@@ -35,7 +35,7 @@
         </div>
         <div>
           <Textinput
-            placeholder="Enter address"
+            placeholder=""
             label="Email"
             type="email"
             name="email"
@@ -43,7 +43,7 @@
         </div>
         <div>
           <Textinput
-            placeholder="Provide your phone number"
+            placeholder=""
             label="Phone number"
             type="tel"
             name="phoneNumber"
@@ -51,7 +51,7 @@
         </div>
         <div class="lg:col-span-2">
           <Textinput
-            placeholder="Provide your company name"
+            placeholder=""
             label="Company name"
             type="text"
             name="companyName"
@@ -59,7 +59,7 @@
         </div>
         <div>
           <Textinput
-            placeholder="Enter your password"
+            placeholder=""
             label="Password"
             type="password"
             name="password"
@@ -67,7 +67,7 @@
         </div>
         <div>
           <Textinput
-            placeholder="Confirm your password"
+            placeholder=""
             label="Confirm Password"
             type="password"
             name="confirmpassword"

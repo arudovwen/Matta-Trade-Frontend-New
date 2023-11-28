@@ -221,6 +221,8 @@ export const hotDeals = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Hydrogenated Castor Oil",
@@ -229,6 +231,8 @@ export const hotDeals = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Hydrotint Black Paste",
@@ -237,6 +241,8 @@ export const hotDeals = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "IPEA (N,N-Diisopropylethylamine)",
@@ -256,6 +262,8 @@ export const bestSellers = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Linear Low Density Polyethylene (LLDPE)",
@@ -264,6 +272,8 @@ export const bestSellers = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Industrial Salt",
@@ -272,6 +282,8 @@ export const bestSellers = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   
   {
@@ -291,6 +303,8 @@ export const reccomended = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Linear Low Density Polyethylene (LLDPE)",
@@ -299,6 +313,8 @@ export const reccomended = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Industrial Salt",
@@ -307,6 +323,8 @@ export const reccomended = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   
   {
@@ -324,6 +342,8 @@ export const reccomended = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Industrial Salt",
@@ -332,6 +352,8 @@ export const reccomended = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   
   {
@@ -341,6 +363,8 @@ export const reccomended = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Industrial Salt",
@@ -349,6 +373,8 @@ export const reccomended = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   
 ];
@@ -360,6 +386,8 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Linear Low Density Polyethylene (LLDPE)",
@@ -368,6 +396,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Industrial Salt",
@@ -376,6 +406,8 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   
   {
@@ -393,6 +425,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Industrial Salt",
@@ -401,6 +435,8 @@ export const market = [
     oldprice: "",
     newprice: "",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   
   {
@@ -410,6 +446,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Industrial Salt",
@@ -418,6 +456,8 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Kronos 2190 (Titanium Dioxide)",
@@ -426,6 +466,8 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Linear Low Density Polyethylene (LLDPE)",
@@ -434,6 +476,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Industrial Salt",
@@ -442,6 +486,8 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   
   {
@@ -459,6 +505,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Industrial Salt",
@@ -467,6 +515,8 @@ export const market = [
     oldprice: "",
     newprice: "",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   
   {
@@ -476,6 +526,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   {
     title: "Industrial Salt",
@@ -484,6 +536,8 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
+    id:1,
+    category:"Adhesive"
   },
   
 ];

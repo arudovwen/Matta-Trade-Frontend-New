@@ -304,7 +304,6 @@ import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 
 const router = useRouter();
 const { currentRoute } = router;
-console.log("🚀 ~ file: AppHeader.vue:303 ~ router:", router);
 const isLoggedIn = ref(false);
 const filteredMenu = computed(() =>
   mobileMenu.filter(

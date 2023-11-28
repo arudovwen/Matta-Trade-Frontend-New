@@ -9,7 +9,7 @@
       v-if="label"
       :class="`${classLabel} ${
         horizontal ? 'flex-0 mr-6 md:w-[100px] w-[60px] break-words' : ''
-      }  inline-block input-label `"
+      }  inline-block input-label text-sm !text-[#1B2B41B8]`"
       :for="name"
     >
       {{ label }}</label

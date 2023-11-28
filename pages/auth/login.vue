@@ -10,7 +10,7 @@
       <div class="mb-5">
         <Textinput
           icon="line-md:email"
-          placeholder="Enter address"
+          placeholder=""
           label="Email"
           type="email"
           name="email"
@@ -19,7 +19,7 @@
       <div class="mb-5">
         <Textinput
           hasicon
-          placeholder="Enter password"
+          placeholder=""
           label="Password"
           type="password"
           name="password"

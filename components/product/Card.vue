@@ -1,5 +1,9 @@
 <template>
-  <NuxtLink :to="`/product/${encodeURIComponent(detail.title)}/${detail.id}`">
+  <NuxtLink
+    :to="`/product/${encodeURIComponent(detail.title)}/${encodeURIComponent(
+      detail.category
+    )}/${detail.id}`"
+  >
     <div
       class="bg-white darks:bg-gray-800 rounded-[10px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.05)] darks:shadow-[0px_2px_8px_0px_rgba(0,0,0,0.1)] overflow-hidden"
     >

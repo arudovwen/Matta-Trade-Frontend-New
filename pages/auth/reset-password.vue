@@ -12,7 +12,7 @@
         <div class="mb-5">
           <Textinput
             hasicon
-            placeholder="Enter new password"
+            placeholder=""
             label="New Password"
             type="password"
           />
@@ -20,7 +20,7 @@
         <div class="mb-6">
           <Textinput
             hasicon
-            placeholder="Confirm new password"
+            placeholder=""
             label="New Password"
             type="password"
           />
