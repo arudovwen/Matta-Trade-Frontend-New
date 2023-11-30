@@ -6,7 +6,7 @@
         data-aos-once="true"
         class="flex justify-between items-center mb-4"
       >
-        <h2 class="text-base lg:text-xl font-bold text-[#222] darks:text-white">Reccomended</h2>
+        <h2 class="text-base lg:text-xl font-bold text-[#222] darks:text-white">Recommended</h2>
         <button class="text-sm lg:text-base font-medium darks:text-white">View more</button>
       </div>
       <div data-aos="fade-up" data-aos-once="true">
