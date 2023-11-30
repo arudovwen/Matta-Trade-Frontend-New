@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="container py-20">
+    <div class="container py-10 md:py-20">
       <div
-        class="flex flex-col md:flex-row gap-y-9 xl:gap-y-0 justify-between mb-[90px] md:gap-x-10"
+        class="flex flex-col md:flex-row gap-y-9 xl:gap-y-0 justify-between sm:mb-[90px] md:gap-x-10"
       >
         <h1
           data-aos="fade-up"
@@ -35,7 +35,7 @@
       <div
         data-aos="fade-up"
         data-aos-once="true"
-        class="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-8 gap-4 md:gap-5 justify-center max-h-[350px] overflow-y-auto"
+        class="hidden lg:grid grid-cols-3 md:grid-cols-4 xl:grid-cols-8 gap-4 md:gap-5 justify-center max-h-[350px] overflow-y-auto"
       >
         <NuxtLink
           v-for="(n, idx) in categories"

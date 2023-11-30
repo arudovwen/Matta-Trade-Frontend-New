@@ -8,7 +8,7 @@
         btnClass="text-xs sm:text-sm !py-0 !px-0 !font-semibold"
       />
     </div>
-    <div class="flex gap-x-5 w-full">
+    <div class="flex gap-x-5 w-full flex-col lg:flex-row gap-y-8 lg:gap-y-0">
       <div class="flex-1">
         <CartContent />
       </div>

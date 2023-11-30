@@ -1,5 +1,5 @@
 <template>
-  <div class="py-10 container">
+  <div class="py-10 container hidden lg:block">
     <h2
       data-aos="fade-up"
       data-aos-once="true"

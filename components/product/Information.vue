@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white rounded-[10px]">
     <div
-      class="px-5 pt-5 flex gap-x-[30px] items-center border-b border-[#f3f3f3]"
+      class="px-5 pt-5 flex gap-x-[30px] items-center border-b border-[#f3f3f3] w-full overflow-x-auto no-scrollbar"
     >
       <button
         v-for="n in tabs"
@@ -11,7 +11,7 @@
           active === n.key
             ? 'text-[#165EF0] border-[#165EF0]'
             : 'border-transparent'
-        } text-xs pb-[19px] border-b-2 block`"
+        } text-xs pb-[19px] border-b-2 block whitespace-nowrap`"
       >
         {{ n.title }}
       </button>

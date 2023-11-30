@@ -4,10 +4,10 @@
     :class="wrapperClass"
   >
     <ul
-      class="pagination bg-white border border-[#EFF1F5] p-[10px] rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.03)]"
+      class="pagination mx-auto lg:mx-0 bg-white border border-[#EFF1F5] p-[10px] rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.03)] "
       :class="paginationClass"
     >
-      <li class="text-sm leading-4 ">
+      <li class="leading-4 ">
         <button
           @click.prevent="changePage(prevPage)"
           :disabled="current === 1"
@@ -197,7 +197,7 @@ export default defineComponent({
   li {
     a,
     div {
-      @apply bg-transparent   text-sm font-normal rounded-lg leading-[16px] flex h-10 w-10 items-center justify-center transition-all duration-150;
+      @apply bg-transparent   text-[10px] sm:text-xs lg:text-sm font-normal rounded-lg leading-[16px] flex h-6 lg:h-10 w-6 lg:w-10 items-center justify-center transition-all duration-150;
       &.active {
         @apply bg-[#EFF1F5] text-[#333] font-medium;
       }

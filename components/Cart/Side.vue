@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#333] rounded-[10px] py-[30px] px-5 w-[360px]">
+  <div class="bg-[#333] rounded-[10px] py-[30px] px-5 w-full lg:w-[300px] xl:w-[360px]">
     <div class="font-semibold text-2xl text-white pb-6">Order Summary</div>
     <div class="flex flex-col gap-y-5">
       <div class="flex justify-between">
@@ -37,7 +37,6 @@
       <p class="text-white font-bold">N1,200,000</p>
     </div>
     <AppButton
-      v-if="!isLoggedIn"
       link="/checkout"
       icon="bytesize:cart"
       text="Checkout"

@@ -23,12 +23,37 @@ body {
 }
 
 .recommended .carousel__viewport .carousel__track {
+  column-gap: 24px;
+  @media (max-width: 768px) {
+    column-gap: 16px;
+  }
+  @media (max-width: 465px) {
+    column-gap: 10px;
+  }
+  .carousel__prev {
+    left: -26px !important;
+
+  }
+  .carousel__next {
+    right: -26px !important;
+  }
+}
+.carousel__viewport .carousel__track {
   column-gap: 34px;
   @media (max-width: 768px) {
     column-gap: 16px;
   }
+  @media (max-width: 465px) {
+    column-gap: 10px;
+  }
 }
+.carousel__prev {
+    left: -26px !important;
 
+  }
+  .carousel__next {
+    right: -26px !important;
+  }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

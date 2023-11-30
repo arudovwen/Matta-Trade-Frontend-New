@@ -7,7 +7,7 @@
       <div class="mb-6">
         <CheckoutShippingAddress />
       </div>
-      <div class="flex items-center gap-x-4">
+      <div class="flex flex-col md:flex-row md:items-center gap-y-4 md:gap-y-0 md:gap-x-4">
         <AppButton
           @click="openModal('form')"
           text="New shipping address"
@@ -28,7 +28,7 @@
 
   <ModalCenter>
     <template #default>
-      <div class="w-[500px] py-9 px-10 z-[999]">
+      <div class="w-full max-w-[500px] p-6 md:py-9 md:px-10 z-[999] relative">
         <CheckoutShippingForm v-if="type === 'form'" />
         <CheckoutSelect v-if="type === 'select'" />
       </div>

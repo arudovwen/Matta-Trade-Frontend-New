@@ -1,6 +1,6 @@
 <template>
   <div
-    class="overflow-hidden rounded h-full border border-[#E7E7E7] bg-white flex items-center flex-1"
+    class="overflow-hidden rounded h-full border border-[#E7E7E7] bg-white flex items-center"
   >
     <button
       type="button"
@@ -11,7 +11,7 @@
     >
       <AppIcon icon="uiw:minus" :class="`text-lg ${iconClass}`" />
     </button>
-    <div class="flex-1">
+    <div class="flex-1 flex items-center">
       <input
         v-model="counter"
         class="h-full bg-transparent rounded font-medium text-center outline-none w-full px-1"

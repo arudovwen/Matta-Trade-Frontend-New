@@ -1,10 +1,10 @@
 <template>
-  <div class="container relative  mt-[72px] pb-[100px] md:pb-[120px] pr-4">
+  <div class="container relative  mt-10 md:mt-[72px] pb-[100px] md:pb-[120px] pr-4">
     <div
-      class="hidden md:inline absolute md:h-[358px] w-[80%] md:w-[95%] rounded-[7px] bg-[rgba(198,226,250,0.3)] z-[1] top-8 left-6 max-w-[1152px]"
+      class="inline absolute md:h-[358px] w-[80%] md:w-[95%] rounded-[7px] bg-[rgba(198,226,250,0.3)] z-[1] top-8 left-6 max-w-[1152px]"
     ></div>
     <div
-      class="hidden md:inline absolute md:h-[358px] w-[80%] md:w-[95%] rounded-[7px] bg-[#C6E2FA] z-[2] top-4 left-10 max-w-[1152px]"
+      class="inline absolute md:h-[358px] w-[80%] md:w-[95%] rounded-[7px] bg-[#C6E2FA] z-[2] top-4 left-10 max-w-[1152px]"
     ></div>
     <div
       class="rounded-[6px] md:h-[358px] bg-[linear-gradient(104deg,#2072FF_0%,#0451E5_100%)] pt-10 md:pt-[94px] pb-8 md:pb-[88px] relative h-full z-[3] w-full max-w-[1152px] mx-auto"

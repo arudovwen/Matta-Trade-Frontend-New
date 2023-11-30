@@ -4,7 +4,7 @@
       <MarketBanner />
 
       <div class="flex flex-1 container py-10 w-full gap-x-[22px]">
-        <div class="max-w-[250px] w-full"><MarketSideBar /></div>
+        <div class="max-w-[250px] w-full hidden lg:block"><MarketSideBar /></div>
         <div class="flex-1 flex flex-col gap-y-10">
           <MarketContent />
           <Pagination
