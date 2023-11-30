@@ -1,5 +1,6 @@
 <template>
-  <h2 class="px-[30px] py-5 font-bold text-2xl border-b border-[#f3f3f3]">
+  <div class="bg-white rounded-[10px]">
+    <h2 class="px-[30px] py-5 font-bold text-2xl border-b border-[#f3f3f3]">
     Payment Method
   </h2>
   <div class="p-[30px]">
@@ -19,6 +20,7 @@
         <p class="text-xs">{{ n.title }}</p>
       </div>
     </div>
+  </div>
   </div>
 </template>
 <script setup>

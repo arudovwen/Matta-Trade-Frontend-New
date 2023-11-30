@@ -8,9 +8,16 @@
       class="bg-white darks:bg-gray-800 rounded-[10px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.05)] darks:shadow-[0px_2px_8px_0px_rgba(0,0,0,0.1)] overflow-hidden"
     >
       <div
-        class="h-[120px] md:h-[200px] bg-gray-200 bg-cover bg-center"
+        class="h-[120px] md:h-[200px] bg-gray-200 bg-cover bg-center relative"
         :style="{ backgroundImage: `url('${detail.img}')` }"
-      ></div>
+      >
+        <span
+          class="absolute h-[30px] w-[30px] rounded-full right-[10px] top-[10px] bg-white/70 flex items-center justify-center"
+          ><AppIcon
+            icon="ph:heart"
+            class="text-sm md:text-base darks:text-white"
+        /></span>
+      </div>
       <div class="py-4 md:py-5 px-4 md:px-5">
         <span
           class="block mb-[10px] font-bold truncate max-w-max text-sm md:text-base darks:text-white"
@@ -30,9 +37,10 @@
           <span
             class="text-base flex flex-col md:flex-row gap-x-1 md:items-center"
             v-else
-            ><span class="text-xs md:text-base text-[#666] darks:text-white/80"
+          >
+            <!-- <span class="text-xs md:text-base text-[#666] darks:text-white/80"
               >From</span
-            >
+            > -->
             <span class="gap-x-1 flex items-center">
               <span
                 v-if="detail.oldprice"
@@ -45,12 +53,6 @@
               ></span
             >
           </span>
-
-          <span
-            ><AppIcon
-              icon="ph:heart"
-              class="text-sm md:text-base darks:text-white"
-          /></span>
         </div>
       </div>
     </div>

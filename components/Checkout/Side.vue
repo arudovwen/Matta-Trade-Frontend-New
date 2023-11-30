@@ -37,7 +37,7 @@
       <p class="text-white font-bold">N1,200,000</p>
     </div>
     <AppButton
-      link="/checkout"
+      link="/order-success"
       text="Confirm order"
       btnClass="bg-primary-500 w-full text-white !px-4 !sm:px-6 !py-[13px] text-xs sm:text-sm mb-4"
     />

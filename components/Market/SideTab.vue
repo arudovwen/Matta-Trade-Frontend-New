@@ -1,8 +1,8 @@
 import type { AppIcon } from '#build/components';
 <template>
-  <div class="p-[15px]">
+  <div class="px-[15px] pt-[15px] pb-[36px]">
     <div class="flex justify-between items-center mb-[15px]">
-      <span class="font-bold text-sm capitalize">{{ title }}</span>
+      <span class="font-bold text-base capitalize">{{ title }}</span>
       <span class="cursor-pointer" @click="active = !active"
         ><AppIcon :icon="active ? 'charm:minus' : 'charm:plus'"
       /></span>
@@ -10,12 +10,15 @@ import type { AppIcon } from '#build/components';
     <div v-if="active">
       <ul class="grid gap-y-[10px]">
         <li
-          class="flex gap-x-[10px] items-center capitalize"
+          class="flex items-center capitalize"
           v-for="list in lists"
           :key="list.title"
         >
-          <Checkbox v-model.value="selected" labelClass="text-xs md:text-sm" />
-          {{ list.title.toLowerCase() }}
+          <Checkbox
+            v-model.value="selected"
+            :label="list.title.toLowerCase()"
+            labelClass="text-xs md:text-sm"
+          />
         </li>
       </ul>
     </div>

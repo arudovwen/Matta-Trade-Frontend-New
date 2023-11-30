@@ -5,17 +5,11 @@
       'sticky top-0 opacity-95 fade-in-top pb-5 lg:pb-5 border-b border-[rgba(242, 242, 242, 1)] darks:border-gray-900':
         !view.atTopOfPage,
     }"
-    class="relative pt-5 pb-5 lg:pb-0 w-full bg-white darks:bg-gray-800 darks:text-white/90 z-[999] transition-all duration-500 ease-in-out"
+    class="relative pt-6 pb-6 w-full bg-white darks:bg-gray-800 darks:text-white/90 z-[999] transition-all duration-500 ease-in-out"
   >
     <div class="container mx-auto">
-      <div
-        class="flex justify-between items-center gap-x-5"
-        :class="{
-          'md:mb-7': view.atTopOfPage,
-          'mb-0': !view.atTopOfPage,
-        }"
-      >
-        <div class="logo">
+      <div class="flex justify-between items-center gap-x-5">
+        <div class="logo flex gap-x-10 items-center">
           <NuxtLink to="/">
             <img
               src="~/assets/images/logo.png"
@@ -24,10 +18,79 @@
               alt="Matta"
               class="w-[100px] h-auto"
           /></NuxtLink>
-        
+          <ul class="lg:flex items-center gap-x-6 hidden">
+            <li
+              v-for="n in navigations"
+              :key="n.name"
+              class="flex gap-x-[6px] items-center text-sm border-transparent group"
+              :class="`${
+                currentRoute.name.toLowerCase() == n.name.toLowerCase()
+                  ? 'border-[#165EF0]'
+                  : ''
+              }`"
+            >
+              <Menu
+                as="div"
+                v-if="n.key === 'categories' || n.key === 'finance'"
+                class="relative inline-block text-left"
+              >
+                <MenuButton
+                  class="flex gap-x-1 items-center group-hover:text-[#165EF0]"
+                  ><AppIcon
+                    v-if="n.key === 'categories'"
+                    class="text-base"
+                    icon="tdesign:list"
+                  />
+                  {{ n.name }}</MenuButton
+                >
+                <transition
+                  enter-active-class="transition duration-100 ease-out"
+                  enter-from-class="transform scale-95 opacity-0"
+                  enter-to-class="transform scale-100 opacity-100"
+                  leave-active-class="transition duration-75 ease-in"
+                  leave-from-class="transform scale-100 opacity-100"
+                  leave-to-class="transform scale-95 opacity-0"
+                >
+                  <MenuItems
+                    class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white darks:bg-gray-800 rounded-b-[10px] px-[30px] py-5 text-sm"
+                  >
+                    <div
+                      class="px-1 py-1"
+                      v-for="n in n.key === 'categories'
+                        ? categories
+                        : financeMenu"
+                      :key="n.title"
+                    >
+                      <MenuItem v-slot="{ active }">
+                        <NuxtLink
+                          :to="`/market/${encodeURIComponent(
+                            n.title.toLowerCase()
+                          )}`"
+                        >
+                          <button
+                            :class="[
+                              'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px] gap-x-2 text-[#333] darks:text-white/90',
+                            ]"
+                          >
+                            <AppIcon v-if="n?.icon" :icon="n.icon" />
+                            {{ n.title }}
+                          </button>
+                        </NuxtLink>
+                      </MenuItem>
+                    </div>
+                  </MenuItems>
+                </transition>
+              </Menu>
+              <NuxtLink :to="n.url" v-else>
+                <span class="cursor-pointer hover:text-[#165EF0]">
+                  {{ n.name }}</span
+                >
+              </NuxtLink>
+            </li>
+          </ul>
         </div>
         <div class="flex items-center gap-x-6 text-sm">
-          <span
+          <!-- <span
             :class="{
               flex: view.atTopOfPage,
               hidden: !view.atTopOfPage,
@@ -55,14 +118,8 @@
             <select class="appearance-none outline-none text-sm bg-transparent">
               <option value="">English-NGN</option>
             </select></span
-          >
-          <span
-            :class="{
-              'md:hidden': view.atTopOfPage,
-              '': !view.atTopOfPage,
-            }"
-            class="flex items-center gap-x-[6px] relative"
-          >
+          > -->
+          <NuxtLink to="/cart" class="flex items-center gap-x-[6px] relative">
             <span class="relative">
               <AppIcon
                 class="text-base text-[#333] darks:text-white/90"
@@ -74,7 +131,7 @@
               >
             </span>
             <span class="text-sm hidden sm:inline-flex">Cart</span>
-          </span>
+          </NuxtLink>
 
           <div class="flex gap-x-3">
             <AppButton
@@ -84,7 +141,7 @@
             />
             <AppButton
               v-if="!isLoggedIn"
-              link="/auth/login" 
+              link="/auth/login"
               text="Sign In"
               btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm"
             />
@@ -125,7 +182,8 @@
                         class="text-[#333] darks:text-white/90 text-[13px] font-semibold block capitalize"
                         >John doe</span
                       >
-                      <span class="block text-[11px] text-[#666] darks:text-white/70"
+                      <span
+                        class="block text-[11px] text-[#666] darks:text-white/70"
                         >johndoe@gmail.com</span
                       >
                     </div>
@@ -152,7 +210,7 @@
           </div>
         </div>
       </div>
-      <div
+      <!-- <div
         :class="{
           'md:flex': view.atTopOfPage,
           hidden: !view.atTopOfPage,
@@ -164,9 +222,12 @@
             v-for="n in navigations"
             :key="n.name"
             class="flex gap-x-[6px] items-center text-sm border-b-2 border-transparent group hover:border-[#165EF0] pb-5"
-            :class="`${currentRoute.name.toLowerCase() == n.name.toLowerCase() ? 'border-[#165EF0]' : ''}`"
+            :class="`${
+              currentRoute.name.toLowerCase() == n.name.toLowerCase()
+                ? 'border-[#165EF0]'
+                : ''
+            }`"
           >
-          
             <Menu
               as="div"
               v-if="n.key === 'categories' || n.key === 'finance'"
@@ -283,7 +344,7 @@
             </span>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </nav>
 

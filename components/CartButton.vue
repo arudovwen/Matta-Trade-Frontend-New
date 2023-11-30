@@ -1,0 +1,34 @@
+<template>
+  <div
+    class="overflow-hidden rounded h-full border border-[#E7E7E7] bg-white flex items-center flex-1"
+  >
+    <button
+      type="button"
+      :disabled="counter === 1"
+      @click="counter--"
+      :class="btnClass"
+      class="h-full px-[15px] flex items-center justify-center bg-white disabled:opacity-60 border-r border-[#E7E7E7]"
+    >
+      <AppIcon icon="uiw:minus" :class="`text-lg ${iconClass}`" />
+    </button>
+    <div class="flex-1">
+      <input
+        v-model="counter"
+        class="h-full bg-transparent rounded font-medium text-center outline-none w-full px-1"
+        :class="textClass"
+      />
+    </div>
+    <button
+      type="button"
+      @click="counter++"
+      class="h-full px-[15px] flex items-center justify-center bg-white border-l border-[#E7E7E7]"
+      :class="btnClass"
+    >
+      <AppIcon icon="uiw:plus" :class="`text-lg ${iconClass}`" />
+    </button>
+  </div>
+</template>
+<script setup>
+const counter = inject("counter");
+defineProps(["iconClass", "btnClass", "textClass"]);
+</script>

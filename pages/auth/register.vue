@@ -8,7 +8,7 @@
         >Click here</NuxtLink
       >
     </div>
-    <div class="flex-1 flex flex-col justify-center w-full lg:max-w-[550px] 2xl:max-w-[600px] mx-auto">
+    <div class="flex-1 flex flex-col justify-center w-full lg:max-w-[600px] 2xl:max-w-[650px] mx-auto">
       <div class="">
         <h1 class="text-[#333] darks:text-white mb-[10px] text-3xl font-bold">
           Sign Up

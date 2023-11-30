@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-0 lg:pt-0 w-full max-w-[400px] mx-auto grid flex-1 items-center">
+  <div class="pt-0 lg:pt-0 w-full max-w-[500px] mx-auto grid flex-1 items-center">
     <div>
       <h1 class="text-[#333] darks:text-white mb-[10px] text-[28px] font-bold">
         Reset Password

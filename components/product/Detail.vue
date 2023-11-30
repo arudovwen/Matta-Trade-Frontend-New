@@ -17,7 +17,7 @@
             class="bg-gray-100 w-[100px] h-[100px] rounded-[5px]"
           />
         </div>
-        <div class="flex-1">
+        <div class="flex-1 relative">
           <img
             src="/images/4.png"
             alt="cover"
@@ -25,6 +25,12 @@
             height="300"
             class="bg-gray-100 w-full h-[460px] rounded-[5px] object-cover"
           />
+          <span
+            class="absolute h-[40px] w-[40px] rounded-full right-[10px] top-[10px] bg-white/70 flex items-center justify-center"
+            ><AppIcon
+              icon="ph:heart"
+              class="text-lg md:text-xl darks:text-white"
+          /></span>
         </div>
       </div>
       <div class="w-[520px]">
@@ -33,8 +39,8 @@
           Styrene-acrylic emulsion polymers are based on a group of chemicals
           that are true workhorses in the field of polymer chemistry.
         </p>
-        <p class="text-2xl text-[#165EF0] font-[800] mb-6">
-          1,200 <span class="text-sm text-[#444] font-normal">/kg</span>
+        <p class="text-2xl font-[800] mb-6">
+          $1,200 <span class="text-sm text-[#444] font-normal">/kg</span>
         </p>
         <p class="text-sm mb-6">
           <span class="font-normal">Producer:</span
@@ -67,30 +73,8 @@
           />
         </div>
         <div class="flex gap-x-4">
-          <div
-            class="gap-x-4 rounded p-[2px] bg-[#F4F4F4] flex items-center flex-1"
-          >
-            <button
-              type="button"
-              :disabled="counter === 1"
-              @click="counter--"
-              class="h-11 w-11 rounded flex items-center justify-center bg-white disabled:opacity-60"
-            >
-              <AppIcon icon="uiw:minus" />
-            </button>
-            <div class="flex-1">
-              <input
-                v-model="counter"
-                class="h-11 bg-transparent rounded font-medium text-center outline-none w-full"
-              />
-            </div>
-            <button
-              type="button"
-              @click="counter++"
-              class="h-11 w-11 rounded flex items-center justify-center bg-white"
-            >
-              <AppIcon icon="uiw:plus" />
-            </button>
+          <div class="h-[50px] flex-1">
+            <CartButton />
           </div>
           <AppButton
             @click="addToCart"
@@ -135,4 +119,5 @@ const options = [
 ];
 const counter = ref(1);
 function addToCart() {}
+provide("counter", counter);
 </script>

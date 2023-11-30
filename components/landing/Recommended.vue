@@ -33,17 +33,14 @@
 
                 <div class="flex justify-between items-center">
                   <span class="text-base flex gap-x-1 items-center"
-                    ><span class="text-xs md:text-sm xl:text-base text-[#666] darks:text-white/80"
-                      >From</span
                     >
-
                     <span
                       class="font-bold ml-[2px] text-base xl:text-xl text-[#333] darks:text-white"
                       >{{ currencyFormat(slide.newprice) }}/kg</span
                     ></span
                   >
 
-                  <span><AppIcon icon="ph:heart" class="darks:text-white" /></span>
+                  <!-- <span><AppIcon icon="ph:heart" class="darks:text-white" /></span> -->
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-10 lg:pt-0 w-full max-w-[380px] mx-auto">
+  <div class="pt-10 lg:pt-0 w-full max-w-[500px] mx-auto">
     <h1 class="text-[#333] darks:text-white mb-[10px] text-3xl font-bold">
       Welcome back
     </h1>
@@ -31,7 +31,7 @@
         >
       </span>
       <div class="grid gap-y-[22px] mb-9">
-        <AppButton text="Login" btnClass="btn-primary !py-3" />
+        <AppButton link="/" text="Login" btnClass="btn-primary !py-3" />
         <AppButton
           text="Sign in with Google"
           icon="flat-color-icons:google"

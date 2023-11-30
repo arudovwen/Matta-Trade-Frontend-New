@@ -4,12 +4,12 @@
       <img
         src="/images/4.png"
         alt="img"
-        width="100px"
-        height="100"
-        class="bg-gray-100 w-[100px] h-[100px] rounded-[5px]"
+        width="117"
+        height="117"
+        class="bg-gray-100 w-[117px] h-[117px] rounded-[5px] bg-cover"
       />
       <div class="max-w-[350px]">
-        <p class="font-bold text-base mb-[10px]">
+        <p class="font-bold text-base mb-[9px]">
           Acrypol 600(Styrene Acrylic)
         </p>
         <p class="text-xs mb-[15px]">
@@ -18,7 +18,7 @@
         </p>
         <div class="flex gap-x-6">
           <div>
-            <p class="font-medium text-xs mb-1">Package</p>
+            <p class="font-medium text-xs mb-1">Packaging</p>
             <Select
               :options="options"
               placeholder="Select a package"
@@ -27,31 +27,9 @@
           </div>
           <div>
             <p class="font-medium text-xs mb-1">Quantity</p>
-            <div
-              class="gap-x-4 rounded py-[4px] px-[5px] bg-[#F4F4F4] flex items-center flex-1"
-            >
-              <button
-                type="button"
-                :disabled="counter === 1"
-                @click="counter--"
-                class="h-[25px] w-[25px] rounded flex items-center justify-center bg-white disabled:opacity-60"
-              >
-                <AppIcon icon="uiw:minus" class="text-xs" />
-              </button>
-              <div class="flex-1">
-                <input
-                  v-model="counter"
-                  class="h-[25px] bg-transparent rounded text-sm font-medium text-center outline-none w-full"
-                />
-              </div>
-              <button
-                type="button"
-                @click="counter++"
-                class="h-[25px] w-[25px] rounded flex items-center justify-center bg-white"
-              >
-                <AppIcon icon="uiw:plus" class="text-xs" />
-              </button>
-            </div>
+           <div class="h-8 max-w-[115px]">
+            <CartButton textClass="!text-sm" iconClass="!text-xs" btnClass="!px-[10px]" />
+           </div>
           </div>
         </div>
       </div>
@@ -63,11 +41,12 @@
         text="Remove item"
         icon="bx:trash"
         btnClass=" !px-0  !py-[0] text-xs sm:text-sm !font-normal"
-        iconClass="!text-sm !mr-1"
+        iconClass="!text-base !mr-1"
       />
     </div>
   </div>
 </template>
 <script setup>
 const counter = ref(1);
+provide("counter", counter)
 </script>

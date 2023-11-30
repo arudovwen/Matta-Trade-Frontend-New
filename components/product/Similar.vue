@@ -2,14 +2,13 @@
     <div class="container">
       <div class="bg-white darks:bg-gray-800 rounded-[20px] py-5 px-4 md:px-[32px] mb-[30px]">
         <div
-          data-aos="fade-up"
-          data-aos-once="true"
+          
           class="flex justify-between items-center mb-6"
         >
           <h2 class="text-base lg:text-xl font-bold text-[#222] darks:text-white">Similar products you might like</h2>
           
         </div>
-        <div data-aos="fade-up" data-aos-once="true">
+        <div>
           <carousel
             :items-to-show="4.9"
             :breakpoints="breakpoints"
@@ -33,8 +32,6 @@
   
                   <div class="flex justify-between items-center">
                     <span class="text-base flex gap-x-1 items-center"
-                      ><span class="text-xs md:text-sm xl:text-base text-[#666] darks:text-white/80"
-                        >From</span
                       >
   
                       <span
@@ -43,7 +40,7 @@
                       ></span
                     >
   
-                    <span><AppIcon icon="ph:heart" class="darks:text-white" /></span>
+                    <!-- <span><AppIcon icon="ph:heart" class="darks:text-white" /></span> -->
                   </div>
                 </div>
               </div>

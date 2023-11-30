@@ -1,10 +1,10 @@
 <template>
   <div
-    class="flex justify-center items-center relative z-[999]"
+    class="flex justify-start items-center relative z-[999]"
     :class="wrapperClass"
   >
     <ul
-      class="pagination mx-auto bg-white border border-[#EFF1F5] p-[10px] rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.03)]"
+      class="pagination bg-white border border-[#EFF1F5] p-[10px] rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.03)]"
       :class="paginationClass"
     >
       <li class="text-sm leading-4 ">

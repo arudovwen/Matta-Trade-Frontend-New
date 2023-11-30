@@ -19,14 +19,14 @@
         class="flex items-center text-white text-left container"
       >
         <div class="px-10">
-          <div class="max-w-[600px] 2xl:max-w-[700px] mb-10">
+          <div class="max-w-[660px] 2xl:max-w-[700px] mb-10">
             <h1
-              class="text-4xl leading-10 2xl:text-5xl font-bold mb-6 2xl:leading-[62px]"
+              class="text-4xl leading-10 xl:text-5xl  2xl:text-[56px] font-bold mb-6 xl:leading-[1.2]"
             >
               Sell your chemicals, raw materials and finished goods easily on
               Matta.
             </h1>
-            <p class="text-base xl:text-xl">
+            <p class="text-base xl:text-xl 2xl:text-2xl">
               Amet minim mollit non deserunt ullamco est sit aliqua dolor do
               amet sint. Velit officia consequat duis enim velit mollit.
               Exercitation veniam consequat sunt nostrud amet.
@@ -35,7 +35,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-white px-6 flex flex-col lg:col-span-5 lg:justify-center h-full overflow-y-auto">
+    <div class="bg-white px-6 xl:px-10 flex flex-col lg:col-span-5 lg:justify-center h-full overflow-y-auto">
       <div class="pt-6 pb-2 z-10 lg:hidden">
         <NuxtLink to="/">
           <img

@@ -1,8 +1,9 @@
 <template>
   <div class="container mb-[30px]">
-    <div class="flex justify-between items-center mb-4">
+    <div  data-aos="fade-up"
+        data-aos-once="true" class="flex justify-between items-center mb-4">
       <h2 class="text-base lg:text-xl font-bold ttext-[#222] darks:text-white">{{ title }}</h2>
-      <button class="border-b text-sm lg:text-base border-[#333] darks:text-white darks:border-white leading-tight">
+      <button class="hover:border-b text-sm lg:text-base border-[#333] darks:text-white darks:border-white leading-tight">
         See all items
       </button>
     </div>

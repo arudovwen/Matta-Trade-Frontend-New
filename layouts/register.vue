@@ -18,8 +18,10 @@
       </div>
 
       <div class="relative flex-1 flex flex-col justify-center">
-        <div class="max-w-[600px] w-full">
-          <h1 class="text-4xl font-bold mb-10 leading-[46px] text-white">
+        <div class="max-w-[700px] w-full">
+          <h1
+            class="text-4xl leading-10 xl:text-5xl 2xl:text-[50px] text-white font-bold mb-8 xl:leading-[1.2]"
+          >
             Sell your chemicals, raw materials and finished goods easily on
             Matta.
           </h1>
@@ -27,16 +29,16 @@
             <div
               v-for="n in content"
               :key="n.title"
-              class="flex items-start gap-x-6"
+              class="flex items-start gap-x-5"
             >
               <div class="w-20 mt-1">
-                <img :src="n.icon" :alt="n.title" class="w-auto" />
+                <img :src="n.icon" :alt="n.title" class="w-10" />
               </div>
               <div>
-                <p class="text-lg font-bold text-white mb-1">
+                <p class="text-xl font-bold text-white mb-1">
                   {{ n.title }}
                 </p>
-                <p class="text-sm text-white">
+                <p class="text-base text-white">
                   Amet minim mollit non deserunt ullamco est sit aliqua dolor do
                   amet sint. Velit officia consequat duis enim velit mollit.
                   Exercitation veniam consequat sunt nostrud amet.
@@ -48,7 +50,7 @@
       </div>
     </div>
     <div
-      class="flex items-center justify-center p-8 bg-white lg:col-span-5 h-full overflow-y-auto"
+      class="flex items-center justify-center py-8 px-10 bg-white lg:col-span-5 h-full overflow-y-auto"
     >
       <div class="w-full h-full bg-white flex flex-col">
         <div class="z-10 lg:hidden mb-14 max-h-max">

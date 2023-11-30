@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-0 lg:pt-0 max-w-[400px] mx-auto items-center grid flex-1">
+  <div class="pt-0 lg:pt-0 max-w-[500px] mx-auto items-center grid flex-1">
   <div class="w-full">
     <div class="mb-6" v-if="isSent">
     <img src="~/assets/images/mail.svg" class="mx-auto" />
