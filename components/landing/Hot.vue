@@ -34,7 +34,7 @@
         :breakpoints="breakpoints"
         class="recommended"
       >
-        <slide v-for="n in content" :key="idx">
+        <slide v-for="(n, idx) in content" :key="idx">
           <ProductCard :index="idx" :detail="n" />
         </slide>
         <template #addons>

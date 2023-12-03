@@ -38,15 +38,15 @@
         class="hidden lg:grid grid-cols-3 md:grid-cols-4 xl:grid-cols-8 gap-4 md:gap-5 justify-center max-h-[350px] overflow-y-auto"
       >
         <NuxtLink
-          v-for="(n, idx) in categories"
+          v-for="(n, idx) in marketsData"
           :key="idx"
-          :to="`/market/${encodeURIComponent(n.title.toLowerCase())}`"
+          :to="`/market/${encodeURIComponent(n.title.toLowerCase())}/${n.id}`"
         >
           <span
             class="mx-auto cursor-pointer px-5 flex flex-col w-[100px] md:w-[140px] h-[100px] md:h-[140px] border-2 border-[#EAEAEA] rounded-full items-center justify-center hover:border-[#777] hover:bg-[rgba(33,118,255,0.04)]"
           >
             <AppIcon
-              :icon="n.icon"
+              :icon="`fa6-solid:${n.imagePath}`"
               class="text-base md:text-[40px] text-[#444444] darks:text-white/80 mb-[6px]"
             />
             <span
@@ -60,7 +60,10 @@
   </div>
 </template>
 <script setup>
-import { categories } from "~/utils/data";
+import { useMarketStore } from "~/stores/markets";
+
+
+const { marketsData } = useMarketStore();
 const content = [
   {
     title: "200M+",
@@ -79,4 +82,6 @@ const content = [
     text: "Countries and regions",
   },
 ];
+
+
 </script>

@@ -1,16 +1,17 @@
-export default function currencyFormat(
-  price,
-  {
-    currency = "NGN",
-    maximumFractionDigits = 0,
-    style= "currency",
-  } = {}
+export default function (
+  value,
+  currency = "NGN",
+  fraction = 0,
+  showSymbol = true
 ) {
-  let naira = Intl.NumberFormat("en-US", {
-    style,
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
     currency,
     currencyDisplay: "narrowSymbol",
-    maximumFractionDigits,
+    minimumFractionDigits: fraction,
   });
-  return naira.format(price);
+
+  const formattedValue = formatter.format(value || 0);
+
+  return showSymbol ? formattedValue : formattedValue.replace(/[^0-9.-]/g, "");
 }

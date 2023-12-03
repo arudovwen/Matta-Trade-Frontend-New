@@ -56,24 +56,27 @@
                   >
                     <div
                       class="px-1 py-1"
-                      v-for="n in n.key === 'categories'
-                        ? categories
+                      v-for="cat in n.key === 'categories'
+                        ? marketsData
                         : financeMenu"
-                      :key="n.title"
+                      :key="cat.title"
                     >
                       <MenuItem v-slot="{ active }">
                         <NuxtLink
                           :to="`/market/${encodeURIComponent(
-                            n.title.toLowerCase()
-                          )}`"
+                            cat.title.toLowerCase()
+                          )}/${cat.id}`"
                         >
                           <button
                             :class="[
                               'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px] gap-x-2 text-[#333] darks:text-white/90',
                             ]"
                           >
-                            <AppIcon v-if="n?.icon" :icon="n.icon" />
-                            {{ n.title }}
+                            <AppIcon
+                              v-if="n.key === 'categories'"
+                              :icon="`fa6-solid:${cat.imagePath}`"
+                            />
+                            {{ cat.title }}
                           </button>
                         </NuxtLink>
                       </MenuItem>
@@ -362,7 +365,9 @@ import {
   mobileMenu,
 } from "~/utils/data";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
+import { useMarketStore } from "~/stores/markets";
 
+const { marketsData } = useMarketStore();
 const router = useRouter();
 const { currentRoute } = router;
 const isLoggedIn = ref(true);

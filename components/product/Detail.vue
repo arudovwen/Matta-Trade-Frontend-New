@@ -14,18 +14,19 @@
           class="lg:w-[100px] flex flex-row lg:flex-col gap-x-3 lg:gap-x-0 lg:gap-y-3 justify-between"
         >
           <img
-            src="/images/4.png"
-            v-for="n in 4"
+            :src="n"
+            v-for="n in productData.gallery"
             :key="n"
             :alt="n"
             width="100px"
             height="100"
+            @click="imageUrl = n"
             class="bg-gray-100 w-16 lg:w-[100px] h-16 lg:h-[100px] rounded-[5px]"
           />
         </div>
         <div class="flex-1 relative">
           <img
-            src="/images/4.png"
+            :src="imageUrl"
             alt="cover"
             width="400"
             height="300"
@@ -41,18 +42,23 @@
       </div>
       <div class="lg:w-[520px]">
         <h1 class="font-bold text-lg sm:text-2xl lg:text-[32px] mb-3 lg:mb-6">
-          {{ name }}
+          {{ productData.name }}
         </h1>
         <p class="text-[#444] text-xs lg:text-sm mb-6">
-          Styrene-acrylic emulsion polymers are based on a group of chemicals
-          that are true workhorses in the field of polymer chemistry.
+          {{ productData.description }}
         </p>
-        <p class="text-xl lg:text-2xl font-[800] mb-6">
-          $1,200 <span class="text-sm text-[#444] font-normal">/kg</span>
+        <p
+          v-if="!productData.hidePrice"
+          class="text-xl lg:text-2xl font-[800] mb-6"
+        >
+          {{ currencyFormat(productData?.price || 0) }}
+          <span class="text-sm text-[#444] font-normal"
+            >/{{ productData.unit }}</span
+          >
         </p>
         <p class="text-xs :text-sm mb-6">
           <span class="font-normal">Producer:</span
-          ><span class="font-bold"> A Huber Company</span>
+          ><span class="font-bold"> {{ productData?.producer?.title }}</span>
         </p>
         <div
           class="flex flex-col md:flex-row gap-x-[18px] gap-y-4 lg:gap-y-0 mb-6 justify-start"
@@ -108,9 +114,24 @@
   </div>
 </template>
 <script setup>
-const router = useRoute();
-const { name, id, category } = router.params;
+import { useProductStore } from "@/stores/products";
 
+const { productData } = useProductStore();
+const router = useRoute();
+
+const { name, id, category } = router.params;
+const imageUrl = ref(productData?.value?.featuredPhoto || "/images/4.png");
+const packageOptions = computed(() =>
+  productData?.value.packagesAvailable.map((i) => {
+    return {
+      ...i,
+      label: `${i.package.title} - ${i.size}${i.unit} - ${currencyFormat(
+        i.amount
+      )}`,
+      value: i.package,
+    };
+  })
+);
 const links = [
   {
     title: "home",
@@ -118,7 +139,7 @@ const links = [
   },
   {
     title: category,
-    url: "#",
+    url: `/market/${category}/${router.query.categoryId}`,
   },
   {
     title: name,

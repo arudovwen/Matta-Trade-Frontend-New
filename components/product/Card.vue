@@ -1,21 +1,21 @@
 <template>
   <NuxtLink
-    :to="`/product/${encodeURIComponent(detail.title)}/${encodeURIComponent(
-      detail.category
-    )}/${detail.id}`"
+    :to="`/product/${encodeURIComponent(detail.title)}${
+      route.params.title && `/${encodeURIComponent(route.params.title)}`
+    }/${detail.id}?categoryId=${route.params.id}`"
     class="w-full"
   >
     <div
       class="bg-white darks:bg-gray-800 rounded-[10px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.05)] darks:shadow-[0px_2px_8px_0px_rgba(0,0,0,0.1)] overflow-hidden"
     >
       <div
-        class="h-[90px] sm:h-[120px] lg:h-[140px] xl:h-[200px] bg-gray-200 bg-cover bg-center relative"
-        :style="{ backgroundImage: `url('${detail.img}')` }"
+        class="h-[90px] sm:h-[120px] lg:h-[140px] xl:h-[160px] bg-gray-200 bg-cover bg-center relative"
+        :style="{ backgroundImage: `url('${detail.converPhoto}')` }"
       >
         <span
           class="absolute h-5 sm:h-[30px] w-5 sm:w-[30px] rounded-full right-[10px] top-[10px] bg-white/70 flex items-center justify-center"
           ><AppIcon
-            icon="ph:heart"
+            :icon="!detail.liked ? 'ph:heart' : 'ph:heart-fill'"
             class="text-xs sm:text-sm md:text-base darks:text-white"
         /></span>
       </div>
@@ -26,7 +26,7 @@
         >
         <span
           class="block mb-[14px] sm:mb-[25px] text-[10px] sm:text-[13px] xl:text-base truncate max-w-max text-[#666] darks:text-white/80 leading-tight"
-          >{{ detail.company }}</span
+          >{{ detail.manufacturer }}</span
         >
 
         <div class="flex justify-between items-start md:items-center">
@@ -46,11 +46,11 @@
               <span
                 v-if="detail.oldprice"
                 class="line-through text-[#666] darks:text-white/80 text-[10px] sm:text-[13px] xl:text-base font-semibold leading-tight"
-                >{{ currencyFormat(detail.oldprice) }}/kg</span
+                >{{ currencyFormat(detail.oldprice) }}/{{ detail.unit }}</span
               >
               <span
                 class="font-bold ml-[2px] text-[10px] sm:text-[13px] xl:text-base text-[#333] darks:text-white leading-tight"
-                >{{ currencyFormat(detail.newprice) }}/kg</span
+                >{{ currencyFormat(detail.price) }}/{{ detail.unit }}</span
               ></span
             >
           </span>
@@ -61,4 +61,5 @@
 </template>
 <script setup>
 defineProps(["index", "detail"]);
+const route = useRoute();
 </script>

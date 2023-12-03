@@ -1,10 +1,28 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/color-mode", "@nuxtjs/google-fonts", "@pinia/nuxt"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/color-mode",
+    "@nuxtjs/google-fonts",
+    "@pinia/nuxt",
+    "nuxt-vue3-google-signin",
+  ],
+  runtimeConfig: {
+    public: {
+      API_BASE_URL: process.env.API_BASE_URL,
+    },
+  },
+
+  plugins: [{ src: '~/plugins/vuex.js' }],
+  // @ts-ignore
+  googleSignIn: {
+    clientId:
+      "56799988480-4d51egljupar9la4djc2tknjodn2vsj5.apps.googleusercontent.com",
+  },
   colorMode: {
     classSuffix: "",
   },
-  css: ["~/assets/scss/_button.scss","~/assets/scss/_form.scss"],
+  css: ["~/assets/scss/_button.scss", "~/assets/scss/_form.scss"],
   googleFonts: {
     families: {
       Manrope: [100, 200, 300, 400, 500, 600, 700, 800], // Enable the IntManropeer font

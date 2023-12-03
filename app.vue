@@ -32,7 +32,6 @@ body {
   }
   .carousel__prev {
     left: -26px !important;
-
   }
   .carousel__next {
     right: -26px !important;
@@ -48,12 +47,11 @@ body {
   }
 }
 .carousel__prev {
-    left: -26px !important;
-
-  }
-  .carousel__next {
-    right: -26px !important;
-  }
+  left: -26px !important;
+}
+.carousel__next {
+  right: -26px !important;
+}
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -65,10 +63,36 @@ body {
 </style>
 
 <script setup>
+import { useMarketStore } from "@/stores/markets";
+import { useApplicationStore } from "@/stores/applications";
+import { getMarkets, getTechLevels } from "~/services/productservices";
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+const { setMarkets } = useMarketStore();
+const { setApplications } = useApplicationStore();
+const query = reactive({
+  PageNumber: 1,
+  PageSize: 200,
+});
+const getAllMarkets = () => {
+  getMarkets(query).then((res) => {
+    if (res.status === 200) {
+      setMarkets(res.data.data);
+    }
+  });
+};
+const getAllApplications = () => {
+  getTechLevels(query).then((res) => {
+    if (res.status === 200) {
+      setApplications(res.data.data);
+    }
+  });
+};
 onMounted(() => {
   AOS.init();
+  getAllApplications();
+  getAllMarkets();
 });
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container relative  mt-10 md:mt-[72px] pb-[100px] md:pb-[120px] pr-4">
+  <div class="container relative  mt-10 md:helpersmt-[72px] pb-[100px] md:pb-[120px] pr-4">
     <div
       class="inline absolute md:h-[358px] w-[80%] md:w-[95%] rounded-[7px] bg-[rgba(198,226,250,0.3)] z-[1] top-8 left-6 max-w-[1152px]"
     ></div>

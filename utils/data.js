@@ -4,18 +4,21 @@ export const categories = [
     icon: "fa6-solid:bag-shopping",
     key: "consumer-goods",
     url: "#",
+    id:1
   },
   {
     title: "Adhesives & Sealants",
     icon: "fa6-solid:tape",
     key: "adhesives-sealants",
     url: "#",
+    id: 2
   },
   {
     title: "Electrical & Electronics",
     icon: "fa6-solid:plug-circle-bolt",
     key: "electrical-electronics",
     url: "#",
+    id:3
   },
   {
     title: "Home & Personal Care",
@@ -28,6 +31,7 @@ export const categories = [
     icon: "fa6-solid:paint-roller",
     key: "paints-coating",
     url: "#",
+    id: 4
   },
   {
     title: "Agriculture & Animal Feed",
