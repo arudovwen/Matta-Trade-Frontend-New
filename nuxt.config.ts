@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       API_BASE_URL: process.env.API_BASE_URL,
     },
   },
-
+  ssr: false,
   plugins: [{ src: '~/plugins/vuex.js' }],
   // @ts-ignore
   googleSignIn: {

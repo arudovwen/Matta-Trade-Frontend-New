@@ -121,7 +121,7 @@ const router = useRoute();
 
 const { name, id, category } = router.params;
 const imageUrl = ref(productData?.featuredPhoto || "/images/4.png");
-console.log("🚀 ~ file: Detail.vue:124 ~ productData?.value?.featuredPhoto:", productData?.featuredPhoto)
+
 const packageOptions = computed(() =>
   productData?.packagesAvailable.map((i) => {
     return {
