@@ -5,6 +5,7 @@
       :links="links"
     />
     <div
+    v-if="productData"
       class="p-4 sm:p-6 lg:p-[30px] bg-white rounded-[10px] flex flex-col lg:flex-row gap-x-[44px] gap-y-10 lg:gap-y-0"
     >
       <div
@@ -26,7 +27,7 @@
         </div>
         <div class="flex-1 relative">
           <img
-            :src="imageUrl"
+            :src="imageUrl || productData.featuredPhoto"
             alt="cover"
             width="400"
             height="300"
@@ -35,7 +36,7 @@
           <span
             class="absolute h-5 sm:h-[30px] w-5 sm:w-[30px] rounded-full right-[10px] top-[10px] bg-white/70 flex items-center justify-center"
             ><AppIcon
-              icon="ph:heart"
+            :icon="!productData.liked ? 'ph:heart' : 'ph:heart-fill'"
               class="text-xs sm:text-sm md:text-base darks:text-white"
           /></span>
         </div>
@@ -65,6 +66,7 @@
         >
           <div class="flex flex-col sm:flex-row gap-y-4 lg:gap-y-0 gap-x-4">
             <AppButton
+            v-if="productData?.sampleAvailable"
               link="#n"
               text="Request sample"
               btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB]"
@@ -116,14 +118,16 @@
 <script setup>
 import { useProductStore } from "@/stores/products";
 
-const { productData } = useProductStore();
+const store = useProductStore();
+const { productData } = storeToRefs(store);
+
 const router = useRoute();
 
 const { name, id, category } = router.params;
-const imageUrl = ref(productData?.featuredPhoto || "/images/4.png");
+const imageUrl = ref(productData?.value?.featuredPhoto);
 
 const packageOptions = computed(() =>
-  productData?.packagesAvailable.map((i) => {
+  productData?.value?.packagesAvailable?.map((i) => {
     return {
       ...i,
       label: `${i.package.title}/${i.size}${i.unit} - ${currencyFormat(

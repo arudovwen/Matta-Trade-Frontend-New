@@ -1,6 +1,36 @@
 <template>
-  <div class="grid grid-cols-1 gap-x-[75px] gap-y-6">
-    <div class="flex jus items-center" v-for="(n, id) in documentList" :key="id">
+  <div v-if="key !== 'documents'">
+    <div
+      class="grid grid-cols-2 gap-x-[75px] gap-y-6"
+      v-if="detail?.propertyItems && detail?.propertyItems.length"
+    >
+      <div v-for="n in detail?.propertyItems" class="mb-6">
+        <p class="text-[#A4A4A4] text-xs capitalize" v-if="n.property">
+          {{ n.property.name }}
+        </p>
+        <p
+          class="text-sm font-medium capitalize"
+          v-for="(sub, i) in n.propertyValue"
+          :key="i"
+        >
+          {{ sub }}
+        </p>
+      </div>
+
+      <div v-if="detail?.subSection">
+        <div class="" v-for="(n, idx) in detail?.subSection" :key="idx">
+          <p class="mb-4 capitalize">{{ n.subSectionName }}</p>
+          <div class="mb-4 description" v-html="n.description"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div v-else class="grid grid-cols-1 gap-x-[75px] gap-y-6">
+    <div
+      class="flex jus items-center"
+      v-for="(n, id) in documentList"
+      :key="id"
+    >
       <div class="flex gap-x-2">
         <p class="text-sm font-medium">{{ n.fileName }}</p>
         <p class="text-[#A4A4A4] text-xs">
@@ -23,7 +53,7 @@
   </div>
 </template>
 <script setup>
-defineProps(["detail"]);
+defineProps(["detail", "key"]);
 const documentType = ref("");
 const documents = [
   {

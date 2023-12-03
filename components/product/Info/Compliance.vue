@@ -7,6 +7,8 @@
     </div>
   </template>
   <script setup>
+
+  defineProps(["detail"])
   const data = [
     {
       title: "Melting Point",

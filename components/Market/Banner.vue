@@ -24,7 +24,9 @@
 <script setup>
 import { useProductStore } from "@/stores/products";
 
-const { total } = useProductStore();
+const store = useProductStore();
+const { total } = storeToRefs(store);
+
 const router = useRoute();
 const { title, id } = router.params;
 

@@ -17,14 +17,15 @@
       </button>
     </div>
     <div class="p-5 max-w-[700px]">
-        <ProductInfoCompliance v-if="active === 'compliance'" />
-        <ProductInfoDocuments v-if="active === 'documents'"  />
-        <ProductInfoProperties v-if="active === 'properties'"  />
-        <ProductInfoTechnical v-if="active === 'technical'"  />
+      <ProductInfo :detail="handleProp(active)" :key="active" />
     </div>
   </div>
 </template>
 <script setup>
+import { useProductStore } from "@/stores/products";
+
+const store = useProductStore();
+const { productData } = storeToRefs(store);
 const tabs = [
   {
     title: "Technical details & test data",
@@ -32,7 +33,7 @@ const tabs = [
   },
   {
     title: "Properties",
-    key: "properties",
+    key: "property",
   },
   {
     title: "Regulatory & Compliance",
@@ -42,11 +43,13 @@ const tabs = [
     title: "Documents",
     key: "documents",
   },
-//   {
-//     title: "Table",
-//     key: "table",
-//   },
+  //   {
+  //     title: "Table",
+  //     key: "table",
+  //   },
 ];
-
+function handleProp(value) {
+  return productData?.value?.propertyItems?.propertyItems[value];
+}
 const active = ref("technical");
 </script>

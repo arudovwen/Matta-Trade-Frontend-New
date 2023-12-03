@@ -8,6 +8,7 @@ export const useProductStore = defineStore("products", () => {
 
   const productsData = computed(() => products.value);
   const productData = computed(() => product.value);
+  const loading = computed(() => isLoading.value);
 
 
   function setProduct(data) {
@@ -16,6 +17,7 @@ export const useProductStore = defineStore("products", () => {
   function setProducts({ data, totalCount }) {
     products.value = data;
     total.value = totalCount;
+    window.scrollTo(0, 0)
   }
   function setLoader(data) {
     isLoading.value = data;
@@ -29,7 +31,7 @@ export const useProductStore = defineStore("products", () => {
     productData,
     setProducts,
     setProduct,
-    isLoading,
+    loading,
     setLoader
   };
 });

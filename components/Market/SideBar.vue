@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white w-full pt-4 pb-2 rounded-[10px]">
+  <div class="bg-white w-full pt-4 pb-2 rounded-[10px] sticky top-[120px]">
     <div class="flex justify-between items-center pb-2 px-[15px]">
       <span class="text-sm font-semibold"> Filter</span>
       <span class="text-xs text-[#8D8D8D] cursor-pointer" as="button"

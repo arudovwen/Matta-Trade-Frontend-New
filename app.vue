@@ -70,7 +70,7 @@ import { getMarkets, getTechLevels } from "~/services/productservices";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const { setMarkets } = useMarketStore();
+const store = useMarketStore();
 const { setApplications } = useApplicationStore();
 const query = reactive({
   PageNumber: 1,
@@ -79,7 +79,7 @@ const query = reactive({
 const getAllMarkets = () => {
   getMarkets(query).then((res) => {
     if (res.status === 200) {
-      setMarkets(res.data.data);
+      store.setMarkets(res.data.data);
     }
   });
 };

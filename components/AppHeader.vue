@@ -57,7 +57,7 @@
                     <div
                       class="px-1 py-1"
                       v-for="cat in n.key === 'categories'
-                        ? marketsData
+                        ? store?.marketsData
                         : financeMenu"
                       :key="cat.title"
                     >
@@ -367,10 +367,10 @@ import {
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { useMarketStore } from "~/stores/markets";
 
-const { marketsData } = useMarketStore();
+const store = useMarketStore();
 const router = useRouter();
 const { currentRoute } = router;
-const isLoggedIn = ref(true);
+const isLoggedIn = ref(false);
 const filteredMenu = computed(() =>
   mobileMenu.filter(
     (i) =>

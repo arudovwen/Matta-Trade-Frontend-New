@@ -13,11 +13,13 @@
         >
           Recommended
         </h2>
+        <router-link :to="`/market/${encodeURIComponent('recommended')}`">
         <button
-          class="text-[10px] sm:text-sm lg:text-base font-medium darks:text-white"
-        >
-          View more
-        </button>
+        class="hover:border-b text-[10px] sm:text-sm lg:text-base border-[#333] darks:text-white darks:border-white leading-tight"
+      >
+        See all items
+      </button>
+      </router-link>
       </div>
       <div data-aos="fade-up" data-aos-once="true">
         <carousel
@@ -25,7 +27,7 @@
           :breakpoints="breakpoints"
           class="recommended"
         >
-          <slide v-for="slide in content" :key="slide">
+          <slide v-for="slide in productsData.slice(0, 8)" :key="slide">
             <div class="bg-white darks:bg-gray-800 w-full">
               <div
                 class="h-[77px] sm:h-[130px] xl:h-[185px] bg-gray-200 bg-cover bg-center rounded-[10px] overflow-hidden"
@@ -67,7 +69,11 @@
 <script setup>
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
+import { useProductStore } from "@/stores/products";
+import { getProducts } from "~/services/productservices";
 
+const store = useProductStore();
+const { productsData, loading } = storeToRefs(store);
 defineProps({
   title: {
     type: String,
@@ -97,6 +103,24 @@ const breakpoints = {
     itemsToShow: 4.9,
   },
 };
+
+function getAllProducts() {
+  store.setLoader(true);
+  getProducts({ PageNumber: 1, PageSize: 8 })
+    .then((res) => {
+      if (res.status === 200) {
+        store.setProducts(res.data.data);
+        store.setLoader(false);
+      }
+    })
+    .catch(() => {
+      setLoader(false);
+    });
+}
+
+onMounted(() => {
+  getAllProducts()
+})
 </script>
 <style>
 .carousel__next {

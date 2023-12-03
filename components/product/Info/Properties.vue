@@ -7,6 +7,7 @@
   </div>
 </template>
 <script setup>
+ defineProps(["detail"])
 const data = [
   {
     title: "Physical State",

@@ -1,21 +1,21 @@
 <template>
-  <div>
-    <div class="flex flex-col w-fll">
+  <div class="">
+    <div class="flex flex-col w-full h-full">
       <MarketBanner />
 
       <div class="flex flex-1 container py-10 w-full gap-x-[22px]">
         <div class="max-w-[250px] w-full hidden lg:block">
           <MarketSideBar />
         </div>
-        <div class="flex-1 flex flex-col gap-y-10">
+        <div class="flex-1 flex flex-col gap-y-10 overflow-y-auto no-scrollbar">
           <MarketContent />
           <Pagination
-            v-if="!isLoading && productsData.length"
+            v-if="!loading && productsData.length"
             :total="total"
-            :current="query.pageNumber"
-            :per-page="query.pageSize"
+            :current="query.PageNumber"
+            :per-page="query.PageSize"
             :pageRange="pageRange"
-            @page-changed="query.pageNumber = $event"
+            @page-changed="query.PageNumber = $event"
             :perPageChanged="perPage"
           />
         </div>
@@ -27,7 +27,8 @@
 import { getProducts } from "~/services/productservices";
 import { useProductStore } from "@/stores/products";
 
-const { setProducts, productsData, isLoading } = useProductStore();
+const store = useProductStore();
+const { productsData, loading } = storeToRefs(store);
 const route = useRoute();
 const query = reactive({
   PageNumber: 1,
@@ -50,19 +51,32 @@ const total = 200;
 const pageRange = 5;
 
 function getAllProducts() {
-  getProducts(query).then((res) => {
-    if (res.status === 200) {
-      setProducts(res.data.data);
-    }
-  });
+  store.setLoader(true);
+  getProducts(query)
+    .then((res) => {
+      if (res.status === 200) {
+        store.setProducts(res.data.data);
+        store.setLoader(false);
+      }
+    })
+    .catch(() => {
+      setLoader(false);
+    });
 }
 
 function perPage({ currentPerPage }) {
-  query.pageNumber = 1;
-  query.pageSize = currentPerPage;
+  query.PageNumber = 1;
+  query.PageSize = currentPerPage;
 }
 
 onMounted(() => {
   getAllProducts();
 });
+
+watch(
+  () => [query.PageNumber],
+  () => {
+    getAllProducts();
+  }
+);
 </script>

@@ -19,17 +19,18 @@ import { get } from "~/helpers/api_helpers";
 import { getProduct } from "~/services/productservices";
 import { useProductStore } from "@/stores/products";
 
-const { setProduct, setLoader } = useProductStore();
+const store = useProductStore();
+
 const route = useRoute();
 const { id } = route.params;
 
 function getAProduct() {
-  setLoader(true);
+  store.setLoader(true);
   getProduct(id)
     .then((res) => {
       if (res.status === 200) {
-        setProduct(res.data.data);
-        setLoader(false);
+        store.setProduct(res.data.data);
+        store.setLoader(false);
       }
     })
     .catch(() => {

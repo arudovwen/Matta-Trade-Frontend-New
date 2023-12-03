@@ -35,10 +35,10 @@
       <div
         data-aos="fade-up"
         data-aos-once="true"
-        class="hidden lg:grid grid-cols-3 md:grid-cols-4 xl:grid-cols-8 gap-4 md:gap-5 justify-center max-h-[350px] overflow-y-auto"
+        class="hidden lg:grid grid-cols-3 md:grid-cols-4 xl:grid-cols-8 gap-4 md:gap-5 justify-center max-h-[350px] overflow-y-auto no-scrollbar"
       >
         <NuxtLink
-          v-for="(n, idx) in marketsData"
+          v-for="(n, idx) in store?.marketsData"
           :key="idx"
           :to="`/market/${encodeURIComponent(n.title.toLowerCase())}/${n.id}`"
         >
@@ -63,7 +63,7 @@
 import { useMarketStore } from "~/stores/markets";
 
 
-const { marketsData } = useMarketStore();
+const store = useMarketStore();
 const content = [
   {
     title: "200M+",

@@ -34,7 +34,7 @@
                 class="pointer-events-auto relative w-screen max-w-md"
               >
                 <div
-                  class="flex h-full flex-col overflow-y-scroll bg-[#E7EBEE] gap-y-2 p-2 shadow-xl"
+                  class="flex h-full flex-col overflow-y-scroll bg-[#E7EBEE] gap-y-2 p-2 shadow-xl no-scrollbar"
                 >
                   <div
                     class="text-center bg-white rounded-lg flex items-center h-[56px] justify-center relative"
