@@ -11,7 +11,7 @@
         class="flex-1 flex flex-col-reverse lg:flex-row gap-y-[14px] lg:gap-y-0 lg:gap-x-[14px]"
       >
         <div
-          class="lg:w-[100px] flex flex-row lg:flex-col gap-x-3 lg:gap-x-0 lg:gap-y-3 justify-between"
+          class="lg:w-[100px] flex flex-row lg:flex-col gap-x-3 lg:gap-x-0 lg:gap-y-3"
         >
           <img
             :src="n"
@@ -21,7 +21,7 @@
             width="100px"
             height="100"
             @click="imageUrl = n"
-            class="bg-gray-100 w-16 lg:w-[100px] h-16 lg:h-[100px] rounded-[5px]"
+            class="bg-gray-100 w-16 lg:w-[100px] object-cover h-16 lg:h-[100px] rounded-[5px]"
           />
         </div>
         <div class="flex-1 relative">
@@ -85,7 +85,7 @@
         <div class="mb-6">
           <h2 class="font-bold text-sm mb-2">Choose packaging</h2>
           <Select
-            :options="options"
+            :options="packageOptions"
             placeholder="Select a package"
             classInput="min-w-[180px] w-full !bg-white !border-[#E7E7E7] !rounded-[4px] !text-[#333] !h-[50px] cursor-pointer bg-[#FCFCFC]"
           />
@@ -120,14 +120,15 @@ const { productData } = useProductStore();
 const router = useRoute();
 
 const { name, id, category } = router.params;
-const imageUrl = ref(productData?.value?.featuredPhoto || "/images/4.png");
+const imageUrl = ref(productData?.featuredPhoto || "/images/4.png");
+console.log("🚀 ~ file: Detail.vue:124 ~ productData?.value?.featuredPhoto:", productData?.featuredPhoto)
 const packageOptions = computed(() =>
-  productData?.value.packagesAvailable.map((i) => {
+  productData?.packagesAvailable.map((i) => {
     return {
       ...i,
-      label: `${i.package.title} - ${i.size}${i.unit} - ${currencyFormat(
+      label: `${i.package.title}/${i.size}${i.unit} - ${currencyFormat(
         i.amount
-      )}`,
+      )}/${i.unit}`,
       value: i.package,
     };
   })
@@ -146,12 +147,7 @@ const links = [
     url: "#",
   },
 ];
-const options = [
-  {
-    label: "Plastic drums",
-    value: "lh",
-  },
-];
+
 const counter = ref(1);
 function addToCart() {}
 provide("counter", counter);
