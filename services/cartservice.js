@@ -9,7 +9,11 @@ const config = {
 //Authentication
 
 export async function createcart(data) {
+
   return await post(urls.CREATE_CART, data, config);
+}
+export async function updatecart(data) {
+ return await post(urls.UPDATE_CART, data, config);
 }
 export async function getcart() {
   return await get(urls.GET_CART, config);

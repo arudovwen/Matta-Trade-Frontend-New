@@ -14,7 +14,7 @@
     <div class="flex-1 flex items-center">
       <input
         v-model="counter"
-        class="h-full bg-transparent rounded font-medium text-center outline-none w-full px-1"
+        class="h-full bg-transparent rounded font-medium text-center outline-none w-full px-1 min-w-[50px]"
         :class="textClass"
       />
     </div>

@@ -1,15 +1,15 @@
 import urls from "../helpers/url_helpers";
 import { post, get } from "../helpers/api_helpers";
 import store from "../store";
-import { googleLogout } from "vue3-google-login";
+// import { googleLogout } from "vue3-google-login";
 //Authentication
 export async function loginUser(user, config = {}) {
   return await post(urls.LOGIN_USER, user, config);
 }
 export async function logOut() {
-  googleLogout();
-  store.commit("clearUserData");
-  localStorage.removeItem("loggedUser");
+  // googleLogout();
+;
+  localStorage.removeItem("userInfo");
   window.location.href = "/";
 }
 export async function registerUser(user, config = {}) {

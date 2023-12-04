@@ -5,8 +5,8 @@
       :links="links"
     />
     <div
-    v-if="productData"
-      class="p-4 sm:p-6 lg:p-[30px] bg-white rounded-[10px] flex flex-col lg:flex-row gap-x-[44px] gap-y-10 lg:gap-y-0"
+      v-if="productData"
+      class="p-4 sm:p-6 lg:p-[30px] bg-white rounded-[10px] flex flex-col lg:flex-row gap-x-[38px] gap-y-10 lg:gap-y-0"
     >
       <div
         class="flex-1 flex flex-col-reverse lg:flex-row gap-y-[14px] lg:gap-y-0 lg:gap-x-[14px]"
@@ -36,12 +36,12 @@
           <span
             class="absolute h-5 sm:h-[30px] w-5 sm:w-[30px] rounded-full right-[10px] top-[10px] bg-white/70 flex items-center justify-center"
             ><AppIcon
-            :icon="!productData.liked ? 'ph:heart' : 'ph:heart-fill'"
+              :icon="!productData.liked ? 'ph:heart' : 'ph:heart-fill'"
               class="text-xs sm:text-sm md:text-base darks:text-white"
           /></span>
         </div>
       </div>
-      <div class="lg:w-[520px]">
+      <div class="lg:w-[550px]">
         <h1 class="font-bold text-lg sm:text-2xl lg:text-[32px] mb-3 lg:mb-6">
           {{ productData.name }}
         </h1>
@@ -66,7 +66,7 @@
         >
           <div class="flex flex-col sm:flex-row gap-y-4 lg:gap-y-0 gap-x-4">
             <AppButton
-            v-if="productData?.sampleAvailable"
+              v-if="productData?.sampleAvailable"
               link="#n"
               text="Request sample"
               btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB]"
@@ -87,6 +87,7 @@
         <div class="mb-6">
           <h2 class="font-bold text-sm mb-2">Choose packaging</h2>
           <Select
+            v-model="selectedPackage"
             :options="packageOptions"
             placeholder="Select a package"
             classInput="min-w-[180px] w-full !bg-white !border-[#E7E7E7] !rounded-[4px] !text-[#333] !h-[50px] cursor-pointer bg-[#FCFCFC]"
@@ -98,16 +99,16 @@
           </div>
           <div class="flex flex-col sm:flex-row gap-y-4 lg:gap-y-0 gap-x-4">
             <AppButton
-              @click="addToCart"
+              @click="handleCart('add')"
               text="Add to cart"
               icon="bytesize:cart"
-              btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[13px] text-xs sm:text-sm w-full lg:!w-[160px]"
+              btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[13px] text-xs sm:text-sm w-full lg:!w-[140px]"
             />
             <AppButton
-              link="/cart"
+              @click="handleCart('buy')"
               icon="icon-park-outline:mall-bag"
               text="Buy now"
-              btnClass="text-white  !px-[15px] !py-[13px] !normal-case bg-[#f90] flex w-full lg:!w-[160px]"
+              btnClass="text-white  !px-[15px] !py-[13px] !normal-case bg-[#f90] flex w-full lg:!w-[140px]"
             />
           </div>
         </div>
@@ -117,13 +118,17 @@
 </template>
 <script setup>
 import { useProductStore } from "@/stores/products";
+import { useToast } from "vue-toastification";
 
+const toast = useToast();
 const store = useProductStore();
+const cartStore = useCartStore();
 const { productData } = storeToRefs(store);
 
-const router = useRoute();
-
-const { name, id, category } = router.params;
+const route = useRoute();
+const router = useRouter()
+const selectedPackage = ref(null);
+const { name, id, category } = route.params;
 const imageUrl = ref(productData?.value?.featuredPhoto);
 
 const packageOptions = computed(() =>
@@ -132,8 +137,8 @@ const packageOptions = computed(() =>
       ...i,
       label: `${i.package.title}/${i.size}${i.unit} - ${currencyFormat(
         i.amount
-      )}/${i.unit}`,
-      value: i.package,
+      )}`,
+      value: JSON.stringify({ ...i }),
     };
   })
 );
@@ -144,7 +149,7 @@ const links = [
   },
   {
     title: category,
-    url: `/market/${category}/${router.query.categoryId}`,
+    url: `/market/${category}/${route.query.categoryId}`,
   },
   {
     title: name,
@@ -153,6 +158,38 @@ const links = [
 ];
 
 const counter = ref(1);
-function addToCart() {}
+function handleCart(type) {
+  if (!selectedPackage.value) {
+    toast.info("Please choose a package");
+    return;
+  }
+  const mypackage = JSON.parse(selectedPackage.value);
+  let data = {
+    id: 0,
+    packageId: mypackage?.package.id,
+    unit: mypackage?.unit,
+    productId: productData?.value?.id,
+    product: productData?.value.name,
+    selectedPackage: mypackage?.package?.title,
+    selectedPackageData: mypackage,
+    productBrandName: productData?.value.productBrandName,
+    supplierId: productData?.value.supplierId,
+    producer: productData.value?.manufacturer,
+    quantity: counter.value,
+    packagePrice: mypackage?.amount,
+  };
+  cartStore.addToCart(data, type).then((res) => {
+    if (!res.status && res.message !== "buy") {
+      toast.info("Already in your cart");
+    }
+    if (res.status) {
+      toast.info("Added to your cart");
+    }
+    if (res.message === "buy") {
+      router.push("/cart");
+    }
+  });
+}
+
 provide("counter", counter);
 </script>

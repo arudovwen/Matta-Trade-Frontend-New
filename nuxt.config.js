@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   modules: [
     "@nuxtjs/tailwindcss",
+    "@vee-validate/nuxt",
     "@nuxtjs/color-mode",
     "@nuxtjs/google-fonts",
     "@pinia/nuxt",
@@ -13,7 +14,7 @@ export default defineNuxtConfig({
     },
   },
   ssr: false,
-  plugins: [{ src: '~/plugins/vuex.js' }],
+  plugins: [{ src: "~/plugins/vue-toastification-client.js" }],
   // @ts-ignore
   googleSignIn: {
     clientId:
@@ -22,7 +23,11 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: "",
   },
-  css: ["~/assets/scss/_button.scss", "~/assets/scss/_form.scss"],
+  css: [
+    "~/assets/scss/_button.scss",
+    "~/assets/scss/_form.scss",
+    "vue-toastification/dist/index.css",
+  ],
   googleFonts: {
     families: {
       Manrope: [100, 200, 300, 400, 500, 600, 700, 800], // Enable the IntManropeer font

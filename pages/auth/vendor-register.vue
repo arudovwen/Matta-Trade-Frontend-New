@@ -88,7 +88,7 @@
             <AppButton
               text="sign up"
               btnClass="normal-case btn-primary !py-3"
-              :disabled="!agree"
+              :isDisabled="!agree"
             />
           </div>
           <span

@@ -1,7 +1,7 @@
 <template>
   <div class="bg-[#292D35]">
     <div
-      class="container py-[35px] flex flex-col lg:flex-row items-end justify-between"
+      class="container py-[35px] flex flex-col lg:flex-row lg:items-end justify-between"
     >
       <div>
         <Breadcrumbs :links="links" />

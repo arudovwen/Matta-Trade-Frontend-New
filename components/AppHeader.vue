@@ -129,11 +129,12 @@
                 icon="fa6-solid:cart-shopping"
               />
               <span
+                v-if="cartStore.cartTotal > 0"
                 class="w-[14px] h-[14px] rounded-full bg-[#16F046] text-[8px] flex items-center justify-center absolute -top-[10px] -right-[6px]"
-                >2</span
+                >{{ cartStore.cartTotal }}</span
               >
             </span>
-            <span class="text-sm hidden sm:inline-flex">Cart</span>
+            <span class="text-sm hidden sm:inline-flex text-[#333]">Cart</span>
           </NuxtLink>
 
           <div class="flex gap-x-3">
@@ -143,7 +144,7 @@
               btnClass="text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] hidden md:flex"
             />
             <AppButton
-              v-if="!isLoggedIn"
+              v-if="!authStore.isLoggedIn"
               link="/auth/login"
               text="Sign In"
               btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm"
@@ -152,7 +153,7 @@
             <Menu
               as="div"
               class="relative hidden lg:inline-flex text-left"
-              v-if="isLoggedIn"
+              v-if="authStore.isLoggedIn"
             >
               <div>
                 <MenuButton
@@ -176,26 +177,29 @@
                   <div
                     class="flex items-center gap-x-2 px-[15px] pt-3 pb-[14px] border-b border-[#F4F4F4]"
                   >
-                    <span
+                    <div
                       class="h-8 w-8 rounded-full flex items-center justify-center text-sm text-white bg-[#f90] font-semibold"
-                      >JD</span
                     >
-                    <div>
+                      {{ authStore.userInfo.firstName.slice(0, 1) }}
+                      {{ authStore.userInfo.lastName.slice(0, 1) }}
+                    </div>
+                    <div class="flex-1">
                       <span
                         class="text-[#333] darks:text-white/90 text-[13px] font-semibold block capitalize"
-                        >John doe</span
+                        >{{ authStore.userInfo.fullName }}</span
                       >
                       <span
-                        class="block text-[11px] text-[#666] darks:text-white/70"
-                        >johndoe@gmail.com</span
+                        class="block text-[11px] text-[#666] darks:text-white/70 truncate max-w-[151px]"
+                        >{{ authStore.userInfo.email }}</span
                       >
                     </div>
                   </div>
-                  <div class="px-[15px] pt-[14px] pb-5">
+                  <div class="px-[15px] pt-[14px] pb-5 flex-1">
                     <ul class="grid gap-y-3 text-[#555] darks:text-white/80">
                       <li v-for="n in filteredMenu" :key="n.name" class="">
                         <MenuItem v-slot="{ active }">
                           <button
+                            @click="n.key === 'sign-out' ? logOut() : ''"
                             class="flex gap-x-3 items-center text-[13px] font-medium"
                           >
                             <AppIcon :icon="n.icon" /> {{ n.name }}
@@ -207,7 +211,11 @@
                 </MenuItems>
               </transition>
             </Menu>
-            <span v-if="isLoggedIn" class="lg:hidden" @click="open = true">
+            <span
+              v-if="authStore.isLoggedIn"
+              class="lg:hidden"
+              @click="open = true"
+            >
               <AppIcon icon="ci:menu-alt-01" class="text-[30px]" />
             </span>
           </div>
@@ -365,12 +373,13 @@ import {
   mobileMenu,
 } from "~/utils/data";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
-import { useMarketStore } from "~/stores/markets";
+import { logOut } from "~/services/authservices";
 
+const cartStore = useCartStore();
+const authStore = useAuthStore();
 const store = useMarketStore();
 const router = useRouter();
 const { currentRoute } = router;
-const isLoggedIn = ref(false);
 const filteredMenu = computed(() =>
   mobileMenu.filter(
     (i) =>

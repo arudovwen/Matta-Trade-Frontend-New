@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col sm:flex-row justify-between p-5 sm:p-6 lg:p-[30px] gap-y-5 md:gap-y-0">
+  <div
+    class="flex flex-col sm:flex-row justify-between p-5 sm:p-6 lg:p-[30px] gap-y-5 md:gap-y-0"
+  >
     <div class="flex gap-x-4 md:gap-x-6">
       <img
         src="/images/4.png"
@@ -10,34 +12,40 @@
       />
       <div class="w-full sm:w-auto sm:max-w-[350px]">
         <p class="font-bold text-xs md:text-base mb-[6px]md: mb-[9px]">
-          Acrypol 600(Styrene Acrylic)
+          {{ detail?.product }}
         </p>
         <p class="text-[10px] md:text-xs mb-[10px]md: mb-[15px]">
           <span class="font-normal">Sold by:</span
-          ><span class="font-bold"> A Huber Company</span>
+          ><span class="font-bold"> {{ detail?.producer }}</span>
         </p>
-        <div class="flex flex-col  sm:flex-row gap-y-4 lg:gap-y-0 sm:gap-x-6">
+        <div class="flex flex-col sm:flex-row gap-y-4 lg:gap-y-0 sm:gap-x-6">
           <div>
             <p class="font-medium text-[10px] md:text-xs mb-1">Packaging</p>
-            <Select
-              :options="options"
-              placeholder="Select a package"
-              classInput="lg:min-w-[180px] w-full !bg-white !border-[#E7E7E7] !rounded-[4px] !text-[#333] !text-xs !min-h-[32px] !h-[32px] cursor-pointer bg-[#FCFCFC]"
-            />
+            <span
+              class="text-sm rounded border border-[#E7E7E7] bg-white flex items-center h-8 px-[15px]"
+              >{{ detail.selectedPackage }}</span
+            >
           </div>
           <div>
             <p class="font-medium text-[10px] md:text-xs mb-1">Quantity</p>
-           <div class="h-8 sm:max-w-[115px]">
-            <CartButton textClass="!text-[11px] md:!text-sm" iconClass="!text-[10px] md:!text-xs" btnClass="!px-[10px]" />
-           </div>
+            <div class="h-8 sm:max-w-[115px]">
+              <CartButton
+                textClass="!text-[11px] md:!text-sm"
+                iconClass="!text-[10px] md:!text-xs"
+                btnClass="!px-[10px]"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="flex flex-col lg:flex-row justify-center md:justify-between">
-      <p class="font-bold text-center md:text-right">N1,200,000</p>
+    <div class="flex flex-col justify-center md:justify-between">
+      <p class="font-bold text-center md:text-right">
+        {{ currencyFormat(detail.packagePrice * counter) }}
+      </p>
 
       <AppButton
+        @click="cartStore.removeFromCart(detail.id)"
         text="Remove item"
         icon="bx:trash"
         btnClass=" !px-0  !py-[0] !text-[11px] sm:text-xs md:text-sm !font-normal"
@@ -47,6 +55,12 @@
   </div>
 </template>
 <script setup>
-const counter = ref(1);
-provide("counter", counter)
+const cartStore = useCartStore();
+const props = defineProps(["detail"]);
+
+const counter = ref(props.detail.quantity);
+watch(counter, () => {
+  cartStore.updateCart({ ...props.detail, quantity: counter.value });
+});
+provide("counter", counter);
 </script>

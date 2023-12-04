@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { setupCache } from "axios-cache-interceptor";
 import { useToast } from "vue-toastification";
-import store from "../store";
+import { useAuthStore } from "~/stores/auth";
 
 // const axios = setupCache(Axios);
 const toast = useToast();
@@ -12,22 +12,29 @@ const axiosApi = Axios.create({
 });
 
 axiosApi.defaults.withCredentials = true;
-
+axiosApi.interceptors.request.use((config) => {
+  const authStore = useAuthStore();
+  config.headers.Authorization = `Bearer ${authStore?.access_token}`;
+  config.headers.Accept = "application/json";
+  return config
+})
 // Define an async function to handle token refresh
 const handleTokenRefresh = async () => {
+  const authStore = useAuthStore();
+  console.log("🚀 ~ file: api_helpers.js:24 ~ handleTokenRefresh ~ authStore:", authStore)
   // eslint-disable-next-line no-useless-catch
   try {
     // Call the API to refresh the token
     const refreshResponse = await axiosApi.post("/v1/Account/refreshtoken", {
-      token: store.getters.refreshToken,
+      token: authStore.refresh_token,
       ipAddress: "string",
     });
 
     // Update the access token in the store or localStorage
     const newAccessToken = refreshResponse.data.jwToken;
     const newRefreshToken = refreshResponse.data.refreshToken;
-    store.commit("setAccessToken", newAccessToken);
-    store.commit("setRefreshToken", newRefreshToken);
+    authStore.setAccessToken(newAccessToken);
+    authStore.setRefreshToken(newRefreshToken);
     axiosApi.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${newAccessToken}`;
@@ -38,7 +45,6 @@ const handleTokenRefresh = async () => {
     throw refreshError;
   }
 };
-
 // Add a response interceptor to handle token refresh and retry requests
 axiosApi.interceptors.response.use(
   (response) => response,

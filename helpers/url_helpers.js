@@ -88,6 +88,7 @@ const urls = {
 
   //Cart
   CREATE_CART: "/v1/shoppingcart/create-cart",
+  UPDATE_CART: "/v1/shoppingcart/update-cartitem",
   GET_CART: "/v1/shoppingcart/get-cart",
   REMOVE_CART: "/v1/shoppingcart/remove-cartitem",
   CONFIRM_PURCHASE: "/v1/shoppingcart/confirm-purchase",
