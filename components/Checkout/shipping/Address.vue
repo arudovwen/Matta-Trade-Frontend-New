@@ -1,7 +1,9 @@
 <template>
-  <div class="py-2">
+  <div class="py-2" v-if="detail">
     <div class="flex justify-between items-center">
-      <p class="text-base font-bold mb-[10px]">Joun Dorj</p>
+      <p class="text-base font-bold mb-[10px]">
+        {{ detail.firstName }} {{ detail.lasttName }}
+      </p>
       <AppIcon
         v-if="active"
         icon="lets-icons:check-fill"
@@ -9,12 +11,12 @@
       />
     </div>
     <p class="text-sm mb-[7px] max-w-[280px]">
-      15th Floor, Elephant House, Marina, Lagos., Lagos Island, Lagos
+      {{ detail.street }}, {{ detail.city }}, {{ detail.country }}
     </p>
-    <p class="text-sm">08020690101</p>
+    <p class="text-sm">{{ detail.postalCode }}</p>
   </div>
 </template>
 
 <script setup>
-defineProps(["active"]);
+defineProps(["active", "detail"]);
 </script>

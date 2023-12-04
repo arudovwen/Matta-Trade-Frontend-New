@@ -5,9 +5,11 @@
     </h2>
     <div class="px-[30px] pt-6 pb-[30px]">
       <div class="mb-6">
-        <CheckoutShippingAddress />
+        <CheckoutShippingAddress :detail="shippingStore?.defaultAddress" />
       </div>
-      <div class="flex flex-col md:flex-row md:items-center gap-y-4 md:gap-y-0 md:gap-x-4">
+      <div
+        class="flex flex-col md:flex-row md:items-center gap-y-4 md:gap-y-0 md:gap-x-4"
+      >
         <AppButton
           @click="openModal('form')"
           text="New shipping address"
@@ -30,18 +32,28 @@
     <template #default>
       <div class="w-full max-w-[500px] p-6 md:py-9 md:px-10 z-[999] relative">
         <CheckoutShippingForm v-if="type === 'form'" />
+        <CheckoutShippingEditForm v-if="type === 'edit'" />
         <CheckoutSelect v-if="type === 'select'" />
       </div>
     </template>
   </ModalCenter>
 </template>
 <script setup>
+import { getalladdress } from "~/services/cartservice";
+
+const shippingStore = useShippingStore();
 const type = ref("form");
+const detail = ref("detail");
 const isOpen = ref(false);
 function openModal(val) {
   type.value = val;
   isOpen.value = true;
 }
+onMounted(() => {
+  shippingStore.getAllAddress();
+});
 
+provide("type", type);
 provide("isOpen", isOpen);
+provide("detail", detail);
 </script>

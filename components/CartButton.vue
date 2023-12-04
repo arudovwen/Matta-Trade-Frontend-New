@@ -4,7 +4,7 @@
   >
     <button
       type="button"
-      :disabled="counter === 1"
+      :disabled="counter  <= 1"
       @click="counter--"
       :class="btnClass"
       class="h-full px-[15px] flex items-center justify-center bg-white disabled:opacity-60 border-r border-[#E7E7E7]"

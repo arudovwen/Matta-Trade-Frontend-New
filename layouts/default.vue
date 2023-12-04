@@ -15,10 +15,11 @@ const cartStore = useCartStore();
 onMounted(() => {
   if (authStore.isLoggedIn) {
     getcart().then((res) => {
-     
       cartStore.setCart(res.data.data.items);
       cartStore.setTax(res.data.data.tax);
     });
+  } else {
+    cartStore.setCart(JSON.parse(localStorage.getItem("cartItems")) || []);
   }
 });
 </script>

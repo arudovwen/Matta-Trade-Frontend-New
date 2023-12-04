@@ -31,6 +31,7 @@ export const useCartStore = defineStore("cart", () => {
     }
     if (!authStore.isLoggedIn) {
       cartItems.value = [...cartItems.value, item];
+      localStorage.setItem("cartItems", JSON.parse(cartItems.value))
       return;
     }
     // Use async/await for cleaner code
@@ -70,6 +71,7 @@ export const useCartStore = defineStore("cart", () => {
         }
         return dt;
       });
+      localStorage.setItem("cartItems", JSON.parse(cartItems.value))
     }
   }
 
@@ -86,11 +88,13 @@ export const useCartStore = defineStore("cart", () => {
       });
     } else {
       cartItems.value = cartItems.value.filter((item) => item.id !== id);
+      localStorage.setItem("cartItems", JSON.parse(cartItems.value))
     }
   }
 
   function clearCart() {
     cartItems.value = [];
+    localStorage.removeItem("cartItems")
   }
 
   return {
