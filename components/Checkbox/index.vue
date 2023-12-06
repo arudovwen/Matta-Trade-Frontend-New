@@ -16,7 +16,7 @@
       />
 
       <span
-        class="h-4 w-4 border flex-none border-slate-100 darks:border-slate-800 rounded inline-flex mr-3 relative transition-all duration-150"
+        class="h-4 w-4 border flex-none border-slate-200 darks:border-slate-800 rounded inline-flex mr-3 relative transition-all duration-150"
         :class="
           ck
             ? activeClass + ' border-none '

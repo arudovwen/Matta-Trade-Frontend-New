@@ -30,13 +30,16 @@
               <input
                 placeholder="Search by product name or supplier"
                 class="px-4 flex-1 h-9 placeholder:text-[rgba(156, 163, 175, 1)] text-xs sm:text-sm outline-none text-[#333]"
+                v-model="search"
               />
               <AppButton
+                @click="handleSearch"
                 text="Search"
                 btnClass="!px-10 btn-primary hidden sm:flex"
               />
             </div>
             <AppButton
+              @click="handleSearch"
               text="Search"
               btnClass="!px-4 !py-[10px] btn-primary sm:hidden w-full"
             />
@@ -62,7 +65,9 @@
 </template>
 
 <script setup>
+const router = useRouter();
 const imageSrc = "/images/banner.png";
+const search = ref("");
 const frequentlySearched = [
   {
     name: "Ammonia Liquor",
@@ -74,6 +79,11 @@ const frequentlySearched = [
     name: "Caustic Soda",
   },
 ];
+
+function handleSearch() {
+  if (!search) return;
+  router.push(`/market/${search.value}?search_query=${search.value}`);
+}
 </script>
 
 <style scoped>

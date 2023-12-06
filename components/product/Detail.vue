@@ -36,6 +36,7 @@
           <span
             class="absolute h-5 sm:h-[30px] w-5 sm:w-[30px] rounded-full right-[10px] top-[10px] bg-white/70 flex items-center justify-center"
             ><AppIcon
+              @click="handleLike(productData.liked)"
               :icon="!productData.liked ? 'ph:heart' : 'ph:heart-fill'"
               class="text-xs sm:text-sm md:text-base darks:text-white"
           /></span>
@@ -67,21 +68,22 @@
           <div class="flex flex-col sm:flex-row gap-y-4 lg:gap-y-0 gap-x-4">
             <AppButton
               v-if="productData?.sampleAvailable"
-              link="#n"
+              @click="handleQuote"
               text="Request sample"
               btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB]"
             />
             <AppButton
-              link="/auth/vendor-register"
+              @click="handleSample"
               text="Request quote"
               btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB] "
             />
           </div>
           <AppButton
-            link="#"
+            @click="handleSave"
+           
             icon="tdesign:heart"
             text="Save for later"
-            btnClass="text-xs sm:text-sm !px-0 w-full sm:!w-auto sm:!max-w-max"
+            btnClass="text-xs sm:text-sm !py-0 !px-0 w-full sm:!w-auto sm:!max-w-max"
           />
         </div>
         <div class="mb-6">
@@ -118,15 +120,17 @@
 </template>
 <script setup>
 import { useProductStore } from "@/stores/products";
-import { useToast } from "vue-toastification";
+import { toastInjectionKey, useToast } from "vue-toastification";
+import { likeproduct } from "~/services/productservices";
 
 const toast = useToast();
 const store = useProductStore();
 const cartStore = useCartStore();
+const authStore = useAuthStore();
 const { productData } = storeToRefs(store);
 
 const route = useRoute();
-const router = useRouter()
+const router = useRouter();
 const selectedPackage = ref(null);
 const { name, id, category } = route.params;
 const imageUrl = ref(productData?.value?.featuredPhoto);
@@ -190,6 +194,58 @@ function handleCart(type) {
     }
   });
 }
+function handleSave() {
+  if (!authStore.isLoggedIn) {
+    toast.info("Login to continue");
+  }
+}
+function handleQuote() {
+  if (!authStore.isLoggedIn) {
+    toast.info("Login to continue");
+  }
+}
 
+function handleSample() {
+  if (!authStore.isLoggedIn) {
+    toast.info("Login to continue");
+  }
+}
+
+function handleLike(value) {
+  if (!authStore.isLoggedIn) {
+    toast.info("Login to continue");
+  }
+  let data = {
+    businessId: authStore.userId,
+    productId: productData.value.id,
+    productName: productData.value.name,
+    productImg: productData.value.gallery.length
+      ? productData.value.gallery[0]
+      : "",
+    backgroundbg: "",
+    price: productData.value.price,
+    unit: productData.value.unit,
+    supplier: productData.value.companyName,
+    manufacturer: productData.value.manufacturer,
+    options: productData.value.packagesAvailable.length,
+    featuredPack: productData.value.packages.length
+      ? productData.value.packages[0].title
+      : "",
+  };
+ 
+  if (value) {
+    unlikeproduct(data).then((res) => {
+      if (res.status === 200) {
+        toast.success("Successfully Unliked");
+      }
+    });
+  } else {
+    likeproduct(data).then((res) => {
+      if (res.status === 200) {
+        toast.success("Successfully liked");
+      }
+    });
+  }
+}
 provide("counter", counter);
 </script>

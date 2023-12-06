@@ -139,6 +139,7 @@
 
           <div class="flex gap-x-3">
             <AppButton
+            v-if="!authStore.isLoggedIn"
               link="/auth/vendor-register"
               text="Become a Seller"
               btnClass="text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] hidden md:flex"

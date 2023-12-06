@@ -27,5 +27,7 @@ export const useAuthStore = defineStore("auth", () => {
     userId,
     userType,
     userInfo,
+    setRefreshToken,
+    setAccessToken
   };
 });

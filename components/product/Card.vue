@@ -1,8 +1,8 @@
 <template>
   <NuxtLink
     :to="`/product/${encodeURIComponent(detail.title)}${
-      route.params.title && `/${encodeURIComponent(route.params.title)}`
-    }/${detail.id}?categoryId=${route.params.id}`"
+      route?.params?.title ? `/${encodeURIComponent(route?.params?.title)}` : ''
+    }/${detail?.id}?categoryId=${route?.params?.id || ''}`"
     class="w-full"
   >
     <div

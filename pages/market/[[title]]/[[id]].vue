@@ -10,8 +10,12 @@
         <div class="flex-1 flex flex-col gap-y-10 overflow-y-auto no-scrollbar">
           <MarketContent />
           <Pagination
-            v-if="!loading && productsData.length"
-            :total="total"
+            v-if="
+              !loading &&
+              productsData.length &&
+              query.totalData > query.PageSize
+            "
+            :total="store.total"
             :current="query.PageNumber"
             :per-page="query.PageSize"
             :pageRange="pageRange"
@@ -24,7 +28,7 @@
   </div>
 </template>
 <script setup>
-import { getProducts } from "~/services/productservices";
+import { getProducts, getProducers } from "~/services/productservices";
 import { useProductStore } from "@/stores/products";
 
 const store = useProductStore();
@@ -33,13 +37,13 @@ const route = useRoute();
 const query = reactive({
   PageNumber: 1,
   PageSize: 20,
-  searchParameter: "",
+  searchParameter: route.query.search_query || "",
   MarketApplication: "",
   Status: "",
   MarketId: route.params.id,
   MarketSubApplication: "",
   productId: "",
-  Search: "",
+  Search: route.query.search_query || "",
   ShowSubMenu: true,
   Producer: route.query.producer,
   pagecount: 0,
@@ -47,7 +51,7 @@ const query = reactive({
   SortOrder: "A",
   Pricefilter: "",
 });
-const total = 200;
+
 const pageRange = 5;
 
 function getAllProducts() {
@@ -56,13 +60,16 @@ function getAllProducts() {
     .then((res) => {
       if (res.status === 200) {
         store.setProducts(res.data.data);
+        console.log("🚀 ~ file: [[id]].vue:63 ~ .then ~ res.data:", res.data)
         store.setLoader(false);
+        query.totalData = res.data.data.totalCount;
       }
     })
     .catch(() => {
       setLoader(false);
     });
 }
+
 
 function perPage({ currentPerPage }) {
   query.PageNumber = 1;
@@ -71,6 +78,7 @@ function perPage({ currentPerPage }) {
 
 onMounted(() => {
   getAllProducts();
+  store.getAllProducers()
 });
 
 watch(
