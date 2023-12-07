@@ -16,7 +16,7 @@
             <h1
               class="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] lg:leading-[67px] font-bold mb-6"
             >
-              Discover and buy chemicals and raw materials all in one place.
+              Discover and buy chemicals and raw materials all in one place
             </h1>
             <p class="text-sm sm:text-base md:text-xl lg:text-2xl">
               Search, compare, sample, quote, supply, and purchase chemicals and

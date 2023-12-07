@@ -104,20 +104,16 @@ export const categories = [
 
 //   navs
 export const navigations = [
-  {
-    name: "All categories",
-    key: "categories",
-    url: null,
-  },
+ 
   {
     name: "Markets",
     key: "markets",
-    url: "/markets",
+    url: null,
   },
   {
     name: "Applications",
     key: "applications",
-    url: "/applications",
+    url: null,
   },
   {
     name: "Finance",

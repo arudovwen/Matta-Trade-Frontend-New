@@ -29,18 +29,10 @@
                   : ''
               }`"
             >
-              <Menu
-                as="div"
-                v-if="n.key === 'categories' || n.key === 'finance'"
-                class="relative inline-block text-left"
-              >
+              <Menu as="div" class="relative inline-block text-left">
                 <MenuButton
                   class="flex gap-x-1 items-center group-hover:text-[#165EF0]"
-                  ><AppIcon
-                    v-if="n.key === 'categories'"
-                    class="text-base"
-                    icon="tdesign:list"
-                  />
+                  ><AppIcon class="text-base" icon="tdesign:list" />
                   {{ n.name }}</MenuButton
                 >
                 <transition
@@ -52,14 +44,11 @@
                   leave-to-class="transform scale-95 opacity-0"
                 >
                   <MenuItems
-                    class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white darks:bg-gray-800 rounded-b-[10px] px-[30px] py-5 text-sm"
+                    class="z-[999] grid grid-cols-1 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[303px] origin-top-right bg-white darks:bg-gray-800 rounded-b-[10px] px-5 py-5 text-sm"
                   >
                     <div
-                      class="px-1 py-1"
-                      v-for="cat in n.key === 'categories'
-                        ? store?.marketsData
-                        : financeMenu"
-                      :key="cat.title"
+                      class=""
+                      v-for="cat in handleDropDown(n.key)"
                     >
                       <MenuItem v-slot="{ active }">
                         <NuxtLink
@@ -69,11 +58,13 @@
                         >
                           <button
                             :class="[
-                              'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px] gap-x-2 text-[#333] darks:text-white/90',
+                              'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap gap-x-2 text-[#333] darks:text-white/90',
                             ]"
                           >
                             <AppIcon
-                              v-if="n.key === 'categories'"
+                              v-if="
+                                n.key === 'markets' || n.key === 'applications'
+                              "
                               :icon="`fa6-solid:${cat.imagePath}`"
                             />
                             {{ cat.title }}
@@ -84,11 +75,11 @@
                   </MenuItems>
                 </transition>
               </Menu>
-              <NuxtLink :to="n.url" v-else>
+              <!-- <NuxtLink :to="n.url" v-else>
                 <span class="cursor-pointer hover:text-[#165EF0]">
                   {{ n.name }}</span
                 >
-              </NuxtLink>
+              </NuxtLink> -->
             </li>
           </ul>
         </div>
@@ -139,7 +130,7 @@
 
           <div class="flex gap-x-3">
             <AppButton
-            v-if="!authStore.isLoggedIn"
+              v-if="!authStore.isLoggedIn"
               link="/auth/vendor-register"
               text="Become a Seller"
               btnClass="text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] hidden md:flex"
@@ -378,6 +369,7 @@ import { logOut } from "~/services/authservices";
 
 const cartStore = useCartStore();
 const authStore = useAuthStore();
+const appStore = useApplicationStore()
 const store = useMarketStore();
 const router = useRouter();
 const { currentRoute } = router;
@@ -405,6 +397,19 @@ function handleScroll() {
   } else {
     // user is at top of page
     if (!view.value.atTopOfPage) view.value.atTopOfPage = true;
+  }
+}
+function handleDropDown(val){
+
+  if(val=== "markets"){
+    return store?.marketsData
+  }
+  if(val=== "applications"){
+    return appStore?.applicationsData
+   
+  }
+  if(val=== "finance"){
+    return financeMenu
   }
 }
 provide("open", open);

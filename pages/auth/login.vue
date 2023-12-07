@@ -46,11 +46,17 @@
           btnClass="btn-primary !py-3"
         />
         <AppButton
+          :disabled="!isReady"
+          @click="() => login()"
           text="Sign in with Google"
           icon="flat-color-icons:google"
           btnClass="btn-dark !py-3"
           type="button"
         />
+        <!-- <GoogleSignInButton
+          @success="handleLoginSuccess"
+          @error="handleLoginError"
+        ></GoogleSignInButton> -->
       </div>
       <span
         class="flex items-center text-center text-sm text-[#333] darks:text-white/80 gap-x-1 justify-center"
@@ -67,8 +73,9 @@
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 import { useToast } from "vue-toastification";
-import { loginUser } from "~/services/authservices";
+import { loginUser, sociallogin } from "~/services/authservices";
 import "vue-toastification/dist/index.css";
+import { GoogleSignInButton } from "vue3-google-signin";
 
 definePageMeta({
   layout: "auth",
@@ -145,5 +152,70 @@ const onSubmit = handleSubmit((values) => {
 
       // }
     });
+});
+
+const handleLoginSuccess = (response) => {
+  console.log(
+    "🚀 ~ file: login.vue:163 ~ handleOnSuccess ~ response:",
+    response
+  );
+  const { access_token } = response;
+  let data = {
+    provider: "GOOGLE",
+    idToken: access_token,
+    business_UserType: 0,
+  };
+  console.log("🚀 ~ file: LoginView.vue:166 ~ callback ~ data:", data);
+
+  sociallogin(data)
+    .then((res) => {
+      if (res.status === 200) {
+        store.commit("setUser", res.data.data);
+        toast.info(res.data.message ? res.data.message : "Login successful", {
+          position: "bottom",
+        });
+        if (res.data.message.includes("Email has not verified yet")) {
+          return;
+        }
+
+        if (!res.data.data.onboardingPageStatus) {
+          window.location.replace("/onboarding");
+          return;
+        }
+        if (route.query.redirected_from) {
+          window.location.replace(route.query.redirected_from);
+          return;
+        }
+        if (route.query.redirect_to) {
+          window.location.replace(route.query.redirect_to);
+          return;
+        }
+
+        window.location.replace("/");
+      }
+    })
+    .catch((err) => {
+      invalidCredentials.value = true;
+      isLoading.value = false;
+      if (err.response.data.Message) {
+        toast.error(err.response.data.Message, {
+          position: "bottom",
+        });
+      }
+      if (err.response.data.message.includes("Email has not verified yet")) {
+        router.push(`/resend-verification/${form.email}`);
+      }
+    });
+};
+
+// handle an error event
+const handleLoginError = () => {
+  console.error("Login failed");
+};
+
+const { isReady, login } = useTokenClient({
+  onSuccess: handleLoginSuccess,
+  onError: handleLoginError,
+  // other options
 });
 </script>

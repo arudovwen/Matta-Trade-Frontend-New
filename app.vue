@@ -71,7 +71,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const store = useMarketStore();
-const { setApplications } = useApplicationStore();
+const  appStore = useApplicationStore()
 const query = reactive({
   PageNumber: 1,
   PageSize: 200,
@@ -86,7 +86,7 @@ const getAllMarkets = () => {
 const getAllApplications = () => {
   getTechLevels(query).then((res) => {
     if (res.status === 200) {
-      setApplications(res.data.data);
+      appStore.setApplications(res.data.data);
     }
   });
 };
