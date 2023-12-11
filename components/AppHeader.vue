@@ -95,7 +95,7 @@
             </li>
           </ul>
         </div>
-        <div class="flex items-center gap-x-6 text-sm">
+        <div class="flex items-center gap-x-3 smd:gap-x-6 text-sm">
           <!-- <span
             :class="{
               flex: view.atTopOfPage,
@@ -137,7 +137,7 @@
                 >{{ cartStore.cartTotal }}</span
               >
             </span>
-            <span class="text-sm hidden sm:inline-flex text-[#333]">Cart</span>
+            <span class="text-xs sm:text-sm font-medium inline-flex text-[#333]">Cart</span>
           </NuxtLink>
 
           <div class="flex gap-x-3">
@@ -145,13 +145,13 @@
               v-if="!authStore.isLoggedIn"
               link="/auth/vendor-register"
               text="Become a Seller"
-              btnClass="text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] flex"
+              btnClass="!text-[10px] !text-sm text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] flex"
             />
             <AppButton
               v-if="!authStore.isLoggedIn"
               link="/auth/login"
               text="Sign In"
-              btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm"
+              btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm hidden md:flex"
             />
 
             <Menu
@@ -216,7 +216,7 @@
               </transition>
             </Menu>
             <span
-              v-if="authStore.isLoggedIn"
+             
               class="lg:hidden"
               @click="open = true"
             >

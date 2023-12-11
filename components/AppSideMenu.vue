@@ -56,23 +56,38 @@
                 >
                   <div class="relative flex-1 px-4 sm:px-6">
                     <!-- Replace with your content -->
-                    <div class="absolute inset-0">
-                      <div
-                        class="flex gap-x-2 px-5 pt-4 pb-[14px] border-b border-[#F4F4F4]"
-                      >
+                    <div class="absolute inset-0 pt-5">
+                      <div class="px-5  pb-4" v-if="!authStore.isLoggedIn">
+                        <img
+                          src="~/assets/images/logo.png"
+                          width="100"
+                          height="26"
+                          alt="Matta"
+                          class="w-[100px] h-auto"
+                        />
+                      </div>
+                      <div class="flex gap-x-2 px-5  pb-[1px]"  v-if="authStore.isLoggedIn">
                         <span
+                         
                           class="h-10 w-10 rounded-full flex items-center justify-center text-white bg-[#f90] font-semibold"
-                          >JD</span
                         >
-                        <div>
+                          {{ authStore.userInfo.firstName.slice(0, 1) }}
+                          {{ authStore.userInfo.lastName.slice(0, 1) }}</span
+                        >
+                        <div class="flex-1">
                           <span
+                            v-if="authStore.isLoggedIn"
                             class="text-[#333] text-sm font-semibold block capitalize"
-                            >John doe</span
-                          >
-                          <span class="block text-xs text-[#666] mb-3"
-                            >johndoe@gmail.com</span
+                            >{{ authStore.userInfo.fullName }}</span
                           >
                           <span
+                            v-if="authStore.isLoggedIn"
+                            class="block text-xs text-[#666] mb-3"
+                            >{{ authStore.userInfo.email }}</span
+                          >
+                          <span
+                            v-if="authStore.isLoggedIn"
+                            @click="logOut()"
                             class="flex gap-x-1 text-xs text-[#165EF0] font-medium"
                             ><AppIcon
                               icon="octicon:sign-out-16"
@@ -81,6 +96,23 @@
                           >
                         </div>
                       </div>
+                      <div
+                        class="flex gap-x-4 w-full px-5"
+                        v-if="!authStore.isLoggedIn"
+                      >
+                        <AppButton
+                          link="/auth/vendor-register"
+                          text="Become a Seller"
+                          btnClass="text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] flex w-full"
+                        />
+                        <AppButton
+                          v-if="!authStore.isLoggedIn"
+                          link="/auth/login"
+                          text="Sign In"
+                          btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm w-full"
+                        />
+                      </div>
+                      <hr class="my-[14px] border-b border-[#F4F4F4]" />
                       <div class="px-5 pt-5">
                         <ul class="grid gap-y-5">
                           <li
@@ -88,7 +120,7 @@
                               (i) => i.key !== 'sign-out'
                             )"
                             :key="n.name"
-                            class="flex gap-x-3 items-center text-sm font-medium"
+                            class="flex gap-x-3 items-center text-sm font-medium text-[#666]"
                           >
                             <AppIcon :icon="n.icon" /> {{ n.name }}
                           </li>
@@ -104,48 +136,6 @@
       </div>
     </Dialog>
   </TransitionRoot>
-  <ModalsCenterModal
-    :isOpen="isSigniningOut"
-    @toggleModal="isSigniningOut = false"
-    v-if="isSigniningOut"
-  >
-    <template #content>
-      <div
-        class="bg-white p-6 lg:p-10 sm:p-6 sm:pb-4 w-[400px] rounded-lg"
-        v-if="isSigniningOut"
-      >
-        <div class="flex justify-between mb-5 items-center">
-          <h4 class="font-medium text-matta-black text-xl">Sign Out</h4>
-          <i
-            class="uil uil-times cursor-pointer text-lg"
-            @click="isSigniningOut = false"
-          ></i>
-        </div>
-
-        <p class="text-sm text-matta-black mb-2">
-          Are you sure you want to sign out?
-        </p>
-
-        <div class="flex justify-between gap-x-2 items-center mt-8">
-          <button
-            type="button"
-            @click="isSigniningOut = false"
-            class="appearance-none border w-1/2 leading-none px-8 py-3 rounded-lg text-matta-black hover:bg-gray-100 text-[13px] uppercase"
-          >
-            Cancel
-          </button>
-
-          <button
-            type="button"
-            @click="logOut"
-            class="appearance-none border w-1/2 border-primary leading-none px-8 py-3 rounded-lg text-white bg-primary hover:opacity-70 text-[13px] uppercase"
-          >
-            Yes
-          </button>
-        </div>
-      </div>
-    </template>
-  </ModalsCenterModal>
 </template>
 <script setup>
 import { ref } from "vue";
@@ -157,7 +147,10 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { mobileMenu } from "~/utils/data";
+import { logOut } from "~/services/authservices";
 
+const cartStore = useCartStore();
+const authStore = useAuthStore();
 const isSigniningOut = ref(false);
 
 const open = inject("open");
