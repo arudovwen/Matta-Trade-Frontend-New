@@ -46,12 +46,10 @@
                   <MenuItems
                     class="z-[999] grid grid-cols-1 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[303px] origin-top-right bg-white darks:bg-gray-800 rounded-b-[10px] px-5 py-5 text-sm"
                   >
-                    <div
-                      class=""
-                      v-for="cat in handleDropDown(n.key)"
-                    >
+                    <div class="" v-for="cat in handleDropDown(n.key)">
                       <MenuItem v-slot="{ active }">
                         <NuxtLink
+                          v-if="n.key !== 'finance'"
                           :to="`/market/${encodeURIComponent(
                             cat.title.toLowerCase()
                           )}/${cat.id}`"
@@ -70,6 +68,20 @@
                             {{ cat.title }}
                           </button>
                         </NuxtLink>
+                        <button
+                          v-else
+                          :class="[
+                            'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap gap-x-2 text-[#333] darks:text-white/90',
+                          ]"
+                        >
+                          <AppIcon
+                            v-if="
+                              n.key === 'markets' || n.key === 'applications'
+                            "
+                            :icon="`fa6-solid:${cat.imagePath}`"
+                          />
+                          {{ cat.title }}
+                        </button>
                       </MenuItem>
                     </div>
                   </MenuItems>
@@ -133,7 +145,7 @@
               v-if="!authStore.isLoggedIn"
               link="/auth/vendor-register"
               text="Become a Seller"
-              btnClass="text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] hidden md:flex"
+              btnClass="text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] flex"
             />
             <AppButton
               v-if="!authStore.isLoggedIn"
@@ -369,7 +381,7 @@ import { logOut } from "~/services/authservices";
 
 const cartStore = useCartStore();
 const authStore = useAuthStore();
-const appStore = useApplicationStore()
+const appStore = useApplicationStore();
 const store = useMarketStore();
 const router = useRouter();
 const { currentRoute } = router;
@@ -399,17 +411,15 @@ function handleScroll() {
     if (!view.value.atTopOfPage) view.value.atTopOfPage = true;
   }
 }
-function handleDropDown(val){
-
-  if(val=== "markets"){
-    return store?.marketsData
+function handleDropDown(val) {
+  if (val === "markets") {
+    return store?.marketsData;
   }
-  if(val=== "applications"){
-    return appStore?.applicationsData
-   
+  if (val === "applications") {
+    return appStore?.applicationsData;
   }
-  if(val=== "finance"){
-    return financeMenu
+  if (val === "finance") {
+    return financeMenu;
   }
 }
 provide("open", open);
