@@ -12,7 +12,7 @@
   
               <h1 class="text-4xl md:text-8xl font-bold mb-8">{{ error.statusCode }}</h1>
               
-              <h1 class="text-3xl font-bold mb-8 max-w-[350px] mx-auto text-center">{{ error.message }}</h1>
+              <h1 class="text-3xl font-bold mb-8 max-w-[450px] mx-auto text-center">{{ error.message }}</h1>
               
              
                 <button @click="handleError"

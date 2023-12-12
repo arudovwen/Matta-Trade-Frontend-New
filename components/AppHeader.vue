@@ -32,7 +32,7 @@
               <Menu as="div" class="relative inline-block text-left">
                 <MenuButton
                   class="flex gap-x-1 items-center group-hover:text-[#165EF0]"
-                  >
+                >
                   {{ n.name }}</MenuButton
                 >
                 <transition
@@ -50,9 +50,11 @@
                       <MenuItem v-slot="{ active }">
                         <NuxtLink
                           v-if="n.key !== 'finance'"
-                          :to="`/market/${encodeURIComponent(
-                            cat.title.toLowerCase()
-                          )}/${cat.id}`"
+                          :to="`/${
+                            n.key === 'markets' ? 'market' : 'application'
+                          }/${encodeURIComponent(cat.title.toLowerCase())}/${
+                            cat.id
+                          }`"
                         >
                           <button
                             :class="[
@@ -113,7 +115,7 @@
             NGN</span
           >
 
-       <!--   <span
+          <!--   <span
             :class="{
               'md:flex ': view.atTopOfPage,
               'md:hidden': !view.atTopOfPage,
