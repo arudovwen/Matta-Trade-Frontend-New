@@ -16,7 +16,7 @@
   <AppLoader v-if="loading" />
 </template>
 <script setup>
-import { useProductStore } from "@/stores/products";
+import { useProductStore } from "~/stores/products";
 
 const store = useProductStore();
 const { productsData, loading } = storeToRefs(store);

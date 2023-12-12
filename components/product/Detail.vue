@@ -80,7 +80,6 @@
           </div>
           <AppButton
             @click="handleSave"
-           
             icon="tdesign:heart"
             text="Save for later"
             btnClass="text-xs sm:text-sm !py-0 !px-0 w-full sm:!w-auto sm:!max-w-max"
@@ -104,7 +103,7 @@
               @click="handleCart('add')"
               text="Add to cart"
               icon="bytesize:cart"
-              btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[13px] text-xs sm:text-sm w-full lg:!w-[140px]"
+              btnClass="bg-primary-500  text-white !px-4 !sm:px-6 !py-[13px] text-xs sm:text-sm w-full lg:!w-[140px]"
             />
             <AppButton
               @click="handleCart('buy')"
@@ -119,7 +118,7 @@
   </div>
 </template>
 <script setup>
-import { useProductStore } from "@/stores/products";
+import { useProductStore } from "~/stores/products";
 import { toastInjectionKey, useToast } from "vue-toastification";
 import { likeproduct } from "~/services/productservices";
 
@@ -153,7 +152,9 @@ const links = [
   },
   {
     title: category,
-    url: `/market/${category}/${route.query.categoryId}`,
+    url: `/market/${category}/${
+      route.query.categoryId ? route.query.categoryId : ""
+    }`,
   },
   {
     title: name,
@@ -232,7 +233,7 @@ function handleLike(value) {
       ? productData.value.packages[0].title
       : "",
   };
- 
+
   if (value) {
     unlikeproduct(data).then((res) => {
       if (res.status === 200) {

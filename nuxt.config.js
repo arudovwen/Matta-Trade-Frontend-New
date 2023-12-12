@@ -11,6 +11,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       API_BASE_URL: process.env.API_BASE_URL,
+      APP_MONNIFYAPIKEY: process.env.APP_MONNIFYAPIKEY,
+      APP_MONNIFYCONTRACTCODE:process.env.APP_MONNIFYCONTRACTCODE,
+      APP_MONNIFYISTEST:process.env.APP_MONNIFYISTEST,
+      APP_MONNIFYISTESTMODE:process.env.APP_MONNIFYISTESTMODE,
     },
   },
   ssr: false,
@@ -92,6 +96,54 @@ export default defineNuxtConfig({
         { name: "author", content: "Success Ahon" }, // Add author information
         { name: "robots", content: "index, follow" }, // Control search engine indexing
         { name: "theme-color", content: "#165EF0" }, // Set the theme color for mobile browsers
+      ],
+      script: [
+        {
+          src: "https://sdk.monnify.com/plugin/monnify.js",
+          defer: true,
+        },
+        {
+          src: "https://kit.fontawesome.com/c1a534ffdb.js",
+          crossorigin: "anonymous",
+          defer: true,
+        },
+        {
+          async: true,
+          src: "https://www.googletagmanager.com/gtag/js?id=G-295L8F9LEF",
+        },
+        {
+          innerHTML: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-295L8F9LEF");
+          `,
+          type: "text/javascript",
+        },
+        {
+          innerHTML: `
+            (function (h, o, t, j, a, r) {
+              h.hj = h.hj || function () {
+                (h.hj.q = h.hj.q || []).push(arguments);
+              };
+              h._hjSettings = { hjid: 3748112, hjsv: 6 };
+              a = o.getElementsByTagName("head")[0];
+              r = o.createElement("script");
+              r.async = 1;
+              r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+              a.appendChild(r);
+            })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+          `,
+          type: "text/javascript",
+        },
+      ],
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://unicons.iconscout.com/release/v4.0.0/css/line.css",
+        },
       ],
     },
   },

@@ -14,7 +14,7 @@
           @click="openModal('form')"
           text="New shipping address"
           icon="icon-park-outline:plus"
-          btnClass="bg-primary-500 text-white !px-4
+          btnClass="bg-primary-500  text-white !px-4
       !sm:px-6 !py-[9px] text-xs sm:text-sm"
         />
 
@@ -39,8 +39,6 @@
   </ModalCenter>
 </template>
 <script setup>
-import { getalladdress } from "~/services/cartservice";
-
 const shippingStore = useShippingStore();
 const type = ref("form");
 const detail = ref("detail");
@@ -50,7 +48,7 @@ function openModal(val) {
   isOpen.value = true;
 }
 onMounted(() => {
-  shippingStore.getAllAddress();
+  shippingStore.getAlladdress();
 });
 
 provide("type", type);

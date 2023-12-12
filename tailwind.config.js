@@ -33,8 +33,7 @@ export default {
     },
     extend: {
       colors: {
-        // "vtd-primary": colors.slate,
-        // "vtd-secondary": colors.gray,
+        "matta-black": "#2C2C2C",
         primary: {
           50: "#EAF2FF", // Lightest shade
           100: "#D3E2FF",

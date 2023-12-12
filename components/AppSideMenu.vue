@@ -109,7 +109,7 @@
                           v-if="!authStore.isLoggedIn"
                           link="/auth/login"
                           text="Sign In"
-                          btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm w-full"
+                          btnClass="bg-primary-500  text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm w-full"
                         />
                       </div>
                       <hr class="my-[14px] border-b border-[#F4F4F4]" />

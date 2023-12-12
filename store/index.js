@@ -5,7 +5,7 @@ import { createStore } from "vuex";
 export default createStore({
   // plugins: [createPersistedState()],
   state: {
-    loggedUser: {},
+    loggedUser: JSON.parse(localStorage.getItem("userInfo")),
     cartItems: [],
     refresh_token: "",
     access_token: "",

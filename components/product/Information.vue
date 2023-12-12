@@ -22,7 +22,7 @@
   </div>
 </template>
 <script setup>
-import { useProductStore } from "@/stores/products";
+import { useProductStore } from "~/stores/products";
 
 const store = useProductStore();
 const { productData } = storeToRefs(store);

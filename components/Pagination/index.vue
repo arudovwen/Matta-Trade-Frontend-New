@@ -210,14 +210,14 @@ export default defineComponent({
       &:first-child,
       &:last-child {
         button {
-          @apply hover:bg-primary-500 hover:text-[#333] transition duration-150 text-slate-500 h-10 w-10 flex items-center justify-center rounded;
+          @apply hover:bg-primary-500  hover:text-[#333] transition duration-150 text-slate-500 h-10 w-10 flex items-center justify-center rounded;
         }
       }
       a,
       div {
         @apply bg-transparent text-slate-500;
         &.active {
-          @apply bg-primary-500 text-[#333];
+          @apply bg-primary-500  text-[#333];
         }
       }
     }

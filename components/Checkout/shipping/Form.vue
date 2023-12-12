@@ -149,7 +149,7 @@ const onSubmit = handleSubmit((values) => {
       if (res.status === 200) {
         toast.info("Address updated");
         isOpen.value = false;
-        useShippingStore.getAllAddress()
+        useshippingStore.getAlladdress()
       }
     })
 

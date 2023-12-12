@@ -184,7 +184,7 @@ export default {
     },
     btnClass: {
       type: String,
-      default: "bg-primary-500 text-white",
+      default: "bg-primary-500  text-white",
     },
     icon: {
       type: String,

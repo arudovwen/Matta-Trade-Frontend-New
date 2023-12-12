@@ -53,12 +53,13 @@ const isOpen = inject("isOpen");
 function handleEdit(val) {
   detail.value = val;
   type.value = "edit";
+  isOpen.value = true;
 }
 function handleDefault(id) {
   setdefaultaddress(id).then((res) => {
     if (res.status === 200) {
       isOpen.value = false;
-      shippingStore.getAllAddress();
+      shippingStore.getAlladdress();
     }
   });
 }

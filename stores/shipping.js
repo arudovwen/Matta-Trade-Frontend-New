@@ -11,14 +11,14 @@ export const useShippingStore = defineStore("shipping", () => {
   function setAddresses(data) {
     addresses.value = data;
   }
-  function getAllAddress() {
+  function getAlladdress() {
     getalladdress().then((res) => {
       addresses.value = res.data.data;
     });
   }
   function deleteAddress(id) {
     getalladdress(id).then((res) => {
-      getAllAddress();
+      getalladdress();
     });
   }
   return {
@@ -26,6 +26,6 @@ export const useShippingStore = defineStore("shipping", () => {
     addresses,
     setAddresses,
     defaultAddress,
-    getAllAddress,
+    getAlladdress,
   };
 });

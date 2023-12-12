@@ -4,21 +4,21 @@ export const categories = [
     icon: "fa6-solid:bag-shopping",
     key: "consumer-goods",
     url: "#",
-    id:1
+    id: 1,
   },
   {
     title: "Adhesives & Sealants",
     icon: "fa6-solid:tape",
     key: "adhesives-sealants",
     url: "#",
-    id: 2
+    id: 2,
   },
   {
     title: "Electrical & Electronics",
     icon: "fa6-solid:plug-circle-bolt",
     key: "electrical-electronics",
     url: "#",
-    id:3
+    id: 3,
   },
   {
     title: "Home & Personal Care",
@@ -31,7 +31,7 @@ export const categories = [
     icon: "fa6-solid:paint-roller",
     key: "paints-coating",
     url: "#",
-    id: 4
+    id: 4,
   },
   {
     title: "Agriculture & Animal Feed",
@@ -104,7 +104,6 @@ export const categories = [
 
 //   navs
 export const navigations = [
- 
   {
     name: "Markets",
     key: "markets",
@@ -133,49 +132,49 @@ export const mobileMenu = [
     name: "Profile",
     key: "profile",
     icon: "bxs:user",
-    url: "#",
+    url: "/account/settings",
   },
   {
     name: "My orders",
     key: "my-orders",
     icon: "solar:box-bold",
-    url: "#",
+    url: "/procurement/my-orders",
   },
   {
     name: "My requests",
     key: "my-requests",
     icon: "gridicons:cart",
-    url: "#",
+    url: "/procurement/my-requests",
   },
   {
     name: "Shipping address",
     key: "shipping-address",
     icon: "fa6-solid:address-book",
-    url: "#",
+    url: "/procurement/shipping-addresses",
   },
   {
     name: "Wallet",
     key: "wallet",
     icon: "ion:wallet",
-    url: "#",
+    url: "/wallet/home",
   },
   {
     name: "Saved items",
     key: "saved-items",
     icon: "ri:heart-fill",
-    url: "#",
+    url: "/account/saved-items",
   },
   {
     name: "Storefront",
     key: "storefront",
     icon: "fa6-solid:store",
-    url: "#",
+    url: "/storefront/overview",
   },
   {
     name: "Company settings",
     key: "company-setting",
     icon: "clarity:building-solid",
-    url: "#",
+    url: "/company/settings",
   },
   {
     name: "Sign out",
@@ -221,8 +220,8 @@ export const hotDeals = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Hydrogenated Castor Oil",
@@ -231,8 +230,8 @@ export const hotDeals = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Hydrotint Black Paste",
@@ -241,8 +240,8 @@ export const hotDeals = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "IPEA (N,N-Diisopropylethylamine)",
@@ -262,8 +261,8 @@ export const bestSellers = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Linear Low Density Polyethylene (LLDPE)",
@@ -272,8 +271,8 @@ export const bestSellers = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Industrial Salt",
@@ -282,10 +281,10 @@ export const bestSellers = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
-  
+
   {
     title: "IPEA (N,N-Diisopropylethylamine)",
     company: "SASOL Chemicals",
@@ -303,8 +302,8 @@ export const reccomended = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Linear Low Density Polyethylene (LLDPE)",
@@ -313,8 +312,8 @@ export const reccomended = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Industrial Salt",
@@ -323,10 +322,10 @@ export const reccomended = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
-  
+
   {
     title: "IPEA (N,N-Diisopropylethylamine)",
     company: "SASOL Chemicals",
@@ -342,8 +341,8 @@ export const reccomended = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Industrial Salt",
@@ -352,10 +351,10 @@ export const reccomended = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
-  
+
   {
     title: "Linear Low Density Polyethylene (LLDPE)",
     company: "GCP Applied Technologies Inc",
@@ -363,8 +362,8 @@ export const reccomended = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Industrial Salt",
@@ -373,10 +372,9 @@ export const reccomended = [
     oldprice: "3300",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
-  
 ];
 export const market = [
   {
@@ -386,8 +384,8 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Linear Low Density Polyethylene (LLDPE)",
@@ -396,8 +394,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Industrial Salt",
@@ -406,10 +404,10 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
-  
+
   {
     title: "IPEA (N,N-Diisopropylethylamine)",
     company: "SASOL Chemicals",
@@ -425,8 +423,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Industrial Salt",
@@ -435,10 +433,10 @@ export const market = [
     oldprice: "",
     newprice: "",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
-  
+
   {
     title: "Linear Low Density Polyethylene (LLDPE)",
     company: "GCP Applied Technologies Inc",
@@ -446,8 +444,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Industrial Salt",
@@ -456,8 +454,8 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Kronos 2190 (Titanium Dioxide)",
@@ -466,8 +464,8 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Linear Low Density Polyethylene (LLDPE)",
@@ -476,8 +474,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Industrial Salt",
@@ -486,10 +484,10 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
-  
+
   {
     title: "IPEA (N,N-Diisopropylethylamine)",
     company: "SASOL Chemicals",
@@ -505,8 +503,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Industrial Salt",
@@ -515,10 +513,10 @@ export const market = [
     oldprice: "",
     newprice: "",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
-  
+
   {
     title: "Linear Low Density Polyethylene (LLDPE)",
     company: "GCP Applied Technologies Inc",
@@ -526,8 +524,8 @@ export const market = [
     oldprice: "",
     newprice: "3800",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
   {
     title: "Industrial Salt",
@@ -536,8 +534,7 @@ export const market = [
     oldprice: "",
     newprice: "2500",
     type: "sale",
-    id:1,
-    category:"Adhesive"
+    id: 1,
+    category: "Adhesive",
   },
-  
 ];

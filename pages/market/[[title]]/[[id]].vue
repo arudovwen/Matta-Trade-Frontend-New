@@ -29,7 +29,7 @@
 </template>
 <script setup>
 import { getProducts, getProducers } from "~/services/productservices";
-import { useProductStore } from "@/stores/products";
+import { useProductStore } from "~/stores/products";
 
 const store = useProductStore();
 const { productsData, loading } = storeToRefs(store);
@@ -60,13 +60,12 @@ function getAllProducts() {
     .then((res) => {
       if (res.status === 200) {
         store.setProducts(res.data.data);
-        console.log("🚀 ~ file: [[id]].vue:63 ~ .then ~ res.data:", res.data)
         store.setLoader(false);
         query.totalData = res.data.data.totalCount;
       }
     })
     .catch(() => {
-      setLoader(false);
+      store.setLoader(false);
     });
 }
 

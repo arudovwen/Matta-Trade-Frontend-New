@@ -12,14 +12,20 @@ export const useAuthStore = defineStore("auth", () => {
   const userInfo = computed(() => loggedUser.value);
 
   function setAccessToken(value) {
-    loggedUser.value.access_token = value;
-    localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+    let userInfo = { ...loggedUser.value, access_token: value };
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
   }
   function setRefreshToken(value) {
-    loggedUser.value.refresh_token = value;
-    localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+    let userInfo = { ...loggedUser.value, refresh_token: value };
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+  }
+  function updateUser(value) {
+    let userInfo = { ...loggedUser.value, fullName: value };
+
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
   }
   return {
+    updateUser,
     isLoggedIn,
     refresh_token,
     access_token,
@@ -28,6 +34,6 @@ export const useAuthStore = defineStore("auth", () => {
     userType,
     userInfo,
     setRefreshToken,
-    setAccessToken
+    setAccessToken,
   };
 });

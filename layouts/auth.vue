@@ -4,7 +4,7 @@
       class="relative hidden lg:flex items-center lg:col-span-7 bg-[rgba(3,14,46,0.85)]"
       
     >
-      <div class="top-10 left-10 logo absolute z-10">
+      <div class="top-8 left-10 logo absolute z-10">
         <NuxtLink to="/">
           <img
             src="~/assets/images/logo-white.png"

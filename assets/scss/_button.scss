@@ -17,7 +17,7 @@
   @apply bg-[#333]   text-white  hover:ring-2 hover:ring-opacity-80 ring-black-900   hover:ring-offset-1;
 }
 .btn-primary {
-  @apply bg-primary-500  text-white hover:ring-2 hover:ring-opacity-80 ring-primary-500 hover:ring-offset-1 ;
+  @apply bg-primary-500   text-white hover:ring-2 hover:ring-opacity-80 ring-primary-500 hover:ring-offset-1 ;
 }
 .btn-secondary {
   @apply bg-secondary-500  text-white hover:ring-2 hover:ring-opacity-80 ring-secondary-500 hover:ring-offset-1 ;
@@ -49,13 +49,13 @@
   @apply bg-[#333] text-white;
 }
 .btn-outline-primary {
-  @apply bg-transparent text-primary-500 border border-primary-500 hover:border-primary-500  hover:bg-primary-500 hover:bg-opacity-5;
+  @apply bg-transparent text-primary-500 border border-primary-500 hover:border-primary-500  hover:bg-primary-500  hover:bg-opacity-5;
   &.active {
-    @apply bg-primary-500 text-white;
+    @apply bg-primary-500  text-white;
   }
 }
 [aria-expanded="true"] > .btn-outline-primary {
-  @apply bg-primary-500 text-white;
+  @apply bg-primary-500  text-white;
 }
 .btn-outline-secondary {
   @apply bg-transparent text-secondary-500 border border-secondary-500 hover:border-secondary-500  hover:bg-secondary-500 hover:bg-opacity-5;

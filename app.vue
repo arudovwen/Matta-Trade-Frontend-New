@@ -63,8 +63,8 @@ body {
 </style>
 
 <script setup>
-import { useMarketStore } from "@/stores/markets";
-import { useApplicationStore } from "@/stores/applications";
+import { useMarketStore } from "~/stores/markets";
+import { useApplicationStore } from "~/stores/applications";
 import { getMarkets, getTechLevels } from "~/services/productservices";
 
 import AOS from "aos";

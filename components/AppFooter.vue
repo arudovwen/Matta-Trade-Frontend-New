@@ -127,24 +127,24 @@ const navs = [
     links: [
       {
         title: "Trade Financing",
-        url: "/account/procurement/my-orders",
+        url: "#",
       },
       {
         title: "Cross-Boarder Payments",
-        url: "/account/storefront/overview",
+        url: "#",
       },
       {
         title: "Suppply Finance",
-        url: "/account/storefront/overview",
+        url: "#",
       },
   
       {
         title: "Import Finance",
-        url: "/account/storefront/overview",
+        url: "#",
       },
       {
         title: "Export Finance",
-        url: "/account/storefront/overview",
+        url: "#",
       },
     ],
   },
@@ -162,15 +162,15 @@ const navs = [
       },
       {
         title: "Become a Verified Supplier",
-        url: "/markets",
+        url: "/vendor-register",
       },
       {
         title: "Partnerships",
-        url: "/applications",
+        url: "#",
       },
       {
         title: "Become an agent",
-        url: "/faqs",
+        url: "#",
       },
     ],
   },

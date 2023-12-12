@@ -24,7 +24,7 @@
               :key="n.name"
               class="flex gap-x-[6px] items-center text-sm border-transparent group"
               :class="`${
-                currentRoute.name.toLowerCase() == n.name.toLowerCase()
+                currentRoute?.name?.toLowerCase() == n?.name?.toLowerCase()
                   ? 'border-[#165EF0]'
                   : ''
               }`"
@@ -32,7 +32,7 @@
               <Menu as="div" class="relative inline-block text-left">
                 <MenuButton
                   class="flex gap-x-1 items-center group-hover:text-[#165EF0]"
-                  ><AppIcon class="text-base" icon="tdesign:list" />
+                  >
                   {{ n.name }}</MenuButton
                 >
                 <transition
@@ -95,8 +95,8 @@
             </li>
           </ul>
         </div>
-        <div class="flex items-center gap-x-3 smd:gap-x-6 text-sm">
-          <!-- <span
+        <div class="flex items-center gap-x-4 smd:gap-x-6 text-sm">
+          <span
             :class="{
               flex: view.atTopOfPage,
               hidden: !view.atTopOfPage,
@@ -113,7 +113,7 @@
             NGN</span
           >
 
-          <span
+       <!--   <span
             :class="{
               'md:flex ': view.atTopOfPage,
               'md:hidden': !view.atTopOfPage,
@@ -137,7 +137,9 @@
                 >{{ cartStore.cartTotal }}</span
               >
             </span>
-            <span class="text-xs sm:text-sm font-medium inline-flex text-[#333]">Cart</span>
+            <span class="text-xs sm:text-sm font-medium inline-flex text-[#333]"
+              >Cart</span
+            >
           </NuxtLink>
 
           <div class="flex gap-x-3">
@@ -151,7 +153,7 @@
               v-if="!authStore.isLoggedIn"
               link="/auth/login"
               text="Sign In"
-              btnClass="bg-primary-500 text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm hidden md:flex"
+              btnClass="bg-primary-500  text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm hidden md:flex"
             />
 
             <Menu
@@ -202,8 +204,16 @@
                     <ul class="grid gap-y-3 text-[#555] darks:text-white/80">
                       <li v-for="n in filteredMenu" :key="n.name" class="">
                         <MenuItem v-slot="{ active }">
+                          <NuxtLink :to="n.url" v-if="n.key !== 'sign-out'">
+                            <button
+                              class="flex gap-x-3 items-center text-[13px] font-medium text-[#555]"
+                            >
+                              <AppIcon :icon="n.icon" /> {{ n.name }}
+                            </button>
+                          </NuxtLink>
                           <button
-                            @click="n.key === 'sign-out' ? logOut() : ''"
+                            v-else
+                            @click="logOut()"
                             class="flex gap-x-3 items-center text-[13px] font-medium"
                           >
                             <AppIcon :icon="n.icon" /> {{ n.name }}
@@ -215,11 +225,7 @@
                 </MenuItems>
               </transition>
             </Menu>
-            <span
-             
-              class="lg:hidden"
-              @click="open = true"
-            >
+            <span class="lg:hidden" @click="open = true">
               <AppIcon icon="ci:menu-alt-01" class="text-[30px]" />
             </span>
           </div>
