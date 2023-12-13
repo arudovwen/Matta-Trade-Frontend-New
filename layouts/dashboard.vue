@@ -21,7 +21,7 @@ const company = ref(null);
 const router = useRouter()
 onBeforeMount(()=>{
   
-  if(authStore.isLoggedIn){
+  if(!authStore.isLoggedIn){
     router.push("/")
   }
 })
