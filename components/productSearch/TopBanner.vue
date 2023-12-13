@@ -22,7 +22,7 @@
   </div>
 </template>
 <script setup>
-import BreadCrumbs from "~/components/BreadCrumbs";
+
 import { useRoute } from "vue-router";
 import { onMounted, ref, inject } from "vue";
 

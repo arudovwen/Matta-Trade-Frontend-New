@@ -101,7 +101,7 @@
 </template>
 
 <script setup>
-import BreadCrumbs from "~/components/BreadCrumbs";
+
 import { defineProps, ref, provide, onBeforeMount, watch, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ProductInfo from "./ProductInfo";

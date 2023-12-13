@@ -287,7 +287,7 @@
 </template>
 
 <script setup>
-import BreadCrumbs from "~/components/BreadCrumbs";
+
 import { useRoute } from "vue-router";
 import Datepicker from "vue3-datepicker";
 import VueApexCharts from "vue3-apexcharts";

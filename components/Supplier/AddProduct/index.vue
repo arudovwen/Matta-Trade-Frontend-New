@@ -85,7 +85,7 @@
 </template>
 
 <script setup>
-import BreadCrumbs from "~/components/BreadCrumbs";
+
 import {
   defineProps,
   ref,

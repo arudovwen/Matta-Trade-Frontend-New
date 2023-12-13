@@ -51,7 +51,7 @@
   </div>
 </template>
 <script setup>
-import BreadCrumbs from "~/components/BreadCrumbs";
+
 import CartCounter from "./CartCounter.vue";
 import { HeartIcon, ChatBubbleLeftIcon } from "@heroicons/vue/24/outline";
 import { HeartIcon as HeartSolidIcon } from "@heroicons/vue/24/solid";
