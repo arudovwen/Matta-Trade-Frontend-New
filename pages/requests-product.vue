@@ -6,8 +6,6 @@
   
   </template>
   <script setup>
-
-  import RequestProduct from "@/components/catalog/productRequest/IndexRequest";
   </script>
   <style lang=""></style>
   
