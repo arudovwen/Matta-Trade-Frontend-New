@@ -7,7 +7,7 @@
         <h1
           class="text-2xl md:text-[48px] md:leading-[56px] text-matta-black col-span-1 font-medium capitalize mb-4"
         >
-          {{ route.meta.title }}
+          Overview
         </h1>
 
         <div />
