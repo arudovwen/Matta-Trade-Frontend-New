@@ -263,7 +263,7 @@ async function handleSubmit() {
           position: "bottom",
         });
 
-        window.location.href = `/login?welcome=new_user&type=${type.value}&redirect_to=onboarding`;
+        window.location.href = `/auth/login?welcome=new_user&type=${type.value}&redirect_to=onboarding`;
       }
     })
 
