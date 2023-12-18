@@ -63,7 +63,7 @@ axiosApi.interceptors.response.use(
           position: "bottom",
         });
         localStorage.clear();
-        window.location.href = `/login?info=session_expired&redirected_from=${window.location.href}`;
+        window.location.href = `/auth/login?info=session_expired&redirected_from=${window.location.href}`;
         return Promise.reject(refreshError);
       }
     } else {

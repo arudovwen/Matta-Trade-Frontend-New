@@ -175,7 +175,7 @@
     >
     <span class="flex gap-x-4 items-center">
       <!-- <button
-        class="py-4 px-5 uppercase bg-primary text-white rounded-lg hover:bg-primary/80"
+        class="py-4 px-5 uppercase bg-primary-500 text-white rounded-lg hover:bg-primary/80"
       >
         add to card
       </button> -->

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="text-sm mb-[5px]">{{ label }}</label>
+    <label class="block text-sm mb-[5px]">{{ label }}</label>
     <div
       class="flex-1 rounded-lg py-1 pr-[14px] pl-2 h-12 text-sm w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20 flex items-center"
     >
@@ -19,9 +19,13 @@
       <button
         type="buton"
         @click="triggerFileInput"
-        class="text-xs text-[#165EF0] border border-[#165EF0] rounded px-5 py-[6px] active:scale-[.95] leading-normal"
+        class="text-xs text-[#165EF0] border border-[#165EF0] rounded px-5 py-[6px] active:scale-[.95] leading-normal w-20"
       >
-        Upload
+        <div
+          v-if="loading"
+          class="loader border-t-4 border-blue-500 border-solid rounded-full h-3 w-3 animate-spin"
+        ></div>
+        <span v-else>Upload</span>
       </button>
     </div>
   </div>
@@ -37,13 +41,13 @@ const toast = useToast();
 const handleChange = inject("handleChange");
 const fileInputRef = ref(null);
 const title = ref("");
-
+const loading = ref(false)
 function handleEvent(e) {
   const file = e.target.files[0];
 
   if (!file) return;
 
-  const allowedExtensions = ["pdf", "doc", "docx"]; // Add more allowed extensions if needed
+  const allowedExtensions = ["jpeg", "png", "jpg", "pdf", "doc", "docx"]; // Add more allowed extensions if needed
   const fileExtension = file.name.split(".").pop().toLowerCase();
 
   if (!allowedExtensions.includes(fileExtension)) {
@@ -56,14 +60,16 @@ function handleEvent(e) {
 
   reader.onload = function (event) {
     const base64String = event.target.result.split(",")[1];
-
+    loading.value = true
     // Assuming canvas and uploadfile are available
     uploadfile({ base64: base64String })
       .then((res) => {
+        loading.value = false
         handleChange(props.id, res.data.message);
       })
       .catch((error) => {
         console.error("Error uploading file:", error);
+        loading.value = false
       });
   };
 

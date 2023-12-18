@@ -6,7 +6,7 @@ export function replaceCountryCode(phoneNumber, countryCode) {
 
   // Check if phone number includes country code
   if (!phoneNumber.includes(countryCode)) {
-    return "Phone number does not contain the country code";
+    return phoneNumber;
   }
 
   // Replace country code with 0

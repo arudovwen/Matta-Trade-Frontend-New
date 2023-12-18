@@ -116,7 +116,7 @@ const onSubmit = handleSubmit((values) => {
         });
 
         if (!res.data.data.onboardingPageStatus) {
-          window.location.replace("/onboarding");
+          window.location.replace("/onboarding/account");
           return;
         }
 

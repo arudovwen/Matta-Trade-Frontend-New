@@ -24,6 +24,16 @@ export const useAuthStore = defineStore("auth", () => {
 
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
   }
+  function updateAccountType(value) {
+    let userInfo = { ...loggedUser.value, accountType: value };
+
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+  }
+  function updateUserInfo(data) {
+    let userInfo = { ...loggedUser.value, ...data };
+
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+  }
   return {
     updateUser,
     isLoggedIn,
@@ -35,5 +45,7 @@ export const useAuthStore = defineStore("auth", () => {
     userInfo,
     setRefreshToken,
     setAccessToken,
+    updateAccountType,
+    updateUserInfo,
   };
 });
