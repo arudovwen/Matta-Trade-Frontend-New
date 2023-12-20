@@ -28,7 +28,7 @@
   </div>
 </template>
 <script setup>
-import { getProducts, getProducers } from "~/services/productservices";
+import { getProducts, getProductsByTag } from "~/services/productservices";
 import { useProductStore } from "~/stores/products";
 
 const store = useProductStore();
@@ -58,17 +58,31 @@ const pageRange = 5;
 
 function getAllProducts() {
   store.setLoader(true);
-  getProducts(query)
-    .then((res) => {
-      if (res.status === 200) {
-        store.setProducts(res.data);
+  if (route.query.tag) {
+    getProductsByTag({ PageNumber: 1, PageSize: 20, tag: route.query.tag })
+      .then((res) => {
+        if (res.status === 200) {
+          store.setProducts(res.data.data);
+          store.setLoader(false);
+          query.totalData = res.data.data.totalCount;
+        }
+      })
+      .catch(() => {
         store.setLoader(false);
-        query.totalData = res.data.totalCount;
-      }
-    })
-    .catch(() => {
-      store.setLoader(false);
-    });
+      });
+  } else {
+    getProducts(query)
+      .then((res) => {
+        if (res.status === 200) {
+          store.setProducts(res.data);
+          store.setLoader(false);
+          query.totalData = res.data.totalCount;
+        }
+      })
+      .catch(() => {
+        store.setLoader(false);
+      });
+  }
 }
 
 function perPage({ currentPerPage }) {
@@ -82,7 +96,14 @@ onMounted(() => {
 });
 
 watch(
-  () => [query.PageNumber, , query.sortOrder, query.producers, query.sortBy, query.applications],
+  () => [
+    query.PageNumber,
+    ,
+    query.sortOrder,
+    query.producers,
+    query.sortBy,
+    query.applications,
+  ],
   () => {
     getAllProducts();
   }

@@ -7,12 +7,12 @@
         <LandingBoard />
       </div>
       <div class="pb-8 xl:pb-[70px]">
-        <LandingHot :content="hotDeals" />
+        <LandingHot :content="hotDeals" tag="hotdeals" />
         <div class="lg:hidden">
           <LandingBoard />
         </div>
-        <LandingRecommended :content="reccomended" />
-        <LandingHot :content="bestSellers" title="Best sellers" />
+        <LandingRecommended tag="recommended" />
+        <LandingHot title="Best sellers" tag="bestsellers" />
       </div>
       <LandingInfo />
     </div>

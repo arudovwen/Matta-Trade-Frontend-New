@@ -34,6 +34,7 @@ const urls = {
   SUPPLIER_GET_PRODUCT: "/v1/product/get-product",
   GET_PRODUCT_STATUS_COUNT: "/v1/product/get-productscount",
   DELETE_PRODUCT: "/v1/product/deleteproduct",
+  GET_PRODUCTS_BY_TAG: "v1/marketplace/get-products-bytags",
 
   //Markets
   GET_MARKETS: "/v1/marketplace/getmarkets",

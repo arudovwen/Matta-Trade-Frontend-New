@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="content.length">
     <div
       class="bg-white darks:bg-gray-800 rounded-[20px] pt-5 px-4 md:px-[32px] mb-[30px]"
     >
@@ -13,7 +13,7 @@
         >
           Recommended
         </h2>
-        <router-link :to="`/market/${encodeURIComponent('recommended')}`">
+        <router-link :to="`/market/${encodeURIComponent('recommended')}?tag=${tag}`">
           <button
             class="hover:border-b text-[10px] sm:text-sm lg:text-base border-[#333] darks:text-white darks:border-white leading-tight"
           >
@@ -27,7 +27,7 @@
           :breakpoints="breakpoints"
           class="recommended"
         >
-          <slide v-for="slide in productsData.slice(0, 8)" :key="slide">
+          <slide v-for="slide in content.slice(0, 8)" :key="slide">
             <div
               @click="
                 router.push(
@@ -79,19 +79,19 @@
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import { useProductStore } from "~/stores/products";
-import { getProducts } from "~/services/productservices";
+import { getProductsByTag } from "~/services/productservices";
 
 const router = useRouter();
 const store = useProductStore();
-const { productsData, loading } = storeToRefs(store);
-defineProps({
+const content = ref([])
+const props = defineProps({
   title: {
     type: String,
     default: "Hot deals",
   },
-  content: {
-    type: Array,
-    default: [],
+  tag: {
+    type: String,
+    default: "recommended",
   },
 });
 const imageSrc = "/images/test.png";
@@ -115,19 +115,17 @@ const breakpoints = {
 };
 
 function getAllProducts() {
-  store.setLoader(true);
-  getProducts({ PageNumber: 1, PageSize: 8 })
+  getProductsByTag({ PageNumber: 1, PageSize: 8, tag: props.tag })
     .then((res) => {
       if (res.status === 200) {
-        store.setProducts(res.data);
-        store.setLoader(false);
+        console.log("🚀 ~ file: Hot.vue:94 ~ .then ~ res:", res.data);
+        content.value = res.data.data.data;
       }
     })
     .catch(() => {
       setLoader(false);
     });
 }
-
 onMounted(() => {
   getAllProducts();
 });

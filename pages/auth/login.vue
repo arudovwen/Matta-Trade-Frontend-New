@@ -111,13 +111,14 @@ const onSubmit = handleSubmit((values) => {
     .then((res) => {
       if (res.status === 200) {
         localStorage.setItem("userInfo", JSON.stringify(res.data.data));
-        toast.info("Login successful");
+       
 
-        // if (!res.data.data.onboardingPageStatus) {
-        //   window.location.replace("/onboarding/account");
-        //   return;
-        // }
-
+        if (!res.data.data.onboardingPageStatus) {
+          toast.info("Login successful, Complete your onboarding");
+          window.location.replace("/onboarding/personal");
+          return;
+        }
+        toast.success("Login successful");
         if (route.query.redirected_from) {
           window.location.replace(route.query.redirected_from);
           return;
@@ -128,6 +129,7 @@ const onSubmit = handleSubmit((values) => {
         }
 
         window.location.replace("/");
+
       }
     })
 

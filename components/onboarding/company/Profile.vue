@@ -290,14 +290,7 @@
             </div>
           </div>
           <div class="flex justify-center gap-x-4 items-center mt-16 w-full">
-            <router-link to="/onboarding" class="w-1/2 lg:w-auto">
-              <button
-                type="button"
-                class="appearance-none leading-none px-10 py-4 rounded-lg w-full lg:w-auto text-matta-black border border-[#E7EBEE] hover:bg-gray-100 text-[13px] uppercase"
-              >
-                Back
-              </button>
-            </router-link>
+           <span></span>
 
             <button
               :disabled="v$.$silentErrors.length || isLoading"

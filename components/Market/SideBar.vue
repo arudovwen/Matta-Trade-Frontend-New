@@ -21,7 +21,7 @@
       v-model="query.producers"
     />
 
-    <hr class="border-[#EFEFEF] my-[1px]" />
+    <hr class="border-[#EFEFEF] my-[1px]" v-if="route.params.id" />
     <SideTab
       v-if="route.params.id"
       title="Applications"

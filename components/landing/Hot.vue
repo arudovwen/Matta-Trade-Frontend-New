@@ -1,5 +1,5 @@
 <template>
-  <div class="container mb-[30px]">
+  <div class="container mb-[30px]" v-if="content.length">
     <div
       data-aos="fade-up"
       data-aos-once="true"
@@ -10,12 +10,12 @@
       >
         {{ title }}
       </h2>
-      <router-link :to="`/market/${encodeURIComponent(title)}`">
+      <router-link :to="`/market/${encodeURIComponent(title)}?tag=${tag}`">
         <button
-        class="hover:border-b text-[10px] sm:text-sm lg:text-base border-[#333] darks:text-white darks:border-white leading-tight"
-      >
-        See all items
-      </button>
+          class="hover:border-b text-[10px] sm:text-sm lg:text-base border-[#333] darks:text-white darks:border-white leading-tight"
+        >
+          See all items
+        </button>
       </router-link>
     </div>
     <div
@@ -24,7 +24,7 @@
       <ProductCard
         data-aos="fade-up"
         data-aos-once="true"
-        v-for="(n, idx) in productsData.slice(0,4)"
+        v-for="(n, idx) in content.slice(0, 4)"
         :key="idx"
         :index="idx"
         :detail="n"
@@ -36,7 +36,7 @@
         :breakpoints="breakpoints"
         class="recommended"
       >
-        <slide v-for="(n, idx) in productsData.slice(0,3)" :key="idx">
+        <slide v-for="(n, idx) in content.slice(0, 3)" :key="idx">
           <ProductCard :index="idx" :detail="n" />
         </slide>
         <template #addons>
@@ -52,21 +52,19 @@
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import { useProductStore } from "~/stores/products";
-import { getProducts } from "~/services/productservices";
+import { getProductsByTag } from "~/services/productservices";
 
-const store = useProductStore();
-const { productsData, loading } = storeToRefs(store);
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     default: "Hot deals",
   },
-  content: {
-    type: Array,
-    default: [],
+  tag: {
+    type: String,
+    default: "hotdeals",
   },
 });
-
+const content = ref([]);
 const breakpoints = {
   300: {
     itemsToShow: 2.4,
@@ -87,13 +85,11 @@ const breakpoints = {
 };
 
 function getAllProducts() {
-  store.setLoader(true);
-  getProducts({ PageNumber: 1, PageSize: 8 })
+  getProductsByTag({ PageNumber: 1, PageSize: 8, tag: props.tag })
     .then((res) => {
       if (res.status === 200) {
-        console.log("🚀 ~ file: Hot.vue:94 ~ .then ~ res:", res.data)
-        store.setProducts(res.data);
-        store.setLoader(false);
+        console.log("🚀 ~ file: Hot.vue:94 ~ .then ~ res:", res.data);
+        content.value = res.data.data.data;
       }
     })
     .catch(() => {
@@ -102,6 +98,7 @@ function getAllProducts() {
 }
 
 onMounted(() => {
-  getAllProducts()
-})
+  getAllProducts();
+});
+
 </script>

@@ -242,14 +242,7 @@
               </div>
             </div>
             <div class="flex justify-center gap-x-4 items-center mt-8">
-              <router-link to="/onboarding">
-                <button
-                  class="appearance-none leading-none px-10 py-4 rounded-full text-matta-black bg-[#F1F3F5] hover:bg-gray-100 text-[13px] uppercase"
-                >
-                  Back
-                </button>
-              </router-link>
-
+            <span></span>
               <button
                 :disabled="v$.$silentErrors.length"
                 :class="{

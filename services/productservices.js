@@ -34,6 +34,13 @@ export async function getMarkets({ PageNumber = 1, PageSize = 10 }) {
   );
 }
 
+export async function getProductsByTag(payload) {
+  return await post(
+    `${urls.GET_PRODUCTS_BY_TAG}`,payload,
+    config
+  );
+}
+
 export async function getMarketmenu({
   ShowSubMenu = false,
   PageNumber = 1,
@@ -85,10 +92,7 @@ export async function getProduct(productId) {
   return await get(`${urls.GET_PRODUCT}?productId=${productId}`, config);
 }
 export async function getProducts(payload) {
-  return await post(
-    `${urls.GET_PRODUCTS}`,cleanObject(payload),
-    config
-  );
+  return await post(`${urls.GET_PRODUCTS}`, cleanObject(payload), config);
 }
 export async function getSupplierProduct({ productId }) {
   return await get(

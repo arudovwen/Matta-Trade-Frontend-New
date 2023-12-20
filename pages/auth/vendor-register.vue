@@ -201,10 +201,10 @@ const router = useRouter();
 
 const onSubmit = handleSubmit((values) => {
   isLoading.value = true;
-  registerUser(values)
+  registerUser({ ...values, accountType: 0 })
     .then((res) => {
       if (res.status === 200) {
-        toast.info("Signup successful, Verify your email");
+        toast.info("Sign up successful, Complete registration via link sent to your email");
         router.push("/auth/login");
       }
     })
