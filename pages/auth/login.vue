@@ -113,10 +113,10 @@ const onSubmit = handleSubmit((values) => {
         localStorage.setItem("userInfo", JSON.stringify(res.data.data));
         toast.info("Login successful");
 
-        if (!res.data.data.onboardingPageStatus) {
-          window.location.replace("/onboarding/account");
-          return;
-        }
+        // if (!res.data.data.onboardingPageStatus) {
+        //   window.location.replace("/onboarding/account");
+        //   return;
+        // }
 
         if (route.query.redirected_from) {
           window.location.replace(route.query.redirected_from);
