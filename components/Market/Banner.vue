@@ -13,6 +13,7 @@
         </p>
       </div>
       <Select
+        v-model.number="query.sortOrder"
         :options="options"
         placeholder="Sort prices by"
         classInput="min-w-[180px] !bg-white !border-[#B9C0D4] !rounded-[4px] !text-[#5D6B98] !h-11 cursor-pointer"
@@ -23,7 +24,7 @@
 
 <script setup>
 import { useProductStore } from "~/stores/products";
-
+const query = inject("query");
 const store = useProductStore();
 const { total } = storeToRefs(store);
 
@@ -42,8 +43,12 @@ const links = [
 ];
 const options = [
   {
-    label: "Low to high",
-    value: "lh",
+    label: "Low to High",
+    value: 0,
+  },
+  {
+    label: "High to Low",
+    value: 1,
   },
 ];
 </script>

@@ -94,6 +94,7 @@
       </div>
     </div>
   </footer>
+  <ContactForm/>
 </template>
 
 <script setup>
@@ -152,10 +153,7 @@ const navs = [
   {
     subject: "quick links",
     links: [
-      {
-        title: "Request quote",
-        url: "/request-product",
-      },
+  
       {
         title: "Request product",
         url: "/request-product",

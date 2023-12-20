@@ -116,6 +116,7 @@ import { useStore } from "vuex";
 import { adddocument } from "~/services/requestservice";
 import { useToast } from "vue-toastification";
 
+const authStore = useAuthStore()
 const togglePopup = inject("togglePopup");
 const product = inject("product");
 const supplier = inject("supplier");
@@ -163,7 +164,7 @@ function toggleModal(val) {
   authType.value = val;
 }
 const isLoggedIn = computed(() => {
-  return store.getters.isLoggedIn;
+  return authStore.isLoggedIn;
 });
 
 function handleclose() {

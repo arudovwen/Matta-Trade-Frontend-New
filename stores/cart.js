@@ -6,8 +6,10 @@ import {
   getcart,
 } from "~/services/cartservice";
 import { useAuthStore } from "./auth";
+import {useToast} from "vue-toastification";
 
 export const useCartStore = defineStore("cart", () => {
+  const toast = useToast()
   const authStore = useAuthStore();
   const cartItems = ref([]);
   const tax = ref(0);
@@ -60,8 +62,8 @@ export const useCartStore = defineStore("cart", () => {
         return { status: true, message: type };
       }
     } catch (error) {
-      // Handle error if needed
-      console.error(error);
+     
+      toast.error(error.response.data.Message)
       return { status: false, message: "Error adding to cart" };
     }
   }

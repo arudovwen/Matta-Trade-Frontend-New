@@ -216,9 +216,7 @@ async function handleSubmit() {
     .catch((err) => {
       invalidCredentials.value = true;
       isLoading.value = false;
-      toast.error(err.response.data.Message, {
-        position: "bottom",
-      });
+      toast.error(err.response.data.Message);
     });
 }
 </script>

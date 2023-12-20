@@ -112,7 +112,7 @@ function handleSubmit() {
       if (res.status == 200) {
         authStore.updateAccountType(type.value);
         isLoading.value = false;
-        router.push(`onboarding/${type.value == 1 ? "company" : "personal"}`);
+        router.push(`/onboarding/${type.value == 0 ? "company" : "personal"}`);
       }
     })
     .catch((err) => {

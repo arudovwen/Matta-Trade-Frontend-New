@@ -46,10 +46,12 @@ const query = reactive({
   Search: route.query.search_query || "",
   ShowSubMenu: true,
   Producer: route.query.producer,
+  producers: [],
+  applications: [],
   pagecount: 0,
   totalData: 0,
-  SortOrder: "A",
-  Pricefilter: "",
+  sortOrder: 0,
+  sortBy: 0,
 });
 
 const pageRange = 5;
@@ -59,16 +61,15 @@ function getAllProducts() {
   getProducts(query)
     .then((res) => {
       if (res.status === 200) {
-        store.setProducts(res.data.data);
+        store.setProducts(res.data);
         store.setLoader(false);
-        query.totalData = res.data.data.totalCount;
+        query.totalData = res.data.totalCount;
       }
     })
     .catch(() => {
       store.setLoader(false);
     });
 }
-
 
 function perPage({ currentPerPage }) {
   query.PageNumber = 1;
@@ -77,13 +78,14 @@ function perPage({ currentPerPage }) {
 
 onMounted(() => {
   getAllProducts();
-  store.getAllProducers()
+  // store.getAllProducers()
 });
 
 watch(
-  () => [query.PageNumber],
+  () => [query.PageNumber, , query.sortOrder, query.producers, query.sortBy, query.applications],
   () => {
     getAllProducts();
   }
 );
+provide("query", query);
 </script>

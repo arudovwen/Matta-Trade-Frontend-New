@@ -1,7 +1,7 @@
 <template>
   <form
     @submit.prevent="handleSubmit"
-    class="flex flex-col h-full overflow-y-auto max-w-[350px]"
+    class="flex flex-col h-full overflow-y-auto"
   >
     <div class="flex-1">
       <div class="flex justify-between items-center mb-6">
@@ -22,19 +22,19 @@
         ></span>
       </div>
       <div>
-        <UsageDetails v-if="active === 1" />
+        <InformationQuoteUsageDetails v-if="active === 1" />
         <div v-if="active === 2 && !showAuth">
-          <ShippingAddress />
+          <InformationQuoteShippingAddress />
         </div>
-        <RequestComplete v-if="active === 3" />
-        <RegisterComponent v-if="active === 2 && showAuth" />
+        <InformationQuoteRequestComplete v-if="active === 3" />
+        <InformationQuoteRegisterComponent v-if="active === 2 && showAuth" />
       </div>
     </div>
     <div v-if="active !== 3">
       <span
         @click="isOpen = true"
         class="mb-2 text-primary text-xs"
-        v-if="!isLoggedIn"
+        v-if="!authStore.isLoggedIn"
         >Log In to speed up your request
         <i class="uil uil-arrow-up-right text-x"></i
       ></span>
@@ -92,20 +92,6 @@
   />
 </template>
 <script setup>
-import UsageDetails from "./UsageDetails";
-import ShippingAddress from "./ShippingAddress";
-import RequestComplete from "./RequestComplete";
-import LoginModal from "~/components/LoginModal";
-import RegisterComponent from "./RegisterComponent";
-import {
-  ref,
-  defineEmits,
-  provide,
-  computed,
-  reactive,
-  inject,
-  onMounted,
-} from "vue";
 import { useStore } from "vuex";
 import { newquote } from "~/services/quoteservice";
 import useVuelidate from "@vuelidate/core";
@@ -118,21 +104,22 @@ onMounted(() => {
     quoteForm.buyerBusinessName = res.data.data.companyName;
   });
 });
+const supplierStore = useSupplierStore()
 const togglePopup = inject("togglePopup");
+const authStore = useAuthStore()
 const store = useStore();
 const product = inject("product");
-const supplier = inject("supplier");
 const quoteForm = reactive({
   sellerId: product.value?.supplierId,
-  seller: supplier.value?.companyName,
+  seller: supplierStore.supplierData?.companyName,
   productId: product.value?.id,
   productImg: product.value?.gallery[0],
   productName: product.value?.name,
   producerId: product.value?.producer.id,
   producer: product.value?.producer.title,
   buyerBusinessName: "",
-  requestedBy: store.getters.loggedUser.fullName,
-  sellerName: supplier.value?.companyName,
+  requestedBy: authStore?.userInfo?.fullName,
+  sellerName: supplierStore.supplierData?.companyName,
   market: "",
   productUse: "",
   expectedVolume: 0,
@@ -145,6 +132,7 @@ const quoteForm = reactive({
   package: null,
   applications: "",
 });
+
 const toast = useToast();
 const showAuth = ref(false);
 const isOpen = ref(false);
@@ -204,7 +192,7 @@ function toggleModal(val) {
   authType.value = val;
 }
 const isLoggedIn = computed(() => {
-  return store.getters.isLoggedIn;
+  return authStore.isLoggedIn;
 });
 async function toggleNext() {
   if (active.value == 1) {

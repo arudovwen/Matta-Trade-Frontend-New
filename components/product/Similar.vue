@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div v-if="productData" class="">
     <div
       class="bg-white darks:bg-gray-800 rounded-[20px] py-5 px-5 md:px-[32px] lg:mb-[30px]"
     >
@@ -72,7 +72,7 @@ import { getProducts } from "~/services/productservices";
 
 const router = useRouter();
 const store = useProductStore();
-const { productsData, loading } = storeToRefs(store);
+const { productData, productsData, loading } = storeToRefs(store);
 defineProps({
   title: {
     type: String,
@@ -83,7 +83,7 @@ defineProps({
     default: [],
   },
 });
-const imageSrc = "/images/test.png";
+
 const breakpoints = {
   300: {
     itemsToShow: 1.6,
@@ -102,13 +102,26 @@ const breakpoints = {
     itemsToShow: 4.9,
   },
 };
+const queryParams = reactive({
+  MarketApplication: "",
+  Status: "",
+  MarketId: "",
+  MarketSubApplication: "",
+  PageSize: 10,
+  PageNumber: 1,
+});
 
 function getAllProducts() {
+
   store.setLoader(true);
-  getProducts({ PageNumber: 1, PageSize: 8 })
+  getProducts({
+    ...queryParams,
+    applications: productData?.value.marketApplications,
+    // MarketSubApplication: productData?.value.marketSubapplications,
+  })
     .then((res) => {
       if (res.status === 200) {
-        store.setProducts(res.data.data);
+        store.setProducts(res.data);
         store.setLoader(false);
       }
     })
@@ -117,7 +130,13 @@ function getAllProducts() {
     });
 }
 
-onMounted(() => {
+onMounted(() => {});
+watch(productData, () => {
+  console.log(
+    "🚀 ~ file: Similar.vue:131 ~ watch ~ productData:",
+    productData.value.marketApplications
+  );
+
   getAllProducts();
 });
 </script>

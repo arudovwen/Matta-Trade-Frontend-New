@@ -95,7 +95,11 @@ export default defineComponent({
       get: () => props.modelValue,
       set: (newValue) => context.emit("update:modelValue", newValue),
     });
-
+    watch(localValue, () => {
+      if (typeof localValue.value === "object" && !localValue.value.length) {
+        ck.value = false;
+      }
+    });
     return { localValue, ck, onChange };
   },
 });

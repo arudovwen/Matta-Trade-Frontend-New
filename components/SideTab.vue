@@ -1,4 +1,3 @@
-import type { AppIcon } from '#build/components';
 <template>
   <div class="px-[15px] pt-[15px] pb-[36px]">
     <div class="flex justify-between items-center mb-[15px]">
@@ -8,16 +7,17 @@ import type { AppIcon } from '#build/components';
       /></span>
     </div>
     <div v-if="active">
-      <ul class="grid gap-y-[10px]">
+      <ul class="grid gap-y-[10px] max-h-[300px] overflow-y-auto">
         <li
           class="flex items-center capitalize"
           v-for="list in lists"
           :key="list.title"
         >
           <Checkbox
-            v-model.value="selected"
+            v-model="selected"
             :label="list.title.toLowerCase()"
             labelClass="text-xs md:text-sm"
+            :value="list.value"
           />
         </li>
       </ul>
@@ -26,19 +26,19 @@ import type { AppIcon } from '#build/components';
 </template>
 <script setup>
 const active = ref(true);
-defineProps({
-  lists: {
-    type: Array,
-    default: () => [
-      {
-        title: "home",
-        url: "/",
-      },
-    ],
-  },
-  title: {
-    type: String,
-  },
-});
+const { emit } = getCurrentInstance();
+const props = defineProps(["lists", "title", "modelValue"]);
+
 const selected = ref([]);
+
+watch(selected, (newValue) => {
+  emit("update:modelValue", newValue);
+});
+
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    selected.value = newValue;
+  }
+);
 </script>

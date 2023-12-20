@@ -1,30 +1,13 @@
 <template>
   <form
     @submit.prevent="handleSubmit"
-    class="flex flex-col h-full overflow-y-auto max-w-[350px]"
+    class="flex flex-col h-full overflow-y-auto"
   >
     <div class="flex-1">
       <div class="flex justify-between items-center mb-6">
         <h4 class="text-lg sm:text-2xl font-medium">Request a Sample</h4>
       </div>
-      <!-- <article class="" v-if="supplier">
-        <div class="flex items-center gap-x-4 mb-6">
-          <div
-            class="w-20 h-20 rounded-xl bg-white flex items-center justify-center"
-          >
-            <img :src="supplier.logo" class="rounded-xl" alt="alt" />
-          </div>
-          <div>
-            <p class="font-medium text-base text-matta-black capitalize">
-              {{ supplier.companyName }}
-            </p>
-            <p class="font-normal text-sm text-matta-black capitalize">
-              <i class="uil uil-map-marker"></i> {{ supplier.city }},
-              {{ supplier.country }}
-            </p>
-          </div>
-        </div>
-      </article> -->
+
 
       <div class="flex justify-between items-center mb-2 text-[13px] uppercase">
         <h4 class="text-[13px] uppercase">{{ product.name }}</h4>
@@ -40,19 +23,19 @@
         ></span>
       </div>
       <div>
-        <UsageDetails v-if="active === 1" />
+        <InformationSampleUsageDetails v-if="active === 1" />
         <div v-if="active === 2 && !showAuth">
-          <ShippingAddress />
+          <InformationSampleShippingAddress />
         </div>
-        <RequestComplete v-if="active === 3" />
-        <RegisterComponent v-if="active === 2 && showAuth" />
+        <InformationSampleRequestComplete v-if="active === 3" />
+        <InformationSampleRegisterComponent v-if="active === 2 && showAuth" />
       </div>
     </div>
     <div v-if="active !== 3">
       <span
         @click="isOpen = true"
         class="mb-2 text-primary text-xs"
-        v-if="!isLoggedIn"
+        v-if="!authStore.isLoggedIn"
         >Log In to speed up your request
         <i class="uil uil-arrow-up-right text-x"></i
       ></span>
@@ -110,12 +93,6 @@
   />
 </template>
 <script setup>
-import UsageDetails from "./UsageDetails";
-import ShippingAddress from "./ShippingAddress";
-import RequestComplete from "./RequestComplete";
-import LoginModal from "~/components/LoginModal";
-import RegisterComponent from "./RegisterComponent";
-import { ref, defineEmits, provide, computed, reactive, inject } from "vue";
 import { useStore } from "vuex";
 import { addrequest } from "~/services/procurementservice";
 import useVuelidate from "@vuelidate/core";
@@ -129,12 +106,13 @@ import {
 } from "@vuelidate/validators";
 import { useToast } from "vue-toastification";
 
+const supplierStore = useSupplierStore()
+const authStore = useAuthStore()
 const togglePopup = inject("togglePopup");
 const product = inject("product");
-const supplier = inject("supplier");
 const sampleForm = reactive({
   sellerId: product.value?.supplierId,
-  seller: supplier.value?.companyName,
+  seller:  supplierStore.supplierData?.companyName,
   productId: product.value?.id,
   productImg: product.value?.gallery[0],
   productName: product.value?.name,
@@ -196,7 +174,7 @@ function toggleModal(val) {
   authType.value = val;
 }
 const isLoggedIn = computed(() => {
-  return store.getters.isLoggedIn;
+  return authStore.isLoggedIn;
 });
 async function toggleNext() {
   if (active.value == 1) {

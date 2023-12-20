@@ -1,5 +1,5 @@
 <template>
-  <Modal :isOpen="open" @togglePopup="togglePopup">
+  <IndexModal :isOpen="open" @togglePopup="togglePopup">
     <template #content>
       <form
         class="bg-white w-[400px] p-6 rounded-lg block"
@@ -103,12 +103,10 @@
         </div>
       </form>
     </template>
-  </Modal>
+  </IndexModal>
 </template>
 
-<script setup>
-import Modal from "~/components/IndexModal";
-import { reactive, ref, inject } from "vue";
+<script setup> 
 import useVuelidate from "@vuelidate/core";
 import { required, email, helpers, maxLength } from "@vuelidate/validators";
 import { sendMessage } from "~/services/authservices";
@@ -141,7 +139,6 @@ const rules = {
     maxLength: maxLength(50),
   },
 };
-
 const v$ = useVuelidate(rules, form);
 async function handleSubmit() {
   const validity = await v$.value.$validate();

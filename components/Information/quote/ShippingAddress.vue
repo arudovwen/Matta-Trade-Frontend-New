@@ -7,18 +7,18 @@
     <div class="mb-6 grid gap-y-3 border-gray-200 rounded-lg text-sm">
       <p>
         <span class="text-gray-500">Name:</span>
-        {{ store.getters.loggedUser.fullName }}
+        {{ authStore.userInfo?.fullName }}
       </p>
       <p>
         <span class="text-gray-500">Email:</span>
-        {{ store.getters.loggedUser.email }}
+        {{ authStore.userInfo?.email }}
       </p>
     </div>
     <div class="mb-6">
       <label class="mb-2 font-normal text-xs block">Phone number</label>
 
       <div class="flex relative rounded-lg h-12">
-        <PhoneCodes v-model="quoteForm.phoneCode" />
+        <FormsPhoneCodes v-model="quoteForm.phoneCode" />
 
         <input
           v-model="request2$.phone.$model"
@@ -158,7 +158,7 @@
   </form>
   <IndexModal :isOpen="isOpen" @togglePopup="isOpen = false">
     <template #content>
-      <ShippingForm />
+      <InformationQuoteShippingForm />
     </template>
   </IndexModal>
 </template>
@@ -171,13 +171,11 @@ import {
   ListboxOption,
 } from "@headlessui/vue";
 import { ref } from "vue";
-import IndexModal from "~/components/IndexModal";
-import ShippingForm from "./ShippingForm";
 import { inject, onMounted, watch, provide } from "vue";
 import { getalladdress } from "~/services/cartservice";
 import { useStore } from "vuex";
-import PhoneCodes from "~/components/forms/PhoneCodes";
 
+const authStore = useAuthStore()
 const store = useStore();
 const request2$ = inject("request2$");
 const quoteForm = inject("quoteForm");

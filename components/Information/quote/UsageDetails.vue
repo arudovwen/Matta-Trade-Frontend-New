@@ -6,7 +6,7 @@
     </p>
     <div class="mb-6">
       <label class="mb-2 font-normal text-xs block">Market</label>
-      <SelectComponent
+      <FormsSelectComponent
         @onGetData="onGetMarket"
         :options="marketOptions"
         :showSearch="true"
@@ -26,7 +26,7 @@
     </div>
     <div class="mb-6">
       <label class="mb-2 font-normal text-xs block">Application</label>
-      <SelectComponent
+      <FormsSelectComponent
         @onGetData="onGetApp"
         :options="appOptions"
         :showSearch="true"
@@ -130,15 +130,14 @@
 </template>
 <script setup>
 import { inject, computed, ref } from "vue";
-import SelectComponent from "~/components/forms/SelectComponent";
 import CurrencyInput from "~/components/CurrencyInput";
-import { measurements } from "~/utils";
 
-const markets = inject("markets");
 const request1$ = inject("request1$");
 const quoteForm = inject("quoteForm");
 const product = inject("product");
 const applications = ref([]);
+const marketStore = useMarketStore();
+const appStore = useApplicationStore();
 function onGetMarket(data) {
   applications.value = data.categorySubMenu;
   quoteForm.market = data.title;
@@ -148,15 +147,15 @@ function onGetApp(data) {
 }
 
 const marketOptions = computed(() => {
-  if (!markets.value.length) return [];
-  return markets.value.map((i) => {
+  if (!marketStore.marketsData.length) return [];
+  return marketStore.marketsData.map((i) => {
     i.name = i.title;
     return i;
   });
 });
 const appOptions = computed(() => {
-  if (!applications.value.length) return [];
-  return applications.value.map((i) => {
+  if (!appStore.applicationsData.length) return [];
+  return appStore.applicationsData.map((i) => {
     i.name = i.title;
     return i;
   });

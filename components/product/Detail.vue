@@ -65,15 +65,17 @@
         <div
           class="flex flex-col md:flex-row gap-x-[18px] gap-y-4 lg:gap-y-0 mb-6 justify-start"
         >
-          <div class="flex flex-col sm:flex-row gap-y-4 lg:gap-y-0 gap-x-4">
+          <div
+            class="flex flex-col sm:flex-row gap-y-4 lg:gap-y-0 gap-x-4 items-center"
+          >
             <AppButton
               v-if="productData?.sampleAvailable"
-              @click="handleQuote"
+              @click="handleRequest('sample')"
               text="Request sample"
               btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB]"
             />
             <AppButton
-              @click="handleSample"
+              @click="handleRequest('quote')"
               text="Request quote"
               btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB] "
             />
@@ -82,7 +84,7 @@
             @click="handleSave"
             icon="tdesign:heart"
             text="Save for later"
-            btnClass="text-xs sm:text-sm !py-0 !px-0 w-full sm:!w-auto sm:!max-w-max"
+            btnClass="text-xs sm:text-sm !py-0 !px-0 w-full sm:!w-auto sm:!max-w-max items-center"
           />
         </div>
         <div class="mb-6">
@@ -116,6 +118,32 @@
       </div>
     </div>
   </div>
+  <SideModal :isOpen="isOpen" @togglePopup="isOpen = false" v-if="isOpen">
+    <template #content>
+      <div class="h-full w-full bg-white rounded-lg p-6 lg:p-10">
+        <InformationSampleIndexSample
+          @togglePopup="isOpen = false"
+          v-if="requestType == 'sample'"
+        />
+        <InformationQuoteIndexQuote
+          @togglePopup="isOpen = false"
+          v-if="requestType == 'quote'"
+        />
+      </div>
+    </template>
+  </SideModal>
+  <LoginModal
+    v-if="isAuthOpen && active == 'signin'"
+    :showSignup="true"
+    :isOpen="isAuthOpen"
+    @close="handleclose"
+  />
+  <RegisterModal
+    v-if="isAuthOpen && active == 'signup'"
+    :showSignup="true"
+    :isOpen="isAuthOpen"
+    @close="handleclose"
+  />
 </template>
 <script setup>
 import { useProductStore } from "~/stores/products";
@@ -126,6 +154,7 @@ const toast = useToast();
 const store = useProductStore();
 const cartStore = useCartStore();
 const authStore = useAuthStore();
+const supplierStore = useSupplierStore();
 const { productData } = storeToRefs(store);
 
 const route = useRoute();
@@ -161,7 +190,27 @@ const links = [
     url: "#",
   },
 ];
-
+const isOpen = ref(false);
+const active = ref("signin");
+const isAuthOpen = ref(false);
+const requestType = ref(null);
+function handleclose(val) {
+  if (val == "success") {
+    window.location.reload();
+  }
+  isAuthOpen.value = isOpen.value = false;
+}
+function handleRequest(type) {
+  if (authStore.isLoggedIn) {
+    isOpen.value = true;
+    requestType.value = type;
+  } else {
+    isAuthOpen.value = true;
+  }
+}
+function toggleModal(val) {
+  active.value = val;
+}
 const counter = ref(1);
 function handleCart(type) {
   if (!selectedPackage.value) {
@@ -175,6 +224,7 @@ function handleCart(type) {
     unit: mypackage?.unit,
     productId: productData?.value?.id,
     product: productData?.value.name,
+    productImg: productData?.value?.featuredPhoto,
     selectedPackage: mypackage?.package?.title,
     selectedPackageData: mypackage,
     productBrandName: productData?.value.productBrandName,
@@ -196,17 +246,6 @@ function handleCart(type) {
   });
 }
 function handleSave() {
-  if (!authStore.isLoggedIn) {
-    toast.info("Login to continue");
-  }
-}
-function handleQuote() {
-  if (!authStore.isLoggedIn) {
-    toast.info("Login to continue");
-  }
-}
-
-function handleSample() {
   if (!authStore.isLoggedIn) {
     toast.info("Login to continue");
   }
@@ -248,5 +287,16 @@ function handleLike(value) {
     });
   }
 }
+
+function togglePopup() {
+  isOpen.value = false;
+}
+watch(productData, () => {
+  supplierStore.fetchSupplier(productData.value.supplierId);
+  imageUrl.value = productData?.value?.featuredPhoto;
+});
 provide("counter", counter);
+provide("toggleModal", toggleModal);
+provide("togglePopup", togglePopup);
+provide("product", productData);
 </script>

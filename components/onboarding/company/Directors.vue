@@ -144,9 +144,7 @@ async function handleSubmit() {
     .catch((err) => {
       isLoading.value = false;
 
-      toast.error(err.response.data.Message, {
-        position: "bottom",
-      });
+      toast.error(err.response.data.Message);
     });
 }
 provide("open", open);

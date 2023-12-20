@@ -83,24 +83,9 @@ export async function getTechmenu({
 export async function getProduct(productId) {
   return await get(`${urls.GET_PRODUCT}?productId=${productId}`, config);
 }
-export async function getProducts({
-  Producer = "",
-  PageNumber = 1,
-  PageSize = 10,
-  MarketId = "",
-  SortOrder = "",
-  Search = "",
-  Status = "",
-  Pricefilter = "",
-  SellerId = "",
-  MarketApplication = "",
-  MarketSubApplication = "",
-  Technology = "",
-  TechonolgyApplications = "",
-  TechnologySubApplications = "",
-}) {
-  return await get(
-    `${urls.GET_PRODUCTS}?Producer=${Producer}&Status=${Status}&Search=${Search}&MarketId=${MarketId}&PageNumber=${PageNumber}&PageSize=${PageSize}&SortOrder=${SortOrder}&Pricefilter=${Pricefilter}&SellerId=${SellerId}&MarketApplication=${MarketApplication}&MarketSubApplication=${MarketSubApplication}&Technology=${Technology}&TechonolgyApplications=${TechonolgyApplications}&TechnologySubApplications=${TechnologySubApplications}`,
+export async function getProducts(payload) {
+  return await post(
+    `${urls.GET_PRODUCTS}`,payload,
     config
   );
 }

@@ -356,7 +356,7 @@
                     containerStyle="w-full"
                     :classStyles="`${
                       v$.country.$error && 'border-red-500'
-                    } rounded-lg appearance-none px-5 py-3 h-12 text-sm border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
+                    } rounded-lg appearance-none px-5 py-3 h-12 text-sm border w-full !bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
                   />
                   <div
                     class="text-red-500 mt-1"
@@ -381,7 +381,7 @@
                   containerStyle="w-full"
                   :classStyles="`${
                     v$.state.$error && 'border-red-500'
-                  } rounded-lg appearance-none px-5 py-3 h-12 text-sm border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
+                  } rounded-lg appearance-none px-5 py-3 h-12 text-sm border w-full !bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
                 />
                 <div
                   class="text-red-500 mt-1"
@@ -799,9 +799,7 @@ async function handleSubmit() {
       invalidCredentials.value = true;
       isLoading.value = false;
 
-      toast.error(err.response.data.Message, {
-        position: "bottom",
-      });
+      toast.error(err.response.data.Message);
     });
 }
 function removeImage() {

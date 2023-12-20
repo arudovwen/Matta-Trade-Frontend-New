@@ -21,7 +21,6 @@ axiosApi.interceptors.request.use((config) => {
 // Define an async function to handle token refresh
 const handleTokenRefresh = async () => {
   const authStore = useAuthStore();
-  console.log("🚀 ~ file: api_helpers.js:24 ~ handleTokenRefresh ~ authStore:", authStore)
   // eslint-disable-next-line no-useless-catch
   try {
     // Call the API to refresh the token

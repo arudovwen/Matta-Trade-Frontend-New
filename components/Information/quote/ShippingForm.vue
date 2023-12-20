@@ -45,8 +45,8 @@
       <div class="grid grid-cols-2 gap-x-4">
         <div class="mb-6">
           <label class="mb-2 font-normal text-xs block">Country</label>
-          <div class="relative">
-            <CountriesSelect v-model="v$.country.$model" />
+          <div class="flex relative">
+            <FormsCountriesSelect v-model="v$.country.$model" />
             <div
               class="text-red-500 mt-1"
               v-for="error of v$.country.$errors"
@@ -149,11 +149,9 @@
 </template>
 
 <script setup>
-import { ref, reactive, inject } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required, maxLength } from "@vuelidate/validators";
 import { useToast } from "vue-toastification";
-import CountriesSelect from "~/components/forms/CountriesSelect";
 import { addshipping } from "~/services/cartservice";
 
 const togglePopup = inject("togglePopup");
@@ -176,9 +174,7 @@ const rules = {
     maxLength: maxLength(50),
   },
 
-  postalCode: {
-    required,
-  },
+  postalCode: {},
   lastName: {
     required,
   },
@@ -194,6 +190,7 @@ const rules = {
 };
 
 const v$ = useVuelidate(rules, form);
+
 async function handleSubmit() {
   const validity = await v$.value.$validate();
   if (!validity) return;
@@ -208,6 +205,7 @@ async function handleSubmit() {
         handleReload();
       }
     })
+
     .catch((err) => {
       isLoading.value = false;
 

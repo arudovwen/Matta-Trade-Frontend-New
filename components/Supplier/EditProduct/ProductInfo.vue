@@ -954,6 +954,9 @@ function handleEvent(e) {
       });
   };
 }
+function removepackage(val) {
+  form.packagesAvailable.splice(val, 1);
+}
 async function handleSubmit() {
   const validity = await v$.value.$validate();
   if (!validity) return;

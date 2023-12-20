@@ -7,7 +7,7 @@ export const useAuthStore = defineStore("auth", () => {
   const refresh_token = computed(() => loggedUser.value?.jwToken);
   const access_token = computed(() => loggedUser.value?.jwToken);
   const roles = computed(() => loggedUser.value?.roles);
-  const userId = computed(() => loggedUser.value?.userId);
+  const userId = computed(() => loggedUser.value?.id);
   const userType = computed(() => loggedUser.value?.businessUserType);
   const userInfo = computed(() => loggedUser.value);
 

@@ -105,6 +105,7 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const store = useStore();
+const authStore = useAuthStore();
 const toast = useToast();
 const isLoading = ref(false);
 
@@ -115,17 +116,15 @@ function handleSubmit() {
   }
   isLoading.value = true;
   setaccountype({
-    userId: store.getters.userId,
+    userId: authStore.userId,
     accountType: type.value,
   })
     .then((res) => {
       if (res.status == 200) {
-        let loggedUser = store.getters.loggedUser;
-        loggedUser.accountType = type.value;
-        store.commit("setUser", loggedUser);
+        authStore.updateUserInfo({ accountType: type.value });
         isLoading.value = false;
         router.push(
-          `onboarding/${
+          `/onboarding/${
             type.value == 1 ? "company-account" : "personal-account"
           }`
         );

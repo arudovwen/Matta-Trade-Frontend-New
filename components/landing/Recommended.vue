@@ -119,7 +119,7 @@ function getAllProducts() {
   getProducts({ PageNumber: 1, PageSize: 8 })
     .then((res) => {
       if (res.status === 200) {
-        store.setProducts(res.data.data);
+        store.setProducts(res.data);
         store.setLoader(false);
       }
     })

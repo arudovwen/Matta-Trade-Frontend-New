@@ -26,7 +26,7 @@
     <div class="mb-6">
       <label class="mb-2 font-normal text-xs block">Phone number</label>
       <div class="flex relative rounded-lg h-12">
-        <PhoneCodes v-model="phoneCode" />
+        <FormsPhoneCodes v-model="phoneCode" />
 
         <input
           v-model="request2$.phone.$model"
@@ -164,7 +164,7 @@
   </form>
   <IndexModal :isOpen="isOpen" @togglePopup="isOpen = false">
     <template #content>
-      <ShippingForm />
+      <InformationSampleShippingForm />
     </template>
   </IndexModal>
 </template>
@@ -176,10 +176,7 @@ import {
   ListboxOptions,
   ListboxOption,
 } from "@headlessui/vue";
-import PhoneCodes from "~/components/forms/PhoneCodes";
 import { ref } from "vue";
-import IndexModal from "~/components/IndexModal";
-import ShippingForm from "./ShippingForm";
 import { inject, onMounted, watch, provide } from "vue";
 import { getalladdress } from "~/services/cartservice";
 

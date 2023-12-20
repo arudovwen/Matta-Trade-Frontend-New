@@ -49,12 +49,16 @@
                 >Frequently searched:
               </span>
               <span class="flex gap-2 items-center flex-wrap">
-                <span
+                <NuxtLink
+                  :to="`/market/${i.name}?search_query=${i.name}`"
                   v-for="i in frequentlySearched"
                   :key="i.name"
-                  class="text-white border border-white rounded-full text-sm py-[5px] px-[10px]"
-                  >{{ i.name }}</span
                 >
+                  <span
+                    class="text-white border border-white rounded-full text-sm py-[5px] px-[10px]"
+                    >{{ i.name }}</span
+                  >
+                </NuxtLink>
               </span>
             </div>
           </div>
