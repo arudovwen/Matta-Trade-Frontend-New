@@ -430,6 +430,7 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { replaceCountryCode } from "@/utils/replaceCountryCode";
 
+const authStore = useAuthStore();
 const store = useStore();
 onMounted(() => {
   getProfile().then((res) => {
@@ -596,12 +597,12 @@ async function handleSubmit() {
   updatePersonalInfo(form)
     .then((res) => {
       if (res.status === 200) {
-        // emits("toggleBar", 2);
-        let loggedUser = store.getters.loggedUser;
-        loggedUser.fullName = fullName.value;
-        loggedUser.firstName = form.firstName;
-        loggedUser.lastName = form.lastName;
-        store.commit("setUser", loggedUser);
+
+        authStore.updateUserInfo({
+          fullName: fullName.value,
+          firstName: form.firstName,
+          lastName: form.lastName,
+        });
         router.push("/onboarding/company?onboarding_stage=2");
       }
     })

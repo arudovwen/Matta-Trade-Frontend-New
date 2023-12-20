@@ -680,9 +680,7 @@ async function handlePassword() {
   changepassword(newform)
     .then((res) => {
       if (res.status === 200) {
-        toast.info("Password updated successfully", {
-          position: "bottom",
-        });
+        toast.info("Password updated successfully");
         isLoading.value = false;
         newform.oldPassword = "";
         newform.newPassword = "";
@@ -775,9 +773,7 @@ async function handleSubmit() {
     .then((res) => {
       if (res.status === 200) {
         store.updateUser(fullName.value);
-        toast.info("Profile updated successfully", {
-          position: "bottom",
-        });
+        toast.info("Profile updated successfully");
         isLoading.value = false;
       }
     })

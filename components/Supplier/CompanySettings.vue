@@ -603,9 +603,7 @@ async function handleSubmit() {
     .then((res) => {
       if (res.status === 200) {
         isLoading.value = false;
-        toast.info("Profile updated successfully", {
-          position: "bottom",
-        });
+        toast.info("Profile updated successfully");
       }
     })
     .catch((err) => {

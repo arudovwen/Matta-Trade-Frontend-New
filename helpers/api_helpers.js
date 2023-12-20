@@ -58,9 +58,7 @@ axiosApi.interceptors.response.use(
         return axiosApi.request(error.config);
       } catch (refreshError) {
         // Handle refresh token failure, e.g., redirect to login
-        toast.info("Your session has expired", {
-          position: "bottom",
-        });
+        toast.info("Your session has expired");
         localStorage.clear();
         window.location.href = `/auth/login?info=session_expired&redirected_from=${window.location.href}`;
         return Promise.reject(refreshError);

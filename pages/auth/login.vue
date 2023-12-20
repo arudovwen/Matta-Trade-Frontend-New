@@ -111,9 +111,7 @@ const onSubmit = handleSubmit((values) => {
     .then((res) => {
       if (res.status === 200) {
         localStorage.setItem("userInfo", JSON.stringify(res.data.data));
-        toast.info("Login successful", {
-          position: "bottom",
-        });
+        toast.info("Login successful");
 
         if (!res.data.data.onboardingPageStatus) {
           window.location.replace("/onboarding/account");
@@ -171,9 +169,7 @@ const handleLoginSuccess = (response) => {
     .then((res) => {
       if (res.status === 200) {
         store.commit("setUser", res.data.data);
-        toast.info(res.data.message ? res.data.message : "Login successful", {
-          position: "bottom",
-        });
+        toast.info(res.data.message ? res.data.message : "Login successful");
         if (res.data.message.includes("Email has not verified yet")) {
           return;
         }
@@ -198,9 +194,7 @@ const handleLoginSuccess = (response) => {
       invalidCredentials.value = true;
       isLoading.value = false;
       if (err.response.data.Message) {
-        toast.error(err.response.data.Message, {
-          position: "bottom",
-        });
+        toast.error(err.response.data.Message);
       }
       if (err.response.data.message.includes("Email has not verified yet")) {
         router.push(`/resend-verification/${form.email}`);

@@ -1,6 +1,7 @@
 import urls from "../helpers/url_helpers";
 import { post, get } from "../helpers/api_helpers";
 import store from "../store";
+import { cleanObject } from "~/utils/cleanObject";
 
 const config = {
   headers: { Authorization: `Bearer ${store.getters.accessToken}` },
@@ -85,7 +86,7 @@ export async function getProduct(productId) {
 }
 export async function getProducts(payload) {
   return await post(
-    `${urls.GET_PRODUCTS}`,payload,
+    `${urls.GET_PRODUCTS}`,cleanObject(payload),
     config
   );
 }

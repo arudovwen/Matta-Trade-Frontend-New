@@ -172,9 +172,7 @@ async function handleSubmit() {
   loginUser(form)
     .then((res) => {
       if (res.status === 200) {
-        toast.info("Login successful", {
-          position: "bottom",
-        });
+        toast.info("Login successful");
         window.location.reload();
       }
     })

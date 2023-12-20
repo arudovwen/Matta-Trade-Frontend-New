@@ -502,7 +502,7 @@ const invalidCredentials = ref(false);
 const v$ = useVuelidate(rules, form);
 
 //Timer
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 // const isDisabled = ref(false);
 const fullName = computed(() => {
   return `${form.firstName} ${form.lastName}`;
@@ -516,15 +516,15 @@ async function handleSubmit() {
     .then((res) => {
       if (res.status === 200) {
         setOnboardingcomplete();
-        toast.info("Successful", {
-          position: "bottom",
+        toast.info("Successful");
+
+        authStore.updateUserInfo({
+          fullName: fullName.value,
+          firstName: form.firstName,
+          lastName: form.lastName,
+          onboardingPageStatus: 1,
         });
-        let loggedUser = authStore.userInfo;
-        loggedUser.fullName = fullName.value;
-        loggedUser.firstName = form.firstName;
-        loggedUser.lastName = form.lastName;
-        loggedUser.onboardingPageStatus = 1;
-        authStore.updateUserInfo();
+
         window.location.href = "/onboarding/complete/personal";
       }
     })

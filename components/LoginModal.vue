@@ -243,9 +243,7 @@ async function handleSubmit() {
         store.dispatch("handleToken", res.data.data.jwToken).then(() => {
           handleclose("success");
         });
-        toast.info("Login successful", {
-          position: "bottom",
-        });
+        toast.info("Login successful");
         window.location.reload();
       }
     })

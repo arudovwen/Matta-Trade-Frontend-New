@@ -257,9 +257,7 @@ async function handleSubmit() {
   registerUser(form)
     .then((res) => {
       if (res.status === 200) {
-        toast.info("Registration successful", {
-          position: "bottom",
-        });
+        toast.info("Registration successful");
       }
       handleRequestSubmit();
     })

@@ -201,9 +201,7 @@ async function handleSubmit() {
   addshipping(form)
     .then((res) => {
       if (res.status === 200) {
-        toast.info("Address saved", {
-          position: "bottom",
-        });
+        toast.info("Address saved");
         isLoading.value = false;
         handleReload();
       }

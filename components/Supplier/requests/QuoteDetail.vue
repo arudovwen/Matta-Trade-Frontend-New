@@ -168,9 +168,7 @@ async function handleSubmit() {
         request$.value.$reset();
         form.url = "";
         isLoading.value = false;
-        toast.success("Upload success", {
-          position: "bottom",
-        });
+        toast.success("Upload success");
       }
     })
 

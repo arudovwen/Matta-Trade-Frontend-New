@@ -173,9 +173,7 @@ async function handleSubmit() {
     .then((res) => {
       if (res.status === 200) {
         store.commit("setUser", res.data.data);
-        toast.info("Login successful", {
-          position: "bottom",
-        });
+        toast.info("Login successful");
         if (route.query.redirected_from) {
           window.location.href = route.query.redirected_from;
           return;

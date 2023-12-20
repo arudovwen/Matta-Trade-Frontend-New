@@ -259,9 +259,7 @@ async function handleSubmit() {
           type.value + "Info",
           JSON.stringify(res.data.data)
         );
-        toast.info("Registration successful", {
-          position: "bottom",
-        });
+        toast.info("Registration successful");
 
         window.location.href = `/auth/login?welcome=new_user&type=${type.value}&redirect_to=onboarding`;
       }

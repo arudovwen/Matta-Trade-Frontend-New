@@ -293,9 +293,7 @@ async function handleSubmit() {
   changeWalletpin(form)
     .then((res) => {
       if (res.status === 200) {
-        toast.info("Verify your otp", {
-          position: "bottom",
-        });
+        toast.info("Verify your otp");
         isLoading.value = false;
         isVerify.value = isOpen.value = true;
       }
@@ -312,9 +310,7 @@ async function verifyWalletPin() {
   verifyPin(form1.otp)
     .then((res) => {
       if (res.status == 200) {
-        toast.info("Pin changed successfully", {
-          position: "bottom",
-        });
+        toast.info("Pin changed successfully");
         isOpen.value = isVerify.value = isLoading.value = false;
         v$.value.$reset();
         v1$.value.$reset();

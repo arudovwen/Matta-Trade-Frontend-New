@@ -125,9 +125,7 @@ async function handleWarningLimit() {
   setWarningLimit(form)
     .then((res) => {
       if (res.status === 200) {
-        toast.info("Set successfully", {
-          position: "bottom",
-        });
+        toast.info("Set successfully");
         isLoading.value = false;
       }
     })
@@ -144,9 +142,7 @@ async function handleUpperLimit() {
   setUpperLimit(form1)
     .then((res) => {
       if (res.status === 200) {
-        toast.info("Set successfully", {
-          position: "bottom",
-        });
+        toast.info("Set successfully");
         isLoading.value = false;
       }
     })
