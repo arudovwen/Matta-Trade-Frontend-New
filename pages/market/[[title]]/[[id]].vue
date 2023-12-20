@@ -53,13 +53,22 @@ const query = reactive({
   sortOrder: 0,
   sortBy: 0,
 });
-
+const tagQuery = reactive({
+  PageNumber: 1,
+  PageSize: 20,
+  tag: route.query.tag,
+});
 const pageRange = 5;
 
 function getAllProducts() {
   store.setLoader(true);
   if (route.query.tag) {
-    getProductsByTag({ PageNumber: 1, PageSize: 20, tag: route.query.tag })
+    getProductsByTag({
+      PageNumber: 1,
+      PageSize: 20,
+      tag: route.query.tag,
+      producers: query.producers,
+    })
       .then((res) => {
         if (res.status === 200) {
           store.setProducts(res.data.data);
