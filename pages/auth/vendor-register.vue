@@ -168,13 +168,7 @@ const schema = yup.object({
   firstName: yup.string().required("First name is required"),
   companyName: yup.string().required("Company name is required"),
   lastName: yup.string().required("Last name is required"),
-  phone: yup
-    .string()
-    .required("Phone number is required")
-    .matches(
-      /^\+(?:[0-9] ?){6,14}[0-9]$/,
-      "Please enter a valid phone number starting with a '+' sign"
-    ),
+  phone: yup.string().required("Phone number is required"),
   password: yup
     .string()
     .required("Password is required")
