@@ -9,7 +9,7 @@
       class="bg-white darks:bg-gray-800 rounded-[10px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.05)] darks:shadow-[0px_2px_8px_0px_rgba(0,0,0,0.1)] overflow-hidden"
     >
       <div
-        class="h-[90px] sm:h-[120px] lg:h-[140px] xl:h-[160px] bg-gray-200 bg-cover bg-center relative"
+        class="w-[130px] md:w-auto h-[90px] sm:h-[120px] lg:h-[140px] xl:h-[160px] bg-gray-200 bg-cover bg-center relative"
         :style="{ backgroundImage: `url('${detail.converPhoto}')` }"
       >
         <span
@@ -19,7 +19,7 @@
             class="text-xs sm:text-sm md:text-base darks:text-white"
         /></span>
       </div>
-      <div class="py-3 md:py-5 px-3 xl:px-5">
+      <div class="w-[130px] md:w-auto py-3 md:py-5 px-3 xl:px-5">
         <span
           class="block mb-2 sm:mb-[10px] font-bold truncate max-w-max text-[10px] sm:text-sm xl:text-base darks:text-white leading-tight"
           >{{ detail.title }}</span

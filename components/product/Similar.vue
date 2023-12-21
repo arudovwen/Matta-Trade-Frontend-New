@@ -10,56 +10,43 @@
           Similar products you might like
         </h2>
       </div>
-      <div>
-        <carousel
-          :items-to-show="4.9"
-          :breakpoints="breakpoints"
-          class="recommended"
+      <div class="flex gap-x-6 overflow-x-auto">
+        <div
+          v-for="slide in productsData.slice(0, 8)"
+          :key="slide"
+          @click="
+            router.push(
+              `/product/${encodeURIComponent(slide.title)}/${encodeURIComponent(
+                'similar'
+              )}/${slide.id}`
+            )
+          "
+          class="bg-white"
         >
-          <slide v-for="slide in productsData.slice(0, 8)" :key="slide">
-            <div
-              @click="
-                router.push(
-                  `/product/${encodeURIComponent(
-                    slide.title
-                  )}/${encodeURIComponent('similar')}/${slide.id}`
-                )
-              "
-              class="bg-white darks:bg-gray-800 w-full"
+          <div
+            class="w-[120px] md:w-[240px] h-[77px] sm:h-[130px] xl:h-[185px] bg-gray-200 bg-cover bg-center rounded-[10px] overflow-hidden"
+            :style="{ backgroundImage: `url('${slide.converPhoto}')` }"
+          ></div>
+          <div class="w-[120px] md:w-[240px] pt-[20px] pb-4 xl:pb-[20px] text-left">
+            <span
+              class="text-[10px] sm:text-sm xl:text-base block mb-2 sm:mb-[10px] font-bold darks:text-white truncate max-w-max"
+              >{{ slide.title }}</span
             >
-              <div
-                class="h-[77px] sm:h-[130px] xl:h-[185px] bg-gray-200 bg-cover bg-center rounded-[10px] overflow-hidden"
-                :style="{ backgroundImage: `url('${slide.converPhoto}')` }"
-              ></div>
-              <div class="pt-[20px] pb-4 xl:pb-[20px] text-left">
-                <span
-                  class="text-[10px] sm:text-sm xl:text-base block mb-2 sm:mb-[10px] font-bold darks:text-white truncate max-w-max"
-                  >{{ slide.title }}</span
-                >
-                <span
-                  class="block mb-4 sm:mb-[25px] text-[10px] sm:text-xs lg:text-sm truncate max-w-max text-[#666] darks:text-white/80 text-left"
-                  >{{ slide.manufacturer }}</span
-                >
+            <span
+              class="block mb-4 sm:mb-[25px] text-[10px] sm:text-xs lg:text-sm truncate max-w-max text-[#666] darks:text-white/80 text-left"
+              >{{ slide.manufacturer }}</span
+            >
 
-                <div class="flex justify-between items-center">
-                  <span class="text-base flex gap-x-1 items-center">
-                    <span
-                      class="font-bold ml-[2px] text-xs sm:text-sm xl:text-xl text-[#333] darks:text-white"
-                      >{{ currencyFormat(slide.price) }}/{{ slide.unit }}</span
-                    ></span
-                  >
-
-                  <!-- <span><AppIcon icon="ph:heart" class="darks:text-white" /></span> -->
-                </div>
-              </div>
+            <div class="flex justify-between items-center">
+              <span class="text-base flex gap-x-1 items-center">
+                <span
+                  class="font-bold ml-[2px] text-xs sm:text-sm xl:text-xl text-[#333] darks:text-white"
+                  >{{ currencyFormat(slide.price) }}/{{ slide.unit }}</span
+                ></span
+              >
             </div>
-          </slide>
-          <template #addons>
-            <div class="hidden xl:inline-block">
-              <navigation />
-            </div>
-          </template>
-        </carousel>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -112,7 +99,6 @@ const queryParams = reactive({
 });
 
 function getAllProducts() {
-
   store.setLoader(true);
   getProducts({
     ...queryParams,

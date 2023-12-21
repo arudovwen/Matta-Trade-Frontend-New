@@ -16,7 +16,7 @@
               width="100"
               height="26"
               alt="Matta"
-              class="w-[100px] h-auto"
+              class="w-20 md:w-[100px] h-auto"
           /></NuxtLink>
           <ul class="lg:flex items-center gap-x-6 hidden">
             <li
@@ -110,8 +110,8 @@
         <div class="flex items-center gap-x-4 smd:gap-x-6 text-sm">
           <span
             :class="{
-              flex: view.atTopOfPage,
-              hidden: !view.atTopOfPage,
+              'hidden md:flex': view.atTopOfPage,
+              'hidden md:hidden': !view.atTopOfPage,
             }"
             class="gap-x-1 items-center"
           >
@@ -124,7 +124,6 @@
             />
             NGN</span
           >
-
           <!--   <span
             :class="{
               'md:flex ': view.atTopOfPage,
@@ -159,13 +158,13 @@
               v-if="!authStore.isLoggedIn"
               link="/auth/vendor-register"
               text="Become a Seller"
-              btnClass="!text-[10px] !text-sm text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] flex"
+              btnClass="!text-[12px] md:!text-sm text-white  !font-normal !px-[15px] !py-[6px] !normal-case bg-[#f90] flex"
             />
             <AppButton
               v-if="!authStore.isLoggedIn"
               link="/auth/login"
               text="Sign In"
-              btnClass="bg-primary-500  text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm hidden md:flex"
+              btnClass="bg-primary-500  text-white !px-4 !sm:px-6 !py-[6px] !font-normal text-xs sm:text-sm hidden md:flex"
             />
 
             <Menu

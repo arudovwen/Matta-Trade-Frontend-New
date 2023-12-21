@@ -17,7 +17,7 @@
       <div class="fixed inset-0 overflow-hidden">
         <div class="absolute inset-0 overflow-hidden">
           <div
-            class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pr-20 md:pr-10"
+            class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pr-16 md:pr-10"
           >
             <TransitionChild
               as="template"
@@ -97,19 +97,19 @@
                         </div>
                       </div>
                       <div
-                        class="flex gap-x-4 w-full px-5"
+                        class="flex gap-x-3 w-full px-5"
                         v-if="!authStore.isLoggedIn"
                       >
                         <AppButton
                           link="/auth/vendor-register"
                           text="Become a Seller"
-                          btnClass="text-white  !px-[15px] !py-[6px] !normal-case bg-[#f90] flex w-full"
+                          btnClass="text-white !text-[13px] !font-normal  !px-[10px] !py-[6px] !normal-case bg-[#f90] flex w-full"
                         />
                         <AppButton
                           v-if="!authStore.isLoggedIn"
                           link="/auth/login"
                           text="Sign In"
-                          btnClass="bg-primary-500  text-white !px-4 !sm:px-6 !py-[6px] text-xs sm:text-sm w-full"
+                          btnClass="bg-primary-500  text-white !px-4 !sm:px-6 !py-[6px] !text-[13px] sm:text-sm !font-normal w-full"
                         />
                       </div>
                       <hr class="my-[14px] border-b border-[#F4F4F4]" />

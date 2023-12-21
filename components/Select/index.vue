@@ -15,7 +15,7 @@
     <div class="relative flex items-center">
       <select
         :name="name"
-        :class="`${classInput} input-control block w-full focus:outline-none min-h-[40px] `"
+        :class="`${classInput} input-control block w-full focus:outline-none min-h-[40px] appearance-none pointer-events-none`"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         :error="error"
@@ -150,7 +150,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 select {
-  @apply appearance-none bg-[url('https://api.iconify.design/akar-icons/chevron-down.svg')] bg-no-repeat bg-right;
+  @apply appearance-none;
   background-position-x: 98%;
 }
 option {

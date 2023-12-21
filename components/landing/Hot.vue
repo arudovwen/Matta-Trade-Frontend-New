@@ -30,21 +30,10 @@
         :detail="n"
       />
     </div>
-    <div class="lg:hidden">
-      <carousel
-        :items-to-show="4.9"
-        :breakpoints="breakpoints"
-        class="recommended"
-      >
-        <slide v-for="(n, idx) in content.slice(0, 3)" :key="idx">
-          <ProductCard :index="idx" :detail="n" />
-        </slide>
-        <template #addons>
-          <div class="hidden lg:inline-block">
-            <navigation />
-          </div>
-        </template>
-      </carousel>
+    <div class="flex overflow-x-auto gap-x-4 lg:hidden">
+      <div v-for="(n, idx) in content.slice(0, 6)" :key="idx">
+        <ProductCard :index="idx" :detail="n" />
+      </div>
     </div>
   </div>
 </template>
@@ -100,5 +89,4 @@ function getAllProducts() {
 onMounted(() => {
   getAllProducts();
 });
-
 </script>
