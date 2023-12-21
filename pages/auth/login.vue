@@ -109,13 +109,16 @@ const onSubmit = handleSubmit((values) => {
   isLoading.value = true;
   loginUser(values)
     .then((res) => {
+    
       if (res.status === 200) {
         localStorage.setItem("userInfo", JSON.stringify(res.data.data));
-       
 
-        if (!res.data.data.onboardingPageStatus) {
+        if (
+          !res.data.data.onboardingPageStatus &&
+          res.data.data?.businessUserType.toLowerCase() === "supplier"
+        ) {
           toast.info("Login successful, Complete your onboarding");
-          window.location.replace("/onboarding/personal");
+          window.location.replace("/onboarding/company");
           return;
         }
         toast.success("Login successful");
@@ -129,15 +132,10 @@ const onSubmit = handleSubmit((values) => {
         }
 
         window.location.replace("/");
-
       }
     })
 
     .catch((err) => {
-      console.log(
-        "🚀 ~ file: login.vue:124 ~ onSubmit ~ err:",
-        err.response.data.Message
-      );
       isLoading.value = false;
       if (err.response.data.Message) {
         toast.error(err.response.data.Message);
@@ -145,20 +143,11 @@ const onSubmit = handleSubmit((values) => {
       if (err.response.data.Message.includes("Email has not verified yet")) {
         router.push(`/resend-verification/${form.email}`);
       }
-      // if (!err.response.data.isVerified) {
-      //   toast.error(err.response.data.message, {
-      //     position: "bottom",
-      //   });
-
-      // }
     });
 });
 
 const handleLoginSuccess = (response) => {
-  console.log(
-    "🚀 ~ file: login.vue:163 ~ handleOnSuccess ~ response:",
-    response
-  );
+
   const { access_token } = response;
   let data = {
     provider: "GOOGLE",

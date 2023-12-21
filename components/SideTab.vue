@@ -1,7 +1,7 @@
 <template>
   <div class="px-[15px] pt-[15px] pb-[36px]">
     <div class="flex justify-between items-center mb-[15px]">
-      <span class="font-bold text-base capitalize">{{ title }}</span>
+      <span class="font-bold text-base">{{ title }}</span>
       <span class="cursor-pointer" @click="active = !active"
         ><AppIcon :icon="active ? 'charm:minus' : 'charm:plus'"
       /></span>

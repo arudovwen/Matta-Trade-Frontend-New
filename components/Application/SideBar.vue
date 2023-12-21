@@ -25,7 +25,7 @@
     <hr class="border-[#EFEFEF] my-[1px]" v-if="route.params.id" />
     <SideTab
       v-if="route.params.id"
-      title="Applications"
+      title="Area of applications"
       :lists="
         applicationStore?.applicationMenuData?.map((i) => ({
           ...i,

@@ -29,12 +29,22 @@
                   : ''
               }`"
             >
-              <Menu as="div" class="relative inline-block text-left">
+              <Menu
+                v-slot="{ open }"
+                as="div"
+                class="relative inline-block text-left"
+              >
                 <MenuButton
                   class="flex gap-x-1 items-center group-hover:text-[#165EF0]"
                 >
-                  {{ n.name }}</MenuButton
-                >
+                  {{ n.name }}
+                  <AppIcon
+                    :icon="
+                      open
+                        ? 'pepicons-pencil:angle-up'
+                        : 'pepicons-pencil:angle-down'
+                    "
+                /></MenuButton>
                 <transition
                   enter-active-class="transition duration-100 ease-out"
                   enter-from-class="transform scale-95 opacity-0"

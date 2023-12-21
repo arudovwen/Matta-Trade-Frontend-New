@@ -23,7 +23,10 @@
                 label="Memorandum and Articles of Association"
                 id="mermat"
               />
-              <FileUpload label="Certificate of Incorporation" id="cac" />
+              <FileUpload
+                label="Certificate of Incorporation"
+                id="incorporation"
+              />
               <FileUpload label="CAC Status Report" id="statusReport" />
             </div>
             <div class="flex justify-center gap-x-4 items-center mt-16 w-full">
@@ -33,18 +36,22 @@
               >
                 <button
                   type="button"
-                  class="appearance-none leading-none px-10 py-4 rounded-lg w-full lg:w-auto text-matta-black border border-[#E7EBEE] hover:bg-gray-100 text-[13px] uppercase"
+                  class="appearance-none leading-none px-20 py-4 rounded-lg w-full lg:w-auto text-matta-black border border-[#E7EBEE] hover:bg-gray-100 text-[13px] uppercase"
                 >
                   Back
                 </button>
               </router-link>
 
               <button
-                :disabled="v$.$silentErrors.length || isLoading"
+                :disabled="
+                  form.companyDocuments.some((i) => i.url === '') || isLoading
+                "
                 :class="{
-                  'opacity-60 cursor-not-allowed': v$.$silentErrors.length,
+                  'opacity-60 cursor-not-allowed': form.companyDocuments.some(
+                    (i) => i.url === ''
+                  ),
                 }"
-                class="appearance-none leading-none px-10 py-4 grid-cols-1 w-1/2 lg:w-auto lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
+                class="appearance-none leading-none px-20 py-4 grid-cols-1 w-1/2 lg:w-auto lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
               >
                 <i
                   class="fa fa-spinner fa-spin"
@@ -66,21 +73,29 @@ import { ref, reactive, onMounted, provide } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import { useToast } from "vue-toastification";
-import { additionalInfo } from "@/services/onboardingservices";
 import { useRouter } from "vue-router";
 // eslint-disable-next-line no-unused-vars
-import { getCompanyProfile } from "@/services/settingservices";
+import { getCompanyProfile, updateDocuments } from "@/services/settingservices";
 import { useStore } from "vuex";
 
-// eslint-disable-next-line no-unused-vars
-const store = useStore();
 const router = useRouter();
 const toast = useToast();
 
 const form = reactive({
-  cac: "",
-  mermat: "",
-  statusReport: "",
+  companyDocuments: [
+    {
+      url: "",
+      documentType: 0,
+    },
+    {
+      url: "",
+      documentType: 1,
+    },
+    {
+      url: "",
+      documentType: 2,
+    },
+  ],
 });
 
 const isLoading = ref(false);
@@ -89,15 +104,17 @@ onMounted(() => {});
 
 // eslint-disable-next-line no-unused-vars
 function handleChange(id, value) {
-  if (id === "cac") {
-    form.cac = value;
-  }
-  if (id === "mermat") {
-    form.mermat = value;
-  }
-  if (id === "statusReport") {
-    form.statusReport = value;
-  }
+  form.companyDocuments.map((i) => {
+    if (id === "incorporation" && i.documentType === 0) {
+      i.url = value;
+    }
+    if (id === "mermat" && i.documentType === 1) {
+      i.url = value;
+    }
+    if (id === "statusReport" && i.documentType === 2) {
+      i.url = value;
+    }
+  });
 }
 
 const rules = {
@@ -113,20 +130,19 @@ const rules = {
 };
 
 const invalidCredentials = ref(false);
-const v$ = useVuelidate(rules, form);
 
 //Timer
 
 // const isDisabled = ref(false);
 
 async function handleSubmit() {
-  const validity = await v$.value.$validate();
-  if (!validity) return;
+  if (form.companyDocuments.some((i) => i.url === "")) return;
   isLoading.value = true;
 
-  additionalInfo(form)
+  updateDocuments(form)
     .then((res) => {
       if (res.status === 200) {
+        toast.info("Documents saved");
         router.push("/onboarding/company?onboarding_stage=4");
       }
     })

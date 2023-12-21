@@ -13,7 +13,7 @@
       {{ label }}</label
     >
     <div class="relative">
-      <div v-if="!$slots.default">
+      <div v-if="!$slots.default" class="text-sm">
         <vSelect
           :name="name"
           :error="error"
@@ -157,21 +157,21 @@ export default {
 <style lang="scss">
 .formGroup {
   .vs__dropdown-toggle {
-    @apply bg-transparent  darks:bg-slate-900 border-slate-200 darks:border-slate-700 darks:text-white min-h-[36px] text-slate-900 text-sm;
+    @apply bg-transparent   border-slate-200 min-h-[36px] text-slate-900 text-sm;
   }
-  .v-select {
-    @apply darks:text-slate-300;
-  }
+  // .v-select {
+  //   @apply darks:text-slate-300;
+  // }
   &.has-error {
     .vs__dropdown-toggle {
       @apply border-danger-500;
     }
   }
-  .vs__dropdown-option {
-    @apply darks:text-slate-100;
-  }
+  // .vs__dropdown-option {
+  //   @apply darks:text-slate-100;
+  // }
   .vs__dropdown-option--highlight {
-    @apply bg-slate-900 darks:bg-slate-600 darks:bg-opacity-20 py-2 text-sm;
+    @apply bg-slate-900  py-2 text-sm;
   }
   .vs__dropdown-menu {
     li {
@@ -179,7 +179,7 @@ export default {
     }
   }
   .vs__dropdown-menu {
-    @apply shadow-dropdown bg-white darks:bg-slate-800  text-sm  border-[0px] darks:border-[1px] darks:border-slate-700;
+    @apply shadow-dropdown bg-white  text-sm  border-[0px];
   }
   .vs__search::placeholder {
     @apply text-secondary-500;
@@ -190,12 +190,12 @@ export default {
 
   .vs--multiple {
     .vs__selected {
-      @apply text-xs text-slate-900 darks:text-slate-300 font-light bg-white darks:bg-slate-700 border-slate-200 darks:border-slate-700 border rounded-[3px] h-fit;
+      @apply text-xs text-slate-900 font-light bg-white border-slate-200  border rounded-[3px] h-fit;
       padding: 4px 8px !important;
     }
-    .vs__deselect {
-      @apply darks:fill-slate-300;
-    }
+    // .vs__deselect {
+    //   @apply darks:fill-slate-300;
+    // }
 
     .vs__selected-options {
       @apply items-center capitalize;
@@ -204,11 +204,11 @@ export default {
       }
     }
   }
-  .vs--single .vs__selected {
-    @apply darks:text-slate-300;
-  }
+  // .vs--single .vs__selected {
+  //   @apply darks:text-slate-300;
+  // }
   .vs__dropdown-option--disabled {
-    @apply bg-slate-50 darks:bg-slate-700;
+    @apply bg-slate-50 ;
   }
 }
 </style>

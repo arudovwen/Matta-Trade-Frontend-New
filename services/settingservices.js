@@ -17,6 +17,12 @@ export async function getCompanyProfile() {
 export async function updateProfile(data) {
   return await post(`${urls.UPDATE_PROFILE}`, data, config);
 }
+export async function updateDocuments(data) {
+  return await post(`${urls.UPDATE_DOCUMENTS}`, data, config);
+}
+export async function updateDirectors(data) {
+  return await post(`${urls.UPDATE_DIRECTORS}`, data, config);
+}
 export async function changepassword(data) {
   return await post(`${urls.CHANGE_PASSWORD}`, data, config);
 }

@@ -2,7 +2,7 @@
 <!-- eslint-disable no-useless-escape -->
 <template>
   <div class="gap-y-2 flex flex-col p-6 lg:p-10">
-    <div class="mb-5 text-center text-[13px]"><p>STEP 2/3</p></div>
+    <div class="mb-5 text-center text-[13px]"><p>STEP 4/4</p></div>
     <!-- Top bar   -->
     <div class="md:max-w-[550px] mx-auto w-full">
       <div class="">
@@ -19,12 +19,14 @@
 
         <div class="grid gap-y-6 mb-6">
           <div
+            v-for="(director, id) in form.directors"
+            :key="id"
             class="flex-1 rounded-lg py-1 pr-[14px] pl-2 h-12 text-sm w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20 flex items-center justify-between"
           >
-            <span>Director name</span>
+            <span>{{ director.firstName }} {{ director.lastName }}</span>
             <span class="flex gap-x-3 items-center">
               <span class="p-1"><i class="uil uil-pen"></i></span>
-              <span class="p-1"
+              <span class="p-1" @click="form.directors.splice(id, 1)"
                 ><i class="uil uil-trash text-red-500"></i
               ></span>
             </span>
@@ -35,15 +37,39 @@
             type="button"
             @click="open = true"
             class="rounded-lg hover:opacity-70 text-[13px] flex items-center"
-            :class="
-              !form.directors.length
-                ? 'text-primary'
-                : 'bg-primary-500 text-white mx-auto px-8 py-3 '
-            "
+            :class="text - primary"
           >
             <span class=""> + Add new director</span>
           </button>
         </div>
+      </div>
+      <div class="flex justify-center gap-x-4 items-center mt-20 w-full">
+        <router-link
+          to="/onboarding/company?onboarding_stage=3"
+          class="w-1/2 lg:w-auto"
+        >
+          <button
+            type="button"
+            class="appearance-none leading-none px-20 py-4 rounded-lg w-full lg:w-auto text-matta-black border border-[#E7EBEE] hover:bg-gray-100 text-[13px] uppercase"
+          >
+            Back
+          </button>
+        </router-link>
+
+        <button
+          :disabled="!form.directors.length || isLoading"
+          :class="{
+            'opacity-60 cursor-not-allowed': !form.directors.length,
+          }"
+          class="appearance-none leading-none px-20 py-4 grid-cols-1 w-1/2 lg:w-auto lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
+        >
+          <i
+            class="fa fa-spinner fa-spin"
+            v-show="isLoading"
+            aria-hidden="true"
+          ></i>
+          <span v-show="!isLoading">Complete</span>
+        </button>
       </div>
     </div>
   </div>
@@ -109,6 +135,7 @@ import {
 import { useRouter } from "vue-router";
 // import { getCompanyProfile } from "@/services/settingservices";
 import { useStore } from "vuex";
+import { updateDirectors } from "~/services/settingservices";
 
 const store = useStore();
 const router = useRouter();
@@ -117,7 +144,7 @@ const open = ref(false);
 const toast = useToast();
 
 const form = reactive({
-  directors: "",
+  directors: [],
 });
 
 const isLoading = ref(false);
@@ -128,16 +155,14 @@ const isLoading = ref(false);
 
 // eslint-disable-next-line no-unused-vars
 async function handleSubmit() {
+  if (!form.directors.length) return;
   isLoading.value = true;
 
-  additionalInfo(form)
+  updateDirectors(form)
     .then((res) => {
       if (res.status === 200) {
         setOnboardingcomplete();
-        let loggedUser = store.getters.loggedUser;
-        loggedUser.onboardingPageStatus = 1;
-        store.commit("setUser", loggedUser);
-        router.push("/onboarding/company?onboarding_stage=3");
+        window.location.href = "/onboarding/complete/company";
       }
     })
 
@@ -148,6 +173,7 @@ async function handleSubmit() {
     });
 }
 provide("open", open);
+provide("directors", form.directors);
 </script>
 
 <style lang="scss" scoped>

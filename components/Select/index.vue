@@ -39,7 +39,7 @@
         </template>
         <slot v-if="$slots.default"></slot>
       </select>
-      <!-- <AppIcon icon="fa6-solid:angle-down" class="absolute right-[15px] text-[#667085]" /> -->
+      <AppIcon icon="fa6-solid:angle-down" class="absolute right-[15px] text-[#667085] text-xs md:text-sm" />
     </div>
 
     <span

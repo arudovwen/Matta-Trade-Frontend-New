@@ -215,8 +215,8 @@
                 >
 
                 <input
-                  v-model="v$.tinNo.$model"
-                  :class="{ 'border-red-500': v$.tinNo.$error }"
+                  v-model="v$.tin.$model"
+                  :class="{ 'border-red-500': v$.tin.$error }"
                   class="rounded-lg px-5 py-3 h-12 text-sm w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                   autocomplete="off"
                   autofocus="on"
@@ -224,7 +224,7 @@
                 />
                 <div
                   class="text-red-500 mt-1"
-                  v-for="error of v$.tinNo.$errors"
+                  v-for="error of v$.tin.$errors"
                   :key="error.$uid"
                 >
                   <div class="error-msg text-error text-xs font-semibold">
@@ -299,7 +299,7 @@
               </div>
             </div>
 
-            <div class="">
+            <!-- <div class="">
               <div
                 class="flex gap-x-3 relative items-center mb-3"
                 v-for="(social, i) in form.socials"
@@ -336,7 +336,7 @@
               >
                 <i class="uil uil-plus"></i> Add social network
               </button>
-            </div>
+            </div> -->
             <hr class="my-8" />
 
             <legend class="font-medium mb-6">Company Address</legend>
@@ -450,7 +450,7 @@
               >
                 <button
                   type="button"
-                  class="appearance-none leading-none px-10 py-4 rounded-lg w-full lg:w-auto text-matta-black border border-[#E7EBEE] hover:bg-gray-100 text-[13px] uppercase"
+                  class="appearance-none leading-none px-20 py-4 rounded-lg w-full lg:w-auto text-matta-black border border-[#E7EBEE] hover:bg-gray-100 text-[13px] uppercase"
                 >
                   Back
                 </button>
@@ -461,7 +461,7 @@
                 :class="{
                   'opacity-60 cursor-not-allowed': v$.$silentErrors.length,
                 }"
-                class="appearance-none leading-none px-10 py-4 grid-cols-1 w-1/2 lg:w-auto lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
+                class="appearance-none leading-none px-20 py-4 grid-cols-1 w-1/2 lg:w-auto lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
               >
                 <i
                   class="fa fa-spinner fa-spin"
@@ -584,10 +584,12 @@ import {
   setOnboardingcomplete,
 } from "@/services/onboardingservices";
 import { useRouter } from "vue-router";
-import { getCompanyProfile } from "@/services/settingservices";
-import { useStore } from "vuex";
+import {
+  getCompanyProfile,
+  updateCompanyProfile,
+} from "@/services/settingservices";
 
-const store = useStore();
+const authStore = useAuthStore();
 const router = useRouter();
 const open = ref(false);
 const img = ref("");
@@ -612,7 +614,7 @@ const form = reactive({
   logo: "",
   code: "+234",
   registrationNo: "",
-  tinNo: "",
+  tin: "",
   socials: [
     {
       name: "",
@@ -673,7 +675,7 @@ onMounted(() => {
     form.address = res.data.data.address;
     form.country = res.data.data.country;
     form.city = res.data.data.city;
-    form.tinNo = res.data.data.tinNo;
+    form.tin = res.data.data.tin;
     form.registrationNo = res.data.data.registrationNo;
     form.phone = res.data.data.phone;
     image.value = form.logo = res.data.data.logo;
@@ -748,7 +750,7 @@ const rules = {
     required,
     maxLength: maxLength(250),
   },
-  tinNo: { required, minLength: minLength(7) },
+  tin: { required, minLength: minLength(7) },
   registrationNo: { required, minLength: minLength(14) },
   companyType: { required },
   state: {
@@ -784,13 +786,11 @@ async function handleSubmit() {
   if (!validity) return;
   isLoading.value = true;
 
-  additionalInfo(form)
+  updateCompanyProfile(form)
     .then((res) => {
       if (res.status === 200) {
         setOnboardingcomplete();
-        let loggedUser = store.getters.loggedUser;
-        loggedUser.onboardingPageStatus = 1;
-        store.commit("setUser", loggedUser);
+        authStore.updateUserInfo({ onboardingPageStatus: 1 });
         router.push("/onboarding/company?onboarding_stage=3");
       }
     })

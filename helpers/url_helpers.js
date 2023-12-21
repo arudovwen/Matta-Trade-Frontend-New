@@ -71,6 +71,8 @@ const urls = {
   UPDATE_PROFILE: "v1/settings/updateprofile",
   CHANGE_PASSWORD: "v1/settings/change-password",
   UPDATE_COMPANY_PROFILE: "v1/settings/company/update-profile",
+  UPDATE_DOCUMENTS: "v1/settings/update-documents",
+  UPDATE_DIRECTORS: "v1/settings/update-directors",
   SET_TIMEZONE: "v1/settings/settimezone",
   DELETE_ACCOUNT: "v1/settings/delete-account",
   STOREFRONT_STAT: "v1/storefront/stats",

@@ -12,12 +12,15 @@
           We found {{ total }} Products” matching your search criteria
         </p>
       </div>
+     <div class="flex justify-between  items-center">
+      <AppButton texT="Filter by" />
       <Select
         v-model="query.sortOrder"
         :options="options"
         placeholder="Sort prices by"
         classInput="min-w-[180px] !bg-white !border-[#B9C0D4] !rounded-[4px] !text-[#5D6B98] !h-11 cursor-pointer"
       />
+     </div>
     </div>
   </div>
 </template>

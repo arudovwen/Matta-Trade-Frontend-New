@@ -193,7 +193,7 @@ const router = useRouter();
 
 const onSubmit = handleSubmit((values) => {
   isLoading.value = true;
-  registerUser({...values, accountType: 1})
+  registerUser({...values, business_UserType: 0})
     .then((res) => {
       if (res.status === 200) {
         toast.info("Sign up successful, Complete registration via link sent to your email");

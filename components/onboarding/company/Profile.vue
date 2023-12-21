@@ -297,7 +297,7 @@
               :class="{
                 'opacity-60 cursor-not-allowed': v$.$silentErrors.length,
               }"
-              class="appearance-none leading-none px-10 py-4 grid-cols-1 w-1/2 lg:w-auto lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
+              class="appearance-none leading-none px-20 py-4 grid-cols-1 w-1/2 lg:w-auto lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
             >
               <i
                 class="fa fa-spinner fa-spin"

@@ -11,14 +11,13 @@
       </h3>
 
       <p class="text-matta-black mb-10">
-        Thank you! We will contact you shortly to verify
-        {{ route.params.type == "company" ? "the company" : "your  account" }}.
+        Thank you! We will contact you shortly to verify your account.
       </p>
-      <router-link to="/">
+      <router-link to="/overview">
         <button
           class="appearance-none leading-none px-10 py-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
         >
-          Homepage
+          Proceed to dashboard
         </button>
       </router-link>
     </div>

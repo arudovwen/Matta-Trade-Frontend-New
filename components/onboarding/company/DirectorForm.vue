@@ -68,8 +68,6 @@
         >Phone number <span class="text-red-500 pl-[.02rem]">*</span></label
       >
       <div class="flex relative rounded-lg h-12">
-        <FormsPhoneCodes v-model="form.code" />
-
         <input
           :class="{ 'border-red-500': v$.phone.$error }"
           v-model="v$.phone.$model"
@@ -161,17 +159,14 @@ import {
   minLength,
   numeric,
 } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
-import { addshipping } from "@/services/cartservice";
 
 const open = inject("open");
-const handleReload = inject("handleReload");
-const toast = useToast();
+const directors = inject("directors");
+
 const form = reactive({
   firstName: "",
   lastName: "",
   email: "",
-  code: "+234",
   phone: "",
   bvn: "",
   dob: "",
@@ -203,10 +198,6 @@ const rules = {
   phone: {
     numeric,
     required,
-    validPhoneLength: helpers.withMessage(
-      "Phone number must be between 10 0r 11 digits",
-      validPhoneLength
-    ),
   },
 };
 
@@ -215,20 +206,14 @@ const v$ = useVuelidate(rules, form);
 async function handleSubmit() {
   const validity = await v$.value.$validate();
   if (!validity) return;
-  isLoading.value = true;
-  addshipping(form)
-    .then((res) => {
-      if (res.status === 200) {
-        toast.info("Address saved");
-        isLoading.value = false;
-        handleReload();
-      }
-    })
-
-    .catch((err) => {
-      isLoading.value = false;
-
-      toast.error(err.response.data.Message);
-    });
+  directors.push(form);
+  // form.phone =
+  //   form.bvn =
+  //   form.dob =
+  //   form.firstName =
+  //   form.lastName =
+  //   form.email =
+  //     "";
+  open.value = false;
 }
 </script>

@@ -3,7 +3,7 @@
     <div class="flex flex-col w-full h-full">
       <MarketBanner />
 
-      <div class="flex flex-1 container py-10 w-full gap-x-[22px]">
+      <div class="flex flex-1 container py-6 md:py-10 w-full gap-x-[22px]">
         <div class="max-w-[250px] w-full hidden lg:block">
           <MarketSideBar />
         </div>
@@ -50,7 +50,7 @@ const query = reactive({
   applications: [],
   pagecount: 0,
   totalData: 0,
-  sortOrder: 0,
+  sortOrder: "",
   sortBy: 0,
 });
 const tagQuery = reactive({

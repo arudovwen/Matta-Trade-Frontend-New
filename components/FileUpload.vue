@@ -19,7 +19,7 @@
       <button
         type="buton"
         @click="triggerFileInput"
-        class="text-xs text-[#165EF0] border border-[#165EF0] rounded px-5 py-[6px] active:scale-[.95] leading-normal w-20"
+        class="text-xs text-[#165EF0] border border-[#165EF0] rounded px-5 py-[6px] active:scale-[.95] leading-normal w-20 flex justify-center"
       >
         <div
           v-if="loading"
@@ -47,7 +47,7 @@ function handleEvent(e) {
 
   if (!file) return;
 
-  const allowedExtensions = ["jpeg", "png", "jpg", "pdf", "doc", "docx"]; // Add more allowed extensions if needed
+  const allowedExtensions = ["jpeg", "png", "jpg", "pdf", "doc", "docx", "xlsx", "csv"]; // Add more allowed extensions if needed
   const fileExtension = file.name.split(".").pop().toLowerCase();
 
   if (!allowedExtensions.includes(fileExtension)) {
