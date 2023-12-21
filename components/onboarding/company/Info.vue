@@ -659,6 +659,7 @@ function addsocial() {
   });
 }
 onMounted(() => {
+  form.companyName =authStore.userInfo.companyName;
   getCompanyProfile().then((res) => {
     form.photo = image.value = res.data.data.photo;
     form.companyType = res.data.data.companyType;
@@ -735,8 +736,8 @@ const rules = {
     maxLength: maxLength(50),
   },
   website: {
-    maxLength: maxLength(50),
-    url,
+    maxLength: maxLength(100),
+
   },
   country: {
     required,

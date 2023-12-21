@@ -57,6 +57,7 @@
         </router-link>
 
         <button
+        @click="handleSubmit"
           :disabled="!form.directors.length || isLoading"
           :class="{
             'opacity-60 cursor-not-allowed': !form.directors.length,
