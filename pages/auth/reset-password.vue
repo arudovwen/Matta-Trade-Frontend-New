@@ -66,7 +66,6 @@ const toast = useToast();
 const isLoading = ref(false);
 const route = useRoute();
 const router = useRouter();
-
 const formValues = {
   confirmPassword: "",
   password: "",
