@@ -534,3 +534,7 @@
     font-size: 14px;
   }
   </style>
+<script setup>
+definePageMeta({
+  title: "Privacy policies | Matta"
+})</script>

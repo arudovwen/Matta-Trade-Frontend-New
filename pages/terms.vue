@@ -508,6 +508,7 @@
   </section>
 </template>
 <style lang="scss" scoped>
+
 h2 {
   font-size: 18px;
   font-weight: 600;
@@ -539,3 +540,7 @@ a {
   font-size: 14px;
 }
 </style>
+<script setup>
+definePageMeta({
+  title: "Terms and Conditions | Matta"
+})</script>

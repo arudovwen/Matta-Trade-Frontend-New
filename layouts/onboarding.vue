@@ -4,6 +4,11 @@
   </div>
 </template>
 <script setup>
+useHead({
+  title: "Onboarding | Matta",
+  meta: [{ name: "description", content: "Onboarding" }],
+});
+
 const authStore = useAuthStore();
 const router = useRouter();
 onBeforeMount(() => {

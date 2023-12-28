@@ -79,6 +79,7 @@ import { GoogleSignInButton } from "vue3-google-signin";
 
 definePageMeta({
   layout: "auth",
+  title: "Login | Matta"
 });
 const toast = useToast();
 const isLoading = ref(false);

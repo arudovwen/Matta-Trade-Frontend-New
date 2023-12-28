@@ -5,7 +5,9 @@
       </div>
   
   </template>
-  <script setup>
-  </script>
+<script setup>
+definePageMeta({
+  title: "Request product | Matta"
+})</script>
   <style lang=""></style>
   

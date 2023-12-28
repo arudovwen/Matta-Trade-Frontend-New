@@ -34,6 +34,17 @@ import { useProductStore } from "~/stores/products";
 const store = useProductStore();
 const { productsData, loading } = storeToRefs(store);
 const route = useRoute();
+useHead({
+  title: `${ucFirst(route.query.title || route.query.search_query || "Application")} | Matta`,
+  meta: [
+    {
+      name: "description",
+      content: ` ${
+        ucFirst(route.query.title || route.query.search_query || "Application")
+      } | Matta`,
+    },
+  ],
+});
 const query = reactive({
   PageNumber: 1,
   PageSize: 20,

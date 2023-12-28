@@ -131,6 +131,7 @@
 <script setup>
 definePageMeta({
   layout: "auth",
+  title: "Register | Matta"
 });
 import { useForm } from "vee-validate";
 import * as yup from "yup";

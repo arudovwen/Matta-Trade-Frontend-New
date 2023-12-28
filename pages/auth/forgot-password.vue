@@ -57,6 +57,7 @@
 <script setup>
 definePageMeta({
   layout: "auth",
+  title: "Forgot password | Matta"
 });
 import { useForm } from "vee-validate";
 import * as yup from "yup";

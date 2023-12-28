@@ -18,3 +18,9 @@
     </div>
   </div>
 </template>
+<script setup>
+useHead({
+  title: "Cart | Matta",
+  meta: [{ name: "description", content: "Cart" }],
+});
+</script>

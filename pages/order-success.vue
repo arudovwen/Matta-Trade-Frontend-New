@@ -27,3 +27,7 @@
     </div>
   </div>
 </template>
+<script setup>
+definePageMeta({
+  title: "Order success | Matta"
+})</script>

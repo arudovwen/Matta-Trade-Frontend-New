@@ -60,6 +60,7 @@ import "vue-toastification/dist/index.css";
 
 definePageMeta({
   layout: "auth",
+  title: "MReset password | Matta"
 });
 const toast = useToast();
 const isLoading = ref(false);

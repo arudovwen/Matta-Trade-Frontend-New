@@ -138,6 +138,7 @@
 <script setup>
 definePageMeta({
   layout: "register",
+  title: "Register vendor | Matta"
 });
 
 import { useForm } from "vee-validate";
