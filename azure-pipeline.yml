@@ -12,13 +12,7 @@ jobs:
 - job: Build
   displayName: 'Build Nuxt 3 App'
   steps:
-  - task: CopyFiles@2
-    inputs:
-      SourceFolder: 'development'
-      Contents: '**'
-      TargetFolder: '$(Build.Repository.LocalPath)'
-      OverWrite: true
-
+ 
   - task: UseNode@1
     inputs:
       versionSpec: '14.x'
