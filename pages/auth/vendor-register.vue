@@ -138,6 +138,9 @@
 <script setup>
 definePageMeta({
   layout: "register",
+  
+});
+useHead({
   title: "Register vendor | Matta"
 });
 

@@ -451,7 +451,7 @@ onMounted(() => {
   });
   getKycDetail().then((res) => {
     if (res.status === 200 && res.data) {
-      console.log(res.data);
+  
       form.fullName = res.data.data.fullName;
       form.phoneCode = res.data.data.phoneCode;
       form.phone = res.data.data.phone;

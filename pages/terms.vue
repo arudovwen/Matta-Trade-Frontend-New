@@ -541,6 +541,6 @@ a {
 }
 </style>
 <script setup>
-definePageMeta({
+useHead({
   title: "Terms and Conditions | Matta"
 })</script>

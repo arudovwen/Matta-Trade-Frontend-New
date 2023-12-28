@@ -79,7 +79,10 @@ import { GoogleSignInButton } from "vue3-google-signin";
 
 definePageMeta({
   layout: "auth",
-  title: "Login | Matta"
+});
+useHead({
+  title: "Login | Matta",
+  meta: [{ name: "description", content: "Login | Matta" }],
 });
 const toast = useToast();
 const isLoading = ref(false);
@@ -110,7 +113,6 @@ const onSubmit = handleSubmit((values) => {
   isLoading.value = true;
   loginUser(values)
     .then((res) => {
-    
       if (res.status === 200) {
         localStorage.setItem("userInfo", JSON.stringify(res.data.data));
 
@@ -148,14 +150,12 @@ const onSubmit = handleSubmit((values) => {
 });
 
 const handleLoginSuccess = (response) => {
-
   const { access_token } = response;
   let data = {
     provider: "GOOGLE",
     idToken: access_token,
     business_UserType: 0,
   };
-  console.log("🚀 ~ file: LoginView.vue:166 ~ callback ~ data:", data);
 
   sociallogin(data)
     .then((res) => {

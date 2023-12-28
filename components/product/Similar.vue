@@ -118,10 +118,6 @@ function getAllProducts() {
 
 onMounted(() => {});
 watch(productData, () => {
-  console.log(
-    "🚀 ~ file: Similar.vue:131 ~ watch ~ productData:",
-    productData.value.marketApplications
-  );
 
   getAllProducts();
 });

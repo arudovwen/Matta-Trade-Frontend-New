@@ -148,7 +148,7 @@ const filteredMarkets = computed(() => {
   );
 });
 function getMarketName(id) {
-  console.log("🚀 ~ file: MultiInput.vue:151 ~ getMarketName ~ id:", id);
+
   const result = props.markets.find((m) => m.id === id);
 
   return result.title;

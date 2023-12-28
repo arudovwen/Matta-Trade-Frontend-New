@@ -103,7 +103,7 @@ onMounted(() => {
   });
 });
 function handleSubmit(value) {
-  console.log(value);
+ 
   isOpen.value = false;
 }
 </script>
