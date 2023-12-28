@@ -5,46 +5,43 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  projectFolder: 'src'
+  nuxtProjectFolder: 'nuxt3'
   buildOutputFolder: 'dist'
 
-strategy:
-  matrix:
-    node_12_x:
-      node_version: 12.x
-    node_14_x:
-      node_version: 14.x
+jobs:
+- job: Build
+  displayName: 'Build Nuxt 3 App'
+  steps:
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: 'development'
+      Contents: '**'
+      TargetFolder: '$(Build.Repository.LocalPath)'
+      OverWrite: true
 
-steps:
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: 'development'
-    Contents: '**'
-    TargetFolder: '$(Build.Repository.LocalPath)'
-    OverWrite: true
+  - task: UseNode@1
+    inputs:
+      versionSpec: '14.x'
+      checkLatest: true
 
-- task: NodeTool@0
-  inputs:
-    versionSpec: $(node_version)
+  - script: |
+      pushd $(nuxtProjectFolder) && npm install && popd
+      pushd $(nuxtProjectFolder) && npm run build && popd
 
-- script: |
-    pushd $(projectFolder) && npm install && popd
-    pushd $(projectFolder) && npm run build && popd
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: '$(nuxtProjectFolder)/$(buildOutputFolder)'
+      contents: '**/*'
+      targetFolder: '$(Build.ArtifactStagingDirectory)'
+      cleanTargetFolder: true
 
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: '$(projectFolder)/$(buildOutputFolder)'
-    contents: '**/*'
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
-    cleanTargetFolder: true
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: $(Build.ArtifactStagingDirectory)
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      includeRootFolder: false
 
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: $(Build.ArtifactStagingDirectory)
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    includeRootFolder: false
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
