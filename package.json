@@ -2,8 +2,9 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
-  "scripts": {
-    "build": "nuxt build",
+  "scripts": {    
+    "build": "node_modules/nuxt/bin/nuxt.js build -c ./nuxt.config.js",
+    "start": "node_modules/nuxt/bin/nuxt.js start -c ./nuxt.config.js",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
