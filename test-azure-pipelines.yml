@@ -14,23 +14,23 @@ variables:
   projectFolder: '$(System.DefaultWorkingDirectory)'
   buildOutputFolder: 'dist'
 
-# define the steps of the build
-strategy:
-  matrix:
-    
-    node_18_x:
-      node_version: 18.x
-
 steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
 
-- task: UseNode@1 
-  inputs:
-    version: '18.x'
-## Run the npm install/build
 - script: |
-    pushd $(projectFolder) && npm install && popd
-    pushd $(projectFolder) && npm run build && popd
-## Copy the client to the staging directory
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'run build'
+
 
 
 
