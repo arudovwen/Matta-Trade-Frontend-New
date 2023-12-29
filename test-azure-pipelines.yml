@@ -11,7 +11,7 @@ pool:
 
 # define variables to use during the build
 variables:
-  projectFolder: 'nuxt3'
+  nuxtProjectFolder: 'nuxt3'
   buildOutputFolder: 'dist'
 
 # define the steps of the build
