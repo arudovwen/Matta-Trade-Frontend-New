@@ -9,44 +9,49 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+# define variables to use during the build
+variables:
+  projectFolder: 'nuxt3'
+  buildOutputFolder: 'dist'
+
+# define the steps of the build
+strategy:
+  matrix:   
+    node_18_x:
+      node_version: 18.x
+
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(nuxtProjectFolder)'
+    Contents: '**'
+    TargetFolder: '$(Build.Repository.LocalPath)'
+    OverWrite: true
+- task: NodeTool@0 
+  inputs:
+    versionSpec: $(node_version)
+## Run the npm install/build
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-- task: NodeTool@0
-  inputs:
-    versionSource: 'spec'
-    versionSpec: '18.x'
-
-- task: Npm@1
-  inputs:
-    command: 'install'
-
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'npm run build'
-
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
+    pushd $(projectFolder) && npm install && popd
+    pushd $(projectFolder) && npm run build && popd
+## Copy the client to the staging directory
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.ArtifactStagingDirectory)'
-    Contents: '$(Build.BuildId).zip'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)\ArtifactsToBePublished'
+    sourceFolder: '$(buildOutputFolder)' 
+    contents: '**/*' 
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+    cleanTargetFolder: true
 
+## Archive the files into a zip file for publishing
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: $(Build.ArtifactStagingDirectory)
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    includeRootFolder: false
+
+## Publish the zip file
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
