@@ -11,7 +11,7 @@ pool:
 
 # define variables to use during the build
 variables:
-  nuxtProjectFolder: 'src'
+  nuxtProjectFolder: '$(Build.ArtifactStagingDirectory)'
   buildOutputFolder: 'dist'
 
 # define the steps of the build
