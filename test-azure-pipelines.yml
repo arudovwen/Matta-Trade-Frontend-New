@@ -23,9 +23,8 @@ strategy:
 
 steps:
 
-- task: NodeTool@0 
-  inputs:
-    versionSpec: $(node_version)
+- task: UseNode@1 
+      
 ## Run the npm install/build
 - script: |
     pushd $(projectFolder) && npm install && popd
