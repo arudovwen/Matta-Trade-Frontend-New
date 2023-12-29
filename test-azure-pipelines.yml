@@ -9,49 +9,44 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-# define variables to use during the build
-variables:
-  nuxtProjectFolder: '$(Build.ArtifactStagingDirectory)'
-  buildOutputFolder: 'dist'
-
-# define the steps of the build
-strategy:
-  matrix:   
-    node_18_x:
-      node_version: 18.x
-
 steps:
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(nuxtProjectFolder)'
-    Contents: '**/*'
-    TargetFolder: '$(Build.Repository.LocalPath)'
-    OverWrite: true
-- task: NodeTool@0 
-  inputs:
-    versionSpec: $(node_version)
-## Run the npm install/build
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
 - script: |
-    pushd $(nuxtProjectFolder) && npm install && popd
-    pushd $(nuxtProjectFolder) && npm run build && popd
-## Copy the client to the staging directory
-
-- task: CopyFiles@2
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+- task: NodeTool@0
   inputs:
-    sourceFolder: '$(buildOutputFolder)' 
-    contents: '**/*' 
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
-    cleanTargetFolder: true
+    versionSource: 'spec'
+    versionSpec: '18.x'
 
-## Archive the files into a zip file for publishing
+- task: Npm@1
+  inputs:
+    command: 'install'
+
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'npm run build'
+
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: $(Build.ArtifactStagingDirectory)
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    includeRootFolder: false
+    replaceExistingArchive: true
 
-## Publish the zip file
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.ArtifactStagingDirectory)'
+    Contents: '$(Build.BuildId).zip'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)\ArtifactsToBePublished'
+
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
