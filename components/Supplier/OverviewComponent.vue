@@ -3,15 +3,15 @@
     <!-- Top bar   -->
     <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
       <div class="mb-12"><Breadcrumbs /></div>
-      <div class="grid lg:grid-cols-3 lg:justify-between lg:items-end">
+      <div class="">
         <h1
-          class="text-2xl md:text-[48px] md:leading-[56px] text-matta-black col-span-1 font-medium capitalize mb-4"
+          class="text-3xl md:text-[48px] md:leading-[56px] text-matta-black col-span-1 font-medium capitalize mb-8"
         >
           Overview
         </h1>
 
-        <div />
-        <div class="col-span-1 hidden sm:grid justify-end relative">
+       
+        <div class="flex justify-start lg:justify-end relative">
           <span class="flex items-center">
             <span
               class="rounded-lg bg-[#F1F3F5] flex gap-x-1 items-center px-3 mr-2 py-1"

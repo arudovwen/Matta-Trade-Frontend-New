@@ -666,8 +666,8 @@ function handleDelete(val) {
 function deleteAccount() {
   deleteaccount.then((res) => {
     if (res.status == 200) {
-      toast.info("Profile updated successfully");
-      localStorage.clear();
+      toast.info("Account deleted successfully");
+      store.logOut()
       window.location.href = "/";
     }
   });

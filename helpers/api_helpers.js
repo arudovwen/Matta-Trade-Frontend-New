@@ -16,8 +16,8 @@ axiosApi.interceptors.request.use((config) => {
   const authStore = useAuthStore();
   config.headers.Authorization = `Bearer ${authStore?.access_token}`;
   config.headers.Accept = "application/json";
-  return config
-})
+  return config;
+});
 // Define an async function to handle token refresh
 const handleTokenRefresh = async () => {
   const authStore = useAuthStore();
@@ -59,7 +59,7 @@ axiosApi.interceptors.response.use(
       } catch (refreshError) {
         // Handle refresh token failure, e.g., redirect to login
         toast.info("Your session has expired");
-        localStorage.clear();
+
         window.location.href = `/auth/login?info=session_expired&redirected_from=${window.location.href}`;
         return Promise.reject(refreshError);
       }

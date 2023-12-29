@@ -1,8 +1,10 @@
 <template>
-  <div class="flex flex-col gap-y-2 bg-[#E7EBEE] pb-2 h-screen">
+  <div class="flex flex-col gap-y-2 bg-[#E7EBEE] pb-2 h-screen overflow-hidden">
     <AppHeader />
     <div class="flex gap-x-4 flex-1 container">
-      <DashboardLayoutSideComponent />
+      <div class="hidden lg:inline-flex h-full">
+        <DashboardLayoutSideComponent />
+      </div>
 
       <div class="flex-1 h-full">
         <DashboardLayoutMainComponent />
@@ -14,17 +16,17 @@
 import { getCompanyProfile } from "~/services/settingservices";
 import { createcart, getcart } from "~/services/cartservice";
 
+const cookie = useCookie("cart");
 const authStore = useAuthStore();
 const cartStore = useCartStore();
-const localCart = JSON.parse(localStorage.getItem("cartItems"));
+const localCart = cookie?.value?.cartItems;
 const company = ref(null);
-const router = useRouter()
-onBeforeMount(()=>{
-  
-  if(!authStore.isLoggedIn){
-    router.push("/")
+const router = useRouter();
+onBeforeMount(() => {
+  if (!authStore.isLoggedIn) {
+    router.push("/");
   }
-})
+});
 
 onMounted(() => {
   getCompanyProfile().then((res) => {
@@ -40,7 +42,6 @@ onMounted(() => {
           const miniCart = [...new Set([...res.data.data.items, ...localCart])];
           createcart({ items: miniCart }).then((res) => {
             if (res.status === 200) {
-              localStorage.removeItem("cartItems");
               cartStore.getMyCart();
             }
           });
@@ -48,7 +49,7 @@ onMounted(() => {
       }
     });
   } else {
-    cartStore.setCart(JSON.parse(localStorage.getItem("cartItems")) || []);
+    cartStore.setCart(cookie?.value?.cartItems || []);
   }
 });
 provide("company", company);

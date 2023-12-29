@@ -29,23 +29,23 @@ import FolderImg from "~/assets/images/folder.svg";
 import LayerImg from "~/assets/images/layer.svg";
 const content = [
   {
-    title: "Product listings from various suppliers",
-    text: "Find products and suppliers from millions of global offerings for your business",
+    title: "Streamlined Sourcing Made Easy",
+    text: "Effortlessly connect with trusted suppliers for your chemical and raw material needs. Matta makes finding the right products simple and efficient",
     img: GridImg,
   },
   {
-    title: "Assured quality and transactions",
-    text: "Ensure production grade materials from verified suppliers, with your orders protected from payment to delivery.",
+    title: "Discover Diverse, Quality Selection",
+    text: "Access a wide array of top-quality chemicals and materials. Matta’s extensive product range meets diverse industrial demands with ease.",
     img: CheckImg,
   },
   {
-    title: "One-stop trading solution",
-    text: "Order products from suppliers seamlessly, from search to fulfillment.",
+    title: "Quality Meets Competitive Pricing",
+    text: "Experience superior quality at Matta's competitive prices. Our tailored approach ensures you get products of the highest quality at the best market rates.",
     img: FolderImg,
   },
   {
-    title: "Personalized trading experience",
-    text: "Get personalized benefits, such as free samples and dedicated support, tailored to your business needs.",
+    title: "Reliable Delivery, On Time Every Time",
+    text: "Count on Matta for prompt deliveries. We ensure your production process remains uninterrupted with our fast and consistent supply chain.",
     img: LayerImg,
   },
 ];

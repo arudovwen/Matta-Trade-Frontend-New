@@ -255,10 +255,10 @@ async function handleSubmit() {
   registerUser(form)
     .then((res) => {
       if (res.status === 200) {
-        localStorage.setItem(
-          type.value + "Info",
-          JSON.stringify(res.data.data)
-        );
+        // localStorage.setItem(
+        //   type.value + "Info",
+        //   JSON.stringify(res.data.data)
+        // );
         toast.info("Registration successful");
 
         window.location.href = `/auth/login?welcome=new_user&type=${type.value}&redirect_to=onboarding`;

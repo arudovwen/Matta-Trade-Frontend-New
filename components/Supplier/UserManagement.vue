@@ -337,7 +337,7 @@ function resendinvite(id) {
       }
     })
     .catch((error) => {
-      toast.info(error.response.data.Message);
+      toast.info(error?.response?.data?.Message);
     });
 }
 function openmodal(val, userdata = null) {

@@ -144,6 +144,15 @@
     :isOpen="isAuthOpen"
     @close="handleclose"
   />
+  <AddedToCart
+    v-if="isAdded"
+    :selectedPackage="mypackage.package"
+    @close="isAdded = false"
+    :totalAmount="mypackage?.amount"
+    :quantity="counter"
+    :name="productData.name"
+    :hidePrice="productData.hidePrice"
+  />
 </template>
 <script setup>
 import { useProductStore } from "~/stores/products";
@@ -156,7 +165,7 @@ const cartStore = useCartStore();
 const authStore = useAuthStore();
 const supplierStore = useSupplierStore();
 const { productData } = storeToRefs(store);
-
+const isAdded = ref(false);
 const route = useRoute();
 const router = useRouter();
 const selectedPackage = ref(null);
@@ -211,34 +220,39 @@ function handleRequest(type) {
 function toggleModal(val) {
   active.value = val;
 }
+const mypackage = computed(()=> JSON.parse(selectedPackage.value))
 const counter = ref(1);
 function handleCart(type) {
   if (!selectedPackage.value) {
     toast.info("Please choose a package");
     return;
   }
-  const mypackage = JSON.parse(selectedPackage.value);
+  
   let data = {
     id: 0,
-    packageId: mypackage?.package.id,
-    unit: mypackage?.unit,
+    packageId: mypackage?.value.package.id,
+    unit: mypackage?.value.unit,
     productId: productData?.value?.id,
     product: productData?.value.name,
     productImg: productData?.value?.featuredPhoto,
-    selectedPackage: mypackage?.package?.title,
-    selectedPackageData: mypackage,
+    selectedPackage: mypackage?.value.package?.title,
+    selectedPackageData: mypackage.value,
     productBrandName: productData?.value.productBrandName,
     supplierId: productData?.value.supplierId,
     producer: productData.value?.manufacturer,
     quantity: counter.value,
-    packagePrice: mypackage?.amount,
+    packagePrice: mypackage?.value.amount,
   };
+ 
   cartStore.addToCart(data, type).then((res) => {
     if (!res.status && res.message !== "buy") {
       toast.info("Already in your cart");
     }
-    if (res.status) {
-      toast.info("Added to your cart");
+    if (res.status && res.message !== "buy") {
+      isAdded.value = true;
+      setTimeout(() => {
+        isAdded.value = false;
+      }, 3000);
     }
     if (res.message === "buy") {
       router.push("/cart");

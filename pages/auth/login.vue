@@ -103,7 +103,7 @@ const { handleSubmit, defineField, errors } = useForm({
   validationSchema: schema,
   initialValues: formValues,
 });
-
+const authStore = useAuthStore();
 const [email, emailAtt] = defineField("email");
 const [password, passwordAtt] = defineField("password");
 const route = useRoute();
@@ -114,8 +114,8 @@ const onSubmit = handleSubmit((values) => {
   loginUser(values)
     .then((res) => {
       if (res.status === 200) {
-        localStorage.setItem("userInfo", JSON.stringify(res.data.data));
-
+      
+        authStore.setLoggedUser(res.data.data);
         if (
           !res.data.data.onboardingPageStatus &&
           res.data.data?.businessUserType.toLowerCase() === "supplier"

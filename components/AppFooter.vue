@@ -21,8 +21,8 @@
             data-aos="fade-up"
             data-aos-once="true"
           >
-            Matta is your one-stop online marketplace for raw materials ,
-            chemicals and supplies.
+            Discover and buy chemicals, raw materials, ingredients, and
+            commodities all in one place.
           </p>
           <div class="flex gap-x-6">
             <a
@@ -47,7 +47,9 @@
           data-aos-once="true"
         >
           <div v-for="n in navs" :key="n.subject">
-            <span class="text-base capitalize text-[#333] darks:text-white font-bold mb-3 block">
+            <span
+              class="text-base capitalize text-[#333] darks:text-white font-bold mb-3 block"
+            >
               {{ n.subject }}
             </span>
             <ul>
@@ -85,7 +87,9 @@
             <router-link to="/policy" class="text-sm md:text-sm"
               >Privacy policy</router-link
             >
-            <span class="bg-[#333] darks:text-white/80 w-[2px] h-[2px] rounded-full"></span>
+            <span
+              class="bg-[#333] darks:text-white/80 w-[2px] h-[2px] rounded-full"
+            ></span>
             <router-link to="/terms" class="text-sm md:text-sm"
               >Terms of use</router-link
             >
@@ -94,7 +98,7 @@
       </div>
     </div>
   </footer>
-  <ContactForm/>
+  <ContactForm />
 </template>
 
 <script setup>
@@ -114,12 +118,12 @@ const navs = [
         url: "https://corporate.matta.trade/",
       },
       {
-        title: "Corporate",
-        url: "https://corporate.matta.trade/",
+        title: "Newsletter",
+        url: "#",
       },
       {
         title: "Contact",
-        url: "https://corporate.matta.trade/",
+        url: "",
       },
     ],
   },
@@ -127,24 +131,28 @@ const navs = [
     subject: "services",
     links: [
       {
-        title: "Trade Financing",
+        title: "Buy chemicals",
+        url: "/market/all",
+      },
+      {
+        title: "Sell chemicals",
         url: "#",
       },
       {
-        title: "Cross-Boarder Payments",
+        title: "Logistics solutions",
+        url: "#",
+      },
+
+      {
+        title: "Financing solutions",
         url: "#",
       },
       {
-        title: "Suppply Finance",
-        url: "#",
-      },
-  
-      {
-        title: "Import Finance",
+        title: "Cross border payments",
         url: "#",
       },
       {
-        title: "Export Finance",
+        title: "Local fulfillment partnerships",
         url: "#",
       },
     ],
@@ -153,21 +161,16 @@ const navs = [
   {
     subject: "quick links",
     links: [
-  
       {
         title: "Request product",
         url: "/request-product",
       },
       {
         title: "Become a Verified Supplier",
-        url: "/vendor-register",
+        url: "/auth/vendor-register",
       },
       {
-        title: "Partnerships",
-        url: "#",
-      },
-      {
-        title: "Become an agent",
+        title: "Join agent network program",
         url: "#",
       },
     ],
@@ -189,7 +192,7 @@ const socials = [
   {
     title: "X",
     icon: "line-md:twitter-x-alt",
-    link: "https://twitter.com/matta_trade%60",
+    link: "https://twitter.com/matta_trade",
   },
   {
     title: "Instagram",

@@ -26,14 +26,14 @@
         <button
           @click="active = 'sample'"
           :class="active === 'sample' ? 'bg-matta-black text-white' : ''"
-          class="flex gap-x-2 items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-3 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
+          class="flex gap-x-2 items-center capitalize text-matta-black hover:text-white hover:bg-matta-black py-2 px-3 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
         >
           <i class="uil uil-temperature-empty hidden md:inline"></i>
           <span class="hidden md:inline">|</span>
           <span>samples</span
           ><span
             :class="active === 'sample' ? 'bg-white' : ''"
-            class="text-matta-black bg-gray-200 hover:bg-white rounded-full px-2 py-1 text-xs"
+            class="text-matta-black bg-gray-200 hover:bg-white rounded-full text-[11px] w-4 h-4 flex items-center justify-center"
             >{{ count?.samples || 0 }}</span
           >
         </button>
@@ -41,28 +41,28 @@
         <button
           @click="active = 'documents'"
           :class="active === 'documents' ? 'bg-matta-black text-white' : ''"
-          class="flex gap-x-2 items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
+          class="flex gap-x-2 items-center capitalize text-matta-black hover:text-white hover:bg-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
         >
           <i class="uil uil-file hidden md:inline"></i>
           <span class="hidden md:inline">|</span>
           <span>documents</span
           ><span
             :class="active === 'documents' ? 'bg-white' : ''"
-            class="text-matta-black bg-gray-200 hover:bg-white rounded-full px-2 py-1 text-xs"
+            class="text-matta-black bg-gray-200 hover:bg-white rounded-full text-[11px] w-4 h-4 flex items-center justify-center"
             >{{ count?.documents || 0 }}</span
           >
         </button>
         <button
           @click="active = 'quotes'"
           :class="active === 'quotes' ? 'bg-matta-black text-white' : ''"
-          class="flex gap-x-2 items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
+          class="flex gap-x-2 items-center capitalize text-matta-black hover:text-white hover:bg-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
         >
           <i class="uil uil-chat hidden md:inline"></i>
           <span class="hidden md:inline">|</span>
           <span>quotes</span
           ><span
             :class="active === 'documents' ? 'bg-white' : ''"
-            class="text-matta-black bg-gray-200 hover:bg-white rounded-full px-2 py-1 text-xs"
+            class="text-matta-black bg-gray-200 hover:bg-white rounded-full text-[11px] w-4 h-4 flex items-center justify-center"
             >{{ count?.quotes || 0 }}</span
           >
         </button>

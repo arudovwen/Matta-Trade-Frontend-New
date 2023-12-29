@@ -8,10 +8,10 @@
 </template>
 <script setup>
 import { createcart, getcart } from "~/services/cartservice";
-
+const cookie = useCookie("cart");
 const authStore = useAuthStore();
 const cartStore = useCartStore();
-const localCart = JSON.parse(localStorage.getItem("cartItems"));
+const localCart = [];
 onMounted(() => {
   if (authStore.isLoggedIn) {
     getcart().then((res) => {
@@ -22,7 +22,7 @@ onMounted(() => {
           const miniCart = [...new Set([...res.data.data.items, ...localCart])];
           createcart({ items: miniCart }).then(res=>{
             if(res.status === 200){
-              localStorage.removeItem("cartItems")
+              // localStorage.removeItem("cartItems")
               cartStore.getMyCart()
             }
           });
@@ -30,7 +30,7 @@ onMounted(() => {
       }
     });
   } else {
-    cartStore.setCart(JSON.parse(localStorage.getItem("cartItems")) || []);
+    cartStore.setCart?.(cookie?.value?.cartItems || []);
   }
 });
 </script>

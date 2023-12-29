@@ -1,13 +1,16 @@
 <template>
-  <div class="container mb-6 sm:mb-14">
+  <div class="container mb-6 sm:mb-10">
     <div
       data-aos="fade-up"
       data-aos-once="true"
-      class="h-[120px] sm:h-[206px] rounded-[10px] bg-gray-300 bg-cover bg-center"
-      :style="{ backgroundImage: `url('${imageSrc}')` }"
-    ></div>
+      class="rounded-[10px] "
+    >
+      <NuxtLink to="/market/products">
+        <img src="~/assets/images/ad.png" alt="" class="w-full  h-full object-contain rounded-[10px] bg-gray-300" />
+      </NuxtLink>
+    </div>
   </div>
 </template>
 <script setup>
-const imageSrc = "/images/board.png";
+const imageSrc = "";
 </script>
