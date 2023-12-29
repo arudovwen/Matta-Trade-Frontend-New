@@ -24,12 +24,15 @@ strategy:
 steps:
 
 - task: UseNode@1 
-      
+  inputs:
+    version: '18.x'
 ## Run the npm install/build
 - script: |
     pushd $(projectFolder) && npm install && popd
     pushd $(projectFolder) && npm run build && popd
 ## Copy the client to the staging directory
+
+
 
 - task: CopyFiles@2
   inputs:
