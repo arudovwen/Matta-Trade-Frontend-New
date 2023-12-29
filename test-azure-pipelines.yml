@@ -4,22 +4,22 @@
 # https://aka.ms/yaml
 
 trigger:
-- production
+- development
 
 pool:
   vmImage: ubuntu-latest
 
 # define variables to use during the build
 variables:
-  projectFolder: 'src'
+  projectFolder: '$(System.DefaultWorkingDirectory)'
   buildOutputFolder: 'dist'
 
 # define the steps of the build
 strategy:
   matrix:
     
-    node_14_x:
-      node_version: 14.x
+    node_18_x:
+      node_version: 18.x
 
 steps:
 
