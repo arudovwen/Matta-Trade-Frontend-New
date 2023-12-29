@@ -23,10 +23,12 @@ steps:
     versionSpec: '18.x'
 
 - task: Npm@1
+  displayName: Install Npm
   inputs:
     command: 'install'
 
 - task: Npm@1
+  displayName: 'Run npm build'
   inputs:
     command: 'custom'
     customCommand: 'npm run build'
