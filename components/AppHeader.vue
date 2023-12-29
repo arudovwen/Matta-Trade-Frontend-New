@@ -108,7 +108,7 @@
           </ul>
         </div>
         <div class="flex items-center gap-x-4 smd:gap-x-6 text-sm">
-          <span
+          <!-- <span
             :class="{
               'hidden md:flex': view.atTopOfPage,
               'hidden md:hidden': !view.atTopOfPage,
@@ -123,7 +123,7 @@
               class="w-5 h-auto"
             />
             NGN</span
-          >
+          > -->
           <!--   <span
             :class="{
               'md:flex ': view.atTopOfPage,
@@ -157,7 +157,7 @@
             <AppButton
               v-if="!authStore.isLoggedIn"
               link="/auth/vendor-register"
-              text="Become a Seller"
+              text="Become a Supplier"
               btnClass="!text-[12px] md:!text-sm text-white  !font-normal !px-[15px] !py-[6px] !normal-case bg-[#f90] flex"
             />
             <AppButton
@@ -242,141 +242,7 @@
           </div>
         </div>
       </div>
-      <!-- <div
-        :class="{
-          'md:flex': view.atTopOfPage,
-          hidden: !view.atTopOfPage,
-        }"
-        class="hidden justify-between items-center gap-x-10"
-      >
-        <ul class="lg:flex items-center gap-x-6 hidden">
-          <li
-            v-for="n in navigations"
-            :key="n.name"
-            class="flex gap-x-[6px] items-center text-sm border-b-2 border-transparent group hover:border-[#165EF0] pb-5"
-            :class="`${
-              currentRoute.name.toLowerCase() == n.name.toLowerCase()
-                ? 'border-[#165EF0]'
-                : ''
-            }`"
-          >
-            <Menu
-              as="div"
-              v-if="n.key === 'categories' || n.key === 'finance'"
-              class="relative inline-block text-left"
-            >
-              <MenuButton
-                class="flex gap-x-1 items-center group-hover:text-[#165EF0]"
-                ><AppIcon
-                  v-if="n.key === 'categories'"
-                  class="text-base"
-                  icon="tdesign:list"
-                />
-                {{ n.name }}</MenuButton
-              >
-              <transition
-                enter-active-class="transition duration-100 ease-out"
-                enter-from-class="transform scale-95 opacity-0"
-                enter-to-class="transform scale-100 opacity-100"
-                leave-active-class="transition duration-75 ease-in"
-                leave-from-class="transform scale-100 opacity-100"
-                leave-to-class="transform scale-95 opacity-0"
-              >
-                <MenuItems
-                  class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white darks:bg-gray-800 rounded-b-[10px] px-[30px] py-5 text-sm"
-                >
-                  <div
-                    class="px-1 py-1"
-                    v-for="n in n.key === 'categories'
-                      ? categories
-                      : financeMenu"
-                    :key="n.title"
-                  >
-                    <MenuItem v-slot="{ active }">
-                      <NuxtLink :to="n.url">
-                        <button
-                          :class="[
-                            'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px] gap-x-2 text-[#333] darks:text-white/90',
-                          ]"
-                        >
-                          <AppIcon v-if="n?.icon" :icon="n.icon" />
-                          {{ n.title }}
-                        </button>
-                      </NuxtLink>
-                    </MenuItem>
-                  </div>
-                </MenuItems>
-              </transition>
-            </Menu>
-            <NuxtLink :to="n.url" v-else>
-              <span class="cursor-pointer hover:text-[#165EF0]">
-                {{ n.name }}</span
-              >
-            </NuxtLink>
-          </li>
-        </ul>
-        <ul class="items-center gap-x-6 lg:hidden">
-          <li
-            v-for="n in mobileNavigation"
-            :key="n.name"
-            class="flex gap-x-[6px] items-center text-sm border-b-2 border-transparent hover:border-[#165EF0] pb-5"
-          >
-            <Menu
-              as="div"
-              v-if="n.key === 'categories'"
-              class="relative inline-block text-left"
-            >
-              <MenuButton class="flex gap-x-1 items-center"
-                ><AppIcon class="text-base" icon="tdesign:list" />
-                {{ n.name }}</MenuButton
-              >
-              <transition
-                enter-active-class="transition duration-100 ease-out"
-                enter-from-class="transform scale-95 opacity-0"
-                enter-to-class="transform scale-100 opacity-100"
-                leave-active-class="transition duration-75 ease-in"
-                leave-from-class="transform scale-100 opacity-100"
-                leave-to-class="transform scale-95 opacity-0"
-              >
-                <MenuItems
-                  class="z-[999] grid grid-cols-2 gap-x-9 absolute left-0 mt-[22px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] w-[650px] origin-top-right bg-white darks:bg-gray-800 rounded-b-[10px] px-[30px] py-5 text-sm"
-                >
-                  <div class="px-1 py-1" v-for="n in categories" :key="n.title">
-                    <MenuItem v-slot="{ active }">
-                      <button
-                        :class="[
-                          'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap min-w-[275px] gap-x-2',
-                        ]"
-                      >
-                        <AppIcon :icon="n.icon" /> {{ n.title }}
-                      </button>
-                    </MenuItem>
-                  </div>
-                </MenuItems>
-              </transition>
-            </Menu>
-          </li>
-        </ul>
-
-        <ul class="flex items-center gap-x-6 pb-5">
-          <li class="text-sm hidden md:inline-block">Help Center</li>
-          <li class="text-sm">
-            <span class="flex items-center gap-x-[6px] relative">
-              <span class="relative">
-                <AppIcon
-                  class="text-base text-[#333] darks:text-white/90"
-                  icon="fa6-solid:cart-shopping"
-                />
-                <span
-                  class="w-[14px] h-[14px] rounded-full bg-[#16F046] text-[8px] flex items-center justify-center absolute -top-[10px] -right-[6px]"
-                  >2</span
-                >
-              </span>
-              <span class="text-sm">Cart</span>
-            </span>
-          </li>
-        </ul>
-      </div> -->
+   
     </div>
   </nav>
 
@@ -400,6 +266,7 @@ const cartStore = useCartStore();
 const authStore = useAuthStore();
 const appStore = useApplicationStore();
 const store = useMarketStore();
+
 const router = useRouter();
 const { currentRoute } = router;
 const filteredMenu = computed(() =>
@@ -439,7 +306,13 @@ function handleDropDown(val) {
     return financeMenu;
   }
 }
+watch(currentRoute, () => {
+
+   open.value = false
+	
+})
 provide("open", open);
+
 </script>
 <style lang="scss">
 nav {

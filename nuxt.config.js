@@ -1,5 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  site: {
+    url: "https://matta.trade",
+  },
   modules: [
     "@nuxtjs/tailwindcss",
     "@vee-validate/nuxt",
@@ -7,18 +10,22 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "@pinia/nuxt",
     "nuxt-vue3-google-signin",
+    "nuxt-simple-sitemap",
+    "@pinia-plugin-persistedstate/nuxt",
+    "nuxt-swiper",
   ],
   runtimeConfig: {
     public: {
       API_BASE_URL: process.env.API_BASE_URL,
       APP_MONNIFYAPIKEY: process.env.APP_MONNIFYAPIKEY,
-      APP_MONNIFYCONTRACTCODE:process.env.APP_MONNIFYCONTRACTCODE,
-      APP_MONNIFYISTEST:process.env.APP_MONNIFYISTEST,
-      APP_MONNIFYISTESTMODE:process.env.APP_MONNIFYISTESTMODE,
+      APP_MONNIFYCONTRACTCODE: process.env.APP_MONNIFYCONTRACTCODE,
+      APP_MONNIFYISTEST: process.env.APP_MONNIFYISTEST,
+      APP_MONNIFYISTESTMODE: process.env.APP_MONNIFYISTESTMODE,
     },
   },
-  ssr: false,
-  plugins: [{ src: "~/plugins/vue-toastification-client.js" }],
+  ssr: true,
+  // plugins: [{ src: "~/plugins/vue-toastification.js" }],
+  transpile: ["vue-toastification"],
   // @ts-ignore
   googleSignIn: {
     clientId:
