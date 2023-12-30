@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { setupCache } from "axios-cache-interceptor";
 import { useAuthStore } from "~/stores/auth";
-import { toast } from 'vue3-toastify';
+import { toast } from "vue3-toastify";
 
 // const axios = setupCache(Axios);
 
@@ -57,10 +57,10 @@ axiosApi.interceptors.response.use(
         error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
         return axiosApi.request(error.config);
       } catch (refreshError) {
-    
+        const authStore = useAuthStore();
         // Handle refresh token failure, e.g., redirect to login
         // toast.info("Your session has expired");
-
+        authStore.logOut();
         window.location.href = `/auth/login?info=session_expired&redirected_from=${window.location.href}`;
         return Promise.reject(refreshError);
       }

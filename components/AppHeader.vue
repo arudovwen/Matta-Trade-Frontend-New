@@ -32,9 +32,10 @@
               <Menu
                 v-slot="{ open }"
                 as="div"
+               
                 class="relative inline-block text-left"
               >
-                <MenuButton
+                <MenuButton  :id="n.name"
                   class="flex gap-x-1 items-center group-hover:text-[#165EF0]"
                 >
                   {{ n.name }}

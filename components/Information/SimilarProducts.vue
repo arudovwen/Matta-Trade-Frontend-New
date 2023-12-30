@@ -35,7 +35,6 @@
 </template>
 
 <script setup>
-import "vue3-carousel/dist/carousel.css";
 import { Carousel as carousel, Slide } from "vue3-carousel";
 import { getProducts } from "~/services/productservices";
 import { onMounted, ref, reactive, inject } from "vue";
