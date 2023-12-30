@@ -12,7 +12,7 @@ pool:
 # define variables to use during the build
 variables:
   projectFolder: '$(System.DefaultWorkingDirectory)'
-  buildOutputFolder: 'dist'
+  buildOutputFolder: '.output/public'
 
 # define the steps of the build
 strategy:
@@ -28,8 +28,9 @@ steps:
 ## Run the npm install/build
 - script: |
     pushd $(projectFolder) && npm install && popd
+    pushd $(projectFolder) && npm run generate
 ##    pushd $(projectFolder) && npm install --save nuxt && popd
-##    pushd $(projectFolder) && npm run build && popd
+##     pushd $(projectFolder) && npm run build && popd
 ## Copy the client to the staging directory
 
 - task: CopyFiles@2
