@@ -23,18 +23,15 @@ strategy:
 
 steps:
 
-- task: NodeTool@0
-  inputs:
-    versionSource: 'spec'
-    versionSpec: '20.x'
 - task: UseNode@1 
   inputs:
     version: '20.x'
       
 ## Run the npm install/build
 - script: |
-    npm install
-    npm run build
+    pushd $(projectFolder) && npm install && popd
+    pushd $(projectFolder) && npm run build && popd
+    pushd $(projectFolder) && npm run generate
 ##    pushd $(projectFolder) && npm install && popd
 ##    pushd $(projectFolder) && npm run build && popd
 ##    pushd $(projectFolder) && npm run export
