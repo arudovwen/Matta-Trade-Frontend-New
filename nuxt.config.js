@@ -44,6 +44,7 @@ export default defineNuxtConfig({
     "~/assets/scss/_button.scss",
     "~/assets/scss/_form.scss",
     "vue-toastification/dist/index.css",
+    "vue3-carousel/dist/carousel.css",
     "~/assets/scss/style.scss",
   ],
   googleFonts: {

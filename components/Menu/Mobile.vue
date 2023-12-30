@@ -17,7 +17,7 @@
   >
     <AppIcon icon="pepicons-pencil:angle-left" class="text-base" /> Back
   </button>
-  <ul class="grid gap-y-5">
+  <ul class="grid gap-y-5 pb-10">
     <li
       v-for="cat in handleDropDown()"
       :key="cat.title"
