@@ -6,7 +6,7 @@ pool:
 
 variables:
   nuxtProjectFolder: 'nuxt3'
-  buildOutputFolder: 'dist'
+  buildOutputFolder: 'output/public'
 
 jobs:
 - job: Build
@@ -15,12 +15,12 @@ jobs:
  
   - task: UseNode@1
     inputs:
-      versionSpec: '14.x'
+      versionSpec: '18.x'
       checkLatest: true
 
   - script: |
       pushd $(nuxtProjectFolder) && npm install && popd
-      pushd $(nuxtProjectFolder) && npm run build && popd
+      pushd $(nuxtProjectFolder) && npm run generate && popd
 
   - task: CopyFiles@2
     inputs:
