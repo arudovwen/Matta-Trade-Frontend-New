@@ -28,6 +28,8 @@ steps:
     versionSource: 'spec'
     versionSpec: '20.x'
 - task: UseNode@1 
+  inputs:
+    version: '20.x'
       
 ## Run the npm install/build
 - script: |
