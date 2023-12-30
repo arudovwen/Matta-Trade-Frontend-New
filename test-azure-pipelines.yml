@@ -27,8 +27,10 @@ steps:
       
 ## Run the npm install/build
 - script: |
-    pushd $(projectFolder) && npm install && popd
-    pushd $(projectFolder) && npm run build && popd
+    npm install
+    npm run build
+##    pushd $(projectFolder) && npm install && popd
+##    pushd $(projectFolder) && npm run build && popd
 ##    pushd $(projectFolder) && npm run export
 ##pushd $(projectFolder) && npm install --save nuxt && popd
 
