@@ -18,8 +18,8 @@ variables:
 strategy:
   matrix:
     
-    node_18_x:
-      node_version: 18.x
+    node_20_x:
+      node_version: 20.x
 
 steps:
 
