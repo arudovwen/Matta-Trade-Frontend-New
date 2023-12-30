@@ -767,7 +767,7 @@ import {
   integer,
   or,
 } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import {
   updateProduct,
   addProduct,
@@ -788,7 +788,7 @@ import { uploadfile } from "~/services/onboardingservices";
 
 const route = useRoute();
 const router = useRouter();
-const toast = useToast();
+
 const queryParams = reactive({
   Search: "",
   PageSize: 10,

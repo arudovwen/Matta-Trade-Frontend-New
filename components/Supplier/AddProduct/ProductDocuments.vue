@@ -216,10 +216,10 @@ import Uploader from "~/components/UploadComponent";
 import Modal from "~/components/IndexModal";
 import { updateDocuments } from "~/services/productservices";
 import { useRouter } from "vue-router";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 const router = useRouter();
-const toast = useToast();
+
 const category = ref("");
 const isAdding = ref(false);
 const index = ref(null);

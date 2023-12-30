@@ -6,7 +6,7 @@
   
   </template>
 <script setup>
-definePageMeta({
+useHead({
   title: "Request product | Matta"
 })</script>
   <style lang=""></style>

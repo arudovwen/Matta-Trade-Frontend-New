@@ -535,6 +535,6 @@
   }
   </style>
 <script setup>
-definePageMeta({
+useHead({
   title: "Privacy policies | Matta"
 })</script>

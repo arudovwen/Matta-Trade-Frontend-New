@@ -131,16 +131,17 @@
 <script setup>
 definePageMeta({
   layout: "auth",
-  title: "Register | Matta"
+});
+useHead({
+  title: "Register | Matta",
 });
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { registerUser } from "~/services/authservices";
-import "vue-toastification/dist/index.css";
 
 const agree = ref(false);
-const toast = useToast();
+
 const isLoading = ref(false);
 const formValues = {
   email: "",
@@ -159,10 +160,8 @@ const schema = yup.object({
     .email("Please enter a valid email address"),
   firstName: yup.string().required("First name is required"),
   lastName: yup.string().required("Last name is required"),
-  phone: yup
-    .string()
-    .required("Phone number is required"),
-   
+  phone: yup.string().required("Phone number is required"),
+
   password: yup
     .string()
     .required("Password is required")
@@ -194,10 +193,12 @@ const router = useRouter();
 
 const onSubmit = handleSubmit((values) => {
   isLoading.value = true;
-  registerUser({...values, business_UserType: 0})
+  registerUser({ ...values, business_UserType: 0 })
     .then((res) => {
       if (res.status === 200) {
-        toast.info("Sign up successful, Complete registration via link sent to your email");
+        toast.info(
+          "Sign up successful, Complete registration via link sent to your email"
+        );
         router.push("/auth/login");
       }
     })

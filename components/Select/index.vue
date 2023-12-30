@@ -15,7 +15,7 @@
     <div class="relative flex items-center">
       <select
         :name="name"
-        :class="`${classInput} input-control block w-full focus:outline-none min-h-[40px] appearance-none pointer-events-none`"
+        :class="`${classInput} input-control block w-full focus:outline-none min-h-[40px] appearance-none`"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         :error="error"

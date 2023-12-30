@@ -1,10 +1,10 @@
 import Axios from "axios";
 import { setupCache } from "axios-cache-interceptor";
-import { useToast } from "vue-toastification";
 import { useAuthStore } from "~/stores/auth";
+import { toast } from 'vue3-toastify';
 
 // const axios = setupCache(Axios);
-const toast = useToast();
+
 const API_URL = "https://dev.gateway.matta.trade/api/";
 
 const axiosApi = Axios.create({
@@ -16,8 +16,8 @@ axiosApi.interceptors.request.use((config) => {
   const authStore = useAuthStore();
   config.headers.Authorization = `Bearer ${authStore?.access_token}`;
   config.headers.Accept = "application/json";
-  return config
-})
+  return config;
+});
 // Define an async function to handle token refresh
 const handleTokenRefresh = async () => {
   const authStore = useAuthStore();
@@ -57,9 +57,10 @@ axiosApi.interceptors.response.use(
         error.config.headers["Authorization"] = `Bearer ${newAccessToken}`;
         return axiosApi.request(error.config);
       } catch (refreshError) {
+    
         // Handle refresh token failure, e.g., redirect to login
-        toast.info("Your session has expired");
-        localStorage.clear();
+        // toast.info("Your session has expired");
+
         window.location.href = `/auth/login?info=session_expired&redirected_from=${window.location.href}`;
         return Promise.reject(refreshError);
       }

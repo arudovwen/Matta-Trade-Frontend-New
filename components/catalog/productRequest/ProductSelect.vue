@@ -150,7 +150,7 @@ const markets = ref([]);
 const request1$ = inject("request1$");
 const sampleForm = inject("sampleForm");
 function onGetMarket(data) {
-  console.log(data);
+
   sampleForm.market = data.id;
 }
 

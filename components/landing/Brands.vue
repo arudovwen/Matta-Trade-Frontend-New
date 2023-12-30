@@ -5,10 +5,11 @@
       data-aos-once="true"
       class="text-xl font-semibold mb-10 text-center darks:text-white/80"
     >
-      Supplies from brands you can trust
+    Trusted by Leading Global Customers & Suppliers
+
     </h2>
 
-    <div class="grid grid-cols-3 lg:grid-cols-6 gap-6 justify-between items-center grayscale">
+    <div class="grid grid-cols-3 lg:grid-cols-6 gap-6 justify-between items-center">
       <img
         data-aos="fade-up"
         data-aos-once="true"
@@ -24,11 +25,11 @@
 </template>
 
 <script setup>
-import Brand1 from "~/assets/images/brand1.svg";
-import Brand2 from "~/assets/images/brand2.svg";
-import Brand3 from "~/assets/images/brand3.svg";
-import Brand4 from "~/assets/images/brand4.svg";
-import Brand5 from "~/assets/images/brand5.svg";
-import Brand6 from "~/assets/images/brand6.svg";
+import Brand1 from "~/assets/images/coke.png";
+import Brand2 from "~/assets/images/cormart.png";
+import Brand3 from "~/assets/images/honywell.png";
+import Brand4 from "~/assets/images/basf.png";
+import Brand5 from "~/assets/images/liquide.png";
+import Brand6 from "~/assets/images/cargill.svg";
 const brands = [Brand1, Brand2, Brand3, Brand4, Brand5, Brand6];
 </script>

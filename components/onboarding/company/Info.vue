@@ -577,7 +577,7 @@ import {
   numeric,
   minLength,
 } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import {
   additionalInfo,
   uploadfile,
@@ -597,7 +597,7 @@ const image = ref(null);
 const coordinate = ref(null);
 const cropper = ref(null);
 
-const toast = useToast();
+
 
 const form = reactive({
   companyName: "",
@@ -659,7 +659,7 @@ function addsocial() {
   });
 }
 onMounted(() => {
-  form.companyName =authStore.userInfo.companyName;
+  form.companyName =authStore.userInfo?.companyName;
   getCompanyProfile().then((res) => {
     form.photo = image.value = res.data.data.photo;
     form.companyType = res.data.data.companyType;

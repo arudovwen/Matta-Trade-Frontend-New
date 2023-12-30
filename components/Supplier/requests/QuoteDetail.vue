@@ -118,10 +118,10 @@ import { uploaddocument } from "~/services/onboardingservices";
 import { uploaddoc } from "~/services/quoteservice";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 const quote = inject("quote");
-const toast = useToast();
+
 const isUploading = ref(false);
 const form = reactive({
   sampleRequestId: quote?.value?.id,

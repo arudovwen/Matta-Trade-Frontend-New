@@ -250,9 +250,9 @@ import { uploaddocument } from "~/services/onboardingservices";
 import { uploaddoc } from "~/services/requestservice";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
-const toast = useToast();
+
 
 // eslint-disable-next-line no-unused-vars
 const stage = ref(1);

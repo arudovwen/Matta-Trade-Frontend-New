@@ -1,16 +1,14 @@
 import urls from "../helpers/url_helpers";
 import { post, get } from "../helpers/api_helpers";
-import store from "../store";
-// import { googleLogout } from "vue3-google-login";
+
 //Authentication
 export async function loginUser(user, config = {}) {
   return await post(urls.LOGIN_USER, user, config);
 }
 export async function logOut() {
+  const authStore = useAuthStore();
   // googleLogout();
-;
-  localStorage.removeItem("userInfo");
-  window.location.href = "/";
+  authStore.logOut();
 }
 export async function registerUser(user, config = {}) {
   return await post(urls.REGISTER, user, config);

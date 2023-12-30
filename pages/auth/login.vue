@@ -72,16 +72,21 @@
 <script setup>
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
+
 import { loginUser, sociallogin } from "~/services/authservices";
-import "vue-toastification/dist/index.css";
+
 import { GoogleSignInButton } from "vue3-google-signin";
 
 definePageMeta({
   layout: "auth",
-  title: "Login | Matta"
 });
-const toast = useToast();
+useHead({
+  title: "Login | Matta",
+  meta: [{ name: "description", content: "Login | Matta" }],
+});
+
+
 const isLoading = ref(false);
 const formValues = {
   email: "",
@@ -100,7 +105,7 @@ const { handleSubmit, defineField, errors } = useForm({
   validationSchema: schema,
   initialValues: formValues,
 });
-
+const authStore = useAuthStore();
 const [email, emailAtt] = defineField("email");
 const [password, passwordAtt] = defineField("password");
 const route = useRoute();
@@ -110,10 +115,9 @@ const onSubmit = handleSubmit((values) => {
   isLoading.value = true;
   loginUser(values)
     .then((res) => {
-    
       if (res.status === 200) {
-        localStorage.setItem("userInfo", JSON.stringify(res.data.data));
-
+      
+        authStore.setLoggedUser(res.data.data);
         if (
           !res.data.data.onboardingPageStatus &&
           res.data.data?.businessUserType.toLowerCase() === "supplier"
@@ -148,20 +152,18 @@ const onSubmit = handleSubmit((values) => {
 });
 
 const handleLoginSuccess = (response) => {
-
   const { access_token } = response;
   let data = {
     provider: "GOOGLE",
     idToken: access_token,
     business_UserType: 0,
   };
-  console.log("🚀 ~ file: LoginView.vue:166 ~ callback ~ data:", data);
 
   sociallogin(data)
     .then((res) => {
       if (res.status === 200) {
         store.commit("setUser", res.data.data);
-        toast.info(res.data.message ? res.data.message : "Login successful");
+        toast.success(res.data.message ? res.data.message : "Login successful");
         if (res.data.message.includes("Email has not verified yet")) {
           return;
         }

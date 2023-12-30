@@ -24,7 +24,7 @@
                 autocomplete="off"
                 autofocus="on"
                 placeholder="team@pharmazell.com"
-                :value="store.userInfo.email"
+                :value="store.userInfo?.email"
                 readonly
                 disabled
               />

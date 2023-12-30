@@ -31,8 +31,7 @@
   
   <script setup>
   const error = useError();
-  console.log("🚀 ~ file: error.vue:32 ~ error:", error)
-  
+
   const handleError = () => {
     clearError({
       redirect: '/',

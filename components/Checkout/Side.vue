@@ -4,7 +4,7 @@
   >
     <div class="font-semibold text-2xl text-white pb-6">Order Details</div>
     <div class="flex flex-col gap-y-5">
-      <div class="flex justify-between" v-for="item in cartStore.cart">
+      <div class="flex justify-between" v-for="item in cartStore?.cart">
         <div>
           <p class="font-semibold text-sm text-white mb-[2px]">
             {{ item.product }}
@@ -24,14 +24,14 @@
         <p class="text-sm text-[#E1E1E1]">Sub-total</p>
 
         <p class="text-white font-medium text-sm">
-          {{ currencyFormat(cartStore.cartTotalAmount) }}
+          {{ currencyFormat(cartStore?.cartTotalAmount) }}
         </p>
       </div>
       <div class="flex justify-between">
         <p class="text-sm text-[#E1E1E1]">Tax (7.5%)</p>
 
         <p class="text-white text-sm font-medium">
-          {{ currencyFormat(cartStore.cartTotalAmount * cartStore.tax) }}
+          {{ currencyFormat(cartStore?.cartTotalAmount * cartStore?.tax) }}
         </p>
       </div>
       <div class="flex justify-between">
@@ -47,8 +47,8 @@
       <p class="text-white font-bold">
         {{
           currencyFormat(
-            cartStore.cartTotalAmount * cartStore.tax +
-              cartStore.cartTotalAmount
+            cartStore?.cartTotalAmount * cartStore?.tax +
+              cartStore?.cartTotalAmount
           )
         }}
       </p>
@@ -56,7 +56,7 @@
     <AppButton
       :isLoading="loading"
       @click="confirmOrder"
-      :isDisabled="!cartStore.cart || !cartStore.cartTotalAmount || loading"
+      :isDisabled="!cartStore?.cart || !cartStore?.cartTotalAmount || loading"
       :text="status"
       btnClass="bg-primary-500  w-full text-white !px-4 !sm:px-6 !py-[13px] text-xs sm:text-sm mb-4"
     />
@@ -68,18 +68,18 @@
   </div>
 </template>
 <script setup>
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { confirmpurchase } from "~/services/cartservice";
 
 const cartTaxAmount = computed(
-  () => cartStore.cartTotalAmount * cartStore.tax + cartStore.cartTotalAmount
+  () => cartStore?.cartTotalAmount * cartStore?.tax + cartStore?.cartTotalAmount
 );
 const shippingStore = useShippingStore();
 const authstore = useAuthStore();
 const loading = ref(false);
 const cartStore = useCartStore();
 const router = useRouter();
-const toast = useToast();
+
 const data = ref(null);
 const status = ref("Confirm order");
 function onModalClose() {
@@ -91,10 +91,10 @@ function confirmOrder() {
   loading.value = true;
   data.value = {
     shippingAddressId: shippingStore?.defaultAddress.id,
-    email: authstore.userInfo.email,
-    name: `${authstore.userInfo.firstName} ${authstore.userInfo.lastName}`,
+    email: authstore.userInfo?.email,
+    name: `${authstore.userInfo?.firstName} ${authstore.userInfo?.lastName}`,
     amount: cartTaxAmount.value,
-    phoneNumber: authstore.userInfo.phoneNumber,
+    phoneNumber: authstore.userInfo?.phoneNumber,
   };
 
   payWithMonnify(data.value, onModalClose, onSuccess);
@@ -103,7 +103,7 @@ function onSuccess() {
   confirmpurchase({ shippingAddressId: data.value.shippingAddressId }).then(
     (res) => {
       if (res.status === 200) {
-        cartStore.clearCart;
+        cartStore?.clearCart;
         window.location.href = "/order-success";
         // window.location.href = `/transaction/successful?trx_ref=${response.transactionReference}`;
         // Payment complete! Reference: transaction.reference

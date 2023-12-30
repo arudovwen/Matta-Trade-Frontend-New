@@ -122,7 +122,7 @@ function handleClose() {
 function getData() {
   getBeneficiaries(queryParams).then((res) => {
     if (res.status === 200) {
-      console.log(res.data.data.data);
+   
       if (res.data.data.data.length) {
         isEmpty.value = false;
         tdata.value = res.data.data.data;

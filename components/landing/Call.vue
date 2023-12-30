@@ -48,17 +48,19 @@
           <p
             data-aos="fade-up"
             data-aos-once="true"
-            class="font-medium text-[#fff] text-base lg:text-xl mb-9"
+            class="font-medium text-[#fff] text-base lg:text-xl mb-9 max-w-[700px] mx-auto"
           >
-            Sell your chemicals, raw materials and finished goods easily on
-            Matta.
+            Effortlessly source your chemicals, raw materials, ingredients, and
+            commodities on our platform.
           </p>
-          <AppButton
-            data-aos="fade-up"
-            data-aos-once="true"
-            text="Start selling on Matta"
-            btnClass="bg-white text-[#333] !px-10 !py-[10px] !normal-case !font-medium"
-          />
+          <NuxtLink to="/auth/register">
+            <AppButton
+              data-aos="fade-up"
+              data-aos-once="true"
+              text="Begin Your Journey with Matta"
+              btnClass="bg-white text-[#333] !px-10 !py-[10px] !normal-case !font-medium"
+            />
+          </NuxtLink>
         </div>
       </div>
     </div>

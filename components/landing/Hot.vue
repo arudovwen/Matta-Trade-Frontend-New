@@ -77,7 +77,7 @@ function getAllProducts() {
   getProductsByTag({ PageNumber: 1, PageSize: 8, tag: props.tag })
     .then((res) => {
       if (res.status === 200) {
-        console.log("🚀 ~ file: Hot.vue:94 ~ .then ~ res:", res.data);
+   
         content.value = res.data.data.data;
       }
     })

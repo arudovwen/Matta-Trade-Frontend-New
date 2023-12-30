@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="p-8 rounded-lg bg-white">
-      <div class="flex gap-x-4 mb-8">
+      <div class="flex gap-x-4 mb-8 max-w-[300px] sm:max-w-max overflow-x-auto">
         <button
           @click="active = 'sample'"
           :class="active === 'sample' ? 'bg-matta-black text-white' : ''"

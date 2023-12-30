@@ -1,5 +1,5 @@
 <template>
-  <aside class="flex flex-col gap-y-2 min-w-[340px] pb-4">
+  <aside class="flex flex-col gap-y-2 min-w-[340px] pb-4 h-full">
     <div
       class="bg-white py-6 px-8 rounded-lg flex items-center gap-x-4"
       v-if="company"
@@ -24,7 +24,7 @@
           v-if="company.state && company.country"
         >
           <AppIcon icon="fa-solid:map-marker-alt" />
-          <span class="max-w-max truncate">{{ `${company.state} ${company.country}` }}</span>
+          <span class="max-w-max truncate">{{ `${company.state}, ${company.country}.` }}</span>
         </p>
         <p class="font-normal text-sm text-matta-black capitalize flex gap-x-1 items-center" v-else>
           <AppIcon icon="fa-solid:map-marker-alt" />
@@ -32,19 +32,19 @@
         </p>
       </div>
     </div>
-    <nav class="bg-white py-6 px-8 rounded-lg max-h-[80vh] overflow-y-auto">
+    <nav class="bg-white py-6 px-8 rounded-lg flex-1 max-h-[75%] overflow-y-auto">
       <ul>
         <li v-for="n in navigation" :key="n.title">
           <div
             v-if="
               n.role.includes(userType?.toLowerCase()) &&
-              n.accountType.includes(authstore.userInfo.accountType) &&
-              n.allowed.includes(authstore.userInfo.roles[0])
+              n.accountType.includes(authstore.userInfo?.accountType) &&
+              n.allowed.includes(authstore.userInfo?.roles[0])
             "
             class="py-4"
           >
             <span class="flex justify-between items-center py-1"
-              ><h5 class="text-base text-matta-black font-medium">
+              ><h5 class="text-base text-matta-black font-semibold">
                 {{ n.title }}
               </h5>
               <span

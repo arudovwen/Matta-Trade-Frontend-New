@@ -160,7 +160,7 @@
 <script setup>
 import "vue-advanced-cropper/dist/style.css";
 import { ref, reactive, onMounted } from "vue";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { useStore } from "vuex";
 import { inviteUsers } from "@/services/onboardingservices";
 import {
@@ -173,7 +173,7 @@ import {
 import { CheckIcon, ChevronDownIcon } from "@heroicons/vue/24/solid";
 import { getRoles } from "@/services/userservices";
 
-const toast = useToast();
+
 const store = useStore();
 const form = reactive({
   sendersEmail: store.getters.loggedUser.email,

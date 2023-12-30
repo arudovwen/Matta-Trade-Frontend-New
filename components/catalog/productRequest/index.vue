@@ -246,10 +246,10 @@ import {
   sameAs,
   helpers,
 } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 const isComplete = ref(false);
-const toast = useToast();
+
 const store = useStore();
 
 const form = reactive({

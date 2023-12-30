@@ -9,7 +9,8 @@
           data-aos-once="true"
           class="max-w-[633px] text-[#222] darks:text-white text-3xl xl:text-[49px] font-bold leading-[44.6px] xl:leading-[67.6px]"
         >
-          Explore our wide range of offerings tailored to your business needs
+        Explore our wide range of solutions, designed for your specific business needs
+
         </h1>
 
         <div class="grid grid-cols-2 gap-5 md:min-w-[300px]">
@@ -66,20 +67,20 @@ import { useMarketStore } from "~/stores/markets";
 const store = useMarketStore();
 const content = [
   {
-    title: "200M+",
+    title: "1000+",
     text: "Products",
   },
   {
-    title: "200K+",
+    title: "200+",
     text: "Suppliers",
   },
   {
-    title: "5,900",
+    title: "16",
     text: "Product categories",
   },
   {
-    title: "200+",
-    text: "Countries and regions",
+    title: "5",
+    text: "Countries served",
   },
 ];
 

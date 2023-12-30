@@ -164,7 +164,7 @@
 <script setup>
 import "vue-advanced-cropper/dist/style.css";
 import { ref, reactive, defineEmits, inject } from "vue";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { useStore } from "vuex";
 import {
   Listbox,
@@ -176,7 +176,7 @@ import {
 import { CheckIcon, ChevronDownIcon } from "@heroicons/vue/24/solid";
 const emits = defineEmits(["toggleBar"]);
 const store = useStore();
-const toast = useToast();
+
 const roles = inject("roles");
 const updateData = inject("updateData");
 const form = reactive({

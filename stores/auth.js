@@ -1,51 +1,72 @@
 import { defineStore } from "pinia";
 
-export const useAuthStore = defineStore("auth", () => {
-  const loggedUser = ref(JSON.parse(localStorage.getItem("userInfo")));
+export const useAuthStore = defineStore(
+  "auth",
+  () => {
+    const cookie = useCookie("auth");
+    const loggedUser = ref("");
 
-  const isLoggedIn = computed(() => !!loggedUser.value);
-  const refresh_token = computed(() => loggedUser.value?.jwToken);
-  const access_token = computed(() => loggedUser.value?.jwToken);
-  const roles = computed(() => loggedUser.value?.roles);
-  const userId = computed(() => loggedUser.value?.id);
-  const userType = computed(() => loggedUser.value?.businessUserType);
-  const userInfo = computed(() => loggedUser.value);
+    const isLoggedIn = computed(() => !!cookie.value?.loggedUser);
+    const refresh_token = computed(() => cookie.value?.loggedUser?.jwToken);
+    const access_token = computed(() => cookie.value?.loggedUser?.jwToken);
+    const roles = computed(() => cookie.value?.loggedUser?.roles);
+    const userId = computed(() => cookie.value?.loggedUser?.id);
+    const userType = computed(() => cookie.value?.loggedUser?.businessUserType);
+    const userInfo = computed(() => cookie.value?.loggedUser);
 
-  function setAccessToken(value) {
-    let userInfo = { ...loggedUser.value, access_token: value };
-    localStorage.setItem("userInfo", JSON.stringify(userInfo));
-  }
-  function setRefreshToken(value) {
-    let userInfo = { ...loggedUser.value, refresh_token: value };
-    localStorage.setItem("userInfo", JSON.stringify(userInfo));
-  }
-  function updateUser(value) {
-    let userInfo = { ...loggedUser.value, fullName: value };
+    function setLoggedUser(data) {
+      loggedUser.value = data;
+    }
 
-    localStorage.setItem("userInfo", JSON.stringify(userInfo));
-  }
-  function updateAccountType(value) {
-    let userInfo = { ...loggedUser.value, accountType: value };
+    function setAccessToken(value) {
+      let userInfo = { ...cookie.value?.loggedUser, access_token: value };
+      setLoggedUser(userInfo);
+    }
+    function setRefreshToken(value) {
+      let userInfo = { ...cookie.value?.loggedUser, refresh_token: value };
+      setLoggedUser(userInfo);
+    }
+    function updateUser(value) {
+      let userInfo = { ...cookie.value?.loggedUser, fullName: value };
+      setLoggedUser(userInfo);
+    }
+    function updateAccountType(value) {
+      let userInfo = { ...cookie.value?.loggedUser, accountType: value };
 
-    localStorage.setItem("userInfo", JSON.stringify(userInfo));
-  }
-  function updateUserInfo(data) {
-    let userInfo = { ...loggedUser.value, ...data };
+      setLoggedUser(userInfo);
+    }
+    function updateUserInfo(data) {
+      let userInfo = { ...cookie.value?.loggedUser, ...data };
+      setLoggedUser(userInfo);
+    }
 
-    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    const logOut = () => {
+      cookie.value = "";
+      window.location.href = "/";
+    };
+    return {
+      updateUser,
+      isLoggedIn,
+      refresh_token,
+      access_token,
+      roles,
+      userId,
+      userType,
+      userInfo,
+      setRefreshToken,
+      setAccessToken,
+      updateAccountType,
+      updateUserInfo,
+      setLoggedUser,
+      logOut,
+      loggedUser,
+    };
+  },
+  {
+    persist: {
+      storage: persistedState.cookiesWithOptions({
+        sameSite: "strict",
+      }),
+    },
   }
-  return {
-    updateUser,
-    isLoggedIn,
-    refresh_token,
-    access_token,
-    roles,
-    userId,
-    userType,
-    userInfo,
-    setRefreshToken,
-    setAccessToken,
-    updateAccountType,
-    updateUserInfo,
-  };
-});
+);

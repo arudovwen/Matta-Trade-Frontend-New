@@ -162,7 +162,7 @@ export const mobileMenu = [
     name: "Saved items",
     key: "saved-items",
     icon: "ri:heart-fill",
-    url: "/account/saved-items",
+    url: "/account/saved-searches",
   },
   {
     name: "Storefront",

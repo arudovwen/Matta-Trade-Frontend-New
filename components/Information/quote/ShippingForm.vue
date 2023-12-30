@@ -151,12 +151,12 @@
 <script setup>
 import useVuelidate from "@vuelidate/core";
 import { required, maxLength } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { addshipping } from "~/services/cartservice";
 
 const togglePopup = inject("togglePopup");
 const handleReload = inject("handleReload");
-const toast = useToast();
+
 const form = reactive({
   firstName: "",
   lastName: "",

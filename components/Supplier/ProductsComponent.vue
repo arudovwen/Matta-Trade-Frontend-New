@@ -28,26 +28,26 @@
         <button
           @click="switchType('')"
           :class="queryParams.Status == '' && 'text-white bg-matta-black'"
-          class="flex gap-x-2 items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-3 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-xs shadow-sm"
+          class="flex gap-x-2 items-center capitalize text-matta-black hover:text-white hover:bg-matta-black py-2 px-3 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-xs shadow-sm"
         >
           <AppIcon icon="uil-box" class="uil hidden md:inline" />
           <span class="hidden md:inline">|</span>
           <span>published</span
           ><span
-            class="text-matta-black bg-gray-200 hover:bg-white rounded-full px-2 py-1 text-xs flex items-center justify-center leading-[normal]"
+            class="text-matta-black bg-gray-200 hover:bg-white rounded-full  flex items-center justify-center  text-[11px] w-4 h-4"
             >{{ counts.published }}</span
           >
         </button>
         <button
           :class="queryParams.Status == 'hidden' && 'text-white bg-matta-black'"
           @click="switchType('hidden')"
-          class="flex gap-x-2 items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-3 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-xs shadow-sm"
+          class="flex gap-x-2 items-center capitalize text-matta-black hover:text-white hover:bg-matta-black py-2 px-3 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-xs shadow-sm"
         >
           <AppIcon icon="uil-eye-slash" class="uil hidden md:inline"></AppIcon>
           <span class="hidden md:inline">|</span>
           <span>hidden </span
           ><span
-            class="text-matta-black bg-gray-200 hover:bg-white rounded-full px-2 py-1 text-xs flex items-center justify-center leading-[normal]"
+            class="text-matta-black bg-gray-200 hover:bg-white rounded-full   flex items-center justify-center  text-[11px] w-4 h-4"
             >{{ counts.hidden }}</span
           >
         </button>
@@ -56,13 +56,13 @@
             queryParams.Status == 'archive' && 'text-white bg-matta-black'
           "
           @click="switchType('archive')"
-          class="flex gap-x-2 items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-xs shadow-sm"
+          class="flex gap-x-2 items-center capitalize text-matta-black hover:text-white hover:bg-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-xs shadow-sm"
         >
           <AppIcon icon="uil-folder" class="uil hidden md:inline"></AppIcon>
           <span class="hidden md:inline">|</span>
           <span>archived</span
           ><span
-            class="text-matta-black bg-gray-200 hover:bg-white rounded-full px-2 py-1 text-xs flex items-center justify-center leading-[normal]"
+            class="text-matta-black bg-gray-200 hover:bg-white rounded-full  text-[11px] w-4 h-4 flex items-center justify-center "
             >{{ counts.archived }}</span
           >
         </button>
@@ -324,7 +324,7 @@ import {
 import moment from "moment";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import debounce from "lodash/debounce";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 const queryParams = reactive({
   MarketId: "",
@@ -343,7 +343,7 @@ const isPageLoading = ref(true);
 const producers = ref([]);
 const markets = ref([]);
 const id = ref(null);
-const toast = useToast();
+
 onMounted(() => {
   getData();
   getproductcount().then((res) => {

@@ -475,14 +475,14 @@ import {
 import { reactive, ref, computed, inject } from "vue";
 import { ChevronUpDownIcon } from "@heroicons/vue/24/solid";
 import { useRouter } from "vue-router";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { updateAdditional } from "~/services/productservices";
 import Modal from "~/components/IndexModal";
 import { uploadfile } from "~/services/onboardingservices";
 
 const form = inject("form");
 const router = useRouter();
-const toast = useToast();
+
 const query = ref("");
 const toggleNext = inject("toggleNext");
 const togglePreview = inject("togglePreview");

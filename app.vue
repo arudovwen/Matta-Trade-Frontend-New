@@ -52,14 +52,56 @@ body {
 .carousel__next {
   right: -26px !important;
 }
-.no-scrollbar::-webkit-scrollbar {
+ body::-webkit-scrollbar, .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
-.no-scrollbar {
+body, .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f4f4f4;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #165EF0;
+  border-radius: 8px;
+  height: 100px;
+ 
+}
+
+::-webkit-scrollbar:horizontal {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track:horizontal {
+  background: #f4f4f4;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb:horizontal {
+  background: #165EF0;
+  width: 50px;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  opacity: 0.9;
+}
+
 </style>
 
 <script setup>

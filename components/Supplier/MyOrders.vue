@@ -16,15 +16,15 @@
           }}</span>
         </div>
 
-        <div class="flex justify-between">
-          <p class="text-sm lg:text-base">
+        <div class="">
+          <p class="text-sm lg:text-base mb-6">
             Manage your recent orders and invoices.
           </p>
 
           <div class="flex gap-x-4 justify-end">
             <button
               @click="isShowing = 'all'"
-              :class="`px-6 py-3 border border-matta-black rounded-lg text-[13px] uppercase hover:opacity-60 ${
+              :class="`px-6 py-3 border border-matta-black rounded-lg text-[13px] capitalize hover:opacity-60 ${
                 isShowing === 'all'
                   ? 'bg-matta-black text-white'
                   : 'text-matta-black'
@@ -35,7 +35,7 @@
             </button>
             <button
               @click="isShowing = 'pending'"
-              :class="`px-6 py-3 border border-matta-black rounded-lg text-[13px] uppercase hover:opacity-60 flex gap-x-2 ${
+              :class="`px-6 py-3 border border-matta-black rounded-lg text-[13px] capitalize hover:opacity-60 flex gap-x-2 ${
                 isShowing === 'pending'
                   ? 'bg-matta-black text-white'
                   : 'text-matta-black'
@@ -348,7 +348,7 @@ import {
   buyerordertimeline,
 } from "~/services/orderservice";
 import moment from "moment";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { getcart, removecartitem } from "~/services/cartservice";
 
 
@@ -358,7 +358,7 @@ onMounted(() => {
 });
 const isShowing = ref("all");
 const pendingCheckout = ref({});
-const toast = useToast();
+
 const timeline = ref([]);
 const orders = ref([]);
 const queryParams = reactive({

@@ -103,13 +103,13 @@
 <script setup>
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { addshipping } from "~/services/cartservice";
 
 const detail = inject("detail")
 const type = inject("type")
 const isOpen = inject("isOpen");
-const toast = useToast();
+
 const isLoading = ref(false);
 const formValues = {
   firstName: "",

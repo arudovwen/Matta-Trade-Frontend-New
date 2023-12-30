@@ -435,7 +435,7 @@ import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
 import useVuelidate from "@vuelidate/core";
 import { email, helpers, maxLength, url, numeric } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import {
   updateCompanyProfile,
   getCompanyProfile,
@@ -452,7 +452,7 @@ const img = ref("");
 const image = ref(null);
 const coordinate = ref(null);
 const cropper = ref(null);
-const toast = useToast();
+
 
 const form = reactive({
   code: "+234",

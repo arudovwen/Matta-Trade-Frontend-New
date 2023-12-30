@@ -36,11 +36,11 @@
 <script setup>
 import { inject } from "vue";
 // import { useRouter } from "vue-router";
-// import { useToast } from "vue-toastification";
+// import { toast } from 'vue3-toastify';
 // import { updateAdditional } from "~/services/productservices";
 
 // const router = useRouter();
-// const toast = useToast();
+// 
 // const isLoading = ref(false);
 const togglePreview = inject("togglePreview");
 // const form = inject("form");

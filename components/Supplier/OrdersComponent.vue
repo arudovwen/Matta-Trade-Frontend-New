@@ -15,7 +15,7 @@
             queryParams.totalCount || 0
           }}</span>
         </div>
-        <div class="flex justify-between items-center">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-y-6 md:gap-y-0">
           <p class="text-sm lg:text-base">
             List of orders received by your storefront.
           </p>
@@ -222,9 +222,9 @@ import {
   storefrontorderdetails,
 } from "~/services/storefrontservice";
 import moment from "moment";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
-const toast = useToast();
+
 onMounted(() => {
   getData();
 });

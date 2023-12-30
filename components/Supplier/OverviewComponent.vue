@@ -3,48 +3,52 @@
     <!-- Top bar   -->
     <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
       <div class="mb-12"><Breadcrumbs /></div>
-      <div class="grid lg:grid-cols-3 lg:justify-between lg:items-end">
+      <div class="">
         <h1
-          class="text-2xl md:text-[48px] md:leading-[56px] text-matta-black col-span-1 font-medium capitalize mb-4"
+          class="text-3xl md:text-[48px] md:leading-[56px] text-matta-black col-span-1 font-medium capitalize mb-8"
         >
           Overview
         </h1>
 
-        <div />
-        <div class="col-span-1 hidden sm:grid justify-end relative">
-          <span class="flex items-center">
-            <span
-              class="rounded-lg bg-[#F1F3F5] flex gap-x-1 items-center px-3 mr-2 py-1"
-            >
-              <i class="uil uil-calender"></i>
-              <datepicker
-                v-model="startDate"
-                placeholder="Start date"
-                inputFormat="yyyy-MM-dd"
-                class="bg-transparent text-center pt-2 pb-1 max-w-[110px] cursor-pointer outline-gray-200"
-              />
-              <i class="uil uil-minus"></i>
-              <datepicker
-                v-model="endDate"
-                :lowerLimit="startDate || new Date()"
-                :upperLimit="compEndDate"
-                class="bg-transparent text-center pt-2 pb-1 max-w-[110px] cursor-pointer outline-gray-200"
-                placeholder="End date"
-                inputFormat="yyyy-MM-dd"
-              />
-              <i class="uil uil-angle-down"></i>
+        <ClientOnly>
+          <div class="flex justify-start lg:justify-end relative">
+            <span class="flex items-center">
+              <span
+                class="rounded-lg bg-[#F1F3F5] flex gap-x-1 items-center px-3 mr-2 py-1"
+              >
+                <i class="uil uil-calender"></i>
+                <datepicker
+                  v-model="startDate"
+                  placeholder="Start date"
+                  inputFormat="yyyy-MM-dd"
+                  class="bg-transparent text-center pt-2 pb-1 max-w-[110px] cursor-pointer outline-gray-200"
+                />
+                <i class="uil uil-minus"></i>
+                <datepicker
+                  v-model="endDate"
+                  :lowerLimit="startDate || new Date()"
+                  :upperLimit="compEndDate"
+                  class="bg-transparent text-center pt-2 pb-1 max-w-[110px] cursor-pointer outline-gray-200"
+                  placeholder="End date"
+                  inputFormat="yyyy-MM-dd"
+                />
+                <i class="uil uil-angle-down"></i>
+              </span>
+
+              <span
+                @click="
+                  () => {
+                    endDate = new Date();
+                    startDate = new Date(
+                      moment(moment()).subtract(5, 'months')
+                    );
+                  }
+                "
+                ><i class="uil uil-refresh"></i
+              ></span>
             </span>
-            <span
-              @click="
-                () => {
-                  endDate = new Date();
-                  startDate = new Date(moment(moment()).subtract(5, 'months'));
-                }
-              "
-              ><i class="uil uil-refresh"></i
-            ></span>
-          </span>
-        </div>
+          </div>
+        </ClientOnly>
       </div>
     </div>
 
@@ -81,13 +85,15 @@
               {{ stats.confirmedOrders }}
             </div>
             <div class="">
-              <apexchart
-                type="line"
-                height="100"
-                width="150"
-                :options="confirmOptions"
-                :series="confirmSeries"
-              ></apexchart>
+              <ClientOnly>
+                <apexchart
+                  type="line"
+                  height="100"
+                  width="150"
+                  :options="confirmOptions"
+                  :series="confirmSeries"
+                ></apexchart>
+              </ClientOnly>
             </div>
           </div>
         </div>
@@ -104,13 +110,15 @@
               {{ stats.productViews }}
             </div>
             <div class="">
-              <apexchart
-                type="line"
-                height="100"
-                width="150"
-                :options="viewOptions"
-                :series="viewSeries"
-              ></apexchart>
+              <ClientOnly>
+                <apexchart
+                  type="line"
+                  height="100"
+                  width="150"
+                  :options="viewOptions"
+                  :series="viewSeries"
+                ></apexchart>
+              </ClientOnly>
             </div>
           </div>
         </div>
@@ -125,7 +133,7 @@
             <div class="font-medium text-2xl md:text-4xl">
               {{ stats.quotes }}
             </div>
-            <div class="">
+            <ClientOnly class="">
               <apexchart
                 type="line"
                 height="100"
@@ -133,7 +141,7 @@
                 :options="quoteOptions"
                 :series="quoteSeries"
               ></apexchart>
-            </div>
+            </ClientOnly>
           </div>
         </div>
         <div class="p-6 rounded-lg bg-white flex flex-col justify-between">
@@ -143,14 +151,14 @@
               {{ stats.currentBalancePecentage }}%
             </div>
           </div>
-          <div class="">
+          <ClientOnly class="">
             <apexchart
               type="area"
               height="100"
               :options="balanceOptions"
               :series="balanceSeries"
             ></apexchart>
-          </div>
+          </ClientOnly>
           <div class="flex justify-between items-center py-4">
             <span class="font-medium text-2xl md:text-4xl">{{
               currencyFormat(stats.currentBalance)
@@ -187,12 +195,14 @@
               <button>24 hrs</button>
             </div>
           </div>
-          <apexchart
-            type="area"
-            height="300"
-            :options="chartOptions"
-            :series="series"
-          ></apexchart>
+          <ClientOnly>
+            <apexchart
+              type="area"
+              height="300"
+              :options="chartOptions"
+              :series="series"
+            ></apexchart
+          ></ClientOnly>
         </div>
       </div>
 
@@ -281,13 +291,12 @@
       </div>
     </div>
     <div class="text-center p-6 lg:p-8 my-24" v-else>
-       <AppLoader />
+      <AppLoader />
     </div>
   </div>
 </template>
 
 <script setup>
-
 import { useRoute } from "vue-router";
 import Datepicker from "vue3-datepicker";
 import VueApexCharts from "vue3-apexcharts";

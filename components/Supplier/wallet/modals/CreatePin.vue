@@ -152,7 +152,7 @@ import {
   numeric,
 } from "@vuelidate/validators";
 import { setWalletpin, verifyPin } from "~/services/walletservice";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 const props = defineProps(["details"]);
 const emits = defineEmits(["close"]);
@@ -165,7 +165,7 @@ const form1 = reactive({
   otp: null,
 });
 
-const toast = useToast();
+
 const isLoading = ref(false);
 const step = ref(1);
 const samePin = (value) => value === form.pin;

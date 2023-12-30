@@ -57,7 +57,7 @@
                   <div class="relative flex-1 px-4 sm:px-6">
                     <!-- Replace with your content -->
                     <div class="absolute inset-0 pt-5">
-                      <div class="px-5  pb-4" v-if="!authStore.isLoggedIn">
+                      <div class="px-5 pb-4" v-if="!authStore.isLoggedIn">
                         <img
                           src="~/assets/images/logo.png"
                           width="100"
@@ -66,24 +66,26 @@
                           class="w-[100px] h-auto"
                         />
                       </div>
-                      <div class="flex gap-x-2 px-5  pb-[1px]"  v-if="authStore.isLoggedIn">
+                      <div
+                        class="flex gap-x-2 px-5 pb-[1px]"
+                        v-if="authStore.isLoggedIn"
+                      >
                         <span
-                         
                           class="h-10 w-10 rounded-full flex items-center justify-center text-white bg-[#f90] font-semibold"
                         >
-                          {{ authStore.userInfo.firstName.slice(0, 1) }}
-                          {{ authStore.userInfo.lastName.slice(0, 1) }}</span
+                          {{ authStore.userInfo?.firstName.slice(0, 1) }}
+                          {{ authStore.userInfo?.lastName.slice(0, 1) }}</span
                         >
                         <div class="flex-1">
                           <span
                             v-if="authStore.isLoggedIn"
                             class="text-[#333] text-sm font-semibold block capitalize"
-                            >{{ authStore.userInfo.fullName }}</span
+                            >{{ authStore.userInfo?.fullName }}</span
                           >
                           <span
                             v-if="authStore.isLoggedIn"
                             class="block text-xs text-[#666] mb-3"
-                            >{{ authStore.userInfo.email }}</span
+                            >{{ authStore.userInfo?.email }}</span
                           >
                           <span
                             v-if="authStore.isLoggedIn"
@@ -102,7 +104,7 @@
                       >
                         <AppButton
                           link="/auth/vendor-register"
-                          text="Become a Seller"
+                          text="Become a Supplier"
                           btnClass="text-white !text-[13px] !font-normal  !px-[10px] !py-[6px] !normal-case bg-[#f90] flex w-full"
                         />
                         <AppButton
@@ -114,15 +116,24 @@
                       </div>
                       <hr class="my-[14px] border-b border-[#F4F4F4]" />
                       <div class="px-5 pt-5">
-                        <ul class="grid gap-y-5">
+                        <MenuMobile />
+                        <hr class="border-[#F4F4F4] my-4" v-if="authStore.isLoggedIn && !activeKey" />
+                        <ul
+                          class="grid gap-y-5"
+                          v-if="authStore.isLoggedIn && !activeKey"
+                        >
                           <li
                             v-for="n in mobileMenu.filter(
                               (i) => i.key !== 'sign-out'
                             )"
                             :key="n.name"
-                            class="flex gap-x-3 items-center text-sm font-medium text-[#666]"
                           >
-                            <AppIcon :icon="n.icon" /> {{ n.name }}
+                            <NuxtLink
+                              :to="n.url"
+                              class="flex gap-x-3 items-center text-sm font-medium text-[#333]"
+                            >
+                              <AppIcon :icon="n.icon" /> {{ n.name }}
+                            </NuxtLink>
                           </li>
                         </ul>
                       </div>
@@ -138,6 +149,13 @@
   </TransitionRoot>
 </template>
 <script setup>
+import {
+  categories,
+  navigations,
+  mobileNavigation,
+  financeMenu,
+  mobileMenu,
+} from "~/utils/data";
 import { ref } from "vue";
 import {
   Dialog,
@@ -146,12 +164,13 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import { mobileMenu } from "~/utils/data";
 import { logOut } from "~/services/authservices";
 
+const activeKey = ref(null);
 const cartStore = useCartStore();
 const authStore = useAuthStore();
 const isSigniningOut = ref(false);
 
 const open = inject("open");
+provide("activeKey", activeKey);
 </script>

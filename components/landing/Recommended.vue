@@ -40,7 +40,7 @@
               :style="{ backgroundImage: `url('${slide.converPhoto}')` }"
             ></div>
             <div
-              class="w-[120px] md:w-[250px] pt-[20px] pb-4 xl:pb-[20px] text-left"
+              class="w-[120px] sm:w-[200px] lg:w-[240px] pt-[20px] pb-4 xl:pb-[20px] text-left"
             >
               <span
                 class="text-[10px] sm:text-sm xl:text-base block mb-2 sm:mb-[10px] font-bold darks:text-white truncate max-w-max"
@@ -111,7 +111,7 @@ function getAllProducts() {
   getProductsByTag({ PageNumber: 1, PageSize: 8, tag: props.tag })
     .then((res) => {
       if (res.status === 200) {
-        console.log("🚀 ~ file: Hot.vue:94 ~ .then ~ res:", res.data);
+       
         content.value = res.data.data.data;
       }
     })

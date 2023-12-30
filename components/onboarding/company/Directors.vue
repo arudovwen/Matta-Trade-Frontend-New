@@ -128,7 +128,7 @@ import {
 import "vue-advanced-cropper/dist/style.css";
 import { ref, reactive, provide } from "vue";
 
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import {
   additionalInfo,
   setOnboardingcomplete,
@@ -142,7 +142,7 @@ const store = useStore();
 const router = useRouter();
 const open = ref(false);
 
-const toast = useToast();
+
 
 const form = reactive({
   directors: [],

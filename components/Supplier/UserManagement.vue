@@ -305,9 +305,9 @@ import {
   resendInvite,
 } from "~/services/userservices";
 import debounce from "lodash/debounce";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
-const toast = useToast();
+
 
 const multi = ref([]);
 const showing = ref("");
@@ -337,7 +337,7 @@ function resendinvite(id) {
       }
     })
     .catch((error) => {
-      toast.info(error.response.data.Message);
+      toast.info(error?.response?.data?.Message);
     });
 }
 function openmodal(val, userdata = null) {

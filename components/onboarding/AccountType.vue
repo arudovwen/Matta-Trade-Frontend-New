@@ -100,13 +100,13 @@ import TopBar from "./layout/TopBar.vue";
 import { ref } from "vue";
 import { setaccountype } from "@/services/onboardingservices";
 import { useStore } from "vuex";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const store = useStore();
 const authStore = useAuthStore();
-const toast = useToast();
+
 const isLoading = ref(false);
 
 function handleSubmit() {

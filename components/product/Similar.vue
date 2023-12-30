@@ -24,10 +24,12 @@
           class="bg-white"
         >
           <div
-            class="w-[120px] md:w-[240px] h-[77px] sm:h-[130px] xl:h-[185px] bg-gray-200 bg-cover bg-center rounded-[10px] overflow-hidden"
+          class="w-[120px] sm:w-[200px] lg:w-[240px] h-[77px] sm:h-[130px] xl:h-[185px] bg-gray-200 bg-cover bg-center rounded-[10px] overflow-hidden"
             :style="{ backgroundImage: `url('${slide.converPhoto}')` }"
           ></div>
-          <div class="w-[120px] md:w-[240px] pt-[20px] pb-4 xl:pb-[20px] text-left">
+          <div
+          class="w-[120px] sm:w-[200px] lg:w-[240px] pt-[20px] pb-4 xl:pb-[20px] text-left"
+          >
             <span
               class="text-[10px] sm:text-sm xl:text-base block mb-2 sm:mb-[10px] font-bold darks:text-white truncate max-w-max"
               >{{ slide.title }}</span
@@ -58,6 +60,7 @@ import { useProductStore } from "~/stores/products";
 import { getProducts } from "~/services/productservices";
 
 const router = useRouter();
+const route = useRouter();
 const store = useProductStore();
 const { productData, productsData, loading } = storeToRefs(store);
 defineProps({
@@ -117,14 +120,12 @@ function getAllProducts() {
 }
 
 onMounted(() => {});
-watch(productData, () => {
-  console.log(
-    "🚀 ~ file: Similar.vue:131 ~ watch ~ productData:",
-    productData.value.marketApplications
-  );
-
-  getAllProducts();
-});
+watch(
+  () => [productData.value, route],
+  () => {
+    getAllProducts();
+  }
+);
 </script>
 <style>
 .carousel__next {
