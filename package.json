@@ -2,13 +2,11 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
-  "scripts": {    
-    "build": "node_modules/nuxt/bin/nuxt.js build -c ./nuxt.config.js",
-    "start": "node_modules/nuxt/bin/nuxt.js start -c ./nuxt.config.js",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+ "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "node ./node_modules/nuxt/bin/nuxt.js start",
+    "generate": "nuxt generate"
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",
