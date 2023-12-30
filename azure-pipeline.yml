@@ -6,7 +6,7 @@ pool:
 
 variables:
   nuxtProjectFolder: 'nuxt3'
-  buildOutputFolder: 'output/public'
+  buildOutputFolder: '.output/public'
 
 jobs:
 - job: Build
