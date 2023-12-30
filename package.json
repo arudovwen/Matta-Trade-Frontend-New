@@ -3,7 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
   },
   "devDependencies": {
     "@iconify/vue": "^4.1.1",
