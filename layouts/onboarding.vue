@@ -12,7 +12,7 @@ useHead({
 const authStore = useAuthStore();
 const router = useRouter();
 onBeforeMount(() => {
-  if (!authStore.isLoggedIn || authStore.userInfo.onboardingPageStatus > 0) {
+  if (!authStore.isLoggedIn || authStore.userInfo?.onboardingPageStatus > 0) {
     router.push("/");
   }
 });

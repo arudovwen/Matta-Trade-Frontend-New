@@ -139,10 +139,10 @@ import CurrencyInput from "~/components/CurrencyInput";
 import { ref, reactive, inject } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { loginUser } from "~/services/authservices";
 
-const toast = useToast();
+
 const stage = ref(1);
 const details = inject("details");
 const form = reactive({

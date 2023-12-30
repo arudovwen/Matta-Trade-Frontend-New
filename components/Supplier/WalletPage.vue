@@ -147,12 +147,12 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 import { getWalletDetails } from "~/services/walletservice";
 
 const isOpen = ref(false);
-const toast = useToast();
+
 const route = useRoute();
 const isTopup = ref(false);
 const isLoading = ref(true);

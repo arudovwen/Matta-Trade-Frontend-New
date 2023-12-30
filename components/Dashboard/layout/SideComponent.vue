@@ -38,8 +38,8 @@
           <div
             v-if="
               n.role.includes(userType?.toLowerCase()) &&
-              n.accountType.includes(authstore.userInfo.accountType) &&
-              n.allowed.includes(authstore.userInfo.roles[0])
+              n.accountType.includes(authstore.userInfo?.accountType) &&
+              n.allowed.includes(authstore.userInfo?.roles[0])
             "
             class="py-4"
           >

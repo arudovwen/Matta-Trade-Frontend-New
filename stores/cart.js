@@ -6,14 +6,14 @@ import {
   getcart,
 } from "~/services/cartservice";
 import { useAuthStore } from "./auth";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 export const useCartStore = defineStore(
   "cart",
   () => {
     const cookie = useCookie("cart");
 
-    const toast = useToast();
+    
     const authStore = useAuthStore();
     const cartItems = ref([]);
     const tax = ref(0);

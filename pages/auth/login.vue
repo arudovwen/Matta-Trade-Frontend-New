@@ -72,9 +72,10 @@
 <script setup>
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
+
 import { loginUser, sociallogin } from "~/services/authservices";
-import "vue-toastification/dist/index.css";
+
 import { GoogleSignInButton } from "vue3-google-signin";
 
 definePageMeta({
@@ -84,7 +85,8 @@ useHead({
   title: "Login | Matta",
   meta: [{ name: "description", content: "Login | Matta" }],
 });
-const toast = useToast();
+
+
 const isLoading = ref(false);
 const formValues = {
   email: "",
@@ -161,7 +163,7 @@ const handleLoginSuccess = (response) => {
     .then((res) => {
       if (res.status === 200) {
         store.commit("setUser", res.data.data);
-        toast.info(res.data.message ? res.data.message : "Login successful");
+        toast.success(res.data.message ? res.data.message : "Login successful");
         if (res.data.message.includes("Email has not verified yet")) {
           return;
         }

@@ -312,10 +312,10 @@ import { required, helpers, minLength, maxLength } from "@vuelidate/validators";
 import { useStore } from "vuex";
 import { uploaddocument } from "~/services/onboardingservices";
 import { createUpdateKyc, getKycDetail } from "~/services/walletservice";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { getCompanyProfile } from "~/services/settingservices";
 
-const toast = useToast();
+
 const store = useStore();
 const emits = defineEmits(["success"]);
 const sectors = ["RC", "BN", "IT", "LL", "LLP"];

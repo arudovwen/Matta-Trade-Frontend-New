@@ -234,9 +234,9 @@ import {
 import CreatePin from "../modals/CreatePin";
 
 import { changeWalletpin, verifyPin } from "~/services/walletservice";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
-const toast = useToast();
+
 const isOpen = ref(false);
 const details = inject("details");
 const isCreatePin = ref(false);

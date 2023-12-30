@@ -104,7 +104,7 @@ import {
   // minLength,
   // maxLength,
 } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 const supplierStore = useSupplierStore()
 const authStore = useAuthStore()
@@ -127,7 +127,7 @@ const sampleForm = reactive({
   addressDescription: "",
 });
 
-const toast = useToast();
+
 const store = useStore();
 const showAuth = ref(false);
 const isOpen = ref(false);

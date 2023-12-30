@@ -39,9 +39,9 @@
 </template>
 <script setup>
 import { defineProps, inject } from "vue";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 
-const toast = useToast();
+
 defineProps(["details"]);
 </script>

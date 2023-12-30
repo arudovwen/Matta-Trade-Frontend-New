@@ -525,7 +525,7 @@ import {
   updateProfile,
   changepassword,
 } from "~/services/settingservices";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import countries from "~/utils/countries.json";
 
 const store = useAuthStore();
@@ -539,7 +539,7 @@ const cropper = ref(null);
 const route = useRoute();
 const isOpen = ref(false);
 const zones = moment.tz.names();
-const toast = useToast();
+
 const abbrs = {
   EST: "Eastern Standard Time",
   EDT: "Eastern Daylight Time",

@@ -143,9 +143,9 @@
                 icon="fa6-solid:cart-shopping"
               />
               <span
-                v-if="cartStore.cartTotal > 0"
+                v-if="cartStore?.cartTotal > 0"
                 class="w-[14px] h-[14px] rounded-full bg-[#16F046] text-[8px] flex items-center justify-center absolute -top-[10px] -right-[6px]"
-                >{{ cartStore.cartTotal }}</span
+                >{{ cartStore?.cartTotal }}</span
               >
             </span>
             <span class="text-xs sm:text-sm font-medium inline-flex text-[#333]"
@@ -197,17 +197,17 @@
                     <div
                       class="h-8 w-8 rounded-full flex items-center justify-center text-sm text-white bg-[#f90] font-semibold"
                     >
-                      {{ authStore.userInfo.firstName.slice(0, 1) }}
-                      {{ authStore.userInfo.lastName.slice(0, 1) }}
+                      {{ authStore.userInfo?.firstName.slice(0, 1) }}
+                      {{ authStore.userInfo?.lastName.slice(0, 1) }}
                     </div>
                     <div class="flex-1">
                       <span
                         class="text-[#333] darks:text-white/90 text-[13px] font-semibold block capitalize"
-                        >{{ authStore.userInfo.fullName }}</span
+                        >{{ authStore.userInfo?.fullName }}</span
                       >
                       <span
                         class="block text-[11px] text-[#666] darks:text-white/70 truncate max-w-[151px]"
-                        >{{ authStore.userInfo.email }}</span
+                        >{{ authStore.userInfo?.email }}</span
                       >
                     </div>
                   </div>

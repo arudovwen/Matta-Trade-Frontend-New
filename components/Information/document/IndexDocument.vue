@@ -114,7 +114,7 @@ import RequestComplete from "./RequestComplete";
 import { ref, defineEmits, provide, computed, reactive, inject } from "vue";
 import { useStore } from "vuex";
 import { adddocument } from "~/services/requestservice";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 const authStore = useAuthStore()
 const togglePopup = inject("togglePopup");
@@ -132,7 +132,7 @@ const sampleForm = reactive({
   description: "",
 });
 
-const toast = useToast();
+
 const store = useStore();
 const showAuth = ref(false);
 const isOpen = ref(false);

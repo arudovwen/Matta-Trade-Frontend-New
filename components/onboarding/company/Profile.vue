@@ -412,7 +412,7 @@ import {
   maxLength,
   numeric,
 } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import {
   updatePersonalInfo,
   // getOnboarding,
@@ -472,7 +472,7 @@ const image = ref(null);
 const coordinate = ref(null);
 const cropper = ref(null);
 const zones = moment.tz.names();
-const toast = useToast();
+
 // const emits = defineEmits("toggleBar");
 const form = reactive({
   code: "+234",

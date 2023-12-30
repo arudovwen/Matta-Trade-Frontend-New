@@ -348,7 +348,7 @@ import {
   buyerordertimeline,
 } from "~/services/orderservice";
 import moment from "moment";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { getcart, removecartitem } from "~/services/cartservice";
 
 
@@ -358,7 +358,7 @@ onMounted(() => {
 });
 const isShowing = ref("all");
 const pendingCheckout = ref({});
-const toast = useToast();
+
 const timeline = ref([]);
 const orders = ref([]);
 const queryParams = reactive({

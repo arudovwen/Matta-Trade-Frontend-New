@@ -34,10 +34,10 @@
 <script setup>
 import { uploadfile } from "~/services/onboardingservices";
 import { defineProps, ref, inject } from "vue";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 const props = defineProps(["label", "id"]);
-const toast = useToast();
+
 const handleChange = inject("handleChange");
 const fileInputRef = ref(null);
 const title = ref("");

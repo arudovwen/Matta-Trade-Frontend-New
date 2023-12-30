@@ -65,9 +65,10 @@ useHead({
 });
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
+
 import { forgotPassword } from "~/services/authservices";
-import "vue-toastification/dist/index.css";
+
 
 const title1 = "Forgot password";
 const title2 = "Check your email";
@@ -77,7 +78,7 @@ const text2 =
   "We have sent an account activation link to your email address. Click on the link to activate your account.";
 const isSent = ref(false);
 
-const toast = useToast();
+
 const isLoading = ref(false);
 
 const formValues = {

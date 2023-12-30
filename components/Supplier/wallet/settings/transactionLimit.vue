@@ -88,11 +88,11 @@
 import { ref, reactive, onMounted, inject } from "vue";
 import CurrencyInput from "~/components/CurrencyInput";
 import { setWarningLimit, setUpperLimit } from "~/services/walletservice";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import useVuelidate from "@vuelidate/core";
 import { required, numeric } from "@vuelidate/validators";
 
-const toast = useToast();
+
 // eslint-disable-next-line no-unused-vars
 const details = inject("details");
 const form = reactive({

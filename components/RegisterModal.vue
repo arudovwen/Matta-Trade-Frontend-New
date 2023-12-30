@@ -235,13 +235,13 @@ import {
   minLength,
   maxLength,
 } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { registerUser, loginUser } from "~/services/authservices";
 import { useStore } from "vuex";
 import { defineProps, defineEmits } from "vue";
 
 const store = useStore();
-const toast = useToast();
+
 const type = ref("buyer");
 const form = reactive({
   email: "",

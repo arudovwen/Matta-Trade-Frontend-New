@@ -76,13 +76,13 @@ definePageMeta({
 
 import { setaccountype } from "@/services/onboardingservices";
 import { useStore } from "vuex";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { useRouter } from "vue-router";
 
 const authStore = useAuthStore();
 const router = useRouter();
 const store = useStore();
-const toast = useToast();
+
 const isLoading = ref(false);
 const content = [
   {

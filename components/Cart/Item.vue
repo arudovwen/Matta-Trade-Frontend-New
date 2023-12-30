@@ -45,7 +45,7 @@
       </p>
 
       <AppButton
-        @click="cartStore.removeFromCart(detail.id)"
+        @click="cartStore?.removeFromCart(detail.id)"
         text="Remove item"
         icon="bx:trash"
         btnClass=" !px-0  !py-[0] !text-[11px] sm:text-xs md:text-sm !font-normal"
@@ -60,7 +60,7 @@ const props = defineProps(["detail"]);
 
 const counter = ref(props.detail.quantity);
 watch(counter, () => {
-  cartStore.updateCart({ ...props.detail, quantity: counter.value });
+  cartStore?.updateCart({ ...props.detail, quantity: counter.value });
 });
 provide("counter", counter);
 </script>

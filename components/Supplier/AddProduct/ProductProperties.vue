@@ -49,14 +49,14 @@
 <script setup>
 import { ref, provide, onMounted, inject } from "vue";
 import FeaturedProp from "./properties/FeaturedProp";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { updateProperties } from "~/services/productservices";
 import { useRoute, useRouter } from "vue-router";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 const route = useRoute();
 const router = useRouter();
-const toast = useToast();
+
 const toggleNext = inject("toggleNext");
 const togglePreview = inject("togglePreview");
 const form = inject("form");

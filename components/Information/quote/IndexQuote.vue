@@ -96,7 +96,7 @@ import { useStore } from "vuex";
 import { newquote } from "~/services/quoteservice";
 import useVuelidate from "@vuelidate/core";
 import { required, numeric, helpers } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { getCompanyProfile } from "~/services/settingservices";
 
 onMounted(() => {
@@ -133,7 +133,7 @@ const quoteForm = reactive({
   applications: "",
 });
 
-const toast = useToast();
+
 const showAuth = ref(false);
 const isOpen = ref(false);
 const active = ref(1);

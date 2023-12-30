@@ -135,7 +135,7 @@
 <script setup>
 import { inject, computed, ref, defineProps } from "vue";
 import AddedToCart from "~/components/AddedToCart";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import {
   Listbox,
   // ListboxLabel,
@@ -149,7 +149,7 @@ import CurrencyInput from "~/components/CurrencyInput";
 
 const store = useStore();
 defineProps(["isAvailable"]);
-const toast = useToast();
+
 const isAdded = ref(false);
 const selectedPackage = ref(null);
 

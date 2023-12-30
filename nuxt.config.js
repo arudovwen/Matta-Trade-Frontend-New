@@ -3,6 +3,13 @@ export default defineNuxtConfig({
   site: {
     url: "https://matta.trade",
   },
+  nitro: {
+    baseURL: "/",
+    prerender: {
+      crawlLinks: true,
+      // failOnError: false,
+    },
+  },
   modules: [
     "@nuxtjs/tailwindcss",
     "@vee-validate/nuxt",
@@ -24,8 +31,7 @@ export default defineNuxtConfig({
     },
   },
   ssr: true,
-  // plugins: [{ src: "~/plugins/vue-toastification.js" }],
-  transpile: ["vue-toastification"],
+  plugins: [],
   // @ts-ignore
   googleSignIn: {
     clientId:
@@ -38,6 +44,7 @@ export default defineNuxtConfig({
     "~/assets/scss/_button.scss",
     "~/assets/scss/_form.scss",
     "vue-toastification/dist/index.css",
+    "~/assets/scss/style.scss",
   ],
   googleFonts: {
     families: {

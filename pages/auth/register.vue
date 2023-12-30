@@ -137,12 +137,11 @@ useHead({
 });
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { registerUser } from "~/services/authservices";
-import "vue-toastification/dist/index.css";
 
 const agree = ref(false);
-const toast = useToast();
+
 const isLoading = ref(false);
 const formValues = {
   email: "",

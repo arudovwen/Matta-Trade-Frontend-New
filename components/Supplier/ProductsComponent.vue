@@ -324,7 +324,7 @@ import {
 import moment from "moment";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import debounce from "lodash/debounce";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 const queryParams = reactive({
   MarketId: "",
@@ -343,7 +343,7 @@ const isPageLoading = ref(true);
 const producers = ref([]);
 const markets = ref([]);
 const id = ref(null);
-const toast = useToast();
+
 onMounted(() => {
   getData();
   getproductcount().then((res) => {

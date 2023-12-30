@@ -110,10 +110,10 @@
 import useVuelidate from "@vuelidate/core";
 import { required, email, helpers, maxLength } from "@vuelidate/validators";
 import { sendMessage } from "~/services/authservices";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
 const open = inject("open");
-const toast = useToast();
+
 const isLoading = ref(false);
 const togglePopup = inject("togglePopup");
 const form = reactive({

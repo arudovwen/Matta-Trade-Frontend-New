@@ -81,11 +81,11 @@ import { ref, onMounted, inject } from "vue";
 import OTP from "./TransactionPin.vue";
 import { getcart } from "~/services/cartservice";
 import { getWalletDetails } from "~/services/walletservice";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import Modal from "~/components/IndexModal";
 
 const isOpen = ref(false);
-const toast = useToast();
+
 
 const cartDetails = ref(null);
 const walletDetails = ref(null);

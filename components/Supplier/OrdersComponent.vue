@@ -222,9 +222,9 @@ import {
   storefrontorderdetails,
 } from "~/services/storefrontservice";
 import moment from "moment";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 
-const toast = useToast();
+
 onMounted(() => {
   getData();
 });

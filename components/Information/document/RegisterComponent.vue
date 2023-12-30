@@ -181,11 +181,11 @@ import {
   minLength,
   maxLength,
 } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { registerUser } from "~/services/authservices";
 
 const toggleAuth = inject("toggleAuth");
-const toast = useToast();
+
 const type = ref("buyer");
 const form = reactive({
   email: "",

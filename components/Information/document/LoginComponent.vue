@@ -128,13 +128,13 @@ import {
   minLength,
   maxLength,
 } from "@vuelidate/validators";
-import { useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { useRoute } from "vue-router";
 import { loginUser } from "~/services/authservices";
 import { useStore } from "vuex";
 
 const store = useStore();
-const toast = useToast();
+
 const route = useRoute();
 const form = reactive({
   email: "",

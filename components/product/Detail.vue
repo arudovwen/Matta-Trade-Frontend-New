@@ -156,10 +156,10 @@
 </template>
 <script setup>
 import { useProductStore } from "~/stores/products";
-import { toastInjectionKey, useToast } from "vue-toastification";
+import { toast } from 'vue3-toastify';
 import { likeproduct } from "~/services/productservices";
 
-const toast = useToast();
+
 const store = useProductStore();
 const cartStore = useCartStore();
 const authStore = useAuthStore();
@@ -244,7 +244,7 @@ function handleCart(type) {
     packagePrice: mypackage?.value.amount,
   };
  
-  cartStore.addToCart(data, type).then((res) => {
+  cartStore?.addToCart(data, type).then((res) => {
     if (!res.status && res.message !== "buy") {
       toast.info("Already in your cart");
     }

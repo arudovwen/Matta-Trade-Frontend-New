@@ -73,19 +73,19 @@
                         <span
                           class="h-10 w-10 rounded-full flex items-center justify-center text-white bg-[#f90] font-semibold"
                         >
-                          {{ authStore.userInfo.firstName.slice(0, 1) }}
-                          {{ authStore.userInfo.lastName.slice(0, 1) }}</span
+                          {{ authStore.userInfo?.firstName.slice(0, 1) }}
+                          {{ authStore.userInfo?.lastName.slice(0, 1) }}</span
                         >
                         <div class="flex-1">
                           <span
                             v-if="authStore.isLoggedIn"
                             class="text-[#333] text-sm font-semibold block capitalize"
-                            >{{ authStore.userInfo.fullName }}</span
+                            >{{ authStore.userInfo?.fullName }}</span
                           >
                           <span
                             v-if="authStore.isLoggedIn"
                             class="block text-xs text-[#666] mb-3"
-                            >{{ authStore.userInfo.email }}</span
+                            >{{ authStore.userInfo?.email }}</span
                           >
                           <span
                             v-if="authStore.isLoggedIn"
