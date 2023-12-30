@@ -2,7 +2,7 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
- "scripts": {
+   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "node ./node_modules/nuxt/bin/nuxt.js start",
