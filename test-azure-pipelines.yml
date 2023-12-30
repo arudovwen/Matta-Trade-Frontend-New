@@ -23,6 +23,10 @@ strategy:
 
 steps:
 
+- task: NodeTool@0
+  inputs:
+    versionSource: 'spec'
+    versionSpec: '20.x'
 - task: UseNode@1 
       
 ## Run the npm install/build
@@ -38,6 +42,7 @@ steps:
 ##    pushd $(projectFolder) && npm install --save nuxt && popd
 ##     pushd $(projectFolder) && npm run build && popd
 ## Copy the client to the staging directory
+
 
 - task: CopyFiles@2
   inputs:
