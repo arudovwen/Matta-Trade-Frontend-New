@@ -27,8 +27,8 @@ steps:
       
 ## Run the npm install/build
 - script: |
+    pushd $(projectFolder) && npm install --save nuxt && popd
     pushd $(projectFolder) && npm install && popd
-    ushd $(projectFolder) && npm install --save nuxt && popd
     pushd $(projectFolder) && npm run build && popd
 ## Copy the client to the staging directory
 
