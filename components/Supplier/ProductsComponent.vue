@@ -447,7 +447,7 @@ function handleDelete() {
       }
     })
     .catch((err) => {
-      toast.success(err.response.data.Message);
+      toast.success((err.response.data.message || err.response.data.Message));
       isLoading.value = false;
     });
 }

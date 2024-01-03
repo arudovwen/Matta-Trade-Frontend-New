@@ -72,7 +72,7 @@
 <script setup>
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import { toast } from 'vue3-toastify';
+import { toast } from "vue3-toastify";
 
 import { loginUser, sociallogin } from "~/services/authservices";
 
@@ -85,7 +85,6 @@ useHead({
   title: "Login | Matta",
   meta: [{ name: "description", content: "Login | Matta" }],
 });
-
 
 const isLoading = ref(false);
 const formValues = {
@@ -116,7 +115,6 @@ const onSubmit = handleSubmit((values) => {
   loginUser(values)
     .then((res) => {
       if (res.status === 200) {
-      
         authStore.setLoggedUser(res.data.data);
         if (
           !res.data.data.onboardingPageStatus &&
@@ -142,10 +140,14 @@ const onSubmit = handleSubmit((values) => {
 
     .catch((err) => {
       isLoading.value = false;
-      if (err.response.data.Message) {
-        toast.error(err.response.data.Message);
+      if (err.response.data.message || err.response.data.Message) {
+        toast.error(err.response.data.message || err.response.data.Message);
       }
-      if (err.response.data.Message.includes("Email has not verified yet")) {
+      if (
+        (err.response.data.message || err.response.data.Message).includes(
+          "Email has not verified yet"
+        )
+      ) {
         router.push(`/resend-verification/${form.email}`);
       }
     });
@@ -187,10 +189,14 @@ const handleLoginSuccess = (response) => {
     .catch((err) => {
       invalidCredentials.value = true;
       isLoading.value = false;
-      if (err.response.data.Message) {
-        toast.error(err.response.data.Message);
+      if (err.response.data.message || err.response.data.Message) {
+        toast.error(err.response.data.message || err.response.data.Message);
       }
-      if (err.response.data.message.includes("Email has not verified yet")) {
+      if (
+        (err.response.data.message || err.response.data.Message).includes(
+          "Email has not verified yet"
+        )
+      ) {
         router.push(`/resend-verification/${form.email}`);
       }
     });

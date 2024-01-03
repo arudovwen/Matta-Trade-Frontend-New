@@ -137,7 +137,7 @@ useHead({
 });
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import { toast } from 'vue3-toastify';
+import { toast } from "vue3-toastify";
 import { registerUser } from "~/services/authservices";
 
 const agree = ref(false);
@@ -205,8 +205,12 @@ const onSubmit = handleSubmit((values) => {
 
     .catch((err) => {
       isLoading.value = false;
-      if (err.response.data.Message) {
-        toast.error(err.response.data.Message);
+      if (err.response.data.message || err.response.data.Message) {
+        toast.error(
+          err.response.data.message ||
+            err.response.data.Message ||
+            "Something went wrong"
+        );
       }
     });
 });

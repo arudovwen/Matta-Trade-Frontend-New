@@ -138,15 +138,14 @@
 <script setup>
 definePageMeta({
   layout: "register",
-  
 });
 useHead({
-  title: "Register vendor | Matta"
+  title: "Register vendor | Matta",
 });
 
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import { toast } from 'vue3-toastify';
+import { toast } from "vue3-toastify";
 import { registerUser } from "~/services/authservices";
 
 const agree = ref(false);
@@ -207,15 +206,21 @@ const onSubmit = handleSubmit((values) => {
   registerUser({ ...values, business_UserType: 1 })
     .then((res) => {
       if (res.status === 200) {
-        toast.info("Sign up successful, Complete registration via link sent to your email");
+        toast.info(
+          "Sign up successful, Complete registration via link sent to your email"
+        );
         router.push("/auth/login");
       }
     })
 
     .catch((err) => {
       isLoading.value = false;
-      if (err.response.data.Message) {
-        toast.error(err.response.data.Message);
+      if (err.response.data.message || err.response.data.Message) {
+        toast.error(
+          err.response.data.message ||
+            err.response.data.Message ||
+            "Something went wrong"
+        );
       }
     });
 });

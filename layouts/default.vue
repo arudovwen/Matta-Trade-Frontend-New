@@ -18,15 +18,17 @@ onMounted(() => {
       if (res.status === 200) {
         cartStore?.setCart(res.data.data.items);
         cartStore?.setTax(res.data.data.tax);
-        if (localCart?.length > 0) {
-          const miniCart = [...new Set([...res.data.data.items, ...localCart])];
-          createcart({ items: miniCart }).then(res=>{
-            if(res.status === 200){
-              // localStorage.removeItem("cartItems")
-              cartStore?.getMyCart()
-            }
-          });
-        }
+        // if (cookie?.value?.cartItems?.length > 0) {
+        //   const miniCart = [
+        //     ...new Set([...res.data.data.items, ...cookie?.value?.cartItems]),
+        //   ];
+        //   createcart({ items: miniCart }).then((res) => {
+        //     if (res.status === 200) {
+        //       // localStorage.removeItem("cartItems")
+        //       cartStore?.getMyCart();
+        //     }
+        //   });
+        // }
       }
     });
   } else {
