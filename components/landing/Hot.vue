@@ -19,7 +19,7 @@
       </router-link>
     </div>
     <div
-      class="hidden lg:grid grid-cols-2 lg:grid-cols-4  xl:grid-cols-5 gap-y-8 gap-x-4 md:gap-x-6"
+      class="flex xl:grid grid-cols-2 lg:grid-cols-4  xl:grid-cols-5 gap-y-8 gap-x-4 md:gap-x-6 overflow-x-auto pb-6"
     >
       <ProductCard
         data-aos="fade-up"
@@ -30,11 +30,11 @@
         :detail="n"
       />
     </div>
-    <div class="flex overflow-x-auto gap-x-4 lg:hidden">
+    <!-- <div class="flex overflow-x-auto gap-x-4 lg:hidden">
       <div v-for="(n, idx) in content.slice(0, 6)" :key="idx">
         <ProductCard :index="idx" :detail="n" />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script setup>
