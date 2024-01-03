@@ -6,7 +6,7 @@
       class="rounded-[10px] "
     >
       <NuxtLink to="/market/products">
-        <img src="~/assets/images/ad.png" alt="" class="w-full  h-full object-contain rounded-[10px] bg-gray-300" />
+        <NuxtImg src="https://res.cloudinary.com/arudovwen-me/image/upload/f_auto,q_auto/ctgfxohrfifietzzvhrh" alt="" class="w-full  h-full object-contain rounded-[10px] bg-gray-300" />
       </NuxtLink>
     </div>
   </div>

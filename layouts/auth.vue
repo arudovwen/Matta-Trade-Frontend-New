@@ -23,13 +23,12 @@
             <h1
               class="text-4xl leading-10 xl:text-5xl  2xl:text-[56px] font-bold mb-6 xl:leading-[1.2]"
             >
-              Sell your chemicals, raw materials and finished goods easily on
-              Matta.
+            Sell your chemicals, raw materials and finished goods easily on Matta
+
             </h1>
             <p class="text-base xl:text-xl 2xl:text-2xl">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
-              Exercitation veniam consequat sunt nostrud amet.
+              Discover and buy chemicals, raw materials, ingredients, and commodities all in one place.
+
             </p>
           </div>
         </div>

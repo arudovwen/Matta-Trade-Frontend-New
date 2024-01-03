@@ -1,7 +1,7 @@
 <template>
   <div
     class="h-screen w-screen grid grid-cols-1 lg:grid-cols-12 bg-cover bg-center relative"
-    :style="{ backgroundImage: `url('${AuthBg}')` }"
+    :style="backgroundStyles"
   >
     <div
       class="bg-[rgba(3,14,46,0.85)] h-full hidden lg:flex flex-col px-10 py-8 gap-y-8 lg:col-span-7"
@@ -22,8 +22,8 @@
           <h1
             class="text-4xl leading-10 xl:text-5xl 2xl:text-[50px] text-white font-bold mb-8 xl:leading-[1.2]"
           >
-            Sell your chemicals, raw materials and finished goods easily on
-            Matta.
+          Sell your chemicals, raw materials and finished goods easily on Matta
+
           </h1>
           <div class="grid gap-y-7">
             <div
@@ -39,9 +39,7 @@
                   {{ n.title }}
                 </p>
                 <p class="text-base text-white">
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.
-                  Exercitation veniam consequat sunt nostrud amet.
+                  {{n.text}}
                 </p>
               </div>
             </div>
@@ -72,25 +70,31 @@
 </template>
 
 <script setup>
-import AuthBg from "~/assets/images/vendimg.png";
 import Earth from "~/assets/images/earth-africa.svg";
 import Code from "~/assets/images/code.svg";
 import Group from "~/assets/images/users.svg";
 
+const nuxtImg = useImage();
+const backgroundStyles = computed(() => {
+  const imgUrl = nuxtImg(`https://res.cloudinary.com/arudovwen-me/image/upload/f_auto,q_auto/yqbey9rcgfvo4gj2lgpz`, {
+    sizes: { xl: "100vw", lg: "100vw", md: "100vw", sm: "100vw", xs: "100vw" },
+  });
+  return { backgroundImage: `url('${imgUrl}')` };
+});
 const content = [
   {
     title: "Strong coverage across Africa",
-    text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
+    text: "With our extensive network, gain unparalleled access to buyers and manufacturers across the diverse markets of Africa. We ensure your products reach every corner, maximizing your potential for growth and success.",
     icon: Earth,
   },
   {
     title: "Keep track of your customers",
-    text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
+    text: "Never lose sight of your customers again. Our intuitive platform simplifies customer interaction, helping you manage relationships seamlessly. From order history to personalized communication, stay informed and build lasting partnerships that drive business forward.",
     icon: Group,
   },
   {
-    title: "Integrate seemlessly with our embedded APIs",
-    text: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
+    title: "Grow Your Business with Our Technology",
+    text: "Experience a new era of business operations through our platform. Connect your systems effortlessly, ensuring a smooth and efficient flow of information. From order processing to inventory management, our integrated solutions simplify your workflow, allowing you to focus on what matters most—growing your business.",
     icon: Code,
   },
 ];
