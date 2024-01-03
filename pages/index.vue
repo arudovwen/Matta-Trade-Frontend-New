@@ -11,7 +11,8 @@
         <div class="lg:hidden">
           <LandingBoard />
         </div>
-        <LandingRecommended tag="recommended" />
+        <!-- <LandingRecommended tag="recommended" /> -->
+        <LandingHot title="Recommended" tag="recommended" />
         <LandingHot title="Best sellers" tag="bestsellers" />
       </div>
       <LandingInfo />

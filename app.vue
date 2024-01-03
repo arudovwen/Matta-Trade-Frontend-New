@@ -68,12 +68,12 @@ body, .no-scrollbar {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f4f4f4;
+  background: #ffffff;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #165EF0;
+  background: #ECECEC;
   border-radius: 8px;
   height: 100px;
  
@@ -86,12 +86,12 @@ body, .no-scrollbar {
 
 /* Track */
 ::-webkit-scrollbar-track:horizontal {
-  background: #f4f4f4;
+  background: #ffffff;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb:horizontal {
-  background: #165EF0;
+  background: #ECECEC;
   width: 50px;
   border-radius: 8px;
 }

@@ -32,10 +32,10 @@
               <Menu
                 v-slot="{ open }"
                 as="div"
-               
                 class="relative inline-block text-left"
               >
-                <MenuButton  :id="n.name"
+                <MenuButton
+                  :id="n.name"
                   class="flex gap-x-1 items-center group-hover:text-[#165EF0]"
                 >
                   {{ n.name }}
@@ -175,6 +175,7 @@
             >
               <div>
                 <MenuButton
+                  id="myaccount"
                   class="bg-[#165EF0] text-white rounded-[5px] px-[24px] py-[9px] flex gap-x-1 items-center font-semibold"
                 >
                   My account <AppIcon icon="mdi:chevron-down" class="text-lg" />
@@ -225,7 +226,7 @@
                           </NuxtLink>
                           <button
                             v-else
-                            @click="logOut()"
+                            @click="isSigniningOut = true"
                             class="flex gap-x-3 items-center text-[13px] font-medium"
                           >
                             <AppIcon :icon="n.icon" /> {{ n.name }}
@@ -243,13 +244,51 @@
           </div>
         </div>
       </div>
-   
     </div>
   </nav>
 
   <div class="z-[999]" v-if="open">
     <AppSideMenu />
   </div>
+
+  <ModalCenter v-if="isSigniningOut">
+    <template #default>
+      <div
+        class="bg-white p-6 lg:p-10 sm:p-6 sm:pb-4  rounded-lg"
+        v-if="isSigniningOut"
+      >
+        <div class="flex justify-between mb-5 items-center">
+          <h4 class="font-medium text-matta-black text-xl">Sign Out</h4>
+          <i
+            class="uil uil-times cursor-pointer text-lg"
+            @click="isSigniningOut = false"
+          ></i>
+        </div>
+
+        <p class="text-sm text-matta-black mb-2">
+          Are you sure you want to sign out?
+        </p>
+
+        <div class="flex justify-between gap-x-2 items-center mt-8">
+          <button
+            type="button"
+            @click="isSigniningOut = false"
+            class="appearance-none border w-1/2 leading-none px-8 py-3 rounded-lg text-matta-black hover:bg-gray-100 text-[13px] uppercase"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="button"
+            @click="logOut"
+            class="appearance-none border w-1/2 border-primary-500 leading-none px-8 py-3 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
+          >
+            Yes
+          </button>
+        </div>
+      </div>
+    </template>
+  </ModalCenter>
 </template>
 <script setup>
 import { ref } from "vue";
@@ -263,6 +302,7 @@ import {
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { logOut } from "~/services/authservices";
 
+const isSigniningOut = ref(false);
 const cartStore = useCartStore();
 const authStore = useAuthStore();
 const appStore = useApplicationStore();
@@ -308,12 +348,10 @@ function handleDropDown(val) {
   }
 }
 watch(currentRoute, () => {
-
-   open.value = false
-	
-})
+  open.value = false;
+});
 provide("open", open);
-
+provide("isOpen", isSigniningOut);
 </script>
 <style lang="scss">
 nav {

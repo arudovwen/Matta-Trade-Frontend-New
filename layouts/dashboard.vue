@@ -12,6 +12,7 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { getCompanyProfile } from "~/services/settingservices";
 import { createcart, getcart } from "~/services/cartservice";
@@ -36,12 +37,29 @@ onMounted(() => {
   if (authStore.isLoggedIn) {
     getcart().then((res) => {
       if (res.status === 200) {
-        cartStore?.setCart(res.data.data.items);
-        cartStore?.setTax(res.data.data.tax);
+        const remoteCartItems = res.data.data.items;
+        const remoteTax = res.data.data.tax;
+
+        // Set the remote cart items and tax in the store
+        cartStore?.setCart(remoteCartItems);
+        cartStore?.setTax(remoteTax);
+
         if (localCart?.length > 0) {
-          const miniCart = [...new Set([...res.data.data.items, ...localCart])];
-          createcart({ items: miniCart }).then((res) => {
-            if (res.status === 200) {
+          // Merge remote and local cart items, remove duplicates, and update the minicart
+          const mergedCart = [...remoteCartItems, ...localCart];
+          const uniqueCart = mergedCart.filter(
+            (item, index, self) =>
+              index ===
+              self.findIndex(
+                (i) =>
+                  i.productId === item.productId &&
+                  i.packageId === item.packageId
+              )
+          );
+
+          createcart({ items: uniqueCart }).then((createRes) => {
+            if (createRes.status === 200) {
+              // Refresh the minicart after updating with unique items
               cartStore?.getMyCart();
             }
           });

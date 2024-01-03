@@ -1,28 +1,23 @@
 <template>
   <div
-    class="container relative mt-10 md:helpersmt-[72px] pb-[100px] md:pb-[120px] pr-4"
+    class="container relative mt-10 md:helpersmt-[72px] pb-[100px] md:pb-[120px]"
   >
     <div
-      class="inline absolute md:h-[358px] w-[80%] md:w-[95%] rounded-[7px] bg-[rgba(198,226,250,0.3)] z-[1] top-8 left-6 max-w-[1152px]"
-    ></div>
-    <div
-      class="inline absolute md:h-[358px] w-[80%] md:w-[95%] rounded-[7px] bg-[#C6E2FA] z-[2] top-4 left-10 max-w-[1152px]"
-    ></div>
-    <div
-      class="rounded-[6px] md:h-[358px] bg-[linear-gradient(104deg,#2072FF_0%,#0451E5_100%)] pt-10 md:pt-[94px] pb-8 md:pb-[88px] relative h-full z-[3] w-full max-w-[1152px] mx-auto"
-    >
-      <div class="max-w-[937px] mx-auto text-center">
+      class="rounded-[6px] bg-cover lg:bg-contain bg-no-repeat pt-10 md:pt-[94px] pb-10 md:pb-[88px] relative h-full z-[3]  mx-auto max-w-[1169px]"
+      :style="{ backgroundImage: `url('${Wrapper}')` }"
+      >
+      <div class="max-w-[937px] mx-auto text-center pl-6 pr-6">
         <carousel class="max-w-[937px] mx-auto text-center testimonial">
-          <slide v-for="slide in 4" :key="slide">
+          <slide v-for="slide in 2" :key="slide">
             <div class="carousel__item px-5">
-              <p class="text-base lg:text-2xl text-white font-normal mb-8">
+              <p class="text-xs sm:text-sm lg:text-base xl:text-2xl text-white font-semibold mb-8">
                 “Ever since we discovered Matta, our production process has been
                 more streamlined. From sourcing for materials, to logistics and
                 delivery. Matta handles all aspects with exemplary proficiency
                 and professionalism”
               </p>
               <p
-                class="font-light text-xs md:text-sm xl:text-xl text-white mb-8"
+                class="font-medium text-[11px] sm:text-xs md:text-sm xl:text-xl text-white mb-8"
               >
                 James Orji - CEO, Mudally Nig. Ltd.
               </p>
@@ -38,6 +33,7 @@
 </template>
 <script setup>
 import { Carousel, Slide, Pagination } from "vue3-carousel";
+import Wrapper from "~/assets/images/wrapper.png";
 </script>
 
 <style lang="scss">

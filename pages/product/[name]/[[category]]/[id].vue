@@ -4,11 +4,11 @@
       <div>
         <ProductDetail />
       </div>
-      <div>
+      <div class="mb-6">
         <ProductInformation />
       </div>
       <div>
-        <ProductSimilar :content="reccomended" />
+        <ProductSimilar />
       </div>
       <div></div>
     </div>

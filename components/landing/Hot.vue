@@ -19,12 +19,12 @@
       </router-link>
     </div>
     <div
-      class="hidden lg:grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 md:gap-x-6 xl:gap-x-8"
+      class="hidden lg:grid grid-cols-2 lg:grid-cols-4  xl:grid-cols-5 gap-y-8 gap-x-4 md:gap-x-6"
     >
       <ProductCard
         data-aos="fade-up"
         data-aos-once="true"
-        v-for="(n, idx) in content.slice(0, 4)"
+        v-for="(n, idx) in content.slice(0, 5)"
         :key="idx"
         :index="idx"
         :detail="n"

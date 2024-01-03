@@ -17,9 +17,9 @@ export default {
     container: {
       center: true,
       padding: {
-        DEFAULT: "15px",
-        sm: "15px",
-        lg: "15px",
+        DEFAULT: "16px",
+        sm: "16px",
+        lg: "16px",
         xl: "0",
         "2xl": "0",
       },
@@ -28,7 +28,7 @@ export default {
         md: "768px",
         lg: "1024px",
         xl: "1280px",
-        "2xl": "1280px",
+        "2xl": "1480px",
       },
     },
     extend: {

@@ -1,8 +1,6 @@
 <template>
   <div v-if="productData" class="">
-    <div
-      class="bg-white darks:bg-gray-800 rounded-[20px] py-5 px-5 md:px-[32px] lg:mb-[30px]"
-    >
+    <div class="lg:mb-[30px]">
       <div class="flex justify-between items-center mb-6">
         <h2
           class="text-xs sm:text-base lg:text-xl font-bold text-[#222] darks:text-white"
@@ -10,9 +8,10 @@
           Similar products you might like
         </h2>
       </div>
-      <div class="flex gap-x-6 overflow-x-auto">
+
+      <div class="flex gap-x-6 overflow-x-auto pb-6">
         <div
-          v-for="slide in productsData.slice(0, 8)"
+          v-for="slide in productsData.slice(0, 10)"
           :key="slide"
           @click="
             router.push(
@@ -21,31 +20,54 @@
               )}/${slide.id}`
             )
           "
-          class="bg-white"
+          class="w-full  min-w-[130px] sm:min-w-[160px] lg:min-w-[250px] max-w-[250px]  bg-white darks:bg-gray-800 rounded-[10px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.05)] overflow-hidden"
         >
           <div
-          class="w-[120px] sm:w-[200px] lg:w-[240px] h-[77px] sm:h-[130px] xl:h-[185px] bg-gray-200 bg-cover bg-center rounded-[10px] overflow-hidden"
+            class="w-full h-[90px] sm:h-[120px] lg:h-[140px] xl:h-[160px] bg-gray-200 bg-cover bg-center relative"
             :style="{ backgroundImage: `url('${slide.converPhoto}')` }"
-          ></div>
-          <div
-          class="w-[120px] sm:w-[200px] lg:w-[240px] pt-[20px] pb-4 xl:pb-[20px] text-left"
           >
             <span
-              class="text-[10px] sm:text-sm xl:text-base block mb-2 sm:mb-[10px] font-bold darks:text-white truncate max-w-max"
+              class="absolute h-5 sm:h-[30px] w-5 sm:w-[30px] rounded-full right-[10px] top-[10px] bg-white/70 flex items-center justify-center"
+              ><AppIcon
+                :icon="!slide.liked ? 'ph:heart' : 'ph:heart-fill'"
+                class="text-xs sm:text-sm md:text-base darks:text-white"
+            /></span>
+          </div>
+          <div class="w-full py-3 md:py-5 px-3 xl:px-5">
+            <span
+              class="block mb-1 font-medium truncate max-w-max text-[12px] sm:text-sm xl:text-base darks:text-white leading-tight"
               >{{ slide.title }}</span
             >
             <span
-              class="block mb-4 sm:mb-[25px] text-[10px] sm:text-xs lg:text-sm truncate max-w-max text-[#666] darks:text-white/80 text-left"
+              class="block mb-[14px] sm:mb-4 text-[10px] sm:text-[12px] xl:text-sm truncate max-w-max text-[#666] darks:text-white/80 leading-tight"
               >{{ slide.manufacturer }}</span
             >
 
-            <div class="flex justify-between items-center">
-              <span class="text-base flex gap-x-1 items-center">
-                <span
-                  class="font-bold ml-[2px] text-xs sm:text-sm xl:text-xl text-[#333] darks:text-white"
-                  >{{ currencyFormat(slide.price) }}/{{ slide.unit }}</span
-                ></span
+            <div class="flex justify-between items-start md:items-center">
+              <span
+                v-if="slide.type === 'request'"
+                class="font-semibold text-[12px] sm:text-sm xl:text-base text-[#2176FF] leading-tight"
+                >Request Quote</span
               >
+              <span
+                class="text-base flex flex-col md:flex-row gap-x-1 md:items-center"
+                v-else
+              >
+                <!-- <span class="text-xs md:text-base text-[#666] darks:text-white/80"
+              >From</span
+            > -->
+                <span class="gap-x-1 flex items-center">
+                  <span
+                    v-if="slide.oldprice"
+                    class="line-through text-[#666] darks:text-white/80 text-[10px] sm:text-[13px] xl:text-base font-semibold leading-tight"
+                    >{{ currencyFormat(slide.oldprice) }}/{{ slide.unit }}</span
+                  >
+                  <span
+                    class="font-bold ml-[2px] text-[10px] sm:text-[13px] xl:text-base text-[#333] darks:text-white leading-tight"
+                    >{{ currencyFormat(slide.price) }}/{{ slide.unit }}</span
+                  ></span
+                >
+              </span>
             </div>
           </div>
         </div>
@@ -66,10 +88,6 @@ defineProps({
     type: String,
     default: "Hot deals",
   },
-  content: {
-    type: Array,
-    default: [],
-  },
 });
 
 const breakpoints = {
@@ -87,7 +105,7 @@ const breakpoints = {
   },
   // 1024 and up
   1280: {
-    itemsToShow: 4.9,
+    itemsToShow: 4.4,
   },
 };
 const queryParams = reactive({
@@ -103,7 +121,7 @@ function getAllProducts() {
   store.setLoader(true);
   getProducts({
     ...queryParams,
-    applications: productData?.value.marketApplications,
+    // applications: productData?.value.marketApplications,
     // MarketSubApplication: productData?.value.marketSubapplications,
   })
     .then((res) => {

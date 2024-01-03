@@ -43,7 +43,7 @@
               class="w-[120px] sm:w-[200px] lg:w-[240px] pt-[20px] pb-4 xl:pb-[20px] text-left"
             >
               <span
-                class="text-[10px] sm:text-sm xl:text-base block mb-2 sm:mb-[10px] font-bold darks:text-white truncate max-w-max"
+                class="text-[10px] sm:text-sm xl:text-base block mb-2 sm:mb-[10px] font-medium darks:text-white truncate max-w-max"
                 >{{ slide.title }}</span
               >
               <span
@@ -54,7 +54,7 @@
               <div class="flex justify-between items-center">
                 <span class="text-base flex gap-x-1 items-center">
                   <span
-                    class="font-bold ml-[2px] text-xs sm:text-sm xl:text-xl text-[#333] darks:text-white"
+                    class="font-semibold ml-[2px] text-xs sm:text-sm xl:text-base text-[#333] darks:text-white"
                     >{{ currencyFormat(slide.price) }}/{{ slide.unit }}</span
                   ></span
                 >
@@ -101,7 +101,7 @@ const breakpoints = {
   },
   // 1024 and up
   1580: {
-    itemsToShow: 4.9,
+    itemsToShow: 4.4,
   },
 };
 
