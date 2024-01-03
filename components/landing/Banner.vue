@@ -1,8 +1,8 @@
 <template>
   <div class="relative w-full bg-black-400">
     <div
-      class="bg-cover bg-center] min-h-[480px] md:min-h-[600px]"
-      :style="{ backgroundImage: `url('${imageSrc}')` }"
+      class="bg-cover  bg-center min-h-[480px] md:min-h-[600px]"
+      :style="backgroundStyles"
     >
       <!-- Overlay -->
       <div class="absolute inset-0 bg-[rgba(0,0,0,0.72)]"></div>
@@ -19,7 +19,8 @@
               Discover and buy chemicals and raw materials all in one place
             </h1>
             <p class="text-sm sm:text-base md:text-xl lg:text-2xl">
-              Search, compare, sample, quote and purchase from reliable and trustworthy suppliers
+              Search, compare, sample, quote and purchase from reliable and
+              trustworthy suppliers
             </p>
           </div>
           <div class="max-w-[786px]">
@@ -68,8 +69,18 @@
 </template>
 
 <script setup>
+
+const nuxtImg = useImage();
+const backgroundStyles = computed(() => {
+  const imgUrl = nuxtImg(`https://res.cloudinary.com/arudovwen-me/image/upload/f_auto,q_auto/xddierf8sf3w2gn1csau`, {
+    sizes: { xl: "100vw", lg: "100vw", md: "100vw", sm: "100vw", xs: "100vw" },
+  });
+  return { backgroundImage: `url('${imgUrl}')` };
+});
+// http://localhost:3000/images/banner.png
 const router = useRouter();
-const imageSrc = "/images/banner.png";
+const route = useRoute();
+
 const search = ref("");
 const frequentlySearched = [
   {

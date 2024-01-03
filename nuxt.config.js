@@ -10,6 +10,13 @@ export default defineNuxtConfig({
       // failOnError: false,
     },
   },
+  image: {
+    inject: true,
+    cloudinary: {
+      baseURL: 'https://res.cloudinary.com/arudovwen-me/image/upload/'
+    }
+  },
+
   modules: [
     "@nuxtjs/tailwindcss",
     "@vee-validate/nuxt",
@@ -20,6 +27,7 @@ export default defineNuxtConfig({
     "nuxt-simple-sitemap",
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-swiper",
+    "@nuxt/image",
   ],
   runtimeConfig: {
     public: {
