@@ -6,8 +6,8 @@
     >
       <div class="top-8 left-10 logo absolute z-10">
         <NuxtLink to="/">
-          <img
-            src="~/assets/images/logo-white.png"
+           <NuxtImg
+            src="/images/logo-white.png"
             width="100"
             height="26"
             alt="Matta"
@@ -37,8 +37,8 @@
     <div class="bg-white px-6 xl:px-10 flex flex-col lg:col-span-5 lg:justify-center h-full overflow-y-auto">
       <div class="pt-6 pb-2 z-10 lg:hidden">
         <NuxtLink to="/">
-          <img
-            src="~/assets/images/logo.png"
+           <NuxtImg
+            src="/images/logo.png"
             width="100"
             height="26"
             alt="Matta"

@@ -23,7 +23,7 @@
             : 'bg-white border border-[rgba(223,223,223,1)] darks:bg-slate-600 darks:border-slate-600'
         "
       >
-        <img
+         <NuxtImg
           src="~/assets/images/icon/ck-white.svg"
           alt=""
           class="h-[10px] w-[10px] block m-auto"

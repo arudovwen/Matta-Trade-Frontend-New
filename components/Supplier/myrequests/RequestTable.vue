@@ -55,7 +55,7 @@
         @click="toggleOrder"
         class="flex items-center justify-center cursor-pointer border border-[#E7EBEE] rounded-full h-12 w-12"
       >
-        <img src="~/assets/img/sorting.svg" alt="alt"
+         <img src="~/assets/img/sorting.svg" alt="alt"
       /></span>
     </span>
   </div>
@@ -93,7 +93,7 @@
                 v-if="item.inage"
                 class="mr-3 h-10 w-10 rounded-lg flex items-center justify-center border border-[#E7EBEE] p-2 whitespace-nowra"
               >
-                <img class="" :src="item.image" alt="alt" />
+                 <NuxtImg class="" :src="item.image" alt="alt" />
               </span>
               <i v-else class="fas fa-image text-[40px] mr-3 text-gray-400"></i>
               <span :class="item.status == 4 ? 'opacity-25' : ''">

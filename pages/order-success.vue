@@ -1,8 +1,8 @@
 <template>
   <div class="items-center flex justify-center h-[85vh] w-screen p-6">
     <div class="bg-white rounded-[10px] p-5 md:p-9 text-center max-w-[500px]">
-      <img
-        src="~/assets/images/success.png"
+       <NuxtImg
+        src="/images/success.png"
         class="mx-auto mb-[10px]"
         alt="success"
       />

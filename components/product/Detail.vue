@@ -14,7 +14,7 @@
         <div
           class="lg:w-[100px] flex flex-row lg:flex-col gap-x-3 lg:gap-x-0 lg:gap-y-3"
         >
-          <img
+          <NuxtImg
             :src="n"
             v-for="n in productData.gallery"
             :key="n"
@@ -26,7 +26,7 @@
           />
         </div>
         <div class="flex-1 relative">
-          <img
+          <NuxtImg
             :src="imageUrl || productData.featuredPhoto"
             alt="cover"
             width="400"

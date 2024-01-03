@@ -25,7 +25,7 @@
                 class="h-24 w-24 rounded-lg flex items-center text-xs bg-[#F1F3F5] mr-4 justify-center"
                 ><i class="uil uil-image text-4xl text-gray-400"></i
               ></span>
-              <img
+               <NuxtImg
                 v-else
                 :src="image"
                 class="h-24 w-24 rounded-lg flex items-center bg-[#F1F3F5] mr-4 justify-center"

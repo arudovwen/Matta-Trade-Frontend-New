@@ -7,8 +7,8 @@
         <div class="">
           <div class="mb-[15px]" data-aos="fade-up" data-aos-once="true">
             <router-link to="/">
-              <img
-                src="~/assets/images/logo.png"
+               <NuxtImg
+                src="/images/logo.png"
                 class="w-[132px]"
                 alt="Matta"
                 width="132"

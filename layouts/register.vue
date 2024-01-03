@@ -8,8 +8,8 @@
     >
       <div class="flex justify-between">
         <NuxtLink to="/">
-          <img
-            src="~/assets/images/logo-white.png"
+           <NuxtImg
+            src="/images/logo-white.png"
             width="100"
             height="26"
             alt="Matta"
@@ -32,7 +32,7 @@
               class="flex items-start gap-x-5"
             >
               <div class="w-20 mt-1">
-                <img :src="n.icon" :alt="n.title" class="w-10" />
+                 <NuxtImg :src="n.icon" :alt="n.title" class="w-10" />
               </div>
               <div>
                 <p class="text-xl font-bold text-white mb-1">
@@ -53,8 +53,8 @@
       <div class="w-full h-full bg-white flex flex-col">
         <div class="z-10 lg:hidden mb-14 max-h-max">
           <NuxtLink to="/">
-            <img
-              src="~/assets/images/logo.png"
+             <NuxtImg
+              src="/images/logo.png"
               width="100"
               height="26"
               alt="Matta"
@@ -70,9 +70,9 @@
 </template>
 
 <script setup>
-import Earth from "~/assets/images/earth-africa.svg";
-import Code from "~/assets/images/code.svg";
-import Group from "~/assets/images/users.svg";
+const Earth = "/images/earth-africa.svg";
+const Code = "/images/code.svg";
+const Group = "/images/users.svg";
 
 const nuxtImg = useImage();
 const backgroundStyles = computed(() => {

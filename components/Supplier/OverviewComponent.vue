@@ -237,7 +237,7 @@
                         v-if="item.image"
                         class="mr-3 h-10 w-10 rounded-lg flex items-center justify-center border border-[#E7EBEE] p-2"
                       >
-                        <img class="" :src="item.image" alt="alt" />
+                         <NuxtImg class="" :src="item.image" alt="alt" />
                       </span>
                       <i
                         v-else

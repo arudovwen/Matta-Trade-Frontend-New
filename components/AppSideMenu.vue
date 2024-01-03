@@ -58,8 +58,8 @@
                     <!-- Replace with your content -->
                     <div class="absolute inset-0 pt-5">
                       <div class="px-5 pb-4" v-if="!authStore.isLoggedIn">
-                        <img
-                          src="~/assets/images/logo.png"
+                         <NuxtImg
+                          src="images/logo.png"
                           width="100"
                           height="26"
                           alt="Matta"

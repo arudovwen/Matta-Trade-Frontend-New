@@ -13,8 +13,8 @@ export default defineNuxtConfig({
   image: {
     inject: true,
     cloudinary: {
-      baseURL: 'https://res.cloudinary.com/arudovwen-me/image/upload/'
-    }
+      baseURL: "https://res.cloudinary.com/arudovwen-me/image/upload/",
+    },
   },
 
   modules: [
@@ -131,8 +131,8 @@ export default defineNuxtConfig({
           defer: true,
         },
         {
-          async: true,
           src: "https://www.googletagmanager.com/gtag/js?id=G-295L8F9LEF",
+          defer: true,
         },
         {
           innerHTML: `
@@ -144,6 +144,7 @@ export default defineNuxtConfig({
             gtag("config", "G-295L8F9LEF");
           `,
           type: "text/javascript",
+          defer: true,
         },
         {
           innerHTML: `
@@ -160,6 +161,7 @@ export default defineNuxtConfig({
             })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
           `,
           type: "text/javascript",
+          defer: true,
         },
       ],
       link: [

@@ -3,7 +3,7 @@
     <nav class="flex justify-between gap-x-2 items-center py-5 px-6">
       <div class="flex items-center">
         <router-link to="/">
-          <img
+           <img
             src="@/assets/img/logo.svg"
             width="80"
             height="auto"

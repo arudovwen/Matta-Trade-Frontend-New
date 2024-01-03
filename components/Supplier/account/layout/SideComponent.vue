@@ -7,7 +7,7 @@
       <div
         class="w-16 md:w-16 h-16 md:h-16 rounded-lg bg-white shadow p-4 flex items-center justify-center border border-[#E7EBEE]"
       >
-        <img v-if="company.logo" class="" :src="company.logo" alt="logo" />
+         <NuxtImg v-if="company.logo" class="" :src="company.logo" alt="logo" />
         <span class="uppercase" v-else>{{
           company.companyName.slice(0, 2)
         }}</span>

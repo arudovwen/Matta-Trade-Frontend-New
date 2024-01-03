@@ -21,6 +21,7 @@
     "nuxt": "^3.8.1",
     "nuxt-simple-sitemap": "^4.2.1",
     "nuxt-swiper": "^1.2.2",
+    "sharp": "^0.33.1",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },

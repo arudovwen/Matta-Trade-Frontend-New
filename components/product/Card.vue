@@ -10,7 +10,7 @@
     >
       <div
         class="w-full h-[90px] sm:h-[120px] lg:h-[140px] xl:h-[160px] bg-gray-200 bg-cover bg-center relative"
-        :style="{ backgroundImage: `url('${detail.converPhoto}')` }"
+       
       >
         <span
           class="absolute h-5 sm:h-[30px] w-5 sm:w-[30px] rounded-full right-[10px] top-[10px] bg-white/70 flex items-center justify-center"
@@ -18,6 +18,7 @@
             :icon="!detail.liked ? 'ph:heart' : 'ph:heart-fill'"
             class="text-xs sm:text-sm md:text-base darks:text-white"
         /></span>
+        <NuxtImg :src="detail.converPhoto" alt="" class="w-full  h-full object-cover" fit="cover" loading="lazy" />
       </div>
       <div class="w-full py-3 md:py-5 px-3 xl:px-5">
         <span
@@ -45,11 +46,11 @@
             <span class="gap-x-1 flex items-center">
               <span
                 v-if="detail.oldprice"
-                class="line-through text-[#666] darks:text-white/80 text-[10px] sm:text-[13px] xl:text-base font-semibold leading-tight"
+                class="line-through text-[#666] darks:text-white/80  text-[12px] sm:text-sm xl:text-base font-semibold leading-tight"
                 >{{ currencyFormat(detail.oldprice) }}/{{ detail.unit }}</span
               >
               <span
-                class="font-bold ml-[2px] text-[10px] sm:text-[13px] xl:text-base text-[#333] darks:text-white leading-tight"
+                class="font-bold ml-[2px]  text-[12px] sm:text-sm xl:text-base text-[#333] darks:text-white leading-tight"
                 >{{ currencyFormat(detail.price) }}/{{ detail.unit }}</span
               ></span
             >

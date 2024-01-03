@@ -9,7 +9,7 @@
           <div
             class="w-20 h-20 rounded-xl bg-white flex items-center justify-center"
           >
-            <img :src="supplier.logo" class="rounded-xl" alt="alt" />
+             <NuxtImg :src="supplier.logo" class="rounded-xl" alt="alt" />
           </div>
           <div>
             <p class="font-medium text-base text-matta-black capitalize">

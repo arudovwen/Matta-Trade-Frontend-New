@@ -54,8 +54,8 @@
 
                     <span class="font-medium text-base capitalize">
                     
-                        <img
-                          src="~/assets/images/logo.png"
+                         <NuxtImg
+                          src="/images/logo.png"
                           width="100"
                           height="26"
                           alt="Matta"

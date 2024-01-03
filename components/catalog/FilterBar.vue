@@ -77,7 +77,7 @@
           <button
             class="w-[46px] h-[46px] rounded-full flex items-center justify-center text-matta-black bg-transparent hover:text-white hover:bg-matta-black border border-[#ddd] shadow-sm"
           >
-            <img
+             <img
               src="~/assets/img/sorting.svg"
               alt="sorting"
             /></button></template

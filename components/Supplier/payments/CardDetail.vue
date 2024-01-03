@@ -8,8 +8,8 @@
     "
   >
     <div class="flex items-center gap-x-2">
-      <img src="~/assets/img/master.svg" alt="alt" v-if="index == 1" class="" />
-      <img src="~/assets/img/visa.svg" alt="alt" v-else class="" />
+       <img src="~/assets/img/master.svg" alt="alt" v-if="index == 1" class="" />
+       <img src="~/assets/img/visa.svg" alt="alt" v-else class="" />
       <div>
         <div class="flex items-center mb-2 gap-x-2">
           <p

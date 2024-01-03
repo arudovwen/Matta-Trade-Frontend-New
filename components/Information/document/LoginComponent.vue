@@ -103,7 +103,7 @@
               <button
                 class="border border-[#E7EBEE] rounded-full flex items-center h-12 w-12 justify-center text-center hover:bg-gray-400 hover:shadow-sm relative"
               >
-                <img
+                 <img
                   src="~/assets/img/google.png"
                   alt="google"
                   class="w-4 h-auto"

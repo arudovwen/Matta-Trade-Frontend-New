@@ -11,8 +11,8 @@
       <div class="flex justify-between items-center gap-x-5">
         <div class="logo flex gap-x-10 items-center">
           <NuxtLink to="/">
-            <img
-              src="~/assets/images/logo.png"
+             <NuxtImg
+              src="/images/logo.png"
               width="100"
               height="26"
               alt="Matta"
@@ -116,7 +116,7 @@
             }"
             class="gap-x-1 items-center"
           >
-            <img
+             <NuxtImg
               src="~/assets/images/nigeria.svg"
               width="20"
               height="20"

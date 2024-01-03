@@ -93,7 +93,7 @@
           <span
             class="flex items-center justify-center border border-[#E7EBEE] rounded-full h-12 w-12"
           >
-            <img src="~/assets/img/sorting.svg" alt="alt"
+             <img src="~/assets/img/sorting.svg" alt="alt"
           /></span>
         </span>
       </div>
