@@ -141,7 +141,7 @@ export default defineNuxtConfig({
       script: [
         {
           src: "https://sdk.monnify.com/plugin/monnify.js",
-          crossorigin: "anonymous",
+         
           defer: true,
         },
         {
