@@ -43,6 +43,16 @@ export default defineNuxtConfig({
           "https://dev.gateway.matta.trade",
           "https://res.cloudinary.com",
         ],
+        "script-src": [
+          "'self'",
+          "https:",
+          "https://www.googletagmanager.com",
+          "https://kit.fontawesome.com",
+          "https://sdk.monnify.com",
+          "'unsafe-inline'",
+          "'strict-dynamic'",
+          "'nonce-{{nonce}}'",
+        ],
       },
       xFrameOptions: "deny",
     },
@@ -141,7 +151,7 @@ export default defineNuxtConfig({
       script: [
         {
           src: "https://sdk.monnify.com/plugin/monnify.js",
-         
+
           defer: true,
         },
         {
