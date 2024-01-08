@@ -36,8 +36,6 @@ export default defineNuxtConfig({
       crossOriginEmbedderPolicy:
         process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
       contentSecurityPolicy: {
-        "base-uri": ["'none'"],
-        "font-src": ["'self'", "https:", "data:"],
         "img-src": [
           "'self'",
           "https:",
@@ -45,16 +43,6 @@ export default defineNuxtConfig({
           "http://localhost:3000",
           "https://dev.gateway.matta.trade",
           "https://res.cloudinary.com",
-        ],
-        "object-src": ["'none'"],
-        "script-src-attr": ["'self'", "https:", "'unsafe-inline'"],
-        "style-src": ["'self'", "https:", "'unsafe-inline'"],
-        "script-src": [
-          "'self'",
-          "https:",
-          "'unsafe-inline'",
-          "'strict-dynamic'",
-          "'nonce-{{nonce}}'",
         ],
       },
       xFrameOptions: "deny",
