@@ -46,9 +46,6 @@ export default defineNuxtConfig({
         "script-src": [
           "'self'",
           "https:",
-          "https://www.googletagmanager.com",
-          "https://kit.fontawesome.com",
-          "https://sdk.monnify.com",
           "'unsafe-inline'",
           "'strict-dynamic'",
           "'nonce-{{nonce}}'",
