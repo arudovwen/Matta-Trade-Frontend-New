@@ -32,7 +32,6 @@ export default defineNuxtConfig({
     "@nuxt/devtools",
   ],
   security: {
-    nonce: true,
     headers: {
       crossOriginEmbedderPolicy:
         process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
@@ -155,6 +154,7 @@ export default defineNuxtConfig({
       script: [
         {
           src: "https://sdk.monnify.com/plugin/monnify.js",
+          crossorigin: "anonymous",
           defer: true,
         },
         {
@@ -164,6 +164,7 @@ export default defineNuxtConfig({
         },
         {
           src: "https://www.googletagmanager.com/gtag/js?id=G-295L8F9LEF",
+          crossorigin: "anonymous",
           defer: true,
         },
         {
@@ -177,6 +178,7 @@ export default defineNuxtConfig({
           `,
           type: "text/javascript",
           defer: true,
+          crossorigin: "anonymous",
         },
         {
           innerHTML: `
@@ -193,6 +195,7 @@ export default defineNuxtConfig({
             })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
           `,
           type: "text/javascript",
+          crossorigin: "anonymous",
           defer: true,
         },
       ],
