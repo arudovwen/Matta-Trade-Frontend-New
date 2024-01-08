@@ -48,7 +48,7 @@ export const useCartStore = defineStore(
         ) &&
         cookie?.value?.cartItems.some((ct) => ct.packageId === item.packageId)
       ) {
-        return { status: false, message: type };
+        return { status: false, message: "incart" };
       }
 
       if (!authStore.isLoggedIn) {

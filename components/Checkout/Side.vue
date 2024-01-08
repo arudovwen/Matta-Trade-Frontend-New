@@ -85,6 +85,8 @@ const status = ref("Confirm order");
 function onModalClose() {
   loading.value = false;
   toast.error("Payment cancelled");
+  status.value = "Retry order";
+  loading.value = false;
 }
 function confirmOrder() {
   status.value = "Processing order...";

@@ -28,30 +28,30 @@ export default defineNuxtConfig({
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-swiper",
     "@nuxt/image",
-    // "nuxt-security",
-    // "@nuxt/devtools",
+    "nuxt-security",
+    "@nuxt/devtools",
   ],
-  // security: {
-  //   headers: {
-  //     crossOriginEmbedderPolicy:
-  //       process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
-  //     contentSecurityPolicy: {
-  //       "base-uri": ["'none'"],
-  //       "font-src": ["'self'", "https:", "data:"],
-  //       "img-src": ["'self'", "https:", "data:"],
-  //       "object-src": ["'none'"],
-  //       "script-src-attr": ["'self'", "https:", "'unsafe-inline'"],
-  //       "style-src": ["'self'", "https:", "'unsafe-inline'"],
-  //       "script-src": [
-  //         "'self'",
-  //         "https:",
-  //         "'unsafe-inline'",
-  //         "'strict-dynamic'",
-  //         "'nonce-{{nonce}}'",
-  //       ],
-  //     },
-  //   },
-  // },
+  security: {
+    headers: {
+      crossOriginEmbedderPolicy:
+        process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
+      contentSecurityPolicy: {
+        "base-uri": ["'none'"],
+        "font-src": ["'self'", "https:", "data:"],
+        "img-src": ["'self'", "https:", "data:"],
+        "object-src": ["'none'"],
+        "script-src-attr": ["'self'", "https:", "'unsafe-inline'"],
+        "style-src": ["'self'", "https:", "'unsafe-inline'"],
+        "script-src": [
+          "'self'",
+          "https:",
+          "'unsafe-inline'",
+          "'strict-dynamic'",
+          "'nonce-{{nonce}}'",
+        ],
+      },
+    },
+  },
   runtimeConfig: {
     public: {
       API_BASE_URL: process.env.API_BASE_URL,

@@ -12,7 +12,9 @@
 
       <p class="text-sm">
         Drag & Drop Files, or
-        <label for="file" class="text-primary cursor-pointer ml-1"
+        <label
+          for="file"
+          class="text-primary-500 font-medium cursor-pointer ml-1"
           >Browse</label
         >
       </p>
@@ -34,7 +36,8 @@
     <span v-for="(n, i) in gallery" :key="i">
       <span
         class="h-24 w-24 rounded-lg bg-white flex items-center justify-center border relative border-[#E7EBEE]"
-        > <NuxtImg :src="n" alt="logo" class="w-full h-full rounded-lg" />
+      >
+        <NuxtImg :src="n" alt="logo" class="w-full h-full rounded-lg" />
         <span
           class="bg-white text-matta-black h-5 w-5 flex items-center justify-center absolute -top-1 -right-2"
           @click="removeFile(i)"
@@ -52,6 +55,7 @@
   ></span>
 </template>
 <script setup>
+import { toast } from "vue3-toastify";
 import { ref, onMounted, defineProps, defineEmits, computed } from "vue";
 import { uploadfile, uploaddocument } from "~/services/onboardingservices";
 // import axios from "axios";
@@ -77,6 +81,12 @@ function handleFile(e) {
   const files = [...e.target.files];
 
   files.forEach((file) => {
+    // Check file size (in bytes)
+    const maxSize = 800 * 1024; // 800 KB
+    if (file.size > maxSize) {
+      toast.error("File size exceeds the limit (800 KB).");
+      return;
+    }
     isLoading.value = true;
     // Encode the file using the FileReader API
     const reader = new FileReader();

@@ -1014,19 +1014,35 @@ function handleEvent(e) {
   isLoadingLogo.value = true;
   var files = e.target.files || e.dataTransfer.files;
   if (!files.length) return;
+
+  const file = files[0];
+
+  // Check file type
+  if (!file.type.startsWith('image/')) {
+    toast.error('Please upload an image file.');
+    isLoadingLogo.value = false;
+    return;
+  }
+
+  // Check file size (in bytes)
+  const maxSize = 800 * 1024; // 800 KB
+  if (file.size > maxSize) {
+    toast.error('File size exceeds the limit (800 KB).');
+    isLoadingLogo.value = false;
+    return;
+  }
+
   if (producerForm.logo) {
     URL.revokeObjectURL(producerForm.logo);
   }
 
-  const file = e.target.files[0];
   const reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onloadend = () => {
-    // Use a regex to remove data url part
     const base64String = reader.result;
 
     uploadfile({
-      base64: base64String.replace("data:", "").replace(/^.+,/, ""),
+      base64: base64String.replace(/^data:image\/[a-z]+;base64,/, ''),
     })
       .then((res) => {
         producerForm.logo = res.data.message;
@@ -1036,8 +1052,8 @@ function handleEvent(e) {
         isLoadingLogo.value = false;
       });
   };
-  // producerForm.logo = URL.createObjectURL(files[0]);
 }
+
 function onGetFiles(file) {
   form.gallery = [...form.gallery, file];
 }

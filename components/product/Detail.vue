@@ -326,7 +326,7 @@ function handleCart(type) {
   };
 
   cartStore?.addToCart(data, type).then((res) => {
-    if (!res.status && res.message !== "buy") {
+    if (!res.status && res.message === "incart") {
       toast.info("Already in your cart");
     }
     if (res.status && res.message !== "buy") {
