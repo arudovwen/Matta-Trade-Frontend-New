@@ -32,6 +32,7 @@ export default defineNuxtConfig({
     "@nuxt/devtools",
   ],
   security: {
+    hidePoweredBy: false,
     headers: {
       crossOriginEmbedderPolicy: "unsafe-none",
       contentSecurityPolicy: {
