@@ -50,6 +50,7 @@ export default defineNuxtConfig({
           "'nonce-{{nonce}}'",
         ],
       },
+      xFrameOptions: "deny",
     },
   },
   runtimeConfig: {
