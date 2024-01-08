@@ -40,7 +40,6 @@ export default defineNuxtConfig({
           "'self'",
           "https:",
           "data:",
-          "http://localhost:3000",
           "https://dev.gateway.matta.trade",
           "https://res.cloudinary.com",
         ],
