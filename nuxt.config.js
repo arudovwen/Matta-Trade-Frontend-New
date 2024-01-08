@@ -32,13 +32,20 @@ export default defineNuxtConfig({
     "@nuxt/devtools",
   ],
   security: {
+    nonce: true,
     headers: {
       crossOriginEmbedderPolicy:
         process.env.NODE_ENV === "development" ? "unsafe-none" : "require-corp",
       contentSecurityPolicy: {
         "base-uri": ["'none'"],
         "font-src": ["'self'", "https:", "data:"],
-        "img-src": ["'self'", "https:", "data:"],
+        "img-src": [
+          "'self'",
+          "https:",
+          "data:",
+          "https://dev.gateway.matta.trade",
+          "https://res.cloudinary.com",
+        ],
         "object-src": ["'none'"],
         "script-src-attr": ["'self'", "https:", "'unsafe-inline'"],
         "style-src": ["'self'", "https:", "'unsafe-inline'"],

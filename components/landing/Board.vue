@@ -6,11 +6,12 @@
       class="rounded-[10px] "
     >
       <NuxtLink to="/market/products">
-        <NuxtImg src="https://res.cloudinary.com/arudovwen-me/image/upload/c_scale,h_238/f_webp/ctgfxohrfifietzzvhrh.jpg" alt="image" class="w-full  h-full object-contain rounded-[10px] bg-gray-300" />
+        <NuxtImg  :nonce="nonce" src="https://res.cloudinary.com/arudovwen-me/image/upload/c_scale,h_238/f_webp/ctgfxohrfifietzzvhrh.jpg" alt="image" class="w-full  h-full object-contain rounded-[10px] bg-gray-300" />
       </NuxtLink>
     </div>
   </div>
 </template>
 <script setup>
+const nonce = useNonce()
 const imageSrc = "";
 </script>

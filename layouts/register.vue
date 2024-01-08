@@ -54,6 +54,7 @@
         <div class="z-10 lg:hidden mb-14 max-h-max">
           <NuxtLink to="/">
              <NuxtImg
+             :nonce="nonce"
               src="/images/logo.png"
               width="100"
               height="26"
@@ -73,7 +74,7 @@
 const Earth = "/images/earth-africa.svg";
 const Code = "/images/code.svg";
 const Group = "/images/users.svg"; 
-
+const nonce = useNonce()
 const nuxtImg = useImage();
 const backgroundStyles = computed(() => {
   const imgUrl = nuxtImg(`https://res.cloudinary.com/arudovwen-me/image/upload/c_scale,w_1280/f_webp/yqbey9rcgfvo4gj2lgpz.jpg`, {
