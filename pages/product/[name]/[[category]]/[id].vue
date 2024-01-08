@@ -23,14 +23,14 @@ const store = useProductStore();
 
 const route = useRoute();
 const { id } = route.params;
-
+const loading = ref(true)
 function getAProduct() {
-  store.setLoader(true);
+ loading.value = true
   getProduct(id)
     .then((res) => {
       if (res.status === 200) {
         store.setProduct(res.data.data);
-        store.setLoader(false);
+        loading.value = false
       }
     })
     .catch(() => {
@@ -41,4 +41,5 @@ function getAProduct() {
 onMounted(() => {
   getAProduct();
 });
+provide("isLoading", loading)
 </script>

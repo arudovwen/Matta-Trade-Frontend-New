@@ -72,7 +72,7 @@
 
 const nuxtImg = useImage();
 const backgroundStyles = computed(() => {
-  const imgUrl = nuxtImg(`https://res.cloudinary.com/arudovwen-me/image/upload/f_auto,q_auto/xddierf8sf3w2gn1csau`, {
+  const imgUrl = nuxtImg(`https://res.cloudinary.com/arudovwen-me/image/upload/f_webp/c_scale,h_600/xddierf8sf3w2gn1csau.jpg`, {
     sizes: { xl: "100vw", lg: "100vw", md: "100vw", sm: "100vw", xs: "100vw" },
   });
   return { backgroundImage: `url('${imgUrl}')` };

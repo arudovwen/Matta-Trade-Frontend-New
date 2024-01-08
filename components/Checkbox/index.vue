@@ -25,7 +25,7 @@
       >
          <NuxtImg
           src="~/assets/images/icon/ck-white.svg"
-          alt=""
+          alt="image"
           class="h-[10px] w-[10px] block m-auto"
           v-if="ck"
         />

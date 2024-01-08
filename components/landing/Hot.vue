@@ -1,5 +1,5 @@
 <template>
-  <div class="container mb-[30px]" v-if="content.length">
+  <div class="container mb-[30px]">
     <div
       data-aos="fade-up"
       data-aos-once="true"
@@ -18,8 +18,10 @@
         </button>
       </router-link>
     </div>
+
     <div
-      class="flex xl:grid grid-cols-2 lg:grid-cols-4  xl:grid-cols-5 gap-y-8 gap-x-4 md:gap-x-6 overflow-x-auto pb-6"
+      v-if="content.length && !isLoading"
+      class="flex xl:grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-y-8 gap-x-4 md:gap-x-6 overflow-x-hidden hover:overflow-x-auto pb-6"
     >
       <ProductCard
         data-aos="fade-up"
@@ -30,11 +32,14 @@
         :detail="n"
       />
     </div>
-    <!-- <div class="flex overflow-x-auto gap-x-4 lg:hidden">
-      <div v-for="(n, idx) in content.slice(0, 6)" :key="idx">
-        <ProductCard :index="idx" :detail="n" />
+    <div
+      v-if="isLoading"
+      class="flex xl:grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-y-8 gap-x-4 md:gap-x-6 overflow-x-hidden hover:overflow-x-auto pb-6"
+    >
+      <div v-for="n in 5" :key="n">
+        <ProductSkelenton />
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 <script setup>
@@ -50,6 +55,7 @@ const props = defineProps({
     default: "hotdeals",
   },
 });
+const isLoading = ref(true);
 const content = ref([]);
 const breakpoints = {
   300: {
@@ -74,12 +80,13 @@ function getAllProducts() {
   getProductsByTag({ PageNumber: 1, PageSize: 8, tag: props.tag })
     .then((res) => {
       if (res.status === 200) {
-   
         content.value = res.data.data.data;
+        isLoading.value = false;
       }
     })
     .catch(() => {
       setLoader(false);
+      isLoading.value = false;
     });
 }
 

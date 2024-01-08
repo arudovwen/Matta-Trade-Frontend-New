@@ -1,5 +1,5 @@
 <template>
-  <div v-if="productData" class="">
+  <div class="">
     <div class="lg:mb-[30px]">
       <div class="flex justify-between items-center mb-6">
         <h2
@@ -9,7 +9,7 @@
         </h2>
       </div>
 
-      <div class="flex gap-x-6 overflow-x-auto pb-6">
+      <div v-if="!loading" class="flex gap-x-6 overflow-x-hidden hover:overflow-x-auto pb-6">
         <div
           v-for="slide in productsData.slice(0, 10)"
           :key="slide"
@@ -32,7 +32,7 @@
                 :icon="!slide.liked ? 'ph:heart' : 'ph:heart-fill'"
                 class="text-xs sm:text-sm md:text-base darks:text-white"
             /></span>
-            <NuxtImg :src="slide.converPhoto" alt="" class="w-full  h-full object-cover" fit="cover" loading="lazy" />
+            <NuxtImg :src="slide.converPhoto" alt="image" width="276" height="160" class="w-full  h-full object-cover" fit="cover" loading="lazy" />
           </div>
           <div class="w-full py-3 md:py-5 px-3 xl:px-5">
             <span
@@ -73,6 +73,14 @@
           </div>
         </div>
       </div>
+      <div
+      v-if="loading"
+      class="flex xl:grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-y-8 gap-x-4 md:gap-x-6 overflow-x-hidden hover:overflow-x-auto pb-6"
+    >
+      <div v-for="n in 5" :key="n">
+        <ProductSkelenton />
+      </div>
+    </div>
     </div>
   </div>
 </template>
@@ -122,8 +130,8 @@ function getAllProducts() {
   store.setLoader(true);
   getProducts({
     ...queryParams,
-    // applications: productData?.value.marketApplications,
-    // MarketSubApplication: productData?.value.marketSubapplications,
+    applications: productData?.value.marketApplications,
+    MarketSubApplication: productData?.value.marketSubapplications,
   })
     .then((res) => {
       if (res.status === 200) {

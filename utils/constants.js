@@ -8,6 +8,6 @@ export const measurements = [
   { value: "ton", name: "Ton (ton)" },
   { value: "ml", name: "Millilitre (ml)" },
   { value: "mm", name: "Millimetre (mm)" },
-  { value: "bag(s)", name: "Bag(s)" },
-  { value: "drum(s)", name: "Drum(s)" },
+  { value: "bag", name: "Bag" },
+  { value: "drum", name: "Drum" },
 ];

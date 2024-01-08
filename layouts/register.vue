@@ -72,11 +72,11 @@
 <script setup>
 const Earth = "/images/earth-africa.svg";
 const Code = "/images/code.svg";
-const Group = "/images/users.svg";
+const Group = "/images/users.svg"; 
 
 const nuxtImg = useImage();
 const backgroundStyles = computed(() => {
-  const imgUrl = nuxtImg(`https://res.cloudinary.com/arudovwen-me/image/upload/f_auto,q_auto/yqbey9rcgfvo4gj2lgpz`, {
+  const imgUrl = nuxtImg(`https://res.cloudinary.com/arudovwen-me/image/upload/c_scale,w_1280/f_webp/yqbey9rcgfvo4gj2lgpz.jpg`, {
     sizes: { xl: "100vw", lg: "100vw", md: "100vw", sm: "100vw", xs: "100vw" },
   });
   return { backgroundImage: `url('${imgUrl}')` };

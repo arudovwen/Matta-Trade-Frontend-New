@@ -5,13 +5,13 @@
       :links="links"
     />
     <div
-      v-if="productData"
       class="p-4 sm:p-6 lg:p-[30px] bg-white rounded-[10px] flex flex-col lg:flex-row gap-x-[38px] gap-y-10 lg:gap-y-0"
     >
       <div
         class="flex-1 flex flex-col-reverse lg:flex-row gap-y-[14px] lg:gap-y-0 lg:gap-x-[14px]"
       >
         <div
+          v-if="!isLoading"
           class="lg:w-[100px] flex flex-row lg:flex-col gap-x-3 lg:gap-x-0 lg:gap-y-3"
         >
           <NuxtImg
@@ -25,7 +25,17 @@
             class="bg-gray-100 w-16 lg:w-[100px] object-cover h-16 lg:h-[100px] rounded-[5px]"
           />
         </div>
-        <div class="flex-1 relative">
+        <div
+          v-if="isLoading"
+          class="lg:w-[100px] flex flex-row lg:flex-col gap-x-3 lg:gap-x-0 lg:gap-y-3"
+        >
+          <div
+            v-for="n in 4"
+            :key="n"
+            class="bg-gray-200 animate-pulse w-16 lg:w-[100px] object-cover h-16 lg:h-[100px] rounded-[5px]"
+          />
+        </div>
+        <div v-if="!isLoading" class="flex-1 relative">
           <NuxtImg
             :src="imageUrl || productData.featuredPhoto"
             alt="cover"
@@ -41,8 +51,13 @@
               class="text-xs sm:text-sm md:text-base darks:text-white"
           /></span>
         </div>
+        <div v-if="isLoading" class="flex-1 relative">
+          <div
+            class="bg-gray-200 animate-pulse w-full h-[200px] lg:h-[300px] xl:h-[460px] rounded-[10px]"
+          />
+        </div>
       </div>
-      <div class="lg:w-[550px]">
+      <div class="lg:w-[550px]" v-if="!isLoading">
         <h1 class="font-bold text-lg sm:text-2xl lg:text-[32px] mb-3 lg:mb-6">
           {{ productData.name }}
         </h1>
@@ -116,6 +131,72 @@
           </div>
         </div>
       </div>
+
+      <!-- Sklenton starts here  -->
+      <div class="lg:w-[550px]" v-if="isLoading">
+        <h1
+          class="font-bold text-lg sm:text-2xl lg:text-[32px] mb-3 lg:mb-6 bg-gray-200 w-[160px] p-[8px] rounded-full animate-pulse"
+        ></h1>
+        <p
+          class="text-[#444] text-xs lg:text-sm mb-6 bg-gray-200 w-[260px] p-[8px] rounded-full animate-pulse"
+        ></p>
+        <p
+          class="text-xl lg:text-2xl font-[800] mb-6 bg-gray-200 w-[160px] p-[6px] rounded-full animate-pulse"
+        ></p>
+        <p class="text-xs :text-sm mb-6">
+          <span
+            class="font-normal bg-gray-200 inline-flex w-[80px] p-[4px] rounded-full animate-pulse"
+          ></span
+          ><span
+            class="font-bold bg-gray-200 w-[140px] inline-flex p-[4px] rounded-full animate-pulse ml-2"
+          >
+          </span>
+        </p>
+        <div
+          class="flex flex-col md:flex-row gap-x-[18px] gap-y-4 lg:gap-y-0 mb-6 justify-start items-center"
+        >
+          <div
+            class="flex flex-col sm:flex-row gap-y-4 lg:gap-y-0 gap-x-4 items-center"
+          >
+            <AppButton
+              text=""
+              btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB] !bg-gray-200 w-[160px] !h-[38px] rounded-full animate-pulse"
+            />
+            <AppButton
+              text=""
+              btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB] !bg-gray-200 w-[160px] !h-[38px] rounded-full animate-pulse"
+            />
+          </div>
+          <p
+          class="text-xl lg:text-2xl font-[800] bg-gray-200 w-[160px] p-[6px] rounded-full animate-pulse"
+        ></p>
+        </div>
+        <div class="mb-6">
+          <p
+          class="text-xl lg:text-2xl font-[800] mb-6 bg-gray-200 w-[160px] p-[6px] rounded-full animate-pulse"
+        ></p>
+          <AppButton
+            text=""
+            btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB] !bg-gray-200 w-[260px] !h-[50px] rounded-full animate-pulse"
+          />
+        </div>
+        <div class="flex flex-col lg:flex-row gap-y-4 lg:gap-y-0 gap-x-4">
+          <AppButton
+            text=""
+            btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB] !bg-gray-200 w-[160px] !h-[50px] rounded-full animate-pulse"
+          />
+          <div class="flex flex-col sm:flex-row gap-y-4 lg:gap-y-0 gap-x-4">
+            <AppButton
+              text=""
+              btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB] !bg-gray-200 w-[160px] !h-[50px] rounded-full animate-pulse"
+            />
+            <AppButton
+              text=""
+              btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB] !bg-gray-200 w-[160px] !h-[50px] rounded-full animate-pulse"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <SideModal :isOpen="isOpen" @togglePopup="isOpen = false" v-if="isOpen">
@@ -156,10 +237,10 @@
 </template>
 <script setup>
 import { useProductStore } from "~/stores/products";
-import { toast } from 'vue3-toastify';
+import { toast } from "vue3-toastify";
 import { likeproduct } from "~/services/productservices";
 
-
+const isLoading = inject("isLoading");
 const store = useProductStore();
 const cartStore = useCartStore();
 const authStore = useAuthStore();
@@ -220,14 +301,14 @@ function handleRequest(type) {
 function toggleModal(val) {
   active.value = val;
 }
-const mypackage = computed(()=> JSON.parse(selectedPackage.value))
+const mypackage = computed(() => JSON.parse(selectedPackage.value));
 const counter = ref(1);
 function handleCart(type) {
   if (!selectedPackage.value) {
     toast.info("Please choose a package");
     return;
   }
-  
+
   let data = {
     id: 0,
     packageId: mypackage?.value.package.id,
@@ -243,7 +324,7 @@ function handleCart(type) {
     quantity: counter.value,
     packagePrice: mypackage?.value.amount,
   };
- 
+
   cartStore?.addToCart(data, type).then((res) => {
     if (!res.status && res.message !== "buy") {
       toast.info("Already in your cart");
