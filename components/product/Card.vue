@@ -26,6 +26,7 @@
           class="w-full h-full object-cover"
           fit="cover"
           loading="lazy"
+          crossorigin
         />
         <div
           v-else
