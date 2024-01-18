@@ -2,7 +2,7 @@
   <div class="min-h-screen mx-auto">
     <LandingBanner />
 
-    <div class="bg-[#F4F4F4] darks:bg-gray-700 pt-8 sm:pt-[60px] pb-10">
+    <div class="bg-[#F4F4F4] darks:bg-gray-700 pt-8 sm:pt-[60px]">
       <div class="hidden lg:block">
         <LandingBoard />
       </div>
@@ -17,10 +17,12 @@
       </div>
       <LandingInfo />
     </div>
-    <LandingCategories />
-    <LandingBrands />
-    <LandingTestimonials />
-    <LandingCall />
+    <div class="bg-white pt-6 md:pt-10">
+      <LandingCategories />
+      <LandingBrands />
+      <LandingTestimonials />
+      <LandingCall />
+    </div>
   </div>
 </template>
 <script setup></script>

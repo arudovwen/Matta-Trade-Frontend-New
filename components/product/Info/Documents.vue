@@ -1,6 +1,10 @@
 <template>
   <div class="grid grid-cols-1 gap-x-[75px] gap-y-6">
-    <div class="flex jus items-center" v-for="(n, id) in documentList" :key="id">
+    <div
+      class="flex jus items-center"
+      v-for="(n, id) in documentList"
+      :key="id"
+    >
       <div class="flex gap-x-2">
         <p class="text-sm font-medium">{{ n.fileName }}</p>
         <p class="text-[#A4A4A4] text-xs">
@@ -19,6 +23,10 @@
           ></a>
         </div>
       </div>
+    </div>
+
+    <div class="text-gray-500 text-xs py-4" v-if="!documentList.length">
+      No data available
     </div>
   </div>
 </template>

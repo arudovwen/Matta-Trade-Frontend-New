@@ -97,7 +97,7 @@
           </div>
           <AppButton
             @click="handleSave"
-            icon="tdesign:heart"
+            :icon="isSaved?'tdesign:heart-filled':'tdesign:heart'"
             text="Save for later"
             btnClass="text-xs sm:text-sm !py-0 !px-0 w-full sm:!w-auto sm:!max-w-max items-center"
           />
@@ -111,7 +111,10 @@
             classInput="min-w-[180px] w-full !bg-white !border-[#E7E7E7] !rounded-[4px] !text-[#333] !h-[50px] cursor-pointer bg-[#FCFCFC]"
           />
         </div>
-        <div class="flex flex-col lg:flex-row gap-y-4 lg:gap-y-0 gap-x-4">
+        <div
+          v-if="!productData.hidePrice"
+          class="flex flex-col lg:flex-row gap-y-4 lg:gap-y-0 gap-x-4"
+        >
           <div class="h-[50px] lg:flex-1">
             <CartButton />
           </div>
@@ -168,13 +171,13 @@
             />
           </div>
           <p
-          class="text-xl lg:text-2xl font-[800] bg-gray-200 w-[160px] p-[6px] rounded-full animate-pulse"
-        ></p>
+            class="text-xl lg:text-2xl font-[800] bg-gray-200 w-[160px] p-[6px] rounded-full animate-pulse"
+          ></p>
         </div>
         <div class="mb-6">
           <p
-          class="text-xl lg:text-2xl font-[800] mb-6 bg-gray-200 w-[160px] p-[6px] rounded-full animate-pulse"
-        ></p>
+            class="text-xl lg:text-2xl font-[800] mb-6 bg-gray-200 w-[160px] p-[6px] rounded-full animate-pulse"
+          ></p>
           <AppButton
             text=""
             btnClass="!rounded-[5px] !text-[#333] px-[15px] !py-[6px] text-xs sm:text-sm border border-[#DBDBDB] !bg-gray-200 w-[260px] !h-[50px] rounded-full animate-pulse"
@@ -252,7 +255,7 @@ const router = useRouter();
 const selectedPackage = ref(null);
 const { name, id, category } = route.params;
 const imageUrl = ref(productData?.value?.featuredPhoto);
-
+const isSaved = ref(false)
 const packageOptions = computed(() =>
   productData?.value?.packagesAvailable?.map((i) => {
     return {
@@ -343,7 +346,10 @@ function handleCart(type) {
 function handleSave() {
   if (!authStore.isLoggedIn) {
     toast.info("Login to continue");
+   return;
   }
+  isSaved.value = true
+  toast.success("Saved");
 }
 
 function handleLike(value) {

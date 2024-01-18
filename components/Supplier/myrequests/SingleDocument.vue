@@ -56,7 +56,7 @@
       </div>
     </div>
     <button
-      class="px-6 py-4 w-full border-primary border text-sm rounded-full text-primary uppercase"
+      class="px-6 py-4 w-full border-primary- border text-sm rounded-full text-primary uppercase"
     >
       see documents
     </button>

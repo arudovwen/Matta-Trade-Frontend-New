@@ -15,7 +15,7 @@
         <router-link to="/">
           <button
             type="button"
-            class="appearance-none h-auto leading-none py-2 px-5 text-xs md:text-[13px] uppercase border rounded-full border-primary text-primary hover:bg-slate-50 flex items-center justify-center"
+            class="appearance-none h-auto leading-none py-2 px-5 text-xs md:text-[13px] uppercase border rounded-full border-primary- text-primary hover:bg-slate-50 flex items-center justify-center"
           >
             Skip
           </button></router-link

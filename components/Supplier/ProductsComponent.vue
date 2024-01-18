@@ -3,7 +3,7 @@
   <div class="gap-y-2 flex flex-col mb-4">
     <!-- Top bar   -->
     <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
-      <div class="mb-12"><Breadcrumbs /></div>
+      <div class="mb-12"><Breadcrumbs :links="links" /></div>
       <div class="">
         <div class="flex gap-x-3 items-center mb-3">
           <h1
@@ -120,7 +120,7 @@
         <div class="flex gap-x-3 ml-2">
           <router-link to="/storefront/products/add-product">
             <button
-              class="flex gap-x-2 items-center text-sm text-primary hover:text-white hover:bg-matta-black py-2 px-2 md:py-3 md:px-6 border rounded-full border-primary md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
+              class="flex gap-x-2 items-center text-sm text-primary hover:text-white hover:bg-matta-black py-2 px-2 md:py-3 md:px-6 border rounded-full border-primary- md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
             >
               <AppIcon icon="uil-plus" class="uil hidden md:inline" />
               <span class="hidden md:inline text-gray-200">|</span>
@@ -326,6 +326,21 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import debounce from "lodash/debounce";
 import { toast } from 'vue3-toastify';
 
+const links = [
+  {
+    title: "home",
+    url: "/",
+  },
+  {
+    title: "storefront",
+    url: "/storefront/overview",
+  },
+  {
+    title: "products",
+    url: "#",
+  },
+ 
+];
 const queryParams = reactive({
   MarketId: "",
   Search: "",

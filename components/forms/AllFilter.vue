@@ -178,7 +178,7 @@
         Cancel
       </button>
       <button
-        class="border text-[13px] border-primary text-white bg-primary-500 rounded-lg px-6 py-4 min-w-[150px] uppercase hover:opacity-60"
+        class="border text-[13px] border-primary- text-white bg-primary-500 rounded-lg px-6 py-4 min-w-[150px] uppercase hover:opacity-60"
       >
         Apply filters
       </button>

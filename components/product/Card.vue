@@ -45,7 +45,7 @@
 
         <div class="flex justify-between items-start md:items-center">
           <span
-            v-if="detail.type === 'request'"
+            v-if="detail.hidePrice"
             class="font-semibold text-[12px] sm:text-sm xl:text-base text-[#2176FF] leading-tight"
             >Request Quote</span
           >

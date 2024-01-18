@@ -110,7 +110,7 @@
         <button
           type="submit"
           :disabled="isLoading"
-          class="border text-[13px] border-primary uppercase text-white lg:min-w-[120px] w-full bg-primary-500 rounded-lg px-6 py-2 hover:bg-primary/80 h-12"
+          class="border text-[13px] border-primary- uppercase text-white lg:min-w-[120px] w-full bg-primary-500 rounded-lg px-6 py-2 hover:bg-primary/80 h-12"
         >
           <span>
             <span

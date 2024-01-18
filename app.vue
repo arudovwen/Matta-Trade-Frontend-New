@@ -53,11 +53,7 @@ body {
   right: -26px !important;
 }
 body::-webkit-scrollbar,
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-body,
-.no-scrollbar {
+body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }

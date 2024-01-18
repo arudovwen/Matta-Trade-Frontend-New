@@ -2,21 +2,19 @@
   <div class="gap-y-8 flex flex-col">
     <!-- Top bar   -->
     <div class="p-8 bg-white rounded-lg bg-img">
-      <div class="mb-12"><Breadcrumbs /></div>
+      <div class="mb-12">
+        <Breadcrumbs :links="links" />
+      </div>
       <div class="">
         <div class="flex gap-x-3 items-center mb-3">
           <h1
             class="text-[48px] text-matta-black col-span-1 font-medium capitalize"
           >
-            {{ route.meta.title }}
+            Edit Product
           </h1>
         </div>
 
         <div class="flex justify-between items-center">
-          <p v-if="route.meta.title == 'add a new product'">
-            Fill in the required fields to add a new product to Matta.
-          </p>
-          <p v-else></p>
           <p class="text-[#ABABAB] text-sm">
             <span>Do you need help?</span>
             <span class="text-primary ml-1"
@@ -85,10 +83,10 @@
       <AdditionalInformation v-if="active == 4" />
     </div>
     <div class="text-center p-6 lg:p-8 my-24" v-else>
-       <AppLoader />
+      <AppLoader />
     </div>
   </div>
-  <Modal
+  <IndexModal
     :isOpen="isPreviewing"
     @toggleModal="isPreviewing = false"
     :canClose="false"
@@ -97,11 +95,10 @@
       <div class="max-w-[98vw] relative">
         <Preview /></div
     ></template>
-  </Modal>
+  </IndexModal>
 </template>
 
 <script setup>
-
 import { defineProps, ref, provide, onBeforeMount, watch, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import ProductInfo from "./ProductInfo";
@@ -114,9 +111,7 @@ import {
   getTechLevels,
 } from "~/services/productservices";
 import Preview from "~/components/preview/IndexPreview";
-import Modal from "~/components/IndexModal";
 import { getFeaturedManufacturer } from "~/services/productservices";
-import { measurements } from "~/utils";
 
 const route = useRoute();
 const router = useRouter();
@@ -126,6 +121,24 @@ const technologies = ref([]);
 const allmarkets = ref([]);
 const producers = ref([]);
 defineProps(["title"]);
+const links = [
+  {
+    title: "home",
+    url: "/",
+  },
+  {
+    title: "storefront",
+    url: "/storefront/overview",
+  },
+  {
+    title: "products",
+    url: "/storefront/products",
+  },
+  {
+    title: "edit product",
+    url: "/#",
+  },
+];
 const active = ref(1);
 
 const selectedMeasurement = ref(measurements[0]);

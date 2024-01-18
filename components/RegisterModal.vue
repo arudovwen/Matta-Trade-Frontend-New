@@ -193,7 +193,7 @@
                         <button
                           :disabled="isLoading || v$.$silentErrors.length"
                           type="submit"
-                          class="border text-[13px] border-primary uppercase min-w-[150px] w-full text-white bg-primary-500 text-center rounded-full px-6 py-4 hover:bg-primary/80 leading-[normal]"
+                          class="border text-[13px] border-primary- uppercase min-w-[150px] w-full text-white bg-primary-500 text-center rounded-full px-6 py-4 hover:bg-primary/80 leading-[normal]"
                         >
                           <span v-if="!isLoading">Sign up</span>
                           <span v-if="isLoading"

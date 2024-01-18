@@ -52,7 +52,7 @@
           <div class="flex items-center justify-between gap-x-3">
             <label for="upload">
               <span
-                class="text-primary border border-primary rounded-lg px-4 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm cursor-pointer"
+                class="text-primary border border-primary- rounded-lg px-4 lg:px-6 py-2 lg:py-3 text-xs lg:text-sm cursor-pointer"
               >
                 Upload photo
               </span>

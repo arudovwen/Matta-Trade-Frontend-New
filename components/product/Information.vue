@@ -17,7 +17,7 @@
       </button>
     </div>
     <div class="p-5 max-w-[700px]">
-      <ProductInfo :detail="handleProp(active)" :key="active" />
+      <ProductInfo :detail="handleProp(active)" :keydata="active" />
     </div>
   </div>
 </template>

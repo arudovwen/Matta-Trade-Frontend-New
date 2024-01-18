@@ -5,6 +5,9 @@
         <p class="text-sm font-medium">{{ n.value }} {{ n.unit }}</p>
       </div>
     </div>
+    <div class="text-gray-500 text-xs py-4" v-if="!data.length">
+      No data available
+    </div>
   </template>
   <script setup>
 

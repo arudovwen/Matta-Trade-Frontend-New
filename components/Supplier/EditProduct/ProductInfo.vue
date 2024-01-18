@@ -616,7 +616,7 @@
       <button
         type="button"
         @click="togglePreview"
-        class="appearance-none leading-none px-10 py-4 rounded-full text-primary border-primary border hover:bg-gray-100 text-[13px] uppercase"
+        class="appearance-none leading-none px-10 py-4 rounded-full text-primary border-primary- border hover:bg-gray-100 text-[13px] uppercase"
       >
         PREVIEW
       </button>
@@ -645,7 +645,7 @@
   </form>
 
   <div>
-    <Modal :isOpen="isAddingPackage" @toggleModal="isAddingPackage = false">
+    <IndexModal :isOpen="isAddingPackage" @toggleModal="isAddingPackage = false">
       <template #content>
         <form
           class="bg-white px-4 pt-5 pb-8 sm:p-6 sm:pb-4 w-[500px] rounded-lg"
@@ -729,7 +729,7 @@
           </div>
         </form></template
       >
-    </Modal>
+    </IndexModal>
   </div>
 </template>
 
@@ -751,8 +751,7 @@ import {
 } from "@headlessui/vue";
 // import { Cropper } from "vue-advanced-cropper";
 // import "vue-advanced-cropper/dist/style.css";
-import Modal from "~/components/IndexModal";
-import { ref, computed, provide, inject, watch, reactive } from "vue";
+
 import useVuelidate from "@vuelidate/core";
 import {
   required,
@@ -765,7 +764,6 @@ import {
   decimal,
 } from "@vuelidate/validators";
 import { toast } from 'vue3-toastify';
-import { measurements } from "~/utils";
 import {
   addProduct,
   updateProduct,

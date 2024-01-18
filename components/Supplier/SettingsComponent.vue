@@ -29,7 +29,7 @@
         <div class="flex items-center gap-x-3">
           <label for="upload">
             <span
-              class="text-primary border border-primary rounded-full px-6 py-3 text-sm cursor-pointer"
+              class="text-primary border border-primary- rounded-full px-6 py-3 text-sm cursor-pointer"
             >
               Upload photo
             </span>
@@ -201,7 +201,7 @@
               :disabled="isLoading"
               :class="isLoading && 'bg-primary/80'"
               type="submit"
-              class="border-2 border-primary text-[13px] bg-primary-500 uppercase text-white rounded-full block w-full lg:w-auto px-6 py-3 hover:bg-primary/80"
+              class="border-2 border-primary- text-[13px] bg-primary-500 uppercase text-white rounded-full block w-full lg:w-auto px-6 py-3 hover:bg-primary/80"
             >
               Save changes
             </button>
@@ -322,7 +322,7 @@
             :disabled="isLoading"
             :class="isLoading && 'bg-primary/80'"
             type="submit"
-            class="border-2 border-primary text-[13px] bg-primary-500 uppercase text-white rounded-full block w-full lg:w-auto px-6 py-3 hover:bg-primary/80"
+            class="border-2 border-primary- text-[13px] bg-primary-500 uppercase text-white rounded-full block w-full lg:w-auto px-6 py-3 hover:bg-primary/80"
           >
             Save changes
           </button>
@@ -351,7 +351,7 @@
             :disabled="isLoading"
             :class="isLoading && 'bg-primary/80'"
             type="button"
-            class="border-2 border-primary text-[13px] bg-primary-500 uppercase text-white rounded-full block w-full lg:w-auto px-6 py-3 hover:bg-primary/80"
+            class="border-2 border-primary- text-[13px] bg-primary-500 uppercase text-white rounded-full block w-full lg:w-auto px-6 py-3 hover:bg-primary/80"
           >
             Save changes
           </button>
@@ -367,7 +367,7 @@
           <button
             type="button"
             @click="handleDelete('delete')"
-            class="text-primary border border-primary rounded-full px-6 py-3 text-sm hover:bg-priamry/70"
+            class="text-primary border border-primary- rounded-full px-6 py-3 text-sm hover:bg-priamry/70"
           >
             Delete account
           </button>

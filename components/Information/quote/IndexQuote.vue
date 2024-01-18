@@ -57,7 +57,7 @@
         <button
           @click="toggleNext"
           type="button"
-          class="appearance-none border w-1/2 border-primary leading-none px-8 py-3 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
+          class="appearance-none border w-1/2 border-primary- leading-none px-8 py-3 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
         >
           Next
         </button>
@@ -77,7 +77,7 @@
         <button
           @click="togglePopup"
           type="button"
-          class="appearance-none border w-full border-primary leading-none px-8 py-3 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
+          class="appearance-none border w-full border-primary- leading-none px-8 py-3 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
         >
           product page
         </button>

@@ -1,11 +1,11 @@
 <template>
-  <div v-if="key !== 'documents'">
+  <div v-if="keydata !== 'documents'">
     <div
       class="grid grid-cols-2 gap-x-[75px] gap-y-6"
       v-if="detail?.propertyItems && detail?.propertyItems.length"
     >
       <div v-for="n in detail?.propertyItems" class="mb-6">
-        <p class="text-[#A4A4A4] text-xs capitalize" v-if="n.property">
+        <p class="text-[#A4A4A4] text-xs capitalize mb-1" v-if="n.property">
           {{ n.property.name }}
         </p>
         <p
@@ -23,6 +23,12 @@
           <div class="mb-4 description" v-html="n.description"></div>
         </div>
       </div>
+    </div>
+    <div
+      v-if="!detail?.propertyItems || !detail?.propertyItems.length"
+      class="text-[#A4A4A4] text-xs py-4 opacity-50"
+    >
+      No information available
     </div>
   </div>
   <div v-else class="grid grid-cols-1 gap-x-[75px] gap-y-6">
@@ -50,10 +56,16 @@
         </div>
       </div>
     </div>
+    <div
+      v-if="!documentList || !documentLists.length"
+      class="text-[#A4A4A4] text-xs py-4 opacity-50"
+    >
+      No information available
+    </div>
   </div>
 </template>
 <script setup>
-defineProps(["detail", "key"]);
+defineProps(["detail", "keydata"]);
 const documentType = ref("");
 const documents = [
   {

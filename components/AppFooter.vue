@@ -5,7 +5,7 @@
         class="grid text-center lg:text-left grid-cols-1 lg:grid-cols-4 gap-y-8 lg:gap-x-10 lg:pt-8 mb-14"
       >
         <div class="">
-          <div class="mb-[15px]" data-aos="fade-up" data-aos-once="true">
+          <div class="mb-[15px]" >
             <router-link to="/">
                <NuxtImg
                 src="/images/logo.png"
@@ -18,8 +18,7 @@
           </div>
           <p
             class="text-sm darks:text-white text-left mb-10"
-            data-aos="fade-up"
-            data-aos-once="true"
+        
           >
             Discover and buy chemicals, raw materials, ingredients, and
             commodities all in one place.
@@ -30,8 +29,7 @@
               v-for="s in socials"
               :key="s.title"
               :href="s.link"
-              data-aos="fade-up"
-              data-aos-once="true"
+       
             >
               <span class="">
                 <AppIcon
@@ -43,8 +41,7 @@
         </div>
         <div
           class="grid md:grid-cols-3 gap-y-8 md:gap-x-10 col-span-3 text-left"
-          data-aos="fade-up"
-          data-aos-once="true"
+       
         >
           <div v-for="n in navs" :key="n.subject">
             <span
@@ -136,7 +133,7 @@ const navs = [
       },
       {
         title: "Sell chemicals",
-        url: "#",
+        url: "/auth/vendor-register",
       },
       {
         title: "Logistics solutions",

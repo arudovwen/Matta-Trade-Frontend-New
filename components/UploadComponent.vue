@@ -1,7 +1,7 @@
 <template>
   <div
     @drop.prevent="onDrop"
-    class="border mb-6 border-dashed flex-1 border-primary bg-[rgba(22,94,240,0.04)] rounded-2xl p-4 flex items-center justify-center text-center"
+    class="border mb-6 border-dashed flex-1 border-primary- bg-[rgba(22,94,240,0.04)] rounded-2xl p-4 flex items-center justify-center text-center"
   >
     <div>
       <div

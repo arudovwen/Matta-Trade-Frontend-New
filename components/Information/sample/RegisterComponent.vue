@@ -136,7 +136,7 @@
             'opacity-70 cursor-not-allowed':
               v$.$silentErrors.length || isLoading,
           }"
-          class="border mb-4 text-[13px] border-primary uppercase text-white w-full min-w-[55px] bg-primary-500 text-center opacity-80 rounded-full px-6 py-2 hover:opacity-100 h-12 leading-[normal]"
+          class="border mb-4 text-[13px] border-primary- uppercase text-white w-full min-w-[55px] bg-primary-500 text-center opacity-80 rounded-full px-6 py-2 hover:opacity-100 h-12 leading-[normal]"
         >
           <span v-if="isLoading"
             >Signing up

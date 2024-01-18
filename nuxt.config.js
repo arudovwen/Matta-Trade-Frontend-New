@@ -30,6 +30,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "nuxt-security",
     "@nuxt/devtools",
+    "nuxt-ssr-cache",
   ],
   security: {
     hidePoweredBy: false,
@@ -40,7 +41,7 @@ export default defineNuxtConfig({
           "'self'",
           "https:",
           "data:",
-          "https://dev.gateway.matta.trade",
+          "https://gateway.matta.trade",
           "https://res.cloudinary.com",
         ],
         "script-src": [
@@ -52,6 +53,33 @@ export default defineNuxtConfig({
         ],
       },
       xFrameOptions: "deny",
+    },
+  },
+  cache: {
+    // if you're serving multiple host names (with differing
+    // results) from the same server, set this option to true.
+    // (cache keys will be prefixed by your host name)
+    // if your server is behind a reverse-proxy, please use
+    // express or whatever else that uses 'X-Forwarded-Host'
+    // header field to provide req.hostname (actual host name)
+    useHostPrefix: false,
+    pages: [
+      // these are prefixes of pages that need to be cached
+      // if you want to cache all pages, just include '/'
+      "/",
+    ],
+
+    // key(route, context) {
+    //   // custom function to return cache key, when used previous
+    //   // properties (useHostPrefix, pages) are ignored. return
+    //   // falsy value to bypass the cache
+    // },
+
+    store: {
+      type: "memory",
+      max: 100,
+      // number of seconds to store this page in cache
+      ttl: 60,
     },
   },
   runtimeConfig: {
@@ -74,10 +102,11 @@ export default defineNuxtConfig({
     classSuffix: "",
   },
   css: [
-    "~/assets/scss/_button.scss",
-    "~/assets/scss/_form.scss",
     "vue-toastification/dist/index.css",
     "vue3-carousel/dist/carousel.css",
+    "~/assets/css/tailwind.css",
+    "~/assets/scss/_button.scss",
+    "~/assets/scss/_form.scss",
     "~/assets/scss/style.scss",
   ],
   googleFonts: {
@@ -85,5 +114,5 @@ export default defineNuxtConfig({
       Manrope: [100, 200, 300, 400, 500, 600, 700, 800], // Enable the IntManropeer font
     },
   },
-  devtools: { enabled: true },
+  devtools: { enabled: process.env.NODE_ENV === "development" },
 });

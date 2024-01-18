@@ -316,7 +316,7 @@
       <button
         type="button"
         @click="togglePreview"
-        class="appearance-none leading-none px-10 py-4 rounded-full text-primary border-primary border hover:bg-gray-100 text-[13px] uppercase"
+        class="appearance-none leading-none px-10 py-4 rounded-full text-primary border-primary- border hover:bg-gray-100 text-[13px] uppercase"
       >
         PREVIEW
       </button>
@@ -338,7 +338,7 @@
     </div>
   </form>
   <div>
-    <Modal :isOpen="isAdding" @toggleModal="isAdding = false">
+    <IndexModal :isOpen="isAdding" @toggleModal="isAdding = false">
       <template #content>
         <div
           class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 w-[400px]"
@@ -446,7 +446,7 @@
           </div>
         </div>
       </template>
-    </Modal>
+    </IndexModal>
   </div>
 </template>
 <script setup>
@@ -464,12 +464,10 @@ import {
   ListboxOptions,
   // ListboxOption,
 } from "@headlessui/vue";
-import { reactive, ref, computed, inject } from "vue";
 import { ChevronUpDownIcon } from "@heroicons/vue/24/solid";
 import { useRouter } from "vue-router";
 import { toast } from 'vue3-toastify';
 import { updateAdditional } from "~/services/productservices";
-import Modal from "~/components/IndexModal";
 import { uploadfile } from "~/services/onboardingservices";
 
 // const route = useRoute();

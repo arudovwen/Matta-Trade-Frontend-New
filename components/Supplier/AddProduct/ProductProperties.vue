@@ -19,7 +19,7 @@
       <button
         type="button"
         @click="togglePreview"
-        class="appearance-none leading-none px-10 py-4 rounded-full text-primary border-primary border hover:bg-gray-100 text-[13px] uppercase"
+        class="appearance-none leading-none px-10 py-4 rounded-full text-primary border-primary- border hover:bg-gray-100 text-[13px] uppercase"
       >
         PREVIEW
       </button>

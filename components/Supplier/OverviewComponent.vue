@@ -2,7 +2,7 @@
   <div class="gap-y-2 flex flex-col">
     <!-- Top bar   -->
     <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
-      <div class="mb-12"><Breadcrumbs /></div>
+      <div class="mb-12"><Breadcrumbs :links="links" /></div>
       <div class="">
         <h1
           class="text-3xl md:text-[48px] md:leading-[56px] text-matta-black col-span-1 font-medium capitalize mb-8"
@@ -237,7 +237,7 @@
                         v-if="item.image"
                         class="mr-3 h-10 w-10 rounded-lg flex items-center justify-center border border-[#E7EBEE] p-2"
                       >
-                         <NuxtImg class="" :src="item.image" alt="alt" />
+                        <NuxtImg class="" :src="item.image" alt="alt" />
                       </span>
                       <i
                         v-else
@@ -308,6 +308,16 @@ import moment from "moment";
 import EmptyData from "~/components/EmptyData";
 import { getorderchart, getchart } from "~/services/chartservice";
 
+const links = [
+  {
+    title: "home",
+    url: "/",
+  },
+  {
+    title: "storefront",
+    url: "/storefront/overview",
+  },
+];
 const startDate = ref(new Date(moment(moment()).subtract(5, "months")));
 const endDate = ref(new Date());
 const query = reactive({

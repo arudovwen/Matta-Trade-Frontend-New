@@ -77,7 +77,7 @@
           <button
             type="submit"
             :disabled="isLoading"
-            class="border text-[13px] mb-4 border-primary uppercase text-white lg:min-w-[120px] w-full bg-primary-500 opacity-80 rounded-full px-6 py-2 hover:opacity-100 h-12"
+            class="border text-[13px] mb-4 border-primary- uppercase text-white lg:min-w-[120px] w-full bg-primary-500 opacity-80 rounded-full px-6 py-2 hover:opacity-100 h-12"
           >
             <span>
               <span v-if="isLoading"

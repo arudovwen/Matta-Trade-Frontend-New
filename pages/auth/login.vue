@@ -148,7 +148,7 @@ const onSubmit = handleSubmit((values) => {
           "Email has not verified yet"
         )
       ) {
-        router.push(`/resend-verification/${form.email}`);
+        router.push(`/auth/resend-verification/${encodeURIComponent(values.email)}`);
       }
     });
 });

@@ -15,7 +15,7 @@
       </p>
       <router-link to="/storefront/overview">
         <button
-          class="appearance-none leading-none px-10 py-4 rounded-lg text-white bg-primary hover:opacity-70 text-[13px] uppercase"
+          class="appearance-none leading-none px-10 py-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
         >
         Proceed to dashboard
         </button>

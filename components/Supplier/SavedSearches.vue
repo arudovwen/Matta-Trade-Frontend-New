@@ -86,7 +86,7 @@
               >
                 <div class="flex gap-x-8 items-center justify-between">
                   <button
-                    class="text-primary border border-primary rounded-full px-6 py-1 text-xs uppercase"
+                    class="text-primary border border-primary- rounded-full px-6 py-1 text-xs uppercase"
                   >
                     Search
                   </button>
@@ -151,7 +151,7 @@
             </button>
             <button
               type="submit"
-              class="border text-[13px] border-primary uppercase text-white bg-primary-500 rounded-lg px-6 py-3 hover:bg-primary/80"
+              class="border text-[13px] border-primary- uppercase text-white bg-primary-500 rounded-lg px-6 py-3 hover:bg-primary/80"
             >
               Save
             </button>

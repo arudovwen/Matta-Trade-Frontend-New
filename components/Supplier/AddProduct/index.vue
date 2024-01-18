@@ -2,7 +2,7 @@
   <div class="gap-y-8 flex flex-col">
     <!-- Top bar   -->
     <div class="p-8 bg-white rounded-lg bg-img">
-      <div class="mb-12"><Breadcrumbs /></div>
+      <div class="mb-12"><Breadcrumbs :links="links" /></div>
       <div class="">
         <div class="flex gap-x-3 items-center mb-3">
           <h1
@@ -109,7 +109,24 @@ import {
 } from "~/services/productservices";
 import { getFeaturedManufacturer } from "~/services/productservices";
 // import { measurements } from "~/utils";
-
+const links = [
+  {
+    title: "home",
+    url: "/",
+  },
+  {
+    title: "storefront",
+    url: "/storefront/overview",
+  },
+  {
+    title: "products",
+    url: "/storefront/products",
+  },
+  {
+    title: "add product",
+    url: "/#",
+  },
+];
 const route = useRoute();
 const router = useRouter();
 const isPreviewing = ref(false);

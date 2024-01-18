@@ -50,7 +50,7 @@
           <div class="flex items-center gap-x-3">
             <label for="upload">
               <span
-                class="text-primary border border-primary rounded-full px-6 py-3 text-xs lg:text-sm cursor-pointer"
+                class="text-primary border border-primary- rounded-full px-6 py-3 text-xs lg:text-sm cursor-pointer"
               >
                 Upload logo
               </span>

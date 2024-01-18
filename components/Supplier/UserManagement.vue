@@ -81,7 +81,7 @@
         <span class="flex gap-x-3">
           <button
             @click="openmodal('method')"
-            class="flex gap-x-2 items-center uppercase text-primary hover:text-white hover:bg-primary-500 py-2 px-2 md:py-3 md:px-6 border rounded-full border-primary md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
+            class="flex gap-x-2 items-center uppercase text-primary hover:text-white hover:bg-primary-500 py-2 px-2 md:py-3 md:px-6 border rounded-full border-primary- md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
           >
             <i class="uil uil-plus hidden md:inline"></i>
             <span class="hidden md:inline text-gray-200">|</span>

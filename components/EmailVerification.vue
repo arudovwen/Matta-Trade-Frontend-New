@@ -52,7 +52,7 @@
 <script setup>
 import { CheckCircleIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 import { confirmemail } from "@/services/authservices";
-import { useRoute } from "vue-router";
+
 
 const current = ref("pending");
 const route = useRoute();
