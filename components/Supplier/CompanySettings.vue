@@ -1,16 +1,9 @@
 <template>
-  <div class="gap-y-2 flex flex-col">
+  <div class="gap-y-2 flex flex-col bg-white rounded-[10px] pb-10">
+    <HeaderComponent title="Company settings" />
     <!-- Top bar   -->
     <div class="p-6 lg:p-8 bg-white rounded-lg grid grid-cols-3">
       <div class="col-span-3">
-        <div class="mb-12"><Breadcrumbs /></div>
-        <div class="mb-8">
-          <h1
-            class="text-3xl lg:text-[48px] lg:leading-[56px] text-matta-black col-span-1 font-medium capitalize"
-          >
-           Company settings
-          </h1>
-        </div>
         <div class="flex justify-between items-center mb-10">
           <div class="flex items-center">
             <span>
@@ -19,7 +12,7 @@
                 class="h-24 w-24 rounded-lg flex items-center text-xs bg-[#F1F3F5] mr-4 justify-center"
                 >Logo</span
               >
-               <NuxtImg
+              <NuxtImg
                 v-else
                 :src="image"
                 class="h-24 w-24 rounded-lg flex items-center bg-[#F1F3F5] mr-4 justify-center"
@@ -435,7 +428,7 @@ import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
 import useVuelidate from "@vuelidate/core";
 import { email, helpers, maxLength, url, numeric } from "@vuelidate/validators";
-import { toast } from 'vue3-toastify';
+import { toast } from "vue3-toastify";
 import {
   updateCompanyProfile,
   getCompanyProfile,
@@ -452,7 +445,6 @@ const img = ref("");
 const image = ref(null);
 const coordinate = ref(null);
 const cropper = ref(null);
-
 
 const form = reactive({
   code: "+234",
@@ -507,7 +499,7 @@ onMounted(() => {
     .catch((err) => {
       isLoading.value = false;
 
-      toast.error((err.response.data.message || err.response.data.Message));
+      toast.error(err.response.data.message || err.response.data.Message);
     });
 });
 
@@ -609,7 +601,7 @@ async function handleSubmit() {
     .catch((err) => {
       isLoading.value = false;
 
-      toast.error((err.response.data.message || err.response.data.Message));
+      toast.error(err.response.data.message || err.response.data.Message);
     });
 }
 

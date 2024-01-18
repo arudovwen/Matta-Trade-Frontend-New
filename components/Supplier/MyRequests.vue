@@ -1,7 +1,7 @@
 <template>
-  <div class="gap-y-2 flex flex-col">
+  <div class="gap-y-2 flex flex-col bg-white rounded-[10px] pb-10">
     <!-- Top bar   -->
-    <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
+    <!-- <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
       <div class="mb-12"><Breadcrumbs /></div>
       <div class="">
         <div class="flex gap-x-3 items-center mb-3">
@@ -20,7 +20,8 @@
           List of your requests for samples and documents.
         </p>
       </div>
-    </div>
+    </div> -->
+    <HeaderComponent title="My requests" />
     <div class="p-8 rounded-lg bg-white">
       <div class="flex gap-x-4 mb-8 max-w-[300px] sm:max-w-max overflow-x-auto">
         <button

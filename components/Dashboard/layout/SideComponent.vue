@@ -1,19 +1,18 @@
 <template>
-  <aside
-    class="flex flex-col min-w-[245px]"
-   
-  >
+  <aside class="flex flex-col min-w-[245px]">
     <nav class="bg-white py-[11px] rounded-[10px]">
       <ul>
         <li v-for="item in navigation" :key="item.name">
-          <router-link :to="item.url" >
-            <span class="text-sm text-matta-black flex items-center px-5 border-r-3">
-              <span class="flex items-center gap-x-[10px] flex-1 py-[9px]">
-                <AppIcon :icon="item.icon" iconClass="text-xl" />
-                <span> {{ item.name }}</span>
-              </span>
+          <NuxtLink
+            :to="item.url"
+            class="text-sm flex items-center px-5 border-r-[3px] border-transparent"
+            exactActiveClass="!border-primary-500 bg-[#2270FA0F] text-primary-500 block"
+          >
+            <span class="flex items-center gap-x-[10px] flex-1 py-[9px]">
+              <AppIcon :icon="item.icon" iconClass="text-xl" />
+              <span> {{ item.name }}</span>
             </span>
-          </router-link>
+          </NuxtLink>
         </li>
       </ul>
     </nav>
@@ -22,6 +21,8 @@
 <script setup>
 const authstore = useAuthStore();
 const company = inject("company");
+const route = useRoute();
+console.log("🚀 ~ route:", route);
 
 // const navigation = [
 //   {
@@ -154,7 +155,6 @@ const navigation = [
     icon: "ri:hand-coin-line",
   },
 
- 
   {
     name: "Shipping Addresses",
     url: "/procurement/shipping-addresses",
@@ -192,7 +192,6 @@ const navigation = [
     url: "/storefront/products",
     icon: "f7:tag",
   },
-
 ];
 const openIndex = ref([
   "Company",
@@ -211,15 +210,4 @@ function dropIndex(val) {
   openIndex.value = openIndex.value.filter((i) => i !== val);
 }
 </script>
-<style scoped lang="scss">
-.router-link-active li span {
-  .uil {
-    display: flex;
-  }
-
-  span {
-    font-weight: 500;
-  }
-  display: flex;
-}
-</style>
+<style scoped lang="scss"></style>

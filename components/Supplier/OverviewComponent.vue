@@ -1,55 +1,45 @@
 <template>
-  <div class="gap-y-2 flex flex-col">
+  <div class="gap-y-2 flex flex-col bg-white rounded-[10px]">
     <!-- Top bar   -->
-    <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
-      <div class="mb-12"><Breadcrumbs :links="links" /></div>
-      <div class="">
-        <h1
-          class="text-3xl md:text-[48px] md:leading-[56px] text-matta-black col-span-1 font-medium capitalize mb-8"
-        >
-          Overview
-        </h1>
-
-        <ClientOnly>
-          <div class="flex justify-start lg:justify-end relative">
-            <span class="flex items-center">
-              <span
-                class="rounded-lg bg-[#F1F3F5] flex gap-x-1 items-center px-3 mr-2 py-1"
-              >
-                <i class="uil uil-calender"></i>
-                <datepicker
-                  v-model="startDate"
-                  placeholder="Start date"
-                  inputFormat="yyyy-MM-dd"
-                  class="bg-transparent text-center pt-2 pb-1 max-w-[110px] cursor-pointer outline-gray-200"
-                />
-                <i class="uil uil-minus"></i>
-                <datepicker
-                  v-model="endDate"
-                  :lowerLimit="startDate || new Date()"
-                  :upperLimit="compEndDate"
-                  class="bg-transparent text-center pt-2 pb-1 max-w-[110px] cursor-pointer outline-gray-200"
-                  placeholder="End date"
-                  inputFormat="yyyy-MM-dd"
-                />
-                <i class="uil uil-angle-down"></i>
-              </span>
-
-              <span
-                @click="
-                  () => {
-                    endDate = new Date();
-                    startDate = new Date(
-                      moment(moment()).subtract(5, 'months')
-                    );
-                  }
-                "
-                ><i class="uil uil-refresh"></i
-              ></span>
+    <div class="p-6 lg:p-8">
+      <HeaderComponent title="Dashboard" />
+      <ClientOnly>
+        <div class="flex justify-start lg:justify-end relative">
+          <span class="flex items-center">
+            <span
+              class="rounded-lg bg-[#F1F3F5] flex gap-x-1 items-center px-3 mr-2 py-1"
+            >
+              <i class="uil uil-calender"></i>
+              <datepicker
+                v-model="startDate"
+                placeholder="Start date"
+                inputFormat="yyyy-MM-dd"
+                class="bg-transparent text-center pt-2 pb-1 max-w-[110px] cursor-pointer outline-gray-200"
+              />
+              <i class="uil uil-minus"></i>
+              <datepicker
+                v-model="endDate"
+                :lowerLimit="startDate || new Date()"
+                :upperLimit="compEndDate"
+                class="bg-transparent text-center pt-2 pb-1 max-w-[110px] cursor-pointer outline-gray-200"
+                placeholder="End date"
+                inputFormat="yyyy-MM-dd"
+              />
+              <i class="uil uil-angle-down"></i>
             </span>
-          </div>
-        </ClientOnly>
-      </div>
+
+            <span
+              @click="
+                () => {
+                  endDate = new Date();
+                  startDate = new Date(moment(moment()).subtract(5, 'months'));
+                }
+              "
+              ><i class="uil uil-refresh"></i
+            ></span>
+          </span>
+        </div>
+      </ClientOnly>
     </div>
 
     <div class="bg-[#F1F3F5] p-3 lg:p-8 rounded-lg" v-if="stats">

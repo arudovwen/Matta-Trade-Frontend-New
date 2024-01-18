@@ -1,22 +1,9 @@
 <template>
-  <div class="gap-y-2 flex flex-col">
+  <div class="gap-y-2 flex flex-col bg-white rounded-[10px] pb-10">
     <!-- Top bar   -->
-    <div class="p-6 lg:p-8 bg-white rounded-lg">
-      <div class="mb-12"><Breadcrumbs /></div>
-      <div class="grid  justify-between items-end mb-8">
-        <div>
-          <h1
-            class="text-3xl lg:text-[48px] lg:leading-[56px] text-matta-black col-span-1 font-medium capitalize mb-4"
-          >
-           Wallet
-          </h1>
-          <p class="text-sm lg:text-base">
-            Manage your wallet transactions, withdrawals and top-ups.
-          </p>
-        </div>
-        <div />
-      </div>
-
+    <HeaderComponent title="Wallet" />
+   <div class="px-[30px] py-[30px]">
+    <div>
       <div class="flex justify-between flex-col gap-y-4 sm:flex-row">
         <div class="w-full sm:w-auto">
           <button
@@ -76,21 +63,19 @@
         <span class="font-bold text-[15px] block mb-3">Wallet details</span>
         <div class="grid grid-cols-2 mb-1 gap-x-4">
           <span class="text-sm font-medium">Bank name :</span>
-          <span class="text-base ">{{ details.bankName }}</span>
+          <span class="text-base">{{ details.bankName }}</span>
         </div>
         <div class="grid grid-cols-2 mb-1 gap-x-4">
           <span class="text-sm font-medium">Account name :</span>
-          <span class="text-base ">{{ details.accountName }}</span>
+          <span class="text-base">{{ details.accountName }}</span>
         </div>
         <div class="grid grid-cols-2 gap-x-4">
           <span class="text-sm font-medium">Account number :</span>
-          <span class="text-base "
+          <span class="text-base"
             ><span>{{ details.accountNumber }}</span
             ><button
               v-clipboard="details.accountNumber"
-              @click="
-                toast.success('Copied')
-              "
+              @click="toast.success('Copied')"
               class="cursor-pointer ml-2"
             >
               <i class="uil uil-copy"></i></button
@@ -125,8 +110,9 @@
       </button>
     </div>
     <div class="text-center p-6 lg:p-8 my-24" v-if="isLoading">
-       <AppLoader />
+      <AppLoader />
     </div>
+   </div>
   </div>
 
   <IndexModal :isOpen="isOpen" @togglePopup="handleClose">
@@ -134,10 +120,17 @@
       <div class="max-w-[800px]">
         <SupplierWalletModalsTopUp v-if="isTopup" :details="details" />
         <SupplierWalletModalsWithdrawalModal v-if="isWithdraw" />
-        <SupplierWalletModalsCreateWallet @success="handleWalletCreation" v-if="isCreatingWallet" />
-        <SupplierWalletModalsCreateKyc @success="handleWalletCreation" v-if="isAddingKyc" />
+        <SupplierWalletModalsCreateWallet
+          @success="handleWalletCreation"
+          v-if="isCreatingWallet"
+        />
+        <SupplierWalletModalsCreateKyc
+          @success="handleWalletCreation"
+          v-if="isAddingKyc"
+        />
         <span class="cursor-pointer" @click="handleClose"
-          ><AppIcon icon="heroicons-solid:x"
+          ><AppIcon
+            icon="heroicons-solid:x"
             class="w-4 h-4 absolute top-4 right-3 text-matta-black z-10"
         /></span>
       </div>
@@ -147,7 +140,7 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import { toast } from 'vue3-toastify';
+import { toast } from "vue3-toastify";
 
 import { getWalletDetails } from "~/services/walletservice";
 
@@ -161,7 +154,6 @@ const hasWallet = ref(false);
 const isCreatingWallet = ref(false);
 const isAddingKyc = ref(false);
 const details = ref(null);
-
 
 function handleClose() {
   isWithdraw.value =

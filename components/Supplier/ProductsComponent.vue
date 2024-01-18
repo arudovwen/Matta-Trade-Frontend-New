@@ -1,8 +1,9 @@
 <template>
-<div class="mb-8">
+<div class="mb-8 bg-white rounded-[10px] pb-10">
   <div class="gap-y-2 flex flex-col mb-4">
+    <HeaderComponent title="Products" />
     <!-- Top bar   -->
-    <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
+    <!-- <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
       <div class="mb-12"><Breadcrumbs :links="links" /></div>
       <div class="">
         <div class="flex gap-x-3 items-center mb-3">
@@ -21,7 +22,7 @@
           List of all added storefront products.
         </p>
       </div>
-    </div>
+    </div> -->
 
     <div class="p-6 lg:p-8 rounded-lg bg-white">
       <div class="flex gap-x-4 mb-8">

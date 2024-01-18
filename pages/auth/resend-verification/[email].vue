@@ -84,7 +84,7 @@ import { toast } from "vue3-toastify";
 import { resendVerification } from "@/services/authservices";
 
 const route = useRoute();
-const isSent = ref(true);
+const isSent = ref(false);
 const form = reactive({
   email: route.params.email,
 });

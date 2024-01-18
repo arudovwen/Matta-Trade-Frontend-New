@@ -1,7 +1,8 @@
 <template>
-  <div class="gap-y-2 flex flex-col mb-4">
+  <div class="gap-y-2 flex flex-col mb-4 bg-white rounded-[10px] pb-10">
+    <HeaderComponent title="Orders" />
     <!-- Top bar   -->
-    <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
+    <!-- <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
       <div class="mb-12"><Breadcrumbs /></div>
       <div class="">
         <div class="flex gap-x-3 items-center mb-3">
@@ -28,7 +29,7 @@
           </router-link>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="p-6 lg:p-8 rounded-lg bg-white">
       <div class="hidden lg:flex justify-between items-center mb-8">
         <div class="flex gap-x-4">

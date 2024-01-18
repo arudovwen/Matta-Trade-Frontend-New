@@ -97,6 +97,10 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   opacity: 0.9;
 }
+label{
+  color:#344054;
+  font-size: 14px;
+}
 </style>
 
 <script setup>

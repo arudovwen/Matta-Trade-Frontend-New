@@ -1,27 +1,7 @@
 <template>
-  <div class="gap-y-2 flex flex-col">
+  <div class="gap-y-2 flex flex-col bg-white rounded-[10px] pb-10">
     <!-- Top bar   -->
-    <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
-      <div class="mb-12"><Breadcrumbs /></div>
-      <div class="">
-        <div class="flex gap-x-3 items-center mb-3">
-          <h1
-            class="text-3xl lg:text-[48px] text-matta-black col-span-1 font-medium capitalize"
-          >
-            Users management
-          </h1>
-          <span class="mt-3">/</span>
-          <span class="text-primary text-3xl lg:text-[48px]">{{
-            queryParams.totalCount
-          }}</span>
-        </div>
-
-        <p class="text-sm lg:text-base">
-          Invite new or edit existing users within your business along with
-          assigning each a specific role.
-        </p>
-      </div>
-    </div>
+   <HeaderComponent title="User management" />
 
     <div class="p-6 lg:p-8 rounded-lg bg-white">
       <div class="flex justify-between items-center mb-8">
