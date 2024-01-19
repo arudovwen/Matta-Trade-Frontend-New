@@ -1,10 +1,10 @@
 <template>
   <div class="gap-y-2 flex flex-col bg-white rounded-[10px]">
     <!-- Top bar   -->
-    <div class="p-6 lg:p-8">
+    <div>
       <HeaderComponent title="Dashboard" />
       <ClientOnly>
-        <div class="flex justify-start lg:justify-end relative">
+        <div class="flex justify-start lg:justify-end relative p-6 lg:p-8">
           <span class="flex items-center">
             <span
               class="rounded-lg bg-[#F1F3F5] flex gap-x-1 items-center px-3 mr-2 py-1"
@@ -264,7 +264,7 @@
                   <!-- <td
                   class="uppercase text-matta-black text-sm font-normal border-b py-4 px-3 border-[#E7EBEE]"
                 >
-                  <i class="uil uil-ellipsis-h"></i>
+                  <i class="uil uil-ellipsis-v"></i>
                 </td> -->
                 </tr>
               </tbody>

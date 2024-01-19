@@ -6,10 +6,11 @@
    </div>
     <p class="text-lg text-[#101828] font-semibold mb-2">{{ title || "No data available" }}</p>
     <p v-if="subtext" class="text-sm text-[#475467] mb-8 max-w-[352px] mx-auto">{{ subtext }}</p>
-    <AppButton @click="btnFunction" v-if="btnText && btnFunction"  :text="btnText" btnClass="!py-[10px] bg-primary-500 text-white" />
+    <AppButton @click="emit('btnFunction')" v-if="btnText && btnFunction"  :text="btnText" btnClass="!py-[10px] bg-primary-500 text-white" />
   </div>
 </template>
 <script setup>
 defineProps(["title", "subtext", "btnText", "url", "type"]);
-const btnFunction = inject("btnFunction")
+defineEmits(["btnFunction"])
+
 </script>

@@ -53,7 +53,7 @@
         <tbody>
           <tr v-for="item in quotes" :key="item">
             <td
-              class="capitalize text-matta-black text-[13px] border-b py-6 px-3 border-[#E7EBEE] whitespace-nowrap"
+               class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
             >
               <div class="flex items-center">
                 <input
@@ -69,24 +69,24 @@
               </div>
             </td>
             <td
-              class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+              class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
             >
               {{ item.product }}
             </td>
             <td
               :class="item.status == 3 ? 'opacity-25' : ''"
-              class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+              class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
             >
               {{ item.requestedBy }}
             </td>
             <td
               :class="item.status == 3 ? 'opacity-25' : ''"
-              class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+              class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
             >
               {{ moment(item.date).format("lll") }}
             </td>
             <td
-              class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+              class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
             >
               <span
                 v-if="item.status == 0"
@@ -116,17 +116,17 @@
             </td>
             <td
               :class="item.status == 3 ? 'opacity-25' : ''"
-              class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+              class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
             >
               {{ item.type }}
             </td>
             <td
               :class="item.status == 3 ? 'opacity-25' : ''"
-              class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+              class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
             >
               <Menu class="relative" as="div">
                 <MenuButton class="outline-none">
-                  <i class="uil uil-ellipsis-h"></i>
+                  <i class="uil uil-ellipsis-v"></i>
                 </MenuButton>
                 <MenuItems
                   class="absolute z-[999] bg-white shadow-[5px_12px_35px_rgba(44,44,44,0.12)] py-2 right-0 min-w-[180px] rounded-xl overflow-hidden"
@@ -189,13 +189,15 @@
       </button>
     </span>
   </div>
-  <Pagination
+ <div class="p-5">
+  <PaginationSimple
     :total="quoteParams.totalCount"
     :current="quoteParams.PageNumber"
     :per-page="quoteParams.PageSize"
     :pageRange="5"
     @page-changed="quoteParams.PageNumber = $event"
   />
+ </div>
   <SideModal :isOpen="isOpen" @togglePopup="isOpen = false" v-if="isOpen">
     <template #content>
       <div

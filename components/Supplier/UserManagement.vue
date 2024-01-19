@@ -14,7 +14,7 @@
               :class="
                 queryParams.Search.length && 'pl-3 pr-10 rounded-lg w-[280px]'
               "
-              class="border focus:pl-3 focus:pr-10 rounded-full focus:rounded-lg h-12 peer focus:w-[280px] focus:outline-matta-black/20 w-12 border-[#E7EBEE] transition ease-in-out duration-300"
+              class="border focus:pl-3 focus:pr-10 rounded-full focus:rounded-lg h-10 peer focus:w-[280px] focus:outline-matta-black/20 w-10 border-[#E7EBEE] transition ease-in-out duration-300"
               type="search"
             />
             <span
@@ -81,7 +81,7 @@
                 <th
                   v-for="item in theads"
                   :key="item"
-                  class="uppercase text-[#B6B7B9] text-[13px] text-left font-normal border-b py-6 px-3 border-[#E7EBEE]"
+                  class="capitalize text-[#475467] text-sm text-left font-medium border-b py-3 px-6 border-[#EAECF0] whitespace-nowrap bg-[#F9FAFB]"
                 >
                   {{ item }}
                 </th>
@@ -91,17 +91,12 @@
             <tbody>
               <tr v-for="item in tdata" :key="item">
                 <td
-                  class="capitalize text-matta-black text-[13px] border-b py-6 px-3 border-[#E7EBEE] whitespace-nowrap"
+                   class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
                 >
-                  <span class="flex items-center">
-                    <input
-                      type="checkbox"
-                      :value="item.id"
-                      v-model="multi"
-                      class="mr-2"
-                    />
+                
+                  
                     {{ item.fullName }}
-                  </span>
+             
                 </td>
                 <td
                   class="text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
@@ -109,7 +104,7 @@
                   {{ item.email }}
                 </td>
                 <td
-                  class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
                 >
                   <select
                     :value="item.role"
@@ -130,7 +125,7 @@
                 </td>
 
                 <td
-                  class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
                 >
                   <span
                     v-if="item.invitationStatusText == 'Expired'"
@@ -163,7 +158,7 @@
                 >
                   <Menu class="relative" as="div">
                     <MenuButton class="outline-none">
-                      <i class="uil uil-ellipsis-h"></i>
+                      <i class="uil uil-ellipsis-v"></i>
                     </MenuButton>
                     <MenuItems
                       class="absolute z-[999] bg-white shadow-[5px_12px_35px_rgba(44,44,44,0.12)] py-2 right-0 min-w-[140px] rounded-xl overflow-hidden"
@@ -216,46 +211,17 @@
       </div>
     </div>
 
-    <div
-      v-if="multi.length"
-      class="px-6 py-5 rounded-lg bg-white flex justify-between items-center text-[13px]"
-    >
-      <span class="flex items-center gap-x-3">
-        <span>{{ multi.length }} items selected</span>
-        <span class="text-gray-300">|</span>
-        <span class="flex gap-x-3 items-center">
-          <button
-            class="uppercase px-2"
-            @click="multi = tdata.map((i) => i.id)"
-          >
-            select all
-          </button>
-          <button class="uppercase px-2" @click="multi = []">
-            deselect
-          </button></span
-        ></span
-      >
-      <span class="flex gap-x-4 items-center"
-        ><button
-          class="py-4 px-5 uppercase bg-primary-500 text-white rounded-lg hover:bg-primary/80"
-        >
-          select role
-        </button>
-        <button
-          class="bg-[#E7EBEE] text-matta-black rounded-lg px-5 py-4 uppercase"
-        >
-          select status
-        </button></span
-      >
-    </div>
 
-    <Pagination
+
+   <div class="p-5">
+    <PaginationSimple
       :total="queryParams.totalCount"
       :current="queryParams.PageNumber"
       :per-page="queryParams.PageSize"
       :pageRange="5"
       @page-changed="queryParams.PageNumber = $event"
     />
+   </div>
   </div>
   <IndexModal :isOpen="isOpen" @togglePopup="isOpen = false">
     <template #content>

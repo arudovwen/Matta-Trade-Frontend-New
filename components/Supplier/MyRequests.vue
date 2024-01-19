@@ -1,5 +1,5 @@
 <template>
-  <div class="gap-y-2 flex flex-col bg-white rounded-[10px] pb-10">
+  <div class="gap-y-2 flex flex-col bg-white rounded-[10px] pb-10 border border-[#F4F7FE]">
     <!-- Top bar   -->
     <!-- <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
       <div class="mb-12"><Breadcrumbs /></div>
@@ -22,69 +22,14 @@
       </div>
     </div> -->
     <HeaderComponent title="My requests" />
-    <div class="p-8 rounded-lg bg-white">
-      <div class="flex gap-x-4 mb-8 max-w-[300px] sm:max-w-max overflow-x-auto">
-        <button
-          @click="active = 'sample'"
-          :class="active === 'sample' ? 'bg-matta-black text-white' : ''"
-          class="flex gap-x-2 items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-3 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-        >
-          <i class="uil uil-temperature-empty hidden md:inline"></i>
-          <span class="hidden md:inline">|</span>
-          <span>samples</span
-          ><span
-            :class="active === 'sample' ? 'bg-white' : ''"
-            class="text-matta-black bg-gray-200 hover:bg-white rounded-full px-2 py-1 text-xs"
-            >{{ count?.samples || 0 }}</span
-          >
-        </button>
-
-        <button
-          @click="active = 'documents'"
-          :class="active === 'documents' ? 'bg-matta-black text-white' : ''"
-          class="flex gap-x-2 items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-        >
-          <i class="uil uil-file hidden md:inline"></i>
-          <span class="hidden md:inline">|</span>
-          <span>documents</span
-          ><span
-            :class="active === 'documents' ? 'bg-white' : ''"
-            class="text-matta-black bg-gray-200 hover:bg-white rounded-full px-2 py-1 text-xs"
-            >{{ count?.documents || 0 }}</span
-          >
-        </button>
-        <button
-          @click="active = 'quotes'"
-          :class="active === 'quotes' ? 'bg-matta-black text-white' : ''"
-          class="flex gap-x-2 items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-        >
-          <i class="uil uil-chat hidden md:inline"></i>
-          <span class="hidden md:inline">|</span>
-          <span>quotes</span
-          ><span
-            :class="active === 'documents' ? 'bg-white' : ''"
-            class="text-matta-black bg-gray-200 hover:bg-white rounded-full px-2 py-1 text-xs"
-            >{{ count?.quotes || 0 }}</span
-          >
-        </button>
-        <button
-          @click="active = 'products'"
-          :class="active === 'products' ? 'bg-matta-black text-white' : ''"
-          class="flex gap-x-2 items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#E7EBEE] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-        >
-          <i class="uil uil-box hidden md:inline"></i>
-          <span class="hidden md:inline">|</span>
-          <span>products</span
-          ><span
-            :class="active === 'documents' ? 'bg-white' : ''"
-            class="text-matta-black bg-gray-200 hover:bg-white rounded-full px-2 py-1 text-xs"
-            >{{ count?.productRequest || 0 }}</span
-          >
-        </button>
-      </div>
+    <div class="py-5">
+      <AppTab :tabs="tabs" className="px-5" :count="count" />
 
       <div>
-        <SupplierMyrequestsRequestTable v-if="active == 'sample'" :canCancel="false" />
+        <SupplierMyrequestsRequestTable
+          v-if="active == 'samples'"
+          :canCancel="false"
+        />
         <SupplierMyrequestsDocumentsTable v-if="active == 'documents'" />
         <SupplierMyrequestsQuotesTable v-if="active == 'quotes'" />
         <SupplierMyrequestsProductTable v-if="active == 'products'" />
@@ -132,7 +77,7 @@ import { buyerquotes } from "~/services/quoteservice";
 const route = useRoute();
 defineProps(["title"]);
 const isOpen = ref(false);
-const active = ref("sample");
+const active = ref("samples");
 const quotes = ref([]);
 const count = reactive({
   documents: 0,
@@ -140,6 +85,25 @@ const count = reactive({
   quotes: 0,
   productRequest: 0,
 });
+const tabs = [
+  {
+    title: "samples",
+    key: "samples",
+  },
+  {
+    title: "documents",
+    key: "documents",
+  },
+
+  {
+    title: "quotes",
+    key: "quotes",
+  },
+  {
+    title: "products",
+    key: "productRequest",
+  },
+];
 const quoteParams = reactive({
   Status: "",
   Search: "",
@@ -168,6 +132,7 @@ watch(
     getquotes();
   }
 );
+provide("active", active);
 provide("quotes", quotes);
 provide("quoteParams", quoteParams);
 </script>

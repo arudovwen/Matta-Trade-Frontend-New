@@ -1,5 +1,5 @@
 <template>
-  <div class="hidden lg:flex justify-between items-center mb-8">
+  <div class="hidden lg:flex justify-between items-center mb-8 px-5">
     <div class="flex gap-x-4">
       <div class="relative flex items-center">
         <input
@@ -9,7 +9,7 @@
           :class="
             queryParams.Search.length && 'pl-3 pr-10 rounded-lg w-[280px]'
           "
-          class="border focus:pl-3 focus:pr-10 rounded-full focus:rounded-lg h-12 peer focus:w-[280px] focus:outline-matta-black/20 w-12 border-[#E7EBEE] transition ease-in-out duration-300"
+          class="border focus:pl-3 focus:pr-10 rounded-full focus:rounded-lg h-10 peer focus:w-[280px] focus:outline-matta-black/20 w-12 border-[#EAECF0] transition ease-in-out duration-300"
           type="search"
         />
         <span class="absolute right-4 peer-focus:right-3 pointer-events-none"
@@ -22,7 +22,7 @@
           placeholder="Product"
           :options="products"
           v-model="queryParams.ProductId"
-          classStyles="px-8 py-3 h-[50px] text-base border-[#E7EBEE] border rounded-full"
+          classStyles="px-8 py-3 h-10 text-base border-[#EAECF0] border rounded-full"
         />
       </div>
       <div class="">
@@ -30,7 +30,7 @@
           placeholder="Supplier"
           :options="suppliers"
           v-model="queryParams.Supplier"
-          classStyles="px-8 py-3 h-[50px] text-base border-[#E7EBEE] border rounded-full"
+          classStyles="px-8 py-3 h-10 text-base border-[#EAECF0] border rounded-full"
         />
       </div>
       <div class="">
@@ -38,7 +38,7 @@
           placeholder="Producer"
           :options="[]"
           v-model="queryParams.Producer"
-          classStyles="px-8 py-3 h-[50px] text-base border-[#E7EBEE] border rounded-full"
+          classStyles="px-8 py-3 h-10 text-base border-[#EAECF0] border rounded-full"
         />
       </div>
       <div class="">
@@ -46,20 +46,23 @@
           placeholder="Status"
           :options="statusOptions"
           v-model="queryParams.RequestStatus"
-          classStyles="px-8 py-3 h-[50px] text-base border-[#E7EBEE] border rounded-full"
+          classStyles="px-8 py-3 h-10 text-base border-[#EAECF0] border rounded-full"
         />
       </div>
     </div>
     <span class="flex gap-x-3">
       <span
         @click="toggleOrder"
-        class="flex items-center justify-center cursor-pointer border border-[#E7EBEE] rounded-full h-12 w-12"
+        class="flex items-center justify-center cursor-pointer border border-[#EAECF0] rounded-full h-10 w-10"
       >
-         <img src="~/assets/img/sorting.svg" alt="alt"
+        <img src="~/assets/img/sorting.svg" alt="alt"
       /></span>
     </span>
   </div>
 
+  <div v-if="!loading">
+  
+    
   <div
     class="overflow-x-auto max-w-[80vw] lg:max-w-full pb-20"
     v-if="requests.length"
@@ -70,7 +73,7 @@
           <th
             v-for="item in theads"
             :key="item"
-            class="uppercase text-[#B6B7B9] text-[13px] text-left font-normal border-b py-6 px-3 border-[#E7EBEE] whitespace-nowra"
+            class="capitalize text-[#475467] text-sm text-left font-medium border-b py-3 px-6 border-[#EAECF0] whitespace-nowrap bg-[#F9FAFB]"
           >
             {{ item }}
           </th>
@@ -80,81 +83,44 @@
       <tbody>
         <tr v-for="item in requests" :key="item">
           <td
-            class="capitalize text-matta-black text-[13px] border-b py-6 px-3 border-[#E7EBEE] whitespace-nowrap"
+            class="capitalize text-[#101828] text-sm border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
           >
-            <div class="flex items-center">
-              <input
-                type="checkbox"
-                v-model="multi"
-                class="accent-matta-black mr-4"
-                :value="item.id"
-              />
-              <span
-                v-if="item.inage"
-                class="mr-3 h-10 w-10 rounded-lg flex items-center justify-center border border-[#E7EBEE] p-2 whitespace-nowra"
-              >
-                 <NuxtImg class="" :src="item.image" alt="alt" />
+            <span :class="item.status == 4 ? 'opacity-25' : ''">
+              <span class="text-sm font-medium">
+                {{ item.productName }}
               </span>
-              <i v-else class="fas fa-image text-[40px] mr-3 text-gray-400"></i>
-              <span :class="item.status == 4 ? 'opacity-25' : ''">
-                <span class="text-sm font-medium">
-                  {{ item.productName }}
-                </span>
-                <br />
-                <span class="text-xs font-normal">
-                  {{ item.producer }}
-                </span>
-              </span>
-            </div>
+            </span>
           </td>
           <td
             :class="item.status == 3 ? 'opacity-25' : ''"
-            class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE] whitespace-nowra"
+            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+          >
+            {{ item.producer }}
+          </td>
+          <td
+            :class="item.status == 3 ? 'opacity-25' : ''"
+            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
           >
             {{ moment(item.created).format("lll") }}
           </td>
           <td
-            class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE] whitespace-nowra"
+            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
           >
-            <span
-              v-if="item.requestStatus == 0"
-              class="px-2 py-1 text-xs rounded-lg bg-[#D0C9FF]"
-            >
-              New</span
-            >
-            <span
-              v-if="item.requestStatus == 1"
-              class="px-2 py-1 text-xs rounded-lg bg-[#F9CBE4]"
-            >
-              In progress</span
-            >
-
-            <span
-              v-if="item.status == 2"
-              class="px-2 py-1 text-xs rounded-lg bg-[#BBE5AC]"
-            >
-              Shipped</span
-            >
-            <span
-              v-if="item.requestStatus == 3"
-              class="px-2 py-1 text-xs rounded-lg border opacity-25"
-            >
-              Completed</span
-            >
+            <AppStatusButton :status="item.requestStatus" />
           </td>
           <td
             :class="item.status == 3 ? 'opacity-25' : ''"
-            class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE] relative"
+            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] relative"
           >
             <Menu class="relative" as="div">
               <MenuButton class="outline-none">
-                <i class="uil uil-ellipsis-h"></i>
+                <i class="uil uil-ellipsis-v"></i>
               </MenuButton>
               <MenuItems
                 class="absolute z-[999] bg-white shadow-[5px_12px_35px_rgba(44,44,44,0.12)] py-2 right-0 min-w-[140px] rounded-xl overflow-hidden"
               >
                 <div
-                  class="py-2 px-4 hover:bg-gray-50 text-sm whitespace-nowrap cursor-pointer"
+                  class="py-2 px-4 hover:bg-gray-50 text-xs whitespace-nowrap cursor-pointer"
                   @click="openRequests(item.id)"
                 >
                   <i class="uil uil-box mr-2"></i> Open Request
@@ -162,7 +128,7 @@
 
                 <div
                   v-if="canCancel"
-                  class="py-2 px-4 hover:bg-gray-50 text-sm whitespace-nowrap"
+                  class="py-2 px-4 hover:bg-gray-50 text-xx whitespace-nowrap"
                   @click="handleCancel(item.id)"
                 >
                   <i class="uil uil-trash mr-2"></i> Set as Cancelled
@@ -179,41 +145,19 @@
     url="/markets"
     buttonText="go to catalog"
     text="No sample request have been made"
-  />
-  <div
-    v-if="multi.length"
-    class="px-6 py-5 rounded-lg bg-white flex justify-between items-center text-[13px]"
-  >
-    <span class="flex items-center gap-x-3">
-      <span>{{ multi.length }} items selected</span>
-      <span class="text-gray-300">|</span>
-      <span class="flex gap-x-3 items-center">
-        <button class="uppercase px-2" @click="selectall">select all</button>
-        <button class="uppercase px-2" @click="multi = []">
-          deselect
-        </button></span
-      ></span
-    >
-    <span class="flex gap-x-4 items-center">
-      <!-- <button
-        class="py-4 px-5 uppercase bg-primary-500 text-white rounded-lg hover:bg-primary/80"
-      >
-        add to card
-      </button> -->
-      <button
-        class="bg-[#E7EBEE] text-matta-black rounded-lg px-5 py-4 uppercase"
-      >
-        set as cancelled
-      </button></span
-    >
+  /></div>
+
+  <AppLoader v-if="loading" />
+
+  <div class="p-5">
+    <PaginationSimple
+      :total="queryParams.totalCount"
+      :current="queryParams.PageNumber"
+      :per-page="queryParams.PageSize"
+      :pageRange="5"
+      @page-changed="queryParams.PageNumber = $event"
+    />
   </div>
-  <Pagination
-    :total="queryParams.totalCount"
-    :current="queryParams.PageNumber"
-    :per-page="queryParams.PageSize"
-    :pageRange="5"
-    @page-changed="queryParams.PageNumber = $event"
-  />
   <SideModal
     :isOpen="isRequestOpen"
     @togglePopup="isRequestOpen = false"
@@ -224,7 +168,7 @@
         class="h-full w-full bg-white rounded-lg p-6 lg:p-8 overflow-auto max-h-full"
       >
         <div class="mb-3">
-          <p class="text-[13px] text-[#B6B7B9] mb-2">Request ID</p>
+          <p class="text-sm text-[#B6B7B9] mb-2">Request ID</p>
           <h2 class="font-medium text-2xl">{{ request.requestNumber }}</h2>
         </div>
 
@@ -248,7 +192,7 @@ import {
 import debounce from "lodash/debounce";
 
 defineProps(["title", "canCancel"]);
-const theads = ["product", "created", "status", ""];
+const theads = ["product", "supplier", "date requested", "status", ""];
 const request = ref({});
 const isRequestOpen = ref(false);
 const requests = ref([]);
@@ -257,11 +201,13 @@ const multi = ref([]);
 const isOpen = ref(false);
 const products = ref([]);
 const suppliers = ref([]);
+const loading = ref(true)
 
 onMounted(() => {
   getRequests();
   procurementproducts().then((res) => {
     products.value = res.data.data.data.map((i) => {
+      loading.value = false
       return {
         id: i.productId,
         text1: i.productName,

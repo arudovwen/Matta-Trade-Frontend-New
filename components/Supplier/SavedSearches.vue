@@ -30,7 +30,7 @@
 
         <EmptyData
           v-else
-        
+          @btnFunction="btnFunction"
           btnText="Search for products"
           title="No saved items found"
           subtext="You do not have any item saved yet. Click the “Save for later” icon on the product page and it will show up here"
@@ -46,20 +46,18 @@
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-const router = useRouter()
+const router = useRouter();
 const loading = ref(false);
 const isOpen = ref(false);
 defineProps(["title"]);
 const productsData = ref([]);
 
 const totalData = ref(20);
-const btnFunction = ()=>{
-  router.push("/market")
-}
+const btnFunction = () => {
+  router.push("/market");
+};
 const next = () => {};
 const prev = () => {};
-
-provide("btnFunction",btnFunction)
 </script>
 
 <style lang="scss" scoped>

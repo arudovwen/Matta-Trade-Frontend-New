@@ -43,7 +43,7 @@
           <th
             v-for="item in theads"
             :key="item"
-            class="uppercase text-[#B6B7B9] text-[13px] text-left font-normal border-b py-6 px-3 border-[#E7EBEE]"
+            class="capitalize text-[#475467] text-sm text-left font-medium border-b py-3 px-6 border-[#EAECF0] whitespace-nowrap bg-[#F9FAFB]"
           >
             {{ item }}
           </th>
@@ -53,15 +53,10 @@
       <tbody>
         <tr v-for="item in documents" :key="item">
           <td
-            class="capitalize text-matta-black text-[13px] border-b py-6 px-3 border-[#E7EBEE] whitespace-nowrap"
+             class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
           >
             <div class="flex items-center">
-              <input
-                type="checkbox"
-                v-model="multi"
-                class="accent-matta-black mr-4"
-                :value="item.id"
-              />
+           
               <span
                 class="mr-3 h-10 w-10 rounded-lg flex items-center justify-center border border-[#E7EBEE] p-2"
               >
@@ -80,12 +75,12 @@
           </td>
           <td
             :class="item.status == 3 ? 'opacity-25' : ''"
-            class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
           >
             {{ moment(item.created).format("l") }}
           </td>
           <td
-            class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
           >
             <span
               v-if="item.requestStatus == 0"
@@ -115,17 +110,17 @@
           </td>
           <td
             :class="item.status == 3 ? 'opacity-25' : ''"
-            class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
           >
             {{ item.type }}
           </td>
           <td
             :class="item.status == 3 ? 'opacity-25' : ''"
-            class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
           >
             <Menu class="relative" as="div">
               <MenuButton class="outline-none">
-                <i class="uil uil-ellipsis-h"></i>
+                <i class="uil uil-ellipsis-v"></i>
               </MenuButton>
               <MenuItems
                 class="absolute z-[999] bg-white shadow-[5px_12px_35px_rgba(44,44,44,0.12)] py-2 right-0 min-w-[180px] rounded-xl overflow-hidden"
@@ -187,13 +182,15 @@
       </button></span
     >
   </div>
-  <Pagination
+  <div class="p-5">
+    <PaginationSimple
     :total="queryParams.totalCount"
     :current="queryParams.PageNumber"
     :per-page="queryParams.PageSize"
     :pageRange="5"
     @page-changed="queryParams.PageNumber = $event"
   />
+  </div>
   <SideModal :isOpen="isOpen" @togglePopup="isOpen = false" v-if="isOpen">
     <template #content>
       <div

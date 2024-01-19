@@ -5,7 +5,7 @@
     <div class="bg-white rounded-[10px]">
       <HeaderComponent title="Shipping address" />
 
-      <div class="p-[30px]">
+      <div class="p-5" v-if="!shippingStore.isLoading">
         <div
           class="mb-6 grid grid-cols-2 gap-6"
           v-if="shippingStore.addressesData?.length"
@@ -49,13 +49,15 @@
           </div>
         </div>
         <EmptyData
-        v-else
+          v-else
+          @btnFunction="btnFunction"
           type="shipping"
           title="No shipping address"
           subtext=""
           btnText="Add new shipping address"
         />
       </div>
+      <AppLoader v-else />
     </div>
 
     <ModalCenter>
@@ -102,7 +104,7 @@ function handleEdit(val) {
   type.value = "edit";
   isOpen.value = true;
 }
-provide("btnFunction", btnFunction);
+
 provide("type", type);
 provide("isOpen", isOpen);
 provide("detail", detail);

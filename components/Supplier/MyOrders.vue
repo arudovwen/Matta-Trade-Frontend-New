@@ -127,7 +127,7 @@
           <span
             class="flex items-center justify-center border border-[#E7EBEE] rounded-full h-12 w-12"
           >
-             <img src="~/assets/img/sorting.svg" alt="alt"
+            <img src="~/assets/img/sorting.svg" alt="alt"
           /></span>
         </span>
       </div>
@@ -188,11 +188,11 @@
                 </td>
 
                 <td
-                  class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
                 >
                   <Menu class="relative" as="div">
                     <MenuButton class="outline-none">
-                      <i class="uil uil-ellipsis-h"></i>
+                      <i class="uil uil-ellipsis-v"></i>
                     </MenuButton>
                     <MenuItems
                       class="absolute z-[999] bg-white shadow-[5px_12px_35px_rgba(44,44,44,0.12)] py-2 right-0 min-w-[140px] rounded-xl overflow-hidden"
@@ -311,15 +311,18 @@
     </div>
   </div>
   <div class="text-center p-6 lg:p-8 my-20" v-if="isLoading">
-     <AppLoader />
+    <AppLoader />
   </div>
-  <Pagination
-    :total="queryParams.totalCount"
-    :current="queryParams.PageNumber"
-    :per-page="queryParams.PageSize"
-    :pageRange="5"
-    @page-changed="queryParams.PageNumber = $event"
-  />
+  <div class="p-5">
+    <PaginationSimple
+    
+      :total="queryParams.totalCount"
+      :current="queryParams.PageNumber"
+      :per-page="queryParams.PageSize"
+      :pageRange="5"
+      @page-changed="queryParams.PageNumber = $event"
+    />
+  </div>
   <SideModal :isOpen="isOpen" @togglePopup="openModal">
     <template #content>
       <div
@@ -349,9 +352,8 @@ import {
   buyerordertimeline,
 } from "~/services/orderservice";
 import moment from "moment";
-import { toast } from 'vue3-toastify';
+import { toast } from "vue3-toastify";
 import { getcart, removecartitem } from "~/services/cartservice";
-
 
 onMounted(() => {
   getData();
@@ -399,7 +401,7 @@ function getData() {
     })
     .catch((err) => {
       isLoading.value = false;
-      toast.error((err.response.data.message || err.response.data.Message));
+      toast.error(err.response.data.message || err.response.data.Message);
     });
 }
 const route = useRoute();
@@ -417,7 +419,7 @@ function openOrder(val) {
     })
     .catch((err) => {
       isLoading.value = false;
-      toast.error((err.response.data.message || err.response.data.Message));
+      toast.error(err.response.data.message || err.response.data.Message);
     });
   buyerordertimeline(val.salesorderId)
     .then((res) => {
@@ -426,7 +428,7 @@ function openOrder(val) {
     })
     .catch((err) => {
       isLoading.value = false;
-      toast.error((err.response.data.message || err.response.data.Message));
+      toast.error(err.response.data.message || err.response.data.Message);
     });
 }
 

@@ -155,11 +155,11 @@
                   }}
                 </td>
                 <td
-                  class="capitalize text-matta-black text-sm font-normal border-b py-6 px-3 border-[#E7EBEE]"
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
                 >
                   <Menu class="relative" as="div">
                     <MenuButton class="outline-none">
-                      <i class="uil uil-ellipsis-h"></i>
+                      <i class="uil uil-ellipsis-v"></i>
                     </MenuButton>
                     <MenuItems
                       class="absolute z-[999] bg-white shadow-[5px_12px_35px_rgba(44,44,44,0.12)] py-2 right-0 min-w-[140px] rounded-xl overflow-hidden"

@@ -1,6 +1,6 @@
 <template>
-  <aside class="flex flex-col min-w-[245px]">
-    <nav class="bg-white py-[11px] rounded-[10px]">
+  <aside class="flex flex-col min-w-[245px] ">
+    <nav class="bg-white py-[11px] rounded-[10px] border border-[#F4F7FE] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.04)]">
       <ul>
         <li v-for="item in navigation" :key="item.name">
           <NuxtLink
