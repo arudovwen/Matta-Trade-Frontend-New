@@ -31,7 +31,9 @@ export default defineNuxtConfig({
     "nuxt-security",
     "@nuxt/devtools",
     "nuxt-ssr-cache",
+    "@vite-pwa/nuxt",
   ],
+
   security: {
     hidePoweredBy: false,
     headers: {
@@ -115,4 +117,54 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: process.env.NODE_ENV === "development" },
+  pwa: {
+    registerType: "autoUpdate",
+    manifest: {
+      name: "Matta trade",
+      short_name: "Matta",
+      theme_color: "#165EF0",
+      display: "standalone",
+      icons: [
+        {
+          src: "/icons/android-icon-96x96.png",
+          sizes: "96x96",
+          type: "image/png",
+        },
+        {
+          src: "/icons/android-icon-144x144.png",
+          sizes: "144x144",
+          type: "image/png",
+        },
+        {
+          src: "/icons/android-icon-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "any",
+        },
+      ],
+      screenshots: [
+        {
+          src: "/shot2.png",
+          type: "image/png",
+          sizes: "436x720",
+          form_factor: "narrow",
+        },
+        {
+          src: "/shot1.png",
+          type: "image/png",
+          sizes: "1280x686",
+          form_factor: "wide",
+        },
+      ],
+    },
+  },
+  workbox: {
+    globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+  },
+  client: {
+    installPrompt: true,
+    // you don't need to include this: only for testing purposes
+    // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600)
+    periodicSyncForUpdates: 3600,
+  },
 });
