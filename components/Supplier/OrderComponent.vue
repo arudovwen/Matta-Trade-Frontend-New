@@ -115,7 +115,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-[#F1F3F5] rounded-lg p-6 text-matta-black max-w-[355px]">
+    <div class="bg-[#F1F3F5] rounded-lg p-6 text-matta-black">
       <div class="flex justify-between mb-6">
         <h3 class="text-lg font-medium">Timeline</h3>
         <span><i class="uil uil-minusext-lg"></i></span>

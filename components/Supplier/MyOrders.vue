@@ -131,7 +131,10 @@
           /></span>
         </span>
       </div>
-      <div v-if="!isLoading">
+     <div>
+      <SupplierOrdersSingle v-for="item in orders" :key="item" :order="item"  @onClick="openOrder(item)" />
+     </div>
+      <div class="hidden" v-if="!isLoading">
         <div
           class="overflow-x-auto max-w-[80vw] lg:max-w-full"
           v-if="orders.length"
@@ -217,6 +220,7 @@
           text="No orders have been placed"
         />
       </div>
+    
     </div>
     <div class="p-6 lg:p-8 rounded-lg bg-white" v-if="isShowing === 'pending'">
       <div
@@ -314,7 +318,7 @@
     <AppLoader />
   </div>
   <div class="p-5">
-    <PaginationSimple
+    <Pagination
     
       :total="queryParams.totalCount"
       :current="queryParams.PageNumber"

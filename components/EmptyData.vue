@@ -6,7 +6,7 @@
    </div>
     <p class="text-lg text-[#101828] font-semibold mb-2">{{ title || "No data available" }}</p>
     <p v-if="subtext" class="text-sm text-[#475467] mb-8 max-w-[352px] mx-auto">{{ subtext }}</p>
-    <AppButton @click="emit('btnFunction')" v-if="btnText && btnFunction"  :text="btnText" btnClass="!py-[10px] bg-primary-500 text-white" />
+    <AppButton @click="emits('btnFunction')" v-if="btnText && btnFunction"  :text="btnText" btnClass="!py-[10px] bg-primary-500 text-white" />
   </div>
 </template>
 <script setup>

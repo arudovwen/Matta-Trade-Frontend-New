@@ -102,6 +102,7 @@ export default defineNuxtConfig({
     classSuffix: "",
   },
   css: [
+    "@vuepic/vue-datepicker/dist/main.css",
     "vue-toastification/dist/index.css",
     "vue3-carousel/dist/carousel.css",
     "~/assets/css/tailwind.css",

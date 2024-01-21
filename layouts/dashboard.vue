@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col gap-y-7 bg-[#F9FAFB] pb-2 h-screen overflow-hidden">
-    <AppHeader />
+    <div><AppHeader /></div>
+
     <div class="flex gap-x-4 flex-1 container">
       <div class="hidden lg:inline-flex h-full">
         <DashboardLayoutSideComponent />

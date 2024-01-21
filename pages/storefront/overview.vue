@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <SupplierOverviewComponent />
-    </div>
+  <div>
+    <SupplierOverviewComponent />
+  </div>
 </template>
 <script setup>
 definePageMeta({

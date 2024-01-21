@@ -173,7 +173,7 @@ const navigation = [
   },
   {
     name: "Storefront",
-    url: "/storefront/products",
+    url: "/storefront",
     icon: "solar:shop-outline",
   },
 
