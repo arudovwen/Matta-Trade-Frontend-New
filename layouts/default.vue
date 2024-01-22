@@ -21,7 +21,7 @@
   </div>
 </template>
 <script setup>
-clearCookies()
+
 import { createcart, getcart } from "~/services/cartservice";
 const cookie = useCookie("cart");
 const authStore = useAuthStore();

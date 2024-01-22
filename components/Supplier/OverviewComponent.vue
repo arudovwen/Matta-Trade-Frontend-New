@@ -31,6 +31,7 @@
               range
               multi-calendars
               placeholder="Select dates"
+              :time-picker="false"
             />
           </div>
         </div>
@@ -233,11 +234,8 @@ const confirmmonth = ref([]);
 const confirmseries = ref([]);
 // const pendingmonth = ref(["Sep", "Oct", "Nov"]);
 // const pendingseries = ref([0, 0, 0]);
-onMounted(() => {
-  const endDate = new Date();
-  const startDate = new Date(new Date().setDate(endDate.getDate() - 180));
-  date.value = [startDate, endDate];
 
+onMounted(() => {
   getesfrontstats(query).then((res) => {
     stats.value = res.data.data;
   });
@@ -248,7 +246,7 @@ onMounted(() => {
 });
 
 function getAllCharts() {
-  getorderchart(date).then((res) => {
+  getorderchart(query).then((res) => {
     if (res.status === 200) {
       thisyear.value = res.data.data.data[0]?.chartrecords.map(
         (item) => item.month
@@ -264,10 +262,7 @@ function getAllCharts() {
       showChart.value = true;
     }
   });
-  getchart({
-    StartDate: moment(date.value.startDate).format("yyyy-MM-DD"),
-    EndDate: moment(date.value.endDate).format("yyyy-MM-DD"),
-  }).then((res) => {
+  getchart(query).then((res) => {
     if (res.status === 200) {
       viewmonth.value = res.data.data.viewTrends.data[0].chartrecords.map(
         (item) => item.month
@@ -589,8 +584,8 @@ const theads = ["product", "created", "views", "orders"];
 
 watch(date, () => {
   if (date.value) {
-    query.StartDate = date.value.startDate;
-    query.EndDate = date.value.endDate;
+    query.StartDate = date.value[0];
+    query.EndDate = date.value[1];
     getesfrontstats(query).then((res) => {
       stats.value = res.data.data;
     });
