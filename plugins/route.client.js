@@ -5,6 +5,25 @@ function getClientAppVersion() {
 function setClientAppVersion(version) {
   return localStorage.setItem("APP_VERSION", version);
 }
+async function clearCookies() {
+  const cookies = await cookieStore.getAll();
+
+  if (cookies.length > 0) {
+    console.log("Deleting cookies:", cookies);
+
+    // Delete each cookie
+    for (const cookie of cookies) {
+      await cookieStore.delete(cookie.name, {
+        path: cookie.path,
+        domain: cookie.domain,
+      });
+    }
+
+    console.log("Cookies deleted successfully");
+  } else {
+    console.log("No cookies found");
+  }
+}
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.$router.afterEach((to, from) => {
@@ -14,8 +33,9 @@ export default defineNuxtPlugin((nuxtApp) => {
         const clientStoredVersion = getClientAppVersion();
 
         if (clientStoredVersion != latestVersion) {
-          window.location.reload(true);
+          clearCookies();
           setClientAppVersion(latestVersion);
+          window.location.reload(true);
         } else return;
       })
     );

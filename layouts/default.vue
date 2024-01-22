@@ -4,9 +4,24 @@
     <slot />
     <AppFooter />
     <AppScrollTop />
+
+    <a href="https://wa.me/+2349169982190" target="_blank" class="z-[99999]">
+      <button
+        class="fixed bottom-10 transition duration-300 right-4 opacity-80 hover:opacity-100 hover:scale-[1.1]"
+      >
+        <img
+          src="@/assets/img/whatsapp.png"
+          width="60"
+          height="60"
+          alt="whatsapp link"
+          class="drop-shadow-lg"
+        />
+      </button>
+    </a>
   </div>
 </template>
 <script setup>
+clearCookies()
 import { createcart, getcart } from "~/services/cartservice";
 const cookie = useCookie("cart");
 const authStore = useAuthStore();

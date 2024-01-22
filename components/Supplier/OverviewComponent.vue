@@ -234,6 +234,10 @@ const confirmseries = ref([]);
 // const pendingmonth = ref(["Sep", "Oct", "Nov"]);
 // const pendingseries = ref([0, 0, 0]);
 onMounted(() => {
+  const endDate = new Date();
+  const startDate = new Date(new Date().setDate(endDate.getDate() - 180));
+  date.value = [startDate, endDate];
+
   getesfrontstats(query).then((res) => {
     stats.value = res.data.data;
   });
@@ -261,8 +265,8 @@ function getAllCharts() {
     }
   });
   getchart({
-    StartDate: moment(startDate.value).format("yyyy-MM-DD"),
-    EndDate: moment(endDate.value).format("yyyy-MM-DD"),
+    StartDate: moment(date.value.startDate).format("yyyy-MM-DD"),
+    EndDate: moment(date.value.endDate).format("yyyy-MM-DD"),
   }).then((res) => {
     if (res.status === 200) {
       viewmonth.value = res.data.data.viewTrends.data[0].chartrecords.map(
@@ -585,8 +589,8 @@ const theads = ["product", "created", "views", "orders"];
 
 watch(date, () => {
   if (date.value) {
-    query.StartDate = date.value.StartDate;
-    query.EndDate = date.value.EndDate;
+    query.StartDate = date.value.startDate;
+    query.EndDate = date.value.endDate;
     getesfrontstats(query).then((res) => {
       stats.value = res.data.data;
     });
@@ -598,7 +602,7 @@ watch(date, () => {
 });
 
 const compEndDate = computed(() => {
-  return new Date(moment(moment(date.value.StartDate)).add(5, "months"));
+  return new Date(moment(date.value.startDate).add(5, "months"));
 });
 // const compStartDate = computed(() => {
 //   return moment(moment(startDate.value)).subtract(5, "months");
