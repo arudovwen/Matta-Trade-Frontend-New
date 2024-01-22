@@ -27,15 +27,16 @@
               {{ n.title }}
             </button>
           </div>
-
           <div class="max-w-[200px]">
-            <VueDatePicker
-              v-model="date"
-              range
-              multi-calendars
-              placeholder="Select dates"
-              :time-picker="false"
-            />
+            <ClientOnly>
+              <VueDatePicker
+                v-model="date"
+                range
+                multi-calendars
+                placeholder="Select dates"
+                :time-picker="false"
+              />
+            </ClientOnly>
           </div>
         </div>
         <div class="flex gap-x-8 w-full">
@@ -46,21 +47,24 @@
                   <span class="block text-sm text-[#475467] font-medium"
                     >Total Amount</span
                   >
-                
+
                   <div class="flex gap-x-1 items-start">
-                <span class="block text-[30px] font-bold">  <span
-                    class="block text-[30px] font-semibold text-[#101828]"
-                    >{{ currencyFormat(stats.currentBalance) }}</span
-                  ></span>
-                <span class="text-xs flex gap-x-1 items-center text-[#17B26A]">
-                  <AppIcon
-                    icon="uil:arrow-growth"
-                    iconClass="!text-[#17B26A]"
-                  />
-                  <span>{{ stats.currentBalancePecentage }}%</span></span
-                >
-              </div>
-                  
+                    <span class="block text-[30px] font-bold">
+                      <span
+                        class="block text-[30px] font-semibold text-[#101828]"
+                        >{{ currencyFormat(stats.currentBalance) }}</span
+                      ></span
+                    >
+                    <span
+                      class="text-xs flex gap-x-1 items-center text-[#17B26A]"
+                    >
+                      <AppIcon
+                        icon="uil:arrow-growth"
+                        iconClass="!text-[#17B26A]"
+                      />
+                      <span>{{ stats.currentBalancePecentage }}%</span></span
+                    >
+                  </div>
                 </div>
               </div>
               <ClientOnly>
@@ -231,7 +235,7 @@ const query = reactive({
   top: 10,
 });
 
-const active = ref(12)
+const active = ref(12);
 const stats = ref(null);
 const trending = ref([]);
 const thisyear = ref([]);
