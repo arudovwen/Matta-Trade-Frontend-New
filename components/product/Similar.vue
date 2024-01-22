@@ -9,7 +9,7 @@
         </h2>
       </div>
 
-      <div v-if="!loading" class="flex gap-x-6 no-scrollbar hover:scrollbar overflow-x-auto pb-6">
+      <div v-if="!loading" class="flex gap-x-4 md:gap-x-6 no-scrollbar hover:scrollbar overflow-x-auto pb-6">
         <div
           v-for="slide in productsData.slice(0, 10)"
           :key="slide"
@@ -20,7 +20,7 @@
               )}/${slide.id}`
             )
           "
-          class="w-full cursor-pointer min-w-[130px] sm:min-w-[160px] lg:min-w-[250px] max-w-[250px]  bg-white darks:bg-gray-800 rounded-[10px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.05)] overflow-hidden"
+          class="w-full cursor-pointer min-w-[140px] sm:min-w-[160px] lg:min-w-[250px] max-w-[250px]  bg-white darks:bg-gray-800 rounded-[10px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.05)] overflow-hidden"
         >
           <div
             class="w-full h-[90px] sm:h-[120px] lg:h-[140px] xl:h-[160px] bg-gray-200 bg-cover bg-center relative"

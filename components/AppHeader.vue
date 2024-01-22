@@ -1,4 +1,46 @@
 <template>
+  <ClientOnly>
+    <div
+      v-if="$pwa?.offlineReady || $pwa?.needRefresh"
+      class="flex justify-start items-center gap-x-6 py-2 container"
+      role="alert"
+    >
+      <div class="message font-bold">
+        <span v-if="$pwa.offlineReady"> App ready to work offline </span>
+        <span v-else>
+          New content available, click on reload button to update.
+        </span>
+      </div>
+    <div class="flex items-center gap-x-6">
+      <button  class="btn btn-sm bg-primary-500 text-white text-sm px-3 py-2" v-if="$pwa.needRefresh" @click="$pwa.updateServiceWorker()">
+        Reload
+      </button>
+      <button  class="btn-sm text-sm"  @click="$pwa.cancelPrompt()">Close</button>
+    </div>
+    </div>
+    <div
+      v-if="
+        $pwa?.showInstallPrompt && !$pwa?.offlineReady && !$pwa?.needRefresh
+      "
+      class="flex justify-start items-center gap-x-6 py-2 container"
+      role="alert"
+    >
+      <div class="font-bold text-sm">
+        <span> Install Matta App?</span>
+      </div>
+      <div class="flex gap-x-4">
+        <button
+          class="btn btn-sm bg-primary-500 text-white text-sm px-3 py-2"
+          @click="$pwa.install()"
+        >
+          Install
+        </button>
+        <button class="btn-sm text-sm" @click="$pwa.cancelInstall()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </ClientOnly>
   <nav
     :class="{
       relative: view.atTopOfPage,
@@ -11,7 +53,7 @@
       <div class="flex justify-between items-center gap-x-5">
         <div class="logo flex gap-x-10 items-center">
           <NuxtLink to="/">
-             <NuxtImg
+            <NuxtImg
               src="/images/logo.png"
               width="100"
               height="26"
@@ -254,7 +296,7 @@
   <ModalCenter v-if="isSigniningOut">
     <template #default>
       <div
-        class="bg-white p-6 lg:p-10 sm:p-6 sm:pb-4  rounded-lg"
+        class="bg-white p-6 lg:p-10 sm:p-6 sm:pb-4 rounded-lg"
         v-if="isSigniningOut"
       >
         <div class="flex justify-between mb-5 items-center">
@@ -302,6 +344,7 @@ import {
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { logOut } from "~/services/authservices";
 
+const { $pwa } = useNuxtApp();
 const isSigniningOut = ref(false);
 const cartStore = useCartStore();
 const authStore = useAuthStore();

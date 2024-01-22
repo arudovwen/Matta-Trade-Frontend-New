@@ -46,11 +46,11 @@
           btnClass="btn-primary !py-3"
         />
         <AppButton
-          :disabled="!isReady"
+          :disabled="isReady"
           @click="() => login()"
           text="Sign in with Google"
           icon="flat-color-icons:google"
-          btnClass="btn-dark !py-3"
+          btnClass="btn-dark !py-3 disabled:opacity-50"
           type="button"
         />
         <!-- <GoogleSignInButton
