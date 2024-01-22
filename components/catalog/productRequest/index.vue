@@ -12,7 +12,7 @@
         <div class="mb-6">
           <label class="mb-2 font-normal text-xs block">Full name</label>
           <input
-            class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             placeholder="Provide your full name"
             autocomplete="off"
             autofocus="on"
@@ -31,7 +31,7 @@
         <div class="mb-6">
           <label class="mb-2 font-normal text-xs block">Business name</label>
           <input
-            class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             placeholder="Provide your business name"
             autocomplete="off"
             autofocus="on"
@@ -50,12 +50,12 @@
 
         <div class="mb-6">
           <label class="mb-2 font-normal text-xs block">Phone number</label>
-          <div class="flex relative rounded-lg h-12">
+          <div class="flex relative rounded-lg h-11">
             <FormsPhoneCodes v-model="form.phoneCode" />
 
             <input
               v-model="request$.phone.$model"
-              class="flex-1 rounded-r-lg text-[13px] px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+              class="flex-1 rounded-r-lg text-[13px] px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
               placeholder="08160723884"
               type="tel"
             />
@@ -73,7 +73,7 @@
         <div class="mb-6">
           <label class="mb-2 font-normal text-xs block">E-mail</label>
           <input
-            class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             placeholder="Provide your email address"
             autocomplete="off"
             type="email"
@@ -92,7 +92,7 @@
         <!-- <div class="mb-6">
           <label class="mb-2 font-normal text-xs block">Address</label>
           <input
-            class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             placeholder="Provide your full address"
             autocomplete="off"
             autofocus="on"
@@ -111,7 +111,7 @@
         <div class="mb-6">
           <label class="mb-2 font-normal text-xs block">Chemical name</label>
           <input
-            class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             placeholder="Provide chemical name"
             autocomplete="off"
             autofocus="on"
@@ -131,7 +131,7 @@
           <div class="mb-6">
             <label class="mb-2 font-normal text-xs block">Quantity</label>
             <input
-              class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+              class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
               placeholder="Enter quantity needed"
               type=""
               v-model="request$.quantity.$model"
@@ -150,7 +150,7 @@
             <label class="mb-2 font-normal text-xs block">Unit</label>
             <select
               v-model="request$.unit.$model"
-              class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+              class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             >
               <option v-for="n in measurements" :key="n" :value="n.value">
                 {{ n.name }}
@@ -211,7 +211,7 @@
           <button
             type="submit"
             :disabled="isLoading"
-            class="border text-[13px] mb-4 border-primary- uppercase text-white w-full lg:min-w-[150px] mx-auto bg-primary-500 rounded-lg px-6 py-2 hover:bg-primary/80 h-12"
+            class="border text-[13px] mb-4 border-primary- uppercase text-white w-full lg:min-w-[150px] mx-auto bg-primary-500 rounded-lg px-6 py-2 hover:bg-primary/80 h-11"
           >
             <span>
               <span

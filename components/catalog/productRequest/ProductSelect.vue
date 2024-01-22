@@ -49,7 +49,7 @@
             :value="request1$.numberofSamples.$model"
             disabled
             :class="{ 'border-red-500 ': request1$.numberofSamples.$error }"
-            class="rounded-lg appearance-none px-5 py-3 h-12 border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="rounded-lg appearance-none px-[14px] py-[10px] h-11 border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           >
             <option v-for="z in 10" :key="z" :value="z">
               <span class="flex gap-x-6">

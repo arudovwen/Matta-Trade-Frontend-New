@@ -1,5 +1,5 @@
 <template>
-  <div class="px-7 py-[30px] border-b border-[#F4F7FE] flex gap-x-6">
+  <div class="py-[30px] border-b border-[#F4F7FE] flex gap-x-6">
     <div class="h-[100px] w-[100px] bg-gray-50 rounded-[10px] overflow-hidden">
       <NuxtImg src="/images/2.png" class="w-full h-full" alt="image" />
     </div>

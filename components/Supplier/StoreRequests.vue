@@ -1,9 +1,13 @@
 <template>
-  <div class="gap-y-2 flex flex-col bg-white rounded-[10px] pb-10">
+  <div class="flex flex-col bg-white rounded-[10px]">
     <!-- Top bar   -->
-    <HeaderComponent title="Requests" />
-    <div class="p-[30px]">
-      <AppTab :tabs="tabs" />
+    <HeaderComponent
+      title="Requests"
+      className="!px-5"
+      subtext="List of your requests for samples and documents."
+    />
+    <div class="pt-[30px]">
+      <AppTab :tabs="tabs" className="px-5" :count="count" />
 
       <div>
         <SupplierRequestsRequestTable
@@ -79,7 +83,7 @@ const documents = ref([]);
 const requests = ref([]);
 const route = useRoute();
 const isOpen = ref(false);
-const active = ref("sample");
+const active = ref("samples");
 const quotes = ref([]);
 // const products = ref([]);
 // const suppliers = ref([]);
@@ -97,13 +101,10 @@ const count = reactive({
   quotes: 0,
 });
 onMounted(() => {
-  getRequests();
-  getRequestDoc();
   samplerequestcount().then((res) => {
     count.documents = res.data.documents;
     count.samples = res.data.samples;
   });
-  getquotes();
 });
 function getquotes() {
   quoteLoading.value = true;
@@ -150,6 +151,10 @@ provide("quotes", quotes);
 provide("quoteParams", quoteParams);
 provide("quoteLoading", quoteLoading);
 provide("docLoading", docLoading);
+provide("active", active);
+provide("getRequests", getRequests);
+provide("getRequestDoc", getRequestDoc);
+provide("getquotes", getquotes);
 </script>
 
 <style lang="scss" scoped>

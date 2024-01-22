@@ -2,19 +2,17 @@
   <div class="hidden lg:flex justify-between items-center mb-8 px-5">
     <div class="flex gap-x-4">
       <div class="relative flex items-center">
+        <span class="absolute left-4 pointer-events-none text-[#667085]"
+          ><i class="uil uil-search"></i
+        ></span>
         <input
           v-model="queryParams.Search"
           @change="getRequests()"
           @keyup="debounceSearch"
-          :class="
-            queryParams.Search.length && 'pl-3 pr-10 rounded-lg w-[280px]'
-          "
-          class="border focus:pl-3 focus:pr-10 rounded-full focus:rounded-lg h-10 peer focus:w-[280px] focus:outline-matta-black/20 w-12 border-[#EAECF0] transition ease-in-out duration-300"
+          placeholder="Search"
+          class="border border-[#D0D5DD] focus:pr-3 pl-10 rounded-lg w-[280px] focus:outline-none py-[10px] transition ease-in-out duration-300"
           type="search"
         />
-        <span class="absolute right-4 peer-focus:right-3 pointer-events-none"
-          ><i class="uil uil-search"></i
-        ></span>
       </div>
 
       <div class="">
@@ -22,23 +20,23 @@
           placeholder="Product"
           :options="products"
           v-model="queryParams.ProductId"
-          classStyles="px-8 py-3 h-10 text-base border-[#EAECF0] border rounded-full"
+          classStyles="border border-[#D0D5DD] rounded-lg min-w-[180px] py-[10px] px-[14px] focus:outline-none"
         />
       </div>
-      <div class="">
+      <!-- <div class="">
         <FormsCustomSelect
           placeholder="Supplier"
           :options="suppliers"
           v-model="queryParams.Supplier"
-          classStyles="px-8 py-3 h-10 text-base border-[#EAECF0] border rounded-full"
+          classStyles="border border-[#D0D5DD] rounded-lg min-w-[180px] py-[10px] px-[14px] focus:outline-none"
         />
-      </div>
+      </div> -->
       <div class="">
         <FormsCustomSelect
           placeholder="Producer"
           :options="[]"
           v-model="queryParams.Producer"
-          classStyles="px-8 py-3 h-10 text-base border-[#EAECF0] border rounded-full"
+          classStyles="border border-[#D0D5DD] rounded-lg min-w-[180px] py-[10px] px-[14px] focus:outline-none"
         />
       </div>
       <div class="">
@@ -46,106 +44,97 @@
           placeholder="Status"
           :options="statusOptions"
           v-model="queryParams.RequestStatus"
-          classStyles="px-8 py-3 h-10 text-base border-[#EAECF0] border rounded-full"
+          classStyles="border border-[#D0D5DD] rounded-lg min-w-[180px] py-[10px] px-[14px] focus:outline-none"
         />
       </div>
     </div>
-    <span class="flex gap-x-3">
-      <span
-        @click="toggleOrder"
-        class="flex items-center justify-center cursor-pointer border border-[#EAECF0] rounded-full h-10 w-10"
-      >
-        <img src="~/assets/img/sorting.svg" alt="alt"
-      /></span>
-    </span>
   </div>
 
   <div v-if="!loading">
-  
-    
-  <div
-    class="overflow-x-auto max-w-[80vw] lg:max-w-full pb-20"
-    v-if="requests.length"
-  >
-    <table class="w-full">
-      <thead>
-        <tr>
-          <th
-            v-for="item in theads"
-            :key="item"
-            class="capitalize text-[#475467] text-sm text-left font-medium border-b py-3 px-6 border-[#EAECF0] whitespace-nowrap bg-[#F9FAFB]"
-          >
-            {{ item }}
-          </th>
-        </tr>
-      </thead>
+    <div
+      class="overflow-x-auto max-w-[80vw] lg:max-w-full pb-20"
+      v-if="requests.length"
+    >
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th
+              v-for="item in theads"
+              :key="item"
+              class="capitalize text-[#475467] text-sm text-left font-medium border-t border-b py-3 px-6 border-[#EAECF0] whitespace-nowrap bg-[#F9FAFB]"
+            >
+              {{ item }}
+            </th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr v-for="item in requests" :key="item">
-          <td
-            class="capitalize text-[#101828] text-sm border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
-          >
-            <span :class="item.status == 4 ? 'opacity-25' : ''">
-              <span class="text-sm font-medium">
-                {{ item.productName }}
+        <tbody>
+          <tr v-for="item in requests" :key="item">
+            <td
+              class="capitalize text-[#101828] text-sm border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+            >
+              <span :class="item.status == 4 ? 'opacity-25' : ''">
+                <span class="text-sm font-medium">
+                  {{ item.productName }}
+                </span>
               </span>
-            </span>
-          </td>
-          <td
-            :class="item.status == 3 ? 'opacity-25' : ''"
-            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
-          >
-            {{ item.producer }}
-          </td>
-          <td
-            :class="item.status == 3 ? 'opacity-25' : ''"
-            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
-          >
-            {{ moment(item.created).format("lll") }}
-          </td>
-          <td
-            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
-          >
-            <AppStatusButton :status="item.requestStatus" />
-          </td>
-          <td
-            :class="item.status == 3 ? 'opacity-25' : ''"
-            class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] relative"
-          >
-            <Menu class="relative" as="div">
-              <MenuButton class="outline-none">
-                <i class="uil uil-ellipsis-v"></i>
-              </MenuButton>
-              <MenuItems
-                class="absolute z-[999] bg-white shadow-[5px_12px_35px_rgba(44,44,44,0.12)] py-2 right-0 min-w-[140px] rounded-xl overflow-hidden"
-              >
-                <div
-                  class="py-2 px-4 hover:bg-gray-50 text-xs whitespace-nowrap cursor-pointer"
-                  @click="openRequests(item.id)"
+            </td>
+            <td
+              :class="item.status == 3 ? 'opacity-25' : ''"
+              class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+            >
+              {{ item.producer }}
+            </td>
+            <td
+              :class="item.status == 3 ? 'opacity-25' : ''"
+              class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+            >
+              {{ moment(item.created).format("lll") }}
+            </td>
+            <td
+              class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+            >
+              <AppStatusButton :status="item.requestStatus" />
+            </td>
+            <td
+              :class="item.status == 3 ? 'opacity-25' : ''"
+              class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] relative"
+            >
+              <Menu class="relative" as="div">
+                <MenuButton class="outline-none">
+                  <i class="uil uil-ellipsis-v"></i>
+                </MenuButton>
+                <MenuItems
+                  class="absolute z-[999] bg-white shadow-[5px_12px_35px_rgba(44,44,44,0.12)] py-2 right-0 min-w-[140px] rounded-xl overflow-hidden"
                 >
-                  <i class="uil uil-box mr-2"></i> Open Request
-                </div>
+                  <div
+                    class="py-2 px-4 hover:bg-gray-50 text-xs whitespace-nowrap cursor-pointer"
+                    @click="openRequests(item.id)"
+                  >
+                    <i class="uil uil-box mr-2"></i> Open Request
+                  </div>
 
-                <div
-                  v-if="canCancel"
-                  class="py-2 px-4 hover:bg-gray-50 text-xx whitespace-nowrap"
-                  @click="handleCancel(item.id)"
-                >
-                  <i class="uil uil-trash mr-2"></i> Set as Cancelled
-                </div>
-              </MenuItems>
-            </Menu>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                  <div
+                    v-if="canCancel"
+                    class="py-2 px-4 hover:bg-gray-50 text-xx whitespace-nowrap"
+                    @click="handleCancel(item.id)"
+                  >
+                    <i class="uil uil-trash mr-2"></i> Set as Cancelled
+                  </div>
+                </MenuItems>
+              </Menu>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <EmptyData
+      v-else
+      url="/markets"
+      buttonText="go to catalog"
+      text="No sample request have been made"
+    />
   </div>
-  <EmptyData
-    v-else
-    url="/markets"
-    buttonText="go to catalog"
-    text="No sample request have been made"
-  /></div>
 
   <AppLoader v-if="loading" />
 
@@ -201,13 +190,13 @@ const multi = ref([]);
 const isOpen = ref(false);
 const products = ref([]);
 const suppliers = ref([]);
-const loading = ref(true)
+const loading = ref(true);
 
 onMounted(() => {
   getRequests();
   procurementproducts().then((res) => {
     products.value = res.data.data.data.map((i) => {
-      loading.value = false
+      loading.value = false;
       return {
         id: i.productId,
         text1: i.productName,

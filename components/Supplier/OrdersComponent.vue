@@ -41,7 +41,7 @@
               :class="
                 queryParams.Search.length && 'pl-3 pr-10 rounded-lg w-[280px]'
               "
-              class="border focus:pl-3 focus:pr-10 rounded-full focus:rounded-lg h-12 peer focus:w-[280px] focus:outline-matta-black/20 w-12 border-[#E7EBEE] transition ease-in-out duration-300"
+              class="border focus:pl-3 focus:pr-10 rounded-full focus:rounded-lg h-11 peer focus:w-[280px] focus:outline-matta-black/20 w-12 border-[#E7EBEE] transition ease-in-out duration-300"
               type="search"
             />
             <span
@@ -92,7 +92,7 @@
         </div>
         <span class="flex gap-x-3" @click="toggleOrder">
           <span
-            class="flex items-center justify-center border border-[#E7EBEE] rounded-full h-12 w-12"
+            class="flex items-center justify-center border border-[#E7EBEE] rounded-full h-11 w-12"
           >
              <img src="~/assets/img/sorting.svg" alt="alt"
           /></span>

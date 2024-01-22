@@ -12,7 +12,7 @@
             :value="request1$.numberofSamples.$model"
             disabled
             :class="{ 'border-red-500 ': request1$.numberofSamples.$error }"
-            class="rounded-lg appearance-none px-5 py-3 h-12 border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="rounded-lg appearance-none px-[14px] py-[10px] h-11 border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           >
             <option v-for="z in 10" :key="z" :value="z">
               <span class="flex gap-x-6">
@@ -42,7 +42,7 @@
           <select
             v-model="request1$.expectedAnualUsage.$model"
             :class="{ 'border-red-500 ': request1$.expectedAnualUsage.$error }"
-            class="rounded-lg appearance-none px-5 py-3 h-12 border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="rounded-lg appearance-none px-[14px] py-[10px] h-11 border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           >
             <option :value="1">1 year</option>
             <option :value="2">2 years</option>
@@ -93,7 +93,7 @@
         :class="{ 'border-red-500 ': request1$.description.$error }"
         placeholder="Describe intended use to help us route  your request..."
         row="4"
-        class="rounded-lg px-4 py-3 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] placeholder:text-xs focus:outline-matta-black/20"
+        class="rounded-lg px-[14px] py-[10px] w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] placeholder:text-xs focus:outline-matta-black/20"
       ></textarea>
       <div
         class="text-red-500 mt-1"

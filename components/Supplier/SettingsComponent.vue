@@ -53,7 +53,7 @@
                   <input
                     v-model="v$.firstName.$model"
                     :class="{ 'border-red-500': v$.firstName.$error }"
-                    class="rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                    class="rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                     autocomplete="off"
                     autofocus="on"
                   />
@@ -74,7 +74,7 @@
                   <input
                     v-model="v$.lastName.$model"
                     :class="{ 'border-red-500': v$.lastName.$error }"
-                    class="rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                    class="rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                     autocomplete="off"
                     autofocus="on"
                   />
@@ -95,7 +95,7 @@
                   <div class="flex relative items-center">
                     <input
                       :value="form.email"
-                      class="rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      class="rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                       autocomplete="off"
                       autofocus="on"
                       disabled
@@ -117,13 +117,13 @@
                   <label class="mb-2 font-normal text-sm block"
                     >Phone number</label
                   >
-                  <div class="flex relative rounded-lg h-12">
+                  <div class="flex relative rounded-lg h-11">
                     <FormsPhoneCodes v-model="form.code" />
 
                     <input
                       :class="{ 'border-red-500': v$.phone.$error }"
                       v-model="v$.phone.$model"
-                      class="flex-1 rounded-r-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      class="flex-1 rounded-r-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                       autocomplete="off"
                       autofocus="on"
                       placeholder="08160723884"
@@ -176,13 +176,13 @@
                   </div>
                 </div>
               </div>
-              <div class="grid lg:grid-cols-2 gap-x-6">
+              <div class="">
                 <div class="mb-6">
                   <label class="mb-2 font-normal text-sm block">Timezone</label>
                   <div class="flex relative items-center w-full">
                     <select
                       v-model="form.timezone"
-                      class="appearance-none rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9]"
+                      class="appearance-none rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9]"
                     >
                       <option v-for="z in zones" :key="z">
                         ({{ moment.tz(new Date(), z).format("z - Z") }})
@@ -230,7 +230,7 @@
                 <input
                   :class="{ 'border-red-500': newv$.oldPassword.$error }"
                   v-model="newv$.oldPassword.$model"
-                  class="rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                   placeholder="Password"
                   autocomplete="off"
                   :type="!isOpen ? 'oldPassword' : 'text'"
@@ -264,7 +264,7 @@
                 <input
                   :class="{ 'border-red-500': newv$.newPassword.$error }"
                   v-model="newv$.newPassword.$model"
-                  class="rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                   placeholder="Password"
                   autocomplete="off"
                   :type="!isOpen ? 'oldPassword' : 'text'"
@@ -298,7 +298,7 @@
                 <input
                   :class="{ 'border-red-500': newv$.confirmPassword.$error }"
                   v-model="newv$.confirmPassword.$model"
-                  class="rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                   placeholder="Confirm oldPassword"
                   autocomplete="off"
                   :type="!isOpen ? 'oldPassword' : 'text'"

@@ -17,12 +17,12 @@
     <div class="mb-6">
       <label class="mb-2 font-normal text-xs block">Phone number</label>
 
-      <div class="flex relative rounded-lg h-12">
+      <div class="flex relative rounded-lg h-11">
         <FormsPhoneCodes v-model="quoteForm.phoneCode" />
 
         <input
           v-model="request2$.phone.$model"
-          class="flex-1 rounded-r-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20 placeholder:text-sm"
+          class="flex-1 rounded-r-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20 placeholder:text-sm"
           autocomplete="off"
           autofocus="on"
           placeholder="08160723884"
@@ -143,7 +143,7 @@
         v-model="request2$.additionalInformation.$model"
         placeholder=""
         row="4"
-        class="placeholder:text-xs rounded-lg px-4 py-3 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+        class="placeholder:text-xs rounded-lg px-[14px] py-[10px] w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
       ></textarea>
       <div
         class="text-red-500 mt-1"

@@ -2,7 +2,7 @@
   <div>
     <label class="block text-sm mb-[5px]">{{ label }}</label>
     <div
-      class="flex-1 rounded-lg py-1 pr-[14px] pl-2 h-12 text-sm w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20 flex items-center"
+      class="flex-1 rounded-lg py-1 pr-[14px] pl-2 h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20 flex items-center"
     >
       <input
         ref="fileInputRef"

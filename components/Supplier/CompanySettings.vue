@@ -50,7 +50,7 @@
               <input
                 v-model="v$.companyName.$model"
                 :class="{ 'border-red-500': v$.companyName.$error }"
-                class="rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                class="rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                 autocomplete="off"
                 autofocus="on"
                 placeholder=""
@@ -74,7 +74,7 @@
                 <select
                   v-model="form.companyType"
                   :class="{ 'border-red-500': v$.companyType.$error }"
-                  class="appearance-none rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="appearance-none rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                 >
                   <option disabled value="">Select sector</option>
                   <option
@@ -104,13 +104,13 @@
           <div class="grid lg:grid-cols-2 gap-x-4">
             <div class="mb-6">
               <label class="mb-2 font-normal text-xs block">Phone number</label>
-              <div class="flex relative rounded-lg h-12">
+              <div class="flex relative rounded-lg h-11">
                 <FormsPhoneCodes v-model="form.code" />
 
                 <input
                   v-model="v$.phone.$model"
                   :class="{ 'border-red-500': v$.phone.$error }"
-                  class="flex-1 rounded-r-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="flex-1 rounded-r-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                   autocomplete="off"
                   autofocus="on"
                   placeholder="08160723884"
@@ -133,7 +133,7 @@
               <input
                 v-model="v$.email.$model"
                 :class="{ 'border-red-500': v$.email.$error }"
-                class="px-5 py-3 h-12 rounded-lg w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                class="px-[14px] py-[10px] h-11 rounded-lg w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                 autocomplete="off"
                 autofocus="on"
               />
@@ -156,7 +156,7 @@
               <input
                 v-model="v$.website.$model"
                 :class="{ 'border-red-500': v$.website.$error }"
-                class="rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                class="rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                 autocomplete="off"
                 autofocus="on"
                 placeholder="https://www.example.com"
@@ -177,7 +177,7 @@
               <input
                 v-model="v$.fax.$model"
                 :class="{ 'border-red-500': v$.fax.$error }"
-                class="rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                class="rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                 autocomplete="off"
                 autofocus="on"
                 placeholder="Fax"
@@ -200,7 +200,7 @@
               :class="{ 'border-red-500': v$.description.$error }"
               rows="5"
               placeholder="Company description"
-              class="rounded-lg px-5 py-3 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+              class="rounded-lg px-[14px] py-[10px] w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             ></textarea>
             <div
               class="text-red-500 mt-1"
@@ -222,7 +222,7 @@
               <div class="flex relative items-center">
                 <select
                   v-model="social.name"
-                  class="appearance-none rounded-lg px-7 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="appearance-none rounded-lg px-7 py-3 h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                 >
                   <option value="">Select a network</option>
                   <option value="facebook">Facebook</option>
@@ -235,7 +235,7 @@
               </div>
               <input
                 v-model="social.link"
-                class="flex-1 rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                class="flex-1 rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                 autocomplete="off"
                 autofocus="on"
                 placeholder="https://facebook.com/pharmazell"
@@ -295,7 +295,7 @@
                 <input
                   v-model="v$.city.$model"
                   :class="{ 'border-red-500': v$.city.$error }"
-                  class="px-5 py-3 h-12 w-full rounded-lg border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="px-[14px] py-[10px] h-11 w-full rounded-lg border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                   autocomplete="off"
                   autofocus="on"
                   placeholder="Company city"
@@ -315,7 +315,7 @@
                 <input
                   v-model="v$.address.$model"
                   :class="{ 'border-red-500': v$.address.$error }"
-                  class="rounded-lg px-5 py-3 h-12 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="rounded-lg px-[14px] py-[10px] h-11 w-full border placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                   autocomplete="off"
                   autofocus="on"
                   placeholder="Company address"

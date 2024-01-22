@@ -7,7 +7,7 @@
         <input
           v-model="v$.firstName.$model"
           :class="{ 'border-red-500': v$.firstName.$error }"
-          class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           autocomplete="off"
           autofocus="on"
         />
@@ -26,7 +26,7 @@
         <input
           v-model="v$.lastName.$model"
           :class="{ 'border-red-500': v$.lastName.$error }"
-          class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           autocomplete="off"
           autofocus="on"
         />
@@ -46,7 +46,7 @@
       <input
         v-model="v$.email.$model"
         :class="{ 'border-red-500': v$.email.$error }"
-        class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+        class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
         placeholder="E-mail"
         autocomplete="off"
         aria-autocomplete="none"
@@ -67,11 +67,11 @@
       <label class="mb-2 font-normal text-xs block" for="phone"
         >Phone number <span class="text-red-500 pl-[.02rem]">*</span></label
       >
-      <div class="flex relative rounded-lg h-12">
+      <div class="flex relative rounded-lg h-11">
         <input
           :class="{ 'border-red-500': v$.phone.$error }"
           v-model="v$.phone.$model"
-          class="flex-1 rounded-r-lg px-4 py-3 h-12 text-sm w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="flex-1 rounded-r-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           autocomplete="off"
           aria-autocomplete="none"
           placeholder="08160723884"
@@ -95,7 +95,7 @@
         <input
           v-model="v$.bvn.$model"
           :class="{ 'border-red-500': v$.bvn.$error }"
-          class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           autocomplete="off"
           autofocus="on"
         />
@@ -114,7 +114,7 @@
         <input
           v-model="v$.dob.$model"
           :class="{ 'border-red-500': v$.dob.$error }"
-          class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           autocomplete="off"
           autofocus="on"
           type="date"

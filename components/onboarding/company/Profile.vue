@@ -81,7 +81,7 @@
                 <input
                   v-model="v$.firstName.$model"
                   :class="{ 'border-red-500': v$.firstName.$error }"
-                  class="rounded-lg px-5 py-3 h-12 text-sm w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                   autocomplete="off"
                   autofocus="on"
                 />
@@ -102,7 +102,7 @@
                 <input
                   v-model="v$.lastName.$model"
                   :class="{ 'border-red-500': v$.lastName.$error }"
-                  class="rounded-lg px-5 py-3 h-12 text-sm w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                   autocomplete="off"
                   autofocus="on"
                 />
@@ -132,12 +132,12 @@
                       containerStyle="w-full"
                       :classStyles="`${
                         v$.country.$error && 'border-red-500'
-                      } rounded-lg appearance-none px-5 py-3 h-12 text-sm border w-full !bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
+                      } rounded-lg appearance-none px-[14px] py-[10px] h-11 text-sm border w-full !bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
                     />
                     <!-- <select
                       v-model="v$.country.$model"
                       :class="{ 'border-red-500': v$.country.$error }"
-                      class="rounded-lg appearance-none px-5 py-3 h-12 text-sm border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      class="rounded-lg appearance-none px-[14px] py-[10px] h-11 text-sm border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                     >
                       <option v-for="z in CountryList" :key="z" :value="z.name">
                         <span class="flex gap-x-6">
@@ -174,14 +174,14 @@
                   containerStyle="w-full"
                   :classStyles="`${
                     v$.city.$error && 'border-red-500'
-                  } rounded-lg appearance-none px-5 py-3 h-12 text-sm border w-full !bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
+                  } rounded-lg appearance-none px-[14px] py-[10px] h-11 text-sm border w-full !bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
                 />
 
                 <!-- <div class="flex relative items-center w-full">
                   <select
                     v-model="v$.city.$model"
                     :class="{ 'border-red-500': v$.city.$error }"
-                    class="rounded-lg appearance-none px-5 py-3 h-12 text-sm border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                    class="rounded-lg appearance-none px-[14px] py-[10px] h-11 text-sm border w-full bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                   >
                     <option v-for="z in states" :key="z" :value="z.name">
                       <span class="flex gap-x-6">
@@ -210,13 +210,13 @@
                   >Phone number
                   <span class="text-red-500 pl-[.02rem]">*</span></label
                 >
-                <div class="flex relative rounded-lg h-12">
+                <div class="flex relative rounded-lg h-11">
                   <FormsPhoneCodes v-model="form.code" />
 
                   <input
                     :class="{ 'border-red-500': v$.phone.$error }"
                     v-model="v$.phone.$model"
-                    class="flex-1 rounded-r-lg px-5 py-3 h-12 text-sm w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                    class="flex-1 rounded-r-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                     autocomplete="off"
                     autofocus="on"
                     placeholder="08160723884"
@@ -241,7 +241,7 @@
                   <input
                     :class="{ 'border-red-500': v$.email.$error }"
                     :value="form.email"
-                    class="rounded-lg px-5 py-3 h-12 text-sm w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] text-matta-black/60 focus:outline-matta-black/20"
+                    class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] text-matta-black/60 focus:outline-matta-black/20"
                     autocomplete="off"
                     autofocus="on"
                     disabled
@@ -270,7 +270,7 @@
               <select
                 v-model="v$.timeZone.$model"
                 :class="{ 'border-red-500': v$.timeZone.$error }"
-                class="appearance-none rounded-lg px-5 py-3 h-12 text-sm w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9]"
+                class="appearance-none rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9]"
               >
                 <option v-for="z in zones" :key="z">
                   ({{ moment.tz(new Date(), z).format("z - Z") }})

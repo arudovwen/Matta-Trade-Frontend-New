@@ -1,6 +1,6 @@
 <template>
   <span
-    :class="`px-2 py-1 text-xs rounded-full flex gap-x-1 items-center border max-w-max font-semibold ${StatusClass[status]}`"
+    :class="`px-[6px] py-1 text-xs rounded-full flex gap-x-1 items-center border max-w-max font-semibold ${StatusClass[status]}`"
   >
     <AppIcon icon="octicon:dot-fill-24"/>
     <span v-if="status == 0" class=""> Pending</span>

@@ -6,7 +6,7 @@
         store.getters.loggedUser.accountType == 1
       "
     >
-      <VerificationBox />
+      <!-- <VerificationBox /> -->
     </div>
     <router-view></router-view>
   </section>

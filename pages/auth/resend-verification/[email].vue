@@ -42,7 +42,7 @@
           <label class="mb-2 font-normal text-xs block">E-mail</label>
           <input
             :value="route.params.email"
-            class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             placeholder="E-mail"
             autocomplete="off"
             autofocus="on"

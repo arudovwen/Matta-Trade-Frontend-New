@@ -1,28 +1,9 @@
 <template>
-  <div class="gap-y-2 flex flex-col bg-white rounded-[10px] pb-10 border border-[#F4F7FE]">
+  <div class="gap-y-2 flex flex-col bg-white rounded-[10px]  border border-[#F4F7FE]">
     <!-- Top bar   -->
-    <!-- <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
-      <div class="mb-12"><Breadcrumbs /></div>
-      <div class="">
-        <div class="flex gap-x-3 items-center mb-3">
-          <h1
-            class="text-3xl lg:text-[48px] text-matta-black col-span-1 font-medium capitalize"
-          >
-           My Requests
-          </h1>
-          <span class="mt-3">/</span>
-          <span class="text-primary text-3xl lg:text-[48px]">{{
-            count?.samples + count?.documents + count?.quotes || 0
-          }}</span>
-        </div>
-
-        <p class="text-sm lg:text-base">
-          List of your requests for samples and documents.
-        </p>
-      </div>
-    </div> -->
-    <HeaderComponent title="My requests" />
-    <div class="py-5">
+ 
+    <HeaderComponent title="My requests" subtext="List of your requests for samples and documents." />
+    <div class="pt-5">
       <AppTab :tabs="tabs" className="px-5" :count="count" />
 
       <div>

@@ -21,7 +21,7 @@
           <div
             v-for="(director, id) in form.directors"
             :key="id"
-            class="flex-1 rounded-lg py-1 pr-[14px] pl-2 h-12 text-sm w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20 flex items-center justify-between"
+            class="flex-1 rounded-lg py-1 pr-[14px] pl-2 h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20 flex items-center justify-between"
           >
             <span>{{ director.firstName }} {{ director.lastName }}</span>
             <span class="flex gap-x-3 items-center">

@@ -8,7 +8,7 @@
         route.name !== 'company settings' && store.userInfo?.accountType == 1
       "
     >
-      <VerificationBox />
+      <!-- <VerificationBox /> -->
     </div>
     <router-view></router-view>
   </section>

@@ -3,7 +3,7 @@
   <div class="bg-[#F1F3F5] p-4 sm:p-6 rounded-lg" @click="markNotification">
     <div class="flex items-start gap-x-4 group cursor-pointer">
       <span
-        class="sm:w-12 w-8 h-8 sm:h-12 flex items-center justify-center rounded-full bg-white group-hover:bg-primary"
+        class="sm:w-12 w-8 h-8 sm:h-11 flex items-center justify-center rounded-full bg-white group-hover:bg-primary"
       >
         <i
           v-if="type == 3"

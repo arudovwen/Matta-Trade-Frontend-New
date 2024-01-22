@@ -14,7 +14,7 @@
         <CurrencyInput
           v-model="v$.amount.$model"
           :class="{ 'border-red-500': v$.amount.$error }"
-          class="rounded-lg px-5 text-sm py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-5 text-sm py-3 h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           placeholder=""
           :options="{
             currency: 'ngn',
@@ -36,7 +36,7 @@
         <input
           v-model="v$.bankName.$model"
           :class="{ 'border-red-500': v$.bankName.$error }"
-          class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           placeholder="Enter bank name"
         />
         <div
@@ -54,7 +54,7 @@
         <input
           v-model="v$.accountName.$model"
           :class="{ 'border-red-500': v$.accountName.$error }"
-          class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           placeholder="Enter account name"
         />
         <div
@@ -72,7 +72,7 @@
         <input
           v-model="v$.accountNo.$model"
           :class="{ 'border-red-500': v$.accountNo.$error }"
-          class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           placeholder="Enter account number"
         />
         <div
@@ -90,7 +90,7 @@
         <input
           v-model="v$.pin.$model"
           :class="{ 'border-red-500': v$.pin.$error }"
-          class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           placeholder="Enter 4 digit pin"
           type="number"
           maxlength="4"
@@ -110,7 +110,7 @@
         <button
           type="submit"
           :disabled="isLoading"
-          class="border text-[13px] border-primary- uppercase text-white lg:min-w-[120px] w-full bg-primary-500 rounded-lg px-6 py-2 hover:bg-primary/80 h-12"
+          class="border text-[13px] border-primary- uppercase text-white lg:min-w-[120px] w-full bg-primary-500 rounded-lg px-6 py-2 hover:bg-primary/80 h-11"
         >
           <span>
             <span

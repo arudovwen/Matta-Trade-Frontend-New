@@ -15,7 +15,7 @@
             name="firstName"
               v-model="v$.firstName.$model"
               :class="{ 'border-red-500': v$.firstName.$error }"
-              class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+              class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             />
             <div
               class="text-red-500 mt-1"
@@ -34,7 +34,7 @@
             id="lastName"
               v-model="v$.lastName.$model"
               :class="{ 'border-red-500': v$.lastName.$error }"
-              class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+              class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             />
             <div
               class="text-red-500 mt-1"
@@ -55,7 +55,7 @@
             <input
               v-model="v$.password.$model"
               :class="{ 'border-red-500 ': v$.password.$error }"
-              class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+              class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
               placeholder="Password"
               autocomplete="off"
               name="password"
@@ -90,7 +90,7 @@
             <input
               v-model="v$.confirmPassword.$model"
               :class="{ 'border-red-500 ': v$.confirmPassword.$error }"
-              class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+              class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
               placeholder="Password"
               autocomplete="off"
               :type="!isShowingPasword ? 'password' : 'text'"
@@ -125,7 +125,7 @@
               'opacity-70 cursor-not-allowed':
                 v$.$silentErrors.length || isLoading,
             }"
-            class="border text-base border-primary-500 uppercase text-white w-full bg-primary-500 text-center rounded-lg px-6 py-2 hover:bg-primary-500/80 h-12 leading-[normal]"
+            class="border text-base border-primary-500 uppercase text-white w-full bg-primary-500 text-center rounded-lg px-6 py-2 hover:bg-primary-500/80 h-11 leading-[normal]"
           >
             <span v-if="isLoading"
               >Signing up

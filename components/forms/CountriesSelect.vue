@@ -3,7 +3,7 @@
     <div class="relative w-full">
       <ListboxButton
         :class="classStyles"
-        class="rounded-lg px-5 py-3 h-12 w-full border  placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+        class="rounded-lg px-[14px] py-[10px] h-11 w-full border  placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
       >
         <span class="text-sm" v-if="selectedOption">
           <div class="text-[#3A3745] flex items-center gap-x-1">

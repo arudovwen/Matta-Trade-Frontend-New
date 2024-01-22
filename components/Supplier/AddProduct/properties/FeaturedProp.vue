@@ -41,7 +41,7 @@
             <Listbox v-model="prop.property">
               <div class="relative mt-1">
                 <ListboxButton
-                  class="relative w-full text-left rounded-lg appearance-none px-5 py-3 h-12 border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="relative w-full text-left rounded-lg appearance-none px-[14px] py-[10px] h-11 border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                 >
                   <span
                     class="block truncate capitalize"
@@ -139,7 +139,7 @@
                 >
                   <ComboboxButton class="w-full">
                     <div
-                      class="relative px-5 py-3 min-h-[48px] rounded-lg flex flex-wrap gap-x-2 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      class="relative px-[14px] py-[10px] min-h-[48px] rounded-lg flex flex-wrap gap-x-2 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                     >
                       <ul
                         v-if="prop.propertyValue.length > 0"
@@ -179,7 +179,7 @@
                     <div class="relative flex items-center mb-4">
                       <input
                         v-model="valueQuery"
-                        class="px-5 py-1 h-10 rounded-lg w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                        class="px-5 py-1 h-10 rounded-lg w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                       />
                       <i class="uil uil-search absolute right-3"></i>
                     </div>
@@ -287,7 +287,7 @@
                 Subsection name</label
               >
               <input
-                class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                 autocomplete="off"
                 autofocus="on"
                 placeholder="Enter subsection name..."
@@ -337,7 +337,7 @@
           </div>
           <input
             v-model="newpackage"
-            class="rounded-lg px-3 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="rounded-lg px-3 py-3 h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             autocomplete="off"
             autofocus="on"
             placeholder="Enter property name..."
@@ -371,7 +371,7 @@
           </div>
           <input
             v-model="newpackage"
-            class="rounded-lg px-3 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="rounded-lg px-3 py-3 h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             autocomplete="off"
             autofocus="on"
             placeholder="Enter property values..."

@@ -8,6 +8,7 @@
         className="!px-0 !py-0 pb-6 !border-none mb-[15px]"
       />
     </div>
+    <VerificationBox />
 
     <div class="pb-10" v-if="stats">
       <div
@@ -18,8 +19,10 @@
             class="border border-[#D0D5DD] rounded-lg overflow-hidden text-sm text-[#344054] max-w-max"
           >
             <button
-              class="px-4 py-2 border-r border-[#D0D5DD] last:border-none"
+              class="px-4 py-2 border-r border-[#D0D5DD] last:border-none font-semibold"
+              :class="active === n.value ? 'bg-[#F9FAFB]' : ''"
               v-for="n in filters"
+              @click="active = n.value"
             >
               {{ n.title }}
             </button>
@@ -43,10 +46,21 @@
                   <span class="block text-sm text-[#475467] font-medium"
                     >Total Amount</span
                   >
-                  <span
+                
+                  <div class="flex gap-x-1 items-start">
+                <span class="block text-[30px] font-bold">  <span
                     class="block text-[30px] font-semibold text-[#101828]"
                     >{{ currencyFormat(stats.currentBalance) }}</span
-                  >
+                  ></span>
+                <span class="text-xs flex gap-x-1 items-center text-[#17B26A]">
+                  <AppIcon
+                    icon="uil:arrow-growth"
+                    iconClass="!text-[#17B26A]"
+                  />
+                  <span>{{ stats.currentBalancePecentage }}%</span></span
+                >
+              </div>
+                  
                 </div>
               </div>
               <ClientOnly>
@@ -217,6 +231,7 @@ const query = reactive({
   top: 10,
 });
 
+const active = ref(12)
 const stats = ref(null);
 const trending = ref([]);
 const thisyear = ref([]);

@@ -86,7 +86,7 @@
       ></SortFilter>
       <span class="hidden gap-x-3" @click="sortProduct">
         <span
-          class="flex items-center justify-center border border-[#E7EBEE] rounded-full h-12 w-12"
+          class="flex items-center justify-center border border-[#E7EBEE] rounded-full h-11 w-12"
         >
            <img src="~/assets/img/sorting.svg" alt="alt"
         /></span>

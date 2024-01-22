@@ -60,33 +60,33 @@
       </div>
     </div> -->
 
-    <div class="p-6 lg:p-8 rounded-lg bg-white" v-if="isShowing === 'all'">
+    <div class="p-6 lg:p-8 rounded-lg bg-white">
+      <div  v-if="isShowing === 'all'">
       <div
         class="hidden lg:flex justify-between items-center mb-8"
         v="!isEmpty"
       >
         <div class="flex gap-x-4">
+       
           <div class="relative flex items-center">
+            <span class="absolute left-4 pointer-events-none text-[#667085]"
+              ><i class="uil uil-search"></i
+            ></span>
             <input
               v-model="queryParams.Search"
               @change="getData()"
               @keyup="debounceSearch"
-              :class="
-                queryParams.Search.length && 'pl-3 pr-10 rounded-lg w-[280px]'
-              "
-              class="border focus:pl-3 focus:pr-10 rounded-full focus:rounded-lg h-12 peer focus:w-[280px] focus:outline-matta-black/20 w-12 border-[#E7EBEE] transition ease-in-out duration-300"
+              placeholder="Search"
+           
+              class="border border-[#D0D5DD] focus:pr-3 pl-10 rounded-lg w-[280px] focus:outline-none py-[10px] transition ease-in-out duration-300"
               type="search"
             />
-            <span
-              class="absolute right-4 peer-focus:right-3 pointer-events-none"
-              ><i class="uil uil-search"></i
-            ></span>
           </div>
           <div class="flex relative items-center">
             <select
               @change="getData()"
               v-model="queryParams.Status"
-              class="appearance-none border border-[#E7EBEE] rounded-full px-8 py-3 focus:outline-matta-black/20"
+              class="appearance-none border border-[#D0D5DD] rounded-lg w-[180px] py-[10px] px-[14px] focus:outline-matta-black/20"
             >
               <option value="">Status</option>
               <option value="0">Pending</option>
@@ -109,7 +109,7 @@
           <div class="flex relative items-center">
             <select
               v-model="queryParams.PageSize"
-              class="appearance-none border border-[#E7EBEE] rounded-full px-8 py-3 focus:outline-matta-black/20"
+              class="appearance-none border border-[#D0D5DD] rounded-lg w-[180px] py-[10px] px-[14px] focus:outline-none"
             >
               <option value="" disabled>Total</option>
               <option value="5">5 records</option>
@@ -123,13 +123,7 @@
             ></i>
           </div>
         </div>
-        <span class="flex gap-x-3" @click="toggleOrder">
-          <span
-            class="flex items-center justify-center border border-[#E7EBEE] rounded-full h-12 w-12"
-          >
-            <img src="~/assets/img/sorting.svg" alt="alt"
-          /></span>
-        </span>
+      
       </div>
      <div>
       <SupplierOrdersSingle v-for="item in orders" :key="item" :order="item"  @onClick="openOrder(item)" />
@@ -222,7 +216,7 @@
       </div>
     
     </div>
-    <div class="p-6 lg:p-8 rounded-lg bg-white" v-if="isShowing === 'pending'">
+    <div  v-if="isShowing === 'pending'">
       <div
         v-for="(item, idx) in pendingCheckout.items"
         :key="idx"
@@ -317,6 +311,7 @@
   <div class="text-center p-6 lg:p-8 my-20" v-if="isLoading">
     <AppLoader />
   </div>
+    </div>
   <div class="p-5">
     <Pagination
     

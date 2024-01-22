@@ -7,7 +7,7 @@
         <input
           v-model="v$.firstName.$model"
           :class="{ 'border-red-500': v$.firstName.$error }"
-          class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           autocomplete="off"
           autofocus="on"
         />
@@ -26,7 +26,7 @@
         <input
           v-model="v$.lastName.$model"
           :class="{ 'border-red-500': v$.lastName.$error }"
-          class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           autocomplete="off"
           autofocus="on"
         />
@@ -62,7 +62,7 @@
         <input
           v-model="v$.city.$model"
           :class="{ 'border-red-500': v$.city.$error }"
-          class="px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] rounded-lg focus:outline-matta-black/20"
+          class="px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] rounded-lg focus:outline-matta-black/20"
           autocomplete="off"
           autofocus="on"
           placeholder="Company city"
@@ -84,7 +84,7 @@
         <input
           v-model="v$.street.$model"
           :class="{ 'border-red-500': v$.street.$error }"
-          class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           autocomplete="off"
           autofocus="on"
         />
@@ -103,7 +103,7 @@
         <input
           v-model="v$.postalCode.$model"
           :class="{ 'border-red-500': v$.postalCode.$error }"
-          class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           autocomplete="off"
           autofocus="on"
         />

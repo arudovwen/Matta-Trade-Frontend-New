@@ -12,7 +12,7 @@
             <input
               v-model="v$.customerName.$model"
               :class="{ 'border-red-500 ': v$.customerName.$error }"
-              class="rounded-lg px-4 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+              class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
               placeholder="Enter your name"
             />
           </div>
@@ -34,7 +34,7 @@
             <input
               :class="{ 'border-red-500': v$.phoneNumber.$error }"
               v-model="v$.phoneNumber.$model"
-              class="flex-1 rounded-r-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+              class="flex-1 rounded-r-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
               autofocus="on"
               placeholder="08160723884"
               type="tel"
@@ -56,7 +56,7 @@
         <button
           type="submit"
           :disabled="isLoading"
-          class="border text-[13px] mb-4 border-primary- uppercase text-white w-full lg:w-auto lg:min-w-[150px] mx-auto bg-primary-500 rounded-lg px-6 py-2 hover:bg-primary/80 h-12"
+          class="border text-[13px] mb-4 border-primary- uppercase text-white w-full lg:w-auto lg:min-w-[150px] mx-auto bg-primary-500 rounded-lg px-6 py-2 hover:bg-primary/80 h-11"
         >
           <span>
             <span

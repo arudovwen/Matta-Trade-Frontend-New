@@ -14,7 +14,7 @@
                   </label>
                   <input
                     v-model="v$.name.$model"
-                    class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                    class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                     autocomplete="off"
                     autofocus="on"
                     placeholder=""
@@ -37,7 +37,7 @@
                   <div class="flex relative items-center">
                     <input
                       v-model="v$.productBrandName.$model"
-                      class="rounded-lg px-5 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                       placeholder=""
                     />
                   </div>
@@ -65,7 +65,7 @@
                         class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
                       >
                         <ComboboxInput
-                          class="px-5 py-3 h-12 rounded-lg w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                          class="px-[14px] py-[10px] h-11 rounded-lg w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                           :displayValue="(i) => i"
                           @change="query = $event.target.value"
                           placeholder="Type a producer name"
@@ -118,7 +118,7 @@
                             >
                               <div class="flex items-center gap-x-4">
                                 <span
-                                  class="h-12 w-12 rounded-lg bg-white shadow p-4 flex items-center justify-center mr-4 border border-[#E7EBEE]"
+                                  class="h-11 w-12 rounded-lg bg-white shadow p-4 flex items-center justify-center mr-4 border border-[#E7EBEE]"
                                 >
                                    <NuxtImg v-if="i.logo" :src="i.logo" alt="logo" />
                                   <p class="uppercase text-base" v-else>
@@ -255,7 +255,7 @@
                   v-model="v$.description.$model"
                   rows="3"
                   placeholder="Product description"
-                  class="rounded-lg px-5 py-3 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="rounded-lg px-[14px] py-[10px] w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                 ></textarea>
                 <div
                   class="text-red-500 mt-1"
@@ -281,7 +281,7 @@
           <Listbox v-model="form.unit">
             <div class="relative mt-1">
               <ListboxButton
-                class="relative w-[200px] text-left rounded-lg appearance-none px-5 py-3 h-12 border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                class="relative w-[200px] text-left rounded-lg appearance-none px-[14px] py-[10px] h-11 border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
               >
                 <span class="block truncate">{{
                   measurements.find((i) => i.value == form.unit)?.name
@@ -356,7 +356,7 @@
                 <Listbox v-model="pack.package.title">
                   <div class="relative mt-1">
                     <ListboxButton
-                      class="relative w-full text-left rounded-lg appearance-none px-5 py-3 h-12 border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      class="relative w-full text-left rounded-lg appearance-none px-[14px] py-[10px] h-11 border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                     >
                       <span class="block truncate text-sm">{{
                         pack.package.title
@@ -425,7 +425,7 @@
                   <div class="relative flex items-center">
                     <input
                       v-model="pack.size"
-                      class="rounded-lg px-5 text-sm py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      class="rounded-lg px-5 text-sm py-3 h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                       placeholder=""
                       type="text"
                     />
@@ -464,7 +464,7 @@
                     <div class="relative flex items-center">
                       <CurrencyInput
                         v-model="pack.amount"
-                        class="rounded-lg px-5 text-sm py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                        class="rounded-lg px-5 text-sm py-3 h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                         placeholder=""
                         :options="{
                           currency: 'ngn',
@@ -499,7 +499,7 @@
                     <div class="relative flex items-center">
                       <input
                         v-model="pack.color"
-                        class="rounded-lg px-5 py-3 text-sm h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                        class="rounded-lg px-[14px] py-[10px] text-sm h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                         placeholder=""
                         type="text"
                       />
@@ -517,7 +517,7 @@
                     <div class="relative flex items-center">
                       <input
                         v-model="pack.purity"
-                        class="rounded-lg px-5 py-3 text-sm h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                        class="rounded-lg px-[14px] py-[10px] text-sm h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                         min="0"
                         max="100"
                       />
@@ -661,7 +661,7 @@
             >
             <input
               v-model="producerForm.title"
-              class="rounded-lg px-3 py-3 h-12 w-full border bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+              class="rounded-lg px-3 py-3 h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
               placeholder="Enter producer name"
               required
             />
