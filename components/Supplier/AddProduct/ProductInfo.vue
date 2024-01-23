@@ -785,10 +785,17 @@ import MultiInput from "./MultiInput";
 import CountriesSelect from "~/components/forms/CountriesSelect";
 import StatesSelect from "~/components/forms/StatesSelect";
 import { uploadfile } from "~/services/onboardingservices";
+import countries from "~/utils/countries.json";
 
 const route = useRoute();
 const router = useRouter();
-
+const producerForm = reactive({
+  title: "",
+  location: "",
+  country: "",
+  state: "",
+  logo: "",
+});
 const queryParams = reactive({
   Search: "",
   PageSize: 10,
@@ -805,13 +812,7 @@ const states = computed(() => {
   );
 });
 
-const producerForm = reactive({
-  title: "",
-  location: "",
-  country: "",
-  state: "",
-  logo: "",
-});
+
 const getProducers = inject("getProducers");
 const technologies = inject("technologies");
 const markets = ref([]);
