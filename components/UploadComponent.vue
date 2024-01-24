@@ -1,24 +1,24 @@
 <template>
   <div
     @drop.prevent="onDrop"
-    class="border mb-6 border-dashed flex-1 border-primary- bg-[rgba(22,94,240,0.04)] rounded-2xl p-4 flex items-center justify-center text-center"
+    class="border mb-6 flex-1 border-[#EAECF0]  rounded-[12px] px-6 py-10 flex items-center justify-center text-center"
   >
     <div>
       <div
-        class="text-center mb-5 h-10 w-10 flex mx-auto items-center justify-center rounded-full border border-primary"
+        class="text-center mb-3 h-10 w-10 flex mx-auto items-center justify-center rounded-[10px] border border-primary"
       >
-        <i class="uil uil-paperclip text-primary text-lg"></i>
+       <AppIcon icon="bytesize:upload" iconClass="text-xl text-[#344054]" />
       </div>
 
-      <p class="text-sm">
-        Drag & Drop Files, or
+      <p class="text-sm mb-1">
+       
         <label
           for="file"
           class="text-primary-500 font-medium cursor-pointer ml-1"
-          >Browse</label
-        >
+          >Click to upload</label
+        > or Drag & Drop Files
       </p>
-      <p class="text-xs text-[#ABABAB]">Support {{ accepts }} files</p>
+      <p class="text-xs text-[#ABABAB]"  v-if="support">{{ support }}</p>
     </div>
   </div>
   <input
@@ -66,8 +66,11 @@ const props = defineProps({
   isMultiple: { default: true },
   type: { default: "image" },
   gallery: { default: [] },
+  support:{
+    default:""
+  }
 });
-const events = ["dragenter", "dragover", "dragleave", "drop"];
+const events = ["dragenter", "dragover", "dragleave", "drop",];
 onMounted(() => {
   events.forEach((eventName) => {
     document.body.addEventListener(eventName, preventDefaults);

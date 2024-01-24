@@ -1,12 +1,16 @@
 <template>
-  <div class="p-8 bg-white rounded-lg" v-if="form && form.propertyItems">
-    <div class="flex justify-between">
-      <h3 class="text-matta-black font-medium flex gap-x-1 items-center">
+  <div
+    class="flex gap-x-[78px] justify-between text-left"
+    v-if="form && form.propertyItems"
+  >
+    <div class="w-[300px] text-left">
+      <h3
+        class="text-sm text-[#101828] font-semibold flex gap-x-1 items-center"
+      >
         <span>
           <span v-if="!optional" class="text-red-500 mr-[.5px]">*</span>
           {{ title }}</span
         >
-
         <span
           v-if="type === 'property' || type === 'technical'"
           data-toggle="tooltip"
@@ -14,17 +18,19 @@
           :title="desc"
           class="cursor-pointer"
         >
-          <InformationCircleIcon class="w-4 h-4 text-gray-600" />
+           <AppIcon icon="quill:info" iconClass="text-gray-600" />
+         
         </span>
       </h3>
-      <span @click="toggleTabs(type)">
+      <p class="text-xs text-[#475467]">{{ subtext }}</p>
+      <!-- <span @click="toggleTabs(type)">
         <i v-if="toggleData.includes(type)" class="uil uil-minus text-lg"></i>
         <i v-if="!toggleData.includes(type)" class="uil uil-plus text-lg"></i>
-      </span>
+      </span> -->
     </div>
-    <div class="md:w-[85%] mt-3" v-show="toggleData.includes(type)">
+    <div class="max-w-[654px] w-full">
       <div
-        class="mb-1"
+        class="mb-1 grid gap-y-6"
         v-if="
           form.propertyItems &&
           form.propertyItems[type] &&
@@ -33,16 +39,15 @@
         "
       >
         <div
-          class="flex gap-x-4 items-start mb-1"
+          class="flex gap-x-4 items-start"
           v-for="(prop, id) in form.propertyItems[type].propertyItems"
           :key="id"
         >
-          <span><i class="uil uil-draggabledots text-xl"></i></span>
           <div class="flex-1">
             <Listbox v-model="prop.property">
               <div class="relative mt-1">
                 <ListboxButton
-                  class="relative w-full text-left rounded-lg appearance-none px-[14px] py-[10px] h-11 border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  class="relative w-full text-left rounded-lg appearance-none px-[14px] py-[10px] flex items-center h-11 border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                 >
                   <span
                     class="block truncate capitalize"
@@ -52,14 +57,14 @@
                   <span class="text-sm text-[#B6B7B9]" v-else
                     >Select property</span
                   >
+
                   <span
                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
-                  >
-                    <ChevronUpDownIcon
-                      class="h-5 w-5 text-gray-400"
+                    ><AppIcon
+                      icon="ph:caret-down-bold"
+                      iconClass="h-4 w-4 text-[#667085]"
                       aria-hidden="true"
-                    />
-                  </span>
+                  /></span>
                 </ListboxButton>
 
                 <transition
@@ -114,7 +119,7 @@
                         class="text-primary"
                         @click="handleAddingProperty(id)"
                       >
-                        <i class="uil uil-plus text-sm"></i> Add new item
+                        <i class="uil uil-plus text-sm"></i> Add item
                       </button>
                     </div>
                   </ListboxOptions>
@@ -140,7 +145,7 @@
                 >
                   <ComboboxButton class="w-full">
                     <div
-                      class="relative px-[14px] py-[10px] min-h-[48px] rounded-lg flex flex-wrap gap-x-2 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      class="relative px-[14px] py-[10px] min-h-[44px] rounded-lg flex items-center flex-wrap gap-x-2 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
                     >
                       <ul
                         v-if="prop.propertyValue.length > 0"
@@ -149,7 +154,7 @@
                         <li
                           v-for="(i, n) in prop.propertyValue"
                           :key="i"
-                          class="bg-white rounded-lg px-2 py-1 flex items-center text-xs gap-x-3 capitalize"
+                          class="bg-white rounded-lg px-1 py-[2px] flex items-center text-xs gap-x-3 capitalize border-[#D0D5DD] border rounded-1"
                         >
                           <span class="leading-[initial]"> {{ i }}</span>
                           <i
@@ -162,8 +167,9 @@
                         >Property value</span
                       >
                       <span class="right-0 pr-2 absolute"
-                        ><ChevronUpDownIcon
-                          class="h-5 w-5 text-gray-400"
+                        ><AppIcon
+                          icon="ph:caret-down-bold"
+                          iconClass="h-4 w-4 text-[#667085]"
                           aria-hidden="true"
                       /></span>
                     </div>
@@ -228,10 +234,10 @@
                     <div class="py-2 pl-6 pr-4">
                       <button
                         type="button"
-                        class="text-primary"
+                        class="text-primary-500"
                         @click="handleAddingValues(id)"
                       >
-                        <i class="uil uil-plus text-sm"></i> Add new value
+                        <i class="uil uil-plus text-sm"></i> Add a value
                       </button>
                     </div>
                   </ComboboxOptions>
@@ -252,9 +258,9 @@
           <div class="flex items-center">
             <span
               @click="removesection(type, id)"
-              class="bg-gray-50 rounded-full h-8 w-8 flex items-center justify-center"
-              ><i class="uil uil-times"></i
-            ></span>
+              class="bg-gray-50 rounded-full h-8 w-8 flex items-center justify-center text-sm text-[#475467] cursor-pointer"
+              ><AppIcon icon="fa:trash-o"
+            /></span>
           </div>
         </div>
       </div>
@@ -262,29 +268,20 @@
         <button
           @click="addsection(type)"
           type="button"
-          class="text-primary text-xs"
+          class="text-primary-500 text-xs"
         >
-          <i class="uil uil-plus"></i> Add new property
+          <i class="uil uil-plus"></i> Add property
         </button>
         <button
-          v-if="
-            form.propertyItems[type]?.subSection &&
-            !form.propertyItems[type]?.subSection.length
-          "
+          v-if="!form.propertyItems[type]?.subSection.length"
           type="button"
-          class="text-primary text-xs"
+          class="text-primary-500 text-xs"
           @click="addsubsection()"
         >
-          <i class="uil uil-plus"></i> Add text subsection
+          <i class="uil uil-plus"></i> Add subsection
         </button>
       </div>
-      <div
-        class=""
-        v-if="
-          form.propertyItems[type]?.subSection &&
-          form.propertyItems[type]?.subSection.length
-        "
-      >
+      <div class="" v-if="form.propertyItems[type]?.subSection.length">
         <hr class="my-4" />
         <div
           class="md:w-[85%] mb-1 flex items-start gap-x-4"
@@ -293,7 +290,9 @@
         >
           <div class="flex-1">
             <div class="mb-6">
-              <label class="mb-2 font-normal text-xs block">
+              <label
+                class="mb-2 font-medium text-sm text-[#344054] block text-left"
+              >
                 Subsection name</label
               >
               <input
@@ -304,16 +303,15 @@
                 v-model="prop.subSectionName"
               />
             </div>
-            <div
-              class="mb-6"
-              v-if="form.propertyItems[type]?.subSection.length == id + 1"
-            >
-              <label class="mb-2 font-normal text-xs block"> Description</label>
+            <div class="mb-6">
+              <label
+                class="mb-2 font-medium text-sm text-[#344054] block text-left"
+              >
+                Description</label
+              >
               <TextEditor
-                v-if="prop"
                 v-model="prop.description"
                 placeholder="Enter description"
-                :id="`id${id}`"
               />
             </div>
           </div>
@@ -328,9 +326,9 @@
         <button
           type="button"
           @click="addsubsection()"
-          class="text-primary text-xs"
+          class="text-primary-500 text-xs"
         >
-          <i class="uil uil-plus"></i> Add text subsection
+          <i class="uil uil-plus"></i> Add subsection
         </button>
       </div>
     </div>
@@ -355,7 +353,7 @@
             class="rounded-lg px-3 py-3 h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             autocomplete="off"
             autofocus="on"
-            placeholder="Enter package name..."
+            placeholder="Enter property name..."
           />
 
           <div class="flex justify-end gap-x-2 items-center mt-8">
@@ -389,7 +387,7 @@
             class="rounded-lg px-3 py-3 h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             autocomplete="off"
             autofocus="on"
-            placeholder="Enter package name..."
+            placeholder="Enter property values..."
           />
 
           <div class="flex justify-end gap-x-2 items-center mt-8">
@@ -417,7 +415,6 @@
 
 <script setup>
 import TextEditor from "~/components/TextEditor";
-
 import {
   TransitionRoot,
   Combobox,
@@ -436,25 +433,18 @@ import {
 // import "vue-advanced-cropper/dist/style.css";
 import Modal from "~/components/IndexModal";
 import { ref, computed, onMounted, inject, defineProps } from "vue";
-//import { uploadfile } from "~/services/onboardingservices";
 import {
   ChevronUpDownIcon,
   InformationCircleIcon,
 } from "@heroicons/vue/24/solid";
 
-const v$ = inject("v$");
-const props = defineProps(["title", "type", "optional"]);
+const props = defineProps(["title", "type", "optional", "subtext"]);
 const form = inject("form");
 const isAdding = ref("");
+const v$ = inject("v$");
 
 onMounted(() => {});
-const desc = computed(() => {
-  if (props.type === "property") {
-    return "List the physical and chemical properties of the chemicals here with the corresponding values. You can use different sections for different properties.";
-  } else {
-    return "Indicate the official details of technical information about the chemicals with their corresponding values here, e.g. percentage composition, grade, stability and reactivity etc.";
-  }
-});
+
 const isAddingPackage = ref(false);
 const toggleData = ref([
   // "features",
@@ -463,6 +453,13 @@ const toggleData = ref([
   // "compliance",
   "technical",
 ]);
+const desc = computed(() => {
+  if (props.type === "property") {
+    return "List the physical and chemical properties of the chemicals here with the corresponding values. You can use different sections for different properties.";
+  } else {
+    return "Indicate the official details of technical information about the chemicals with their corresponding values here, e.g. percentage composition, grade, stability and reactivity etc. (N:B please make this feed";
+  }
+});
 function toggleTabs(val) {
   if (toggleData.value.includes(val)) {
     toggleData.value = toggleData.value.filter((i) => i != val);
@@ -485,12 +482,7 @@ const filteredProperties = computed(() =>
           .includes(valueQuery.value.toLowerCase().replace(/\s+/g, ""))
       )
 );
-function removeValue(index) {
-  form.propertyValueList.splice(index, 1);
-}
-function removeProperty(index) {
-  form.properties.splice(index, 1);
-}
+
 const index = ref(null);
 const addingProperty = inject("addProperty");
 const addingPropertyvalue = inject("addPropertyValue");
@@ -557,6 +549,12 @@ function addPropertyValues() {
   newpackage.value = "";
   isAddingPackage.value = false;
 }
+function removeValue(index) {
+  form.propertyValueList.splice(index, 1);
+}
+function removeProperty(index) {
+  form.properties.splice(index, 1);
+}
 function handleAddingValues(val) {
   isAdding.value = "values";
   isAddingPackage.value = true;
@@ -603,9 +601,6 @@ function addsection() {
   }
 }
 function addsubsection() {
-  if (!form.propertyItems[props.type].subSection) {
-    form.propertyItems[props.type].subSection = [];
-  }
   switch (props.type) {
     case "features":
       form.propertyItems.features.subSection.push({
@@ -678,6 +673,27 @@ function removesubsection(index) {
       break;
   }
 }
+// const formData = computed(() => {
+//   let value;
+//   switch (props.type) {
+//     case "features":
+//       value = form.features;
+//       break;
+//     case "applications":
+//       value = form.applications;
+//       break;
+//     case "property":
+//       value = form.property;
+//       break;
+//     case "compliance":
+//       value = form.compliance;
+//       break;
+//     case "technical":
+//       value = form.technical;
+//       break;
+//   }
+//   return value;
+// });
 
 const formType = computed(() => {
   let value;

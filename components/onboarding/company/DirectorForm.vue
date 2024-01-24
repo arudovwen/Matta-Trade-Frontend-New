@@ -3,7 +3,7 @@
   <form @submit.prevent="handleSubmit">
     <div class="grid grid-cols-2 gap-x-4">
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">First name</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">First name</label>
         <input
           v-model="v$.firstName.$model"
           :class="{ 'border-red-500': v$.firstName.$error }"
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">Last name</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Last name</label>
         <input
           v-model="v$.lastName.$model"
           :class="{ 'border-red-500': v$.lastName.$error }"
@@ -91,7 +91,7 @@
     </div>
     <div class="grid grid-cols-2 gap-x-4">
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">BVN</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">BVN</label>
         <input
           v-model="v$.bvn.$model"
           :class="{ 'border-red-500': v$.bvn.$error }"
@@ -110,7 +110,7 @@
         </div>
       </div>
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">Date of birth</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Date of birth</label>
         <input
           v-model="v$.dob.$model"
           :class="{ 'border-red-500': v$.dob.$error }"

@@ -1,151 +1,139 @@
 <template>
-  <section class="flex flex-col gap-y-3">
-    <div class="bg-white p-6 lg:p-8 rounded-lg h-[300px] flex flex-col">
-      <p class="mb-5 flex items-center text-sm">
-        <InformationCircleIcon class="w-4 h-4 text-matta-black mr-1" /> Please
-        attach the manufacturer's MSDS, COA, and TDS here and indicate the
-        document type.
-      </p>
+  <section class="p-[30px]">
+    <div class="flex gap-x-[78px] justify-between text-left">
+      <div class="w-[350px] text-left">
+        <h2 class="text-sm text-[#101828] font-semibold">Product documents</h2>
+        <p class="mb-5 flex items-center text-xs">
+          Please attach the manufacturer's MSDS, COA, and TDS here and indicate
+          the document type.
+        </p>
+      </div>
 
-      <UploadComponent @onGetFiles="onGetFiles" :isMultiple="true" type="doc" />
-    </div>
-    <div
-      class="bg-white p-6 lg:p-8 rounded-lg"
-      v-if="form && form.documents && form.documents.length"
-    >
-      <div class="w-[85%]">
+      <div class="max-w-[654px] w-full">
+        <UploadComponent @onGetFiles="onGetFiles" :isMultiple="true" type="doc" />
         <div
-          class="flex items-center gap-x-4 mb-3"
-          v-for="(n, id) in form.documents"
-          :key="id"
+          class="bg-white py-6 lg:py-8 rounded-lg"
+          v-if="form.documents.length"
         >
-          <div class="border rounded-xl p-5 flex flex-1 justify-between">
-            <div class="flex gap-x-3 items-center">
-              <i class="uil uil-file text-2xl"></i>
-
-              <div>
-                <p
-                  class="text-sm text-matta-black capitalize truncate max-w-[250px]"
-                >
-                  {{ n.fileName }}
-                </p>
-                <p class="text-xs text-[#ABABAB]">{{ n.size }}</p>
-              </div>
-            </div>
-            <div class="flex items-center gap-x-5">
-              <div class="flex-1">
-                <Listbox v-model="n.category">
-                  <div class="relative mt-1">
-                    <ListboxButton
-                      class="relative text-left flex gap-x-3 items-center rounded-lg px-[14px] py-[10px] h-11 placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          <div class="">
+            <div
+              class="flex items-center gap-x-4 mb-3"
+              v-for="(n, id) in form.documents"
+              :key="id"
+            >
+              <div class="border rounded-xl p-4 flex flex-1 justify-between">
+                <div class="flex gap-x-3 items-center">
+                  <img src="~/assets/images/filetype.png" class="w-8 h-auto" />
+                  <div>
+                    <p
+                      class="text-sm text-matta-black capitalize truncate max-w-[250px]"
                     >
-                      <span class="mr-2 capitalize" v-if="n.category">{{
-                        n.category
-                      }}</span>
-                      <span class="text-sm text-matta-black mr-2" v-else
-                        >Select category</span
-                      >
-                      <span
-                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center pl-3 pr-2"
-                      >
-                        <ChevronUpDownIcon
-                          class="h-5 w-5 text-gray-400"
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </ListboxButton>
-
-                    <transition
-                      leave-active-class="transition duration-100 ease-in"
-                      leave-from-class="opacity-100"
-                      leave-to-class="opacity-0"
-                    >
-                      <ListboxOptions
-                        class="absolute mt-1 mx-h-60 w-[300px] z-40 overflow-auto rounded-md bg-white py-4 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-                      >
-                        <ListboxOption
-                          v-slot="{ selected }"
-                          v-for="(p, i) in form.documentproperties"
-                          :key="i"
-                          :value="p.value"
-                          as="template"
-                        >
-                          <li
-                            :class="[
-                              selected
-                                ? 'text-blue-800 bg-blue-50'
-                                : 'font-normal text-matta-black',
-                              'relative cursor-pointer capitalize text-matta-black  hover:text-primary select-none py-2 pl-6 pr-4 text-left',
-                            ]"
-                          >
-                            <div class="flex gap-x-4 items-start">
-                              <div>
-                                <p class="text-sm font-medium">{{ p.text }}</p>
-                                <p class="text-xs">{{ p.item }}</p>
-                              </div>
-                              <i
-                                class="uil uil-check text-blue-800"
-                                v-if="selected"
-                              ></i>
-                            </div>
-                          </li>
-                        </ListboxOption>
-                        <p
-                          v-if="!form.documentproperties.length"
-                          class="text-[#B6B7B9] py-2 pl-6 pr-4 text-sm"
-                        >
-                          Nothing found
-                        </p>
-                        <!-- <hr class="my-2" />
-                        <div class="py-2 pl-6 pr-4">
-                          <button
-                            type="button"
-                            class="text-primary"
-                            @click="openmodal(id)"
-                          >
-                            <i class="uil uil-plus text-sm"></i> Add new item
-                          </button>
-                        </div> -->
-                      </ListboxOptions>
-                    </transition>
+                      {{ n.fileName }}
+                    </p>
+                    <p class="text-xs text-[#ABABAB]">{{ n.size }}</p>
                   </div>
-                </Listbox>
-              </div>
-              <span class="text-gray-200 text-3xl font-light">| </span>
-              <div class="flex items-center">
-                <a :href="n.base64" :download="n.fileName">
+                </div>
+                <div class="flex items-center gap-x-5 text-xs relative">
+                  <div class="absolute -bottom-2 -right-2">
+                    <Listbox v-model="n.category">
+                      <div class="relative mt-1">
+                        <ListboxButton
+                          class="relative text-left flex gap-x-6 items-center rounded-lg pl-[14px] pr-4 placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                        >
+                          <span
+                            class="mr-2 capitalize max-w-[130px] truncate"
+                            v-if="n.category"
+                            >{{ n.category }}</span
+                          >
+                          <span
+                            class="text-matta-black mr-2 whitespace-nowrap"
+                            v-else
+                            >Select category</span
+                          >
+                          <span
+                            class="pointer-events-none absolute inset-y-0 -right-1 flex items-center"
+                          >
+                            <ChevronUpDownIcon
+                              class="h-5 w-5 text-gray-400"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </ListboxButton>
+
+                        <transition
+                          leave-active-class="transition duration-100 ease-in"
+                          leave-from-class="opacity-100"
+                          leave-to-class="opacity-0"
+                        >
+                          <ListboxOptions
+                            class="absolute mt-1 mx-h-60 w-[300px] z-40 overflow-auto rounded-md bg-white py-4 text-base shadow-lg focus:outline-none sm:text-sm"
+                          >
+                            <ListboxOption
+                              v-slot="{ selected }"
+                              v-for="(p, i) in form.documentproperties"
+                              :key="i"
+                              :value="p.value"
+                              as="template"
+                            >
+                              <li
+                                :class="[
+                                  selected
+                                    ? 'text-blue-800 bg-blue-50'
+                                    : 'font-normal text-matta-black',
+                                  'relative cursor-pointer capitalize text-matta-black  hover:text-primary select-none py-2 pl-6 pr-4 text-left',
+                                ]"
+                              >
+                                <div class="flex gap-x-4 items-start">
+                                  <div>
+                                    <p class="text-sm font-medium">
+                                      {{ p.text }}
+                                    </p>
+                                    <p class="text-xs">{{ p.item }}</p>
+                                  </div>
+                                  <i
+                                    class="uil uil-check text-blue-800"
+                                    v-if="selected"
+                                  ></i>
+                                </div>
+                              </li>
+                            </ListboxOption>
+                            <p
+                              v-if="!form.documentproperties.length"
+                              class="text-[#B6B7B9] py-2 pl-6 pr-4 text-sm"
+                            >
+                              Nothing found
+                            </p>
+                          </ListboxOptions>
+                        </transition>
+                      </div>
+                    </Listbox>
+                  </div>
                   <span
-                    class="border border-gray-300 rounded-full h-8 w-8 flex items-center justify-center"
-                    ><i class="uil uil-import"></i></span
-                ></a>
+                    @click="removeFile(id)"
+                    class="text-sm absolute -top-3 -right-2 z-10 text-[#475467] cursor-pointer"
+                    ><AppIcon icon="fa:trash-o"
+                  /></span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="flex items-center">
-            <span
-              @click="removeFile(id)"
-              class="bg-gray-200 rounded-full h-8 w-8 flex items-center justify-center"
-              ><i class="uil uil-times"></i
-            ></span>
           </div>
         </div>
       </div>
     </div>
-    <div
-      class="bg-white rounded-lg px-10 py-6 flex justify-between gap-x-10 items-center"
-    >
+    <hr class="border-[#F4F7FE] my-10" />
+    <div class="bg-white rounded-lg flex justify-between gap-x-10 items-center">
       <button
         type="button"
         @click="togglePreview"
-        class="appearance-none leading-none px-10 py-4 rounded-full text-primary border-primary- border hover:bg-gray-100 text-[13px] uppercase"
+        class="appearance-none leading-none px-10 py-[10px] rounded-lg text-primary border-primary-500 text-primary-500 border hover:bg-gray-300 text-[13px]"
       >
-        PREVIEW
+        Preview
       </button>
       <div class="flex justify-center gap-x-4 items-center">
         <button
           type="button"
           @click="toggleNext(2)"
-          class="appearance-none leading-none px-10 py-4 rounded-full text-matta-black bg-[#F1F3F5] hover:bg-gray-300 text-[13px] uppercase"
+          class="appearance-none leading-none px-10 py-[10px] rounded-lg text-primary border-primary- border hover:bg-gray-300 text-[13px]"
         >
           Back
         </button>
@@ -153,7 +141,10 @@
           type="button"
           @click="handleSubmit"
           :disabled="isLoading"
-          class="appearance-none leading-none px-10 py-4 rounded-full text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
+          :class="{
+            'bg-primary/60 cursor-not-allowed': isLoading,
+          }"
+          class="appearance-none leading-none px-10 py-[10px] rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px]"
         >
           Complete
         </button>

@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="mb-6">
-          <label class="mb-2 font-normal text-xs block">Phone number</label>
+          <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Phone number</label>
           <div class="flex relative rounded-lg">
             <PhoneCodes v-model="form.phoneCode" />
 

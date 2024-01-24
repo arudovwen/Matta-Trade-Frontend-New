@@ -2,7 +2,7 @@
   <h3 class="font-medium text-2xl mb-6">Update payment method</h3>
   <form @submit.prevent="handleSubmit">
     <div class="mb-6">
-      <label class="mb-2 font-normal text-xs block">Card number</label>
+      <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Card number</label>
       <input
         v-model="v$.card_number.$model"
         :class="{ 'border-red-500': v$.card_number.$error }"

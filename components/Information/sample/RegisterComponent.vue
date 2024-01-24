@@ -42,7 +42,7 @@
       </div>
 
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">E-mail</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">E-mail</label>
         <input
           v-model="v$.email.$model"
           :class="{ 'border-red-500': v$.email.$error }"

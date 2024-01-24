@@ -5,7 +5,7 @@
       This information will help us get you the right materials.
     </p>
     <div class="mb-6">
-      <label class="mb-2 font-normal text-xs block">Number of Samples</label>
+      <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Number of Samples</label>
       <div class="flex relative">
         <div class="flex relative items-center w-full">
           <select
@@ -87,7 +87,7 @@
       </div>
     </div>
     <!-- <div class="mb-6">
-      <label class="mb-2 font-normal text-xs block">Description</label>
+      <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Description</label>
       <textarea
         v-model="request1$.description.$model"
         :class="{ 'border-red-500 ': request1$.description.$error }"

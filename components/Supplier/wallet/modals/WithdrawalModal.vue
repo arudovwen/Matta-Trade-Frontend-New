@@ -9,7 +9,7 @@
         bank account
       </p>
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">Withdraw amount</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Withdraw amount</label>
 
         <CurrencyInput
           v-model="v$.amount.$model"
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">Bank name</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Bank name</label>
         <input
           v-model="v$.bankName.$model"
           :class="{ 'border-red-500': v$.bankName.$error }"
@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">Account name</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Account name</label>
         <input
           v-model="v$.accountName.$model"
           :class="{ 'border-red-500': v$.accountName.$error }"
@@ -68,7 +68,7 @@
         </div>
       </div>
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">Account number</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Account number</label>
         <input
           v-model="v$.accountNo.$model"
           :class="{ 'border-red-500': v$.accountNo.$error }"
@@ -86,7 +86,7 @@
         </div>
       </div>
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">Transaction pin</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Transaction pin</label>
         <input
           v-model="v$.pin.$model"
           :class="{ 'border-red-500': v$.pin.$error }"

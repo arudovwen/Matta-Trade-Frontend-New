@@ -26,7 +26,7 @@
     </label>
   </div>
   <div class="mb-6">
-    <label class="mb-2 font-normal text-xs block">Description</label>
+    <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Description</label>
     <textarea
       v-model="sampleForm.description"
       placeholder="Describe documents you'd like to request..."

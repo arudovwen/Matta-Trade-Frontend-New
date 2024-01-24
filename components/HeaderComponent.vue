@@ -6,8 +6,9 @@
     <div>
       <h1
         v-if="title"
-        class="text-lg text-[#101828] col-span-1 font-semibold capitalize"
+        class="text-lg text-[#101828] col-span-1 font-semibold flex gap-x-3 items-center"
       >
+        <span class="cursor-pointer" v-if="canGoback" @click="router.go(-1)"><AppIcon icon="ph:arrow-left-bold" /></span>
         {{ title }}
       </h1>
       <h1
@@ -32,6 +33,15 @@
   </div>
 </template>
 <script setup>
-defineProps(["title", "className", "welcome", "subtext", "btnText", "btnIcon"]);
+defineProps([
+  "title",
+  "className",
+  "welcome",
+  "subtext",
+  "btnText",
+  "btnIcon",
+  "canGoback",
+]);
 const emits = defineEmits(["onClick"]);
+const router = useRouter();
 </script>

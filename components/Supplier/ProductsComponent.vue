@@ -131,12 +131,12 @@
                       <PopoverPanel
                         class="absolute z-[99] bg-white shadow right-0 min-w-[150px] rounded-md overflow-hidden pt-4"
                       >
-                        <ul class="grid grid-cols-1 pb-2">
+                        <ul class="grid grid-cols-1">
                           <router-link
                             :to="`/storefront/products/edit-product?id=${item.id}`"
                           >
                             <li
-                              class="px-6 text-sm text-[#333333] cursor-pointer group hover:text-primary py-2 whitespace-nowrap"
+                              class="px-6 text-sm text-[#333333] cursor-pointer group hover:text-primary py-2 whitespace-nowrap hover:bg-[#F9FAFB]"
                             >
                               <i
                                 class="uil uil-pen text-[#666666] group-hover:text-primary"
@@ -146,7 +146,7 @@
                           </router-link>
                           <li
                             @click="isOpenModal(item)"
-                            class="px-6 text-sm text-[#333333] cursor-pointer group hover:text-primary py-2 whitespace-nowrap"
+                            class="px-6 text-sm text-[#333333] cursor-pointer group hover:text-primary py-2 whitespace-nowrap hover:bg-[#F9FAFB]"
                           >
                             <i class="uil uil-trash text-matta-black"></i>
                             Remove

@@ -1,82 +1,14 @@
 <template>
-  <div class="gap-y-8 flex flex-col">
+ <div class="gap-y-8 flex flex-col bg-white rounded-[10px]  border border-[#F4F7FE]">
     <!-- Top bar   -->
-    <div class="p-8 bg-white rounded-lg bg-img">
-      <div class="mb-12">
-        <Breadcrumbs :links="links" />
-      </div>
-      <div class="">
-        <div class="flex gap-x-3 items-center mb-3">
-          <h1
-            class="text-[48px] text-matta-black col-span-1 font-medium capitalize"
-          >
-            Edit Product
-          </h1>
-        </div>
+    <HeaderComponent
+      title="Edit a product"
+      className="!px-5"
+      :canGoback="true"
+    />
+    <Stepper :tabs="tabs" />
 
-        <div class="flex justify-between items-center">
-          <p class="text-[#ABABAB] text-sm">
-            <span>Do you need help?</span>
-            <span class="text-primary ml-1"
-              >Contact Matta <i class="uil uil-arrow-up-right"></i
-            ></span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div
-      class="grid grid-cols-5 gap-x-2 sticky top-[80px] bg-[#E7EBEE] z-10 py-4"
-    >
-      <router-link
-        :to="`/storefront/products/edit-product?id=${route.query.id}&stage=1`"
-      >
-        <button
-          :class="active == 1 ? 'bg-matta-black text-white' : ''"
-          class="flex gap-x-2 whitespace-nowrap items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-3 md:py-4 md:px-6 border rounded-lg border-[#DDDDDD] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-        >
-          <i class="uil uil-box hidden md:inline"></i>
-          <span class="hidden md:inline">|</span>
-          product info
-        </button>
-      </router-link>
-      <router-link
-        :to="`/storefront/products/edit-product?id=${route.query.id}&stage=2`"
-      >
-        <button
-          :class="active == 2 ? 'bg-matta-black text-white' : ''"
-          class="flex gap-x-2 whitespace-nowrap items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-3 md:py-4 md:px-6 border rounded-lg border-[#DDDDDD] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-        >
-          <i class="uil uil-layers hidden md:inline"></i>
-          <span class="hidden md:inline">|</span>
-          properties
-        </button>
-      </router-link>
-      <router-link
-        :to="`/storefront/products/edit-product?id=${route.query.id}&stage=3`"
-      >
-        <button
-          :class="active == 3 ? 'bg-matta-black text-white' : ''"
-          class="flex gap-x-2 whitespace-nowrap items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#DDDDDD] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-        >
-          <i class="uil uil-file hidden md:inline"></i>
-          <span class="hidden md:inline">|</span>
-          documents
-        </button>
-      </router-link>
-      <!-- <router-link
-        :to="`/storefront/products/edit-product?id=${route.query.id}&stage=4`"
-      >
-        <button
-          :class="active == 4 ? 'bg-matta-black text-white' : ''"
-          class="flex gap-x-2 whitespace-nowrap items-center uppercase text-matta-black hover:text-white hover:bg-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#DDDDDD] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-        >
-          <i class="uil uil-puzzle-piece hidden md:inline"></i>
-          <span class="hidden md:inline">|</span>
-          additional
-        </button>
-      </router-link> -->
-    </div>
-    <div class="" v-if="!isLoading">
+    <div class="mt-[50px]" v-if="!isLoading">
       <ProductInfo v-if="active == 1" />
       <ProductProperties v-if="active == 2" />
       <ProductDocuments v-if="active == 3" />
@@ -121,6 +53,24 @@ const technologies = ref([]);
 const allmarkets = ref([]);
 const producers = ref([]);
 defineProps(["title"]);
+const tabs = [
+  {
+    name: "Product Info",
+    value: 1,
+    url: `/storefront/products/edit-product?id=${route.query.id}&stage=1`,
+  },
+  {
+    name: "Properties",
+    value: 2,
+    url: `/storefront/products/edit-product?id=${route.query.id}&stage=2`,
+  },
+  {
+    name: "Documents",
+    value: 3,
+    url: `/storefront/products/edit-product?id=${route.query.id}&stage=3`,
+  },
+];
+
 const links = [
   {
     title: "home",
@@ -383,7 +333,8 @@ function getProducers() {
   });
 }
 watch(route, () => {
-  active.value = route.query.stage;
+  active.value = parseInt(route.query.stage || 1);
+
   if (route.query.id) {
     isLoading.value = true;
     getSupplierProduct(queryParams).then((res) => {
@@ -401,6 +352,7 @@ provide("togglePreview", togglePreview);
 provide("toggleNext", toggleNext);
 provide("producers", producers);
 provide("getProducers", getProducers);
+provide("active", active)
 </script>
 
 <style lang="scss" scoped>

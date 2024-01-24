@@ -3,12 +3,12 @@
     <div class="relative mt-1">
       <div
         @click="isOpen = !isOpen"
-        class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
+        class="relative w-full cursor-default  bg-white text-left focus:outline-none  text-sm"
       >
         <div class="w-full">
           <div
             :class="{ 'border-red-500': error }"
-            class="relative px-[14px] py-[10px] min-h-[48px] rounded flex flex-wrap gap-x-2 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+            class="relative px-[14px] py-[10px] min-h-[44px] rounded-lg items-center flex flex-wrap gap-x-2 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           >
             <ul
               v-if="data.selectedmarkets.length > 0"
@@ -17,15 +17,15 @@
               <li
                 v-for="id in data.selectedmarkets"
                 :key="id"
-                class="bg-white rounded-lg px-2 py-1 flex items-center text-xs gap-x-3"
+                class="bg-white rounded-[6px] px-2 py-1 flex items-center text-xs gap-x-3 border border-[#D0D5DD]"
               >
                 <span class="leading-[initial]"> {{ getMarketName(id) }}</span>
                 <i class="uil uil-times" @click="removeValue(id)"></i>
               </li>
             </ul>
             <span class="right-0 pr-2 absolute"
-              ><ChevronUpDownIcon
-                class="h-5 w-5 text-gray-400"
+              ><AppIcon icon="ph:caret-down-bold"
+                iconClass="h-4 w-4 text-[#667085]"
                 aria-hidden="true"
             /></span>
           </div>
@@ -34,11 +34,11 @@
 
       <div
         v-show="isOpen"
-        class="flex flex-col z-40 max-h-[500px] w-[500px] rounded-lg p-8 bg-white text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+        class="flex flex-col z-40 max-h-[500px] w-[500px] rounded-lg p-[30px] bg-white text-base shadow-[0px_2px_4px_0px_rgba(0,0,0,0.04)]  focus:outline-none sm:text-sm  border border-[#DCDEE6] mt-1"
       >
         <div class="relative flex items-center mb-6">
           <input
-            class="w-full h-10 rounded-lg bg-[#F1F3F5] text-sm px-3 py-1"
+            class="w-full h-10 rounded-lg text-sm px-3 py-1  border border-[#DCDEE6]"
             v-model="query"
             placeholder="Type name here"
           />
@@ -100,7 +100,7 @@
             </ul>
           </li>
         </ul>
-        <hr class="my-6" />
+        <hr class="my-4" />
         <div class="relative flex items-center justify-end gap-x-4">
           <button
             type="button"
@@ -123,7 +123,7 @@
 </template>
 <script setup>
 import { defineProps, ref, computed, defineEmits } from "vue";
-import { ChevronUpDownIcon } from "@heroicons/vue/24/solid";
+
 
 const props = defineProps([
   "markets",

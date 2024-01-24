@@ -10,7 +10,7 @@
           <h4 class="text-2xl font-medium">Request a product</h4>
         </div>
         <div class="mb-6">
-          <label class="mb-2 font-normal text-xs block">Full name</label>
+          <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Full name</label>
           <input
             class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             placeholder="Provide your full name"
@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="mb-6">
-          <label class="mb-2 font-normal text-xs block">Business name</label>
+          <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Business name</label>
           <input
             class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             placeholder="Provide your business name"
@@ -49,7 +49,7 @@
         </div>
 
         <div class="mb-6">
-          <label class="mb-2 font-normal text-xs block">Phone number</label>
+          <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Phone number</label>
           <div class="flex relative rounded-lg h-11">
             <FormsPhoneCodes v-model="form.phoneCode" />
 
@@ -71,7 +71,7 @@
           </div>
         </div>
         <div class="mb-6">
-          <label class="mb-2 font-normal text-xs block">E-mail</label>
+          <label class="mb-2 font-medium text-sm text-[#344054] block text-left">E-mail</label>
           <input
             class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             placeholder="Provide your email address"
@@ -90,7 +90,7 @@
           </div>
         </div>
         <!-- <div class="mb-6">
-          <label class="mb-2 font-normal text-xs block">Address</label>
+          <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Address</label>
           <input
             class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             placeholder="Provide your full address"
@@ -109,7 +109,7 @@
           </div>
         </div> -->
         <div class="mb-6">
-          <label class="mb-2 font-normal text-xs block">Chemical name</label>
+          <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Chemical name</label>
           <input
             class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
             placeholder="Provide chemical name"
@@ -129,7 +129,7 @@
         </div>
         <div class="grid lg:grid-cols-2 lg:gap-x-6">
           <div class="mb-6">
-            <label class="mb-2 font-normal text-xs block">Quantity</label>
+            <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Quantity</label>
             <input
               class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
               placeholder="Enter quantity needed"
@@ -147,7 +147,7 @@
             </div>
           </div>
           <div class="mb-6">
-            <label class="mb-2 font-normal text-xs block">Unit</label>
+            <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Unit</label>
             <select
               v-model="request$.unit.$model"
               class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"

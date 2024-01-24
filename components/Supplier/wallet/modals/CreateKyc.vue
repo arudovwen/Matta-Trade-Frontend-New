@@ -63,7 +63,7 @@
         </div>
       </div>
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">Company name</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Company name</label>
         <div class="flex relative items-center">
           <input
             :value="v$.companyName.$model"
@@ -171,7 +171,7 @@
         </div>
       </div>
       <div class="mb-6">
-        <label class="mb-2 font-normal text-xs block">Address</label>
+        <label class="mb-2 font-medium text-sm text-[#344054] block text-left">Address</label>
         <div class="flex relative items-center">
           <input
             :value="form.address"

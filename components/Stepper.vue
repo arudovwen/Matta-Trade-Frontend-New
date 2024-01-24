@@ -37,7 +37,7 @@
           />
         </span>
         <span
-          :class="`absolute -bottom-8 text-xs leading-5 block whitespace-nowrap ${active >= tab.value?'text-[#344054]':'text-[#999]'}`"
+          :class="`absolute -bottom-8 text-xs leading-5 block font-semibold whitespace-nowrap ${active >= tab.value?'text-[#344054]':'text-[#999]'}`"
         >
           {{ tab.name }}</span
         >

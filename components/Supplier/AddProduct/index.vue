@@ -1,75 +1,17 @@
 <template>
-  <div class="gap-y-8 flex flex-col">
+  <div class="gap-y-8 flex flex-col bg-white rounded-[10px]  border border-[#F4F7FE]">
     <!-- Top bar   -->
-    <div class="p-8 bg-white rounded-lg bg-img">
-      <div class="mb-12"><Breadcrumbs :links="links" /></div>
-      <div class="">
-        <div class="flex gap-x-3 items-center mb-3">
-          <h1
-            class="text-[48px] text-matta-black col-span-1 font-medium capitalize"
-          >
-           Add product
-          </h1>
-        </div>
-
-        <div class="flex justify-between items-center">
-          <p>
-            Fill in the required fields to add a new product to Matta.
-          </p>
-         
-          <p class="text-[#ABABAB] text-sm">
-            <span>Do you need help?</span>
-            <span class="text-primary ml-1"
-              >Contact Matta <i class="uil uil-arrow-up-right"></i
-            ></span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div
-      class="grid grid-cols-5 gap-x-2 sticky top-0 bg-[#E7EBEE] z-10 py-4"
-    >
-      <button
-        :class="active == 1 ? 'bg-matta-black text-white' : ''"
-        class="flex gap-x-2 items-center whitespace-nowrap uppercase text-matta-black py-2 px-3 md:py-4 md:px-6 border rounded-lg border-[#DDDDDD] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-      >
-        <i class="uil uil-box hidden md:inline"></i>
-        <span class="hidden md:inline">|</span>
-        product info
-      </button>
-      <button
-        :class="active == 2 ? 'bg-matta-black text-white' : ''"
-        class="flex gap-x-2 items-center whitespace-nowrap uppercase text-matta-black py-2 px-3 md:py-4 md:px-6 border rounded-lg border-[#DDDDDD] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-      >
-        <i class="uil uil-layers hidden md:inline"></i>
-        <span class="hidden md:inline">|</span>
-        properties
-      </button>
-      <button
-        :class="active == 3 ? 'bg-matta-black text-white' : ''"
-        class="flex gap-x-2 items-center whitespace-nowrap uppercase text-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#DDDDDD] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-      >
-        <i class="uil uil-file hidden md:inline"></i>
-        <span class="hidden md:inline">|</span>
-        documents
-      </button>
-      <!-- <button
-        :class="active == 4 ? 'bg-matta-black text-white' : ''"
-        class="flex gap-x-2 items-center whitespace-nowrap uppercase text-matta-black py-2 px-2 md:py-4 md:px-6 border rounded-lg border-[#DDDDDD] md:leading-5 text-[10px] sm:text-[13px] shadow-sm"
-      >
-        <i class="uil uil-puzzle-piece hidden md:inline"></i>
-        <span class="hidden md:inline">|</span>
-        additional
-      </button> -->
-    </div>
-    <div class="" v-if="!isPageLoading">
+    <HeaderComponent title="Add a product" className="!px-5" :canGoback="true" />
+    <Stepper :tabs="tabs" />
+  
+    <div class="mt-[50px]" v-if="!isPageLoading">
       <ProductInfo v-if="active == 1" />
       <ProductProperties v-if="active == 2" />
       <ProductDocuments v-if="active == 3" />
       <AdditionalInformation v-if="active == 4" />
     </div>
     <div class="text-center p-6 lg:p-8 my-28" v-else>
-       <AppLoader />
+      <AppLoader />
     </div>
   </div>
   <IndexModal
@@ -85,7 +27,6 @@
 </template>
 
 <script setup>
-
 import {
   defineProps,
   ref,
@@ -101,7 +42,6 @@ import ProductProperties from "./ProductProperties";
 import ProductDocuments from "./ProductDocuments";
 import AdditionalInformation from "./AdditionalInformation";
 
-
 import {
   getSupplierProduct,
   getmarketlevels,
@@ -109,6 +49,21 @@ import {
 } from "~/services/productservices";
 import { getFeaturedManufacturer } from "~/services/productservices";
 // import { measurements } from "~/utils";
+
+const tabs = [
+  {
+    name: "Product Info",
+    value: 1,
+  },
+  {
+    name: "Properties",
+    value: 2,
+  },
+  {
+    name: "Documents",
+    value: 3,
+  },
+];
 const links = [
   {
     title: "home",
@@ -431,6 +386,7 @@ provide("togglePreview", togglePreview);
 provide("toggleNext", toggleNext);
 provide("producers", producers);
 provide("getProducers", getProducers);
+provide("active", active)
 </script>
 
 <style lang="scss" scoped>
