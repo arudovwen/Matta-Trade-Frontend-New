@@ -1,82 +1,108 @@
 <!-- eslint-disable no-unused-vars -->
 <!-- eslint-disable no-useless-escape -->
 <template>
-  <div class="gap-y-2 flex flex-col p-6 lg:p-10">
-    <div class="mb-5 text-center text-[13px]"><p>STEP 4/4</p></div>
-    <!-- Top bar   -->
-    <div class="md:max-w-[550px] mx-auto w-full">
-      <div class="">
-        <div class="mb-8">
-          <h1
-            class="text-3xl lg:text-[48px] leading-[56px] text-matta-black col-span-1 font-medium text-center mb-1 lg:mb-8"
-          >
-            Add directors
-          </h1>
-          <p class="text-sm lg:text-base text-center">
-            Fill in the legal information about the company
-          </p>
-        </div>
-
-        <div class="grid gap-y-6 mb-6">
+  <div class="px-[30px]">
+    <div class="flex gap-x-[76px] pt-[30px] justify-between">
+      <div class="w-[300px]">
+        <h2 class="text-sm text-[#101828] font-semibold">Company Directors</h2>
+        <p class="text-xs text-[#475467]">
+          Update your company director details here.
+        </p>
+      </div>
+      <!-- Top bar   -->
+      <div class="md:max-w-[560px] w-full">
+        <div class="">
+          <div>
+            <button
+              type="button"
+              @click="
+                () => {
+                  open = true;
+                  action = 'add';
+                }
+              "
+              class="appearance-none leading-none px-[14px] py-[10px] grid-cols-1 lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-xs mb-6"
+            >
+              <span class=""> + Add director</span>
+            </button>
+          </div>
           <div
-            v-for="(director, id) in form.directors"
-            :key="id"
-            class="flex-1 rounded-lg py-1 pr-[14px] pl-2 h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20 flex items-center justify-between"
+            v-if="form.directors.length"
+            class="w-full rounded-[10px] border border-[#EAECF0] overflow-hidden"
           >
-            <span>{{ director.firstName }} {{ director.lastName }}</span>
-            <span class="flex gap-x-3 items-center">
-              <span class="p-1"><i class="uil uil-pen"></i></span>
-              <span class="p-1" @click="form.directors.splice(id, 1)"
-                ><i class="uil uil-trash text-red-500"></i
-              ></span>
-            </span>
+            <table class="w-full">
+              <thead>
+                <tr>
+                  <th
+                    class="capitalize text-[#475467] text-sm text-left font-medium border-b py-3 px-6 border-[#EAECF0] whitespace-nowrap bg-[#F9FAFB]"
+                  >
+                    Name
+                  </th>
+                  <th
+                    class="capitalize text-[#475467] text-sm text-left font-medium border-b py-3 px-6 border-[#EAECF0] whitespace-nowrap bg-[#F9FAFB]"
+                  ></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="(director, id) in form.directors"
+                  :key="id"
+                  class="border-b last:border-none"
+                >
+                  <td
+                    class="text-matta-black text-sm font-normal py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                  >
+                    {{ director.firstName }} {{ director.lastName }}
+                  </td>
+                  <td
+                    class="text-matta-black text-sm font-normal py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                  >
+                    <span class="flex gap-x-3 items-center justify-end">
+                      <span class="p-1"><i class="uil uil-pen"></i></span>
+                      <span class="p-1" @click="handleDelete(id)"
+                        ><i class="uil uil-trash text-red-500"></i
+                      ></span>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <div>
-          <button
-            type="button"
-            @click="open = true"
-            class="rounded-lg hover:opacity-70 text-[13px] flex items-center"
-            :class="text - primary"
-          >
-            <span class=""> + Add new director</span>
-          </button>
-        </div>
-      </div>
-      <div class="flex justify-center gap-x-4 items-center mt-20 w-full">
-        <router-link
-          to="/onboarding/company?onboarding_stage=3"
-          class="w-1/2 lg:w-auto"
-        >
-          <button
-            type="button"
-            class="appearance-none leading-none px-20 py-4 rounded-lg w-full lg:w-auto text-matta-black border border-[#E7EBEE] hover:bg-gray-100 text-[13px] uppercase"
-          >
-            Back
-          </button>
-        </router-link>
-
-        <button
-        @click="handleSubmit"
-          :disabled="!form.directors.length || isLoading"
-          :class="{
-            'opacity-60 cursor-not-allowed': !form.directors.length,
-          }"
-          class="appearance-none leading-none px-20 py-4 grid-cols-1 w-1/2 lg:w-auto lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
-        >
-          <i
-            class="fa fa-spinner fa-spin"
-            v-show="isLoading"
-            aria-hidden="true"
-          ></i>
-          <span v-show="!isLoading">Complete</span>
-        </button>
       </div>
     </div>
+    <div
+      class="flex justify-end pt-6 border-t border-[#EAECF0] gap-x-4 items-center mt-16 w-full"
+    >
+      <button
+        @click="active--"
+        type="button"
+        class="appearance-none leading-none px-10 py-[14px] rounded-lg w-full lg:w-auto text-matta-black border border-[#E7EBEE] hover:bg-gray-100 text-[13px] capitalize"
+      >
+        Back
+      </button>
+
+      <button
+        @click="handleSubmit"
+        :disabled="!form.directors.length || isLoading"
+        :class="{
+          'opacity-60 cursor-not-allowed': !form.directors.length,
+        }"
+        class="appearance-none leading-none px-10 py-[14px] grid-cols-1 lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] capitalize"
+      >
+        <i
+          class="fa fa-spinner fa-spin"
+          v-show="isLoading"
+          aria-hidden="true"
+        ></i>
+        <span v-show="!isLoading">Done</span>
+      </button>
+    </div>
   </div>
+
   <div>
     <TransitionRoot as="template" :show="open">
-      <Dialog as="div" class="relative z-10" @close="open = false">
+      <Dialog as="div" class="relative z-10" @close="">
         <TransitionChild
           as="template"
           enter="ease-out duration-300"
@@ -105,9 +131,15 @@
             >
               <DialogPanel
                 class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full"
+                :class="action=='add'? 'sm:max-w-lg' :'sm:max-w-[343px]'"
               >
                 <div class="p-6">
-                  <OnboardingCompanyDirectorForm />
+                  <OnboardingCompanyDirectorForm v-if="action === 'add'" />
+                  <OnboardingCompanyDeleteModal
+                    v-if="action === 'delete'"
+                    @delete="onDelete"
+                    @close="open = false"
+                  />
                 </div>
               </DialogPanel>
             </TransitionChild>
@@ -128,7 +160,7 @@ import {
 import "vue-advanced-cropper/dist/style.css";
 import { ref, reactive, provide } from "vue";
 
-import { toast } from 'vue3-toastify';
+import { toast } from "vue3-toastify";
 import {
   additionalInfo,
   setOnboardingcomplete,
@@ -138,18 +170,27 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { updateDirectors } from "~/services/settingservices";
 
+const id = ref(null);
+const action = ref("");
 const store = useStore();
 const router = useRouter();
 const open = ref(false);
-
-
-
+const active = inject("active");
 const form = reactive({
   directors: [],
 });
 
 const isLoading = ref(false);
+function handleDelete(val) {
+  id.value = val;
+  action.value = "delete";
+  open.value = true;
+}
 
+function onDelete() {
+  form.directors.splice(id.value, 1);
+  open.value = false;
+}
 //Timer
 
 // const isDisabled = ref(false);
@@ -170,7 +211,7 @@ async function handleSubmit() {
     .catch((err) => {
       isLoading.value = false;
 
-      toast.error((err.response.data.message || err.response.data.Message));
+      toast.error(err.response.data.message || err.response.data.Message);
     });
 }
 provide("open", open);

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <label class="block text-sm mb-[5px]">{{ label }}</label>
+    <label class="block text-sm mb-[10px] text-[#344054]">{{ label }}</label>
     <div
-      class="flex-1 rounded-lg py-1 pr-[14px] pl-2 h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20 flex items-center"
+      class="flex-1 rounded-lg py-1 pr-[14px] pl-2 h-11 text-sm w-full border border-[##EAECF0] placeholder:text-[#B6B7B9] bg-[#F9FAFB] focus:outline-matta-black/20 flex items-center"
     >
       <input
         ref="fileInputRef"
@@ -11,22 +11,22 @@
         @change="handleEvent"
         accept="pdf, doc,docx"
       />
-      <div class="flex-1 px-4">
-        <span class="max-w-max truncate text-[#999999]">{{
-          title || "Select a document"
-        }}</span>
-      </div>
+   
       <button
         type="buton"
         @click="triggerFileInput"
-        class="text-xs text-[#165EF0] border border-[#165EF0] rounded px-5 py-[6px] active:scale-[.95] leading-normal w-20 flex justify-center"
+        class="text-xs text-white border border-[#98A2B3] bg-[#98A2B3] rounded px-5 py-[6px] active:scale-[.95] leading-normal  flex justify-center"
       >
         <div
           v-if="loading"
-          class="loader border-t-4 border-blue-500 border-solid rounded-full h-3 w-3 animate-spin"
+          class="loader border-t-4 border-blue-500 border-solid rounded-full h-3 w-3 animate-spin whitespace-nowrap"
         ></div>
-        <span v-else>Upload</span>
-      </button>
+        <span v-else>{{ btnText || "Select file" }}</span>
+      </button>   <div class="flex-1 px-4">
+        <span class="max-w-max truncate text-[#999999]">{{
+          title
+        }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@ import { uploadfile } from "~/services/onboardingservices";
 import { defineProps, ref, inject } from "vue";
 import { toast } from 'vue3-toastify';
 
-const props = defineProps(["label", "id"]);
+const props = defineProps(["label", "id", "btnText"]);
 
 const handleChange = inject("handleChange");
 const fileInputRef = ref(null);

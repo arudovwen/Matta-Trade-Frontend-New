@@ -167,6 +167,11 @@ const navigation = [
     icon: "ion:wallet-outline",
   },
   {
+    name: "Financing requests",
+    url: "/financing",
+    icon: "f7:tag",
+  },
+  {
     name: "Saved items",
     url: "/account/saved-searches",
     icon: "tdesign:heart",
@@ -190,7 +195,7 @@ const navigation = [
   {
     name: "Products",
     url: "/storefront/products",
-    icon: "f7:tag",
+    icon: "fluent-mdl2:product-variant",
   },
 ];
 const openIndex = ref([

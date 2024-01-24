@@ -71,7 +71,7 @@
         <input
           :class="{ 'border-red-500': v$.phone.$error }"
           v-model="v$.phone.$model"
-          class="flex-1 rounded-r-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+          class="rounded-lg px-[14px] py-[10px] h-11 w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
           autocomplete="off"
           aria-autocomplete="none"
           placeholder="08160723884"

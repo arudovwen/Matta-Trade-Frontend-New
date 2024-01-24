@@ -4,9 +4,9 @@
     <div class="">
       <HeaderComponent title="Profile information" />
       <div class="flex gap-x-[76px] pt-[30px] px-[30px]">
-        <div class="max-w-[300px]">
+        <div class="w-[300px]">
           <h2 class="text-sm text-[#101828] font-semibold">Personal info</h2>
-          <p class="text-sm text-[#475467]">
+          <p class="text-xs text-[#475467]">
             Update your photo and personal details here.
           </p>
         </div>
@@ -212,9 +212,9 @@
       </div>
       <hr class="my-10 border-[#F4F7FE]" />
       <div class="flex gap-x-[76px] px-[30px]">
-        <div class="max-w-[300px]">
+        <div class="w-[300px]">
           <h2 class="text-sm text-[#101828] font-semibold">Password</h2>
-          <p class="text-sm text-[#475467]">
+          <p class="text-xs text-[#475467]">
             Please enter your current password to change your password.
           </p>
         </div>

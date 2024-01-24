@@ -1,366 +1,267 @@
 <!-- eslint-disable no-useless-escape -->
 <template>
-  <div class="gap-y-2 flex flex-col p-6 lg:p-10">
-    <div class="mb-5 text-center text-[13px]"><p>STEP 2/4</p></div>
-    <!-- Top bar   -->
-    <div class="md:max-w-[656px] mx-auto">
+  <form @submit.prevent="handleSubmit" v-if="active === 1" class="px-[30px]">
+    <div class="flex gap-x-[76px] pt-[30px]  justify-between">
+      <div class="w-[300px]">
+        <h2 class="text-sm text-[#101828] font-semibold">
+          Company Information
+        </h2>
+        <p class="text-xs text-[#475467]">Update your details here.</p>
+      </div>
       <div class="">
-        <div class="mb-8">
-          <h1
-            class="text-3xl lg:text-[48px] leading-[56px] text-matta-black col-span-1 font-medium text-center mb-1 lg:mb-8"
-          >
-            Add company information
-          </h1>
-          <p class="text-sm lg:text-base text-center">
-            Fill in the legal information about the company
-          </p>
-        </div>
-        <div
-          class="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-10 gap-y-8"
-        >
-          <div class="flex items-center">
-            <span>
-              <span
-                v-if="!image"
-                class="h-24 w-24 rounded-lg flex items-center text-xs bg-[#F1F3F5] mr-4 justify-center"
-                ><i class="uil uil-image text-4xl text-gray-400"></i
-              ></span>
-               <NuxtImg
-                v-else
-                :src="image"
-                class="h-24 w-24 rounded-lg flex items-center bg-[#F1F3F5] mr-4 justify-center"
-              />
-            </span>
-            <span>
-              <p class="text-xs lg:text-sm font-medium mb-1">Company logo</p>
-              <p class="text-xs lg:text-sm font-normal">
-                Recommended 200x200 px
-              </p>
-              <div
-                class="text-red-500 mt-1"
-                v-for="error of v$.logo.$errors"
-                :key="error.$uid"
-              >
-                <div class="error-msg text-error text-xs font-semibold">
-                  {{ error.$message }}
-                </div>
-              </div>
-            </span>
-          </div>
-          <div class="flex items-center gap-x-3">
-            <label for="upload">
-              <span
-                class="text-primary border border-primary- rounded-full px-6 py-3 text-xs lg:text-sm cursor-pointer"
-              >
-                Upload logo
-              </span>
-              <input
-                @change="handleEvent($event)"
-                type="file"
-                accept="image/*"
-                id="upload"
-                class="hidden"
-              />
-            </label>
-            <i
-              v-if="image"
-              @click="removeImage"
-              class="uil uil-times ring-1 flex items-center justify-center ring-[#F1F3F5] text-lg text-matta-black rounded-full w-[46px] h-[46px]"
-            ></i>
-          </div>
-        </div>
-        <form @submit.prevent="handleSubmit">
-          <div>
-            <div class="grid grid-cosl-1 lg:grid-cols-2 gap-4">
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block">
-                  Company name
-                  <span class="text-red-500 pl-[.02rem]">*</span></label
-                >
-                <input
-                  v-model="v$.companyName.$model"
-                  :class="{ 'border-red-500': v$.companyName.$error }"
-                  class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                  autocomplete="off"
-                  autofocus="on"
-                  placeholder=""
-                />
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.companyName.$errors"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
-                  </div>
-                </div>
-              </div>
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block"
-                  >Company sector
-                  <span class="text-red-500 pl-[.02rem]">*</span></label
-                >
+        <!-- Top bar   -->
+        <div class="md:max-w-[560px]">
+          <div class="">
+            <div
+              class="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-10 gap-y-8"
+            >
+              <div class="flex items-center gap-x-6">
+                <span>
+                  <label for="upload">
+                    <span
+                      v-if="!image"
+                      class="h-[64px] w-[64px] rounded-full flex items-center text-xs bg-[#F1F3F5] justify-center"
+                      ><i class="uil uil-image text-4xl text-gray-400"></i
+                    ></span>
+                    <NuxtImg
+                      v-else
+                      :src="image"
+                      class="h-[64px] w-[64px] rounded-full flex items-center bg-[#F1F3F5] justify-center"
+                    />
+                    <input
+                      @change="handleEvent($event)"
+                      type="file"
+                      accept="image/*"
+                      id="upload"
+                      class="hidden"
+                    />
+                  </label>
+                </span>
+                <span>
+                  <p class="text-xs lg:text-sm font-medium text-[#475467]">
+                    Upload Company logo
+                  </p>
 
-                <div class="flex relative items-center">
-                  <select
-                    v-model="v$.companyType.$model"
-                    :class="{ 'border-red-500': v$.companyType.$error }"
-                    class="appearance-none rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                  >
-                    <option disabled value="">Select sector</option>
-                    <option
-                      v-for="item in sectors"
-                      :key="item.name"
-                      :value="item.name"
-                    >
-                      {{ item.name }}
-                    </option>
-                  </select>
-                  <i
-                    class="uil uil-angle-down absolute right-2 pointer-events-none"
-                  ></i>
-                </div>
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.companyType.$errors"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cosl-1 lg:grid-cols-2 gap-4">
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block"
-                  >Phone number
-                  <span class="text-red-500 pl-[.02rem]">*</span></label
-                >
-                <div class="flex relative rounded-lg h-11">
-                  <FormsPhoneCodes v-model="form.code" />
-
-                  <input
-                    :class="{ 'border-red-500': v$.phone.$error }"
-                    v-model="v$.phone.$model"
-                    class="flex-1 rounded-r-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                    autocomplete="off"
-                    autofocus="on"
-                    placeholder="08160723884"
-                    type="tel"
-                  />
-                </div>
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.phone.$errors"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
-                  </div>
-                </div>
-              </div>
-
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block"
-                  >E-mail <span class="text-red-500 pl-[.02rem]">*</span></label
-                >
-                <input
-                  v-model="v$.email.$model"
-                  :class="{ 'border-red-500': v$.email.$error }"
-                  class="px-[14px] py-[10px] h-11 text-sm rounded-lg w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                  autocomplete="off"
-                  autofocus="on"
-                />
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.email.$errors"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="grid grid-cosl-1 lg:grid-cols-2 gap-4">
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block">
-                  Registration number
-                  <span class="text-red-500 pl-[.02rem]">*</span></label
-                >
-                <input
-                  v-model="v$.registrationNo.$model"
-                  :class="{ 'border-red-500': v$.registrationNo.$error }"
-                  class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                  autocomplete="off"
-                  autofocus="on"
-                  placeholder=""
-                />
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.registrationNo.$errors"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
-                  </div>
-                </div>
-              </div>
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block"
-                  >TIN number
-                  <span class="text-red-500 pl-[.02rem]">*</span></label
-                >
-
-                <input
-                  v-model="v$.tin.$model"
-                  :class="{ 'border-red-500': v$.tin.$error }"
-                  class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                  autocomplete="off"
-                  autofocus="on"
-                  placeholder=""
-                />
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.tin.$errors"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="grid grid-cosl-1 lg:grid-cols-2 gap-4">
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block"
-                  >Company website</label
-                >
-                <input
-                  v-model="v$.website.$model"
-                  :class="{ 'border-red-500': v$.website.$error }"
-                  class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                  autocomplete="off"
-                  autofocus="on"
-                  placeholder="https://www.example.com"
-                  type="url"
-                />
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.website.$errors"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
-                  </div>
-                </div>
-              </div>
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block">Fax</label>
-                <input
-                  v-model="v$.fax.$model"
-                  :class="{ 'border-red-500': v$.fax.$error }"
-                  class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                  autocomplete="off"
-                  autofocus="on"
-                  placeholder="Fax"
-                />
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.fax.$errors"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="mb-6">
-              <label class="mb-2 font-normal text-xs block">Description</label>
-              <textarea
-                v-model="v$.description.$model"
-                :class="{ 'border-red-500': v$.description.$error }"
-                rows="4"
-                placeholder="Company description"
-                class="rounded-lg px-[14px] py-[10px] w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-              ></textarea>
-              <div
-                class="text-red-500 mt-1"
-                v-for="error of v$.description.$errors"
-                :key="error.$uid"
-              >
-                <div class="error-msg text-error text-xs font-semibold">
-                  {{ error.$message }}
-                </div>
-              </div>
-            </div>
-
-            <!-- <div class="">
-              <div
-                class="flex gap-x-3 relative items-center mb-3"
-                v-for="(social, i) in form.socials"
-                :key="i"
-              >
-                <div class="flex relative items-center">
-                  <select
-                    v-model="social.name"
-                    class="appearance-none rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                  >
-                    <option value="">Select</option>
-                    <option value="facebook">Facebook</option>
-                    <option value="twitter">Twitter</option>
-                    <option value="instagram">Instagram</option>
-                    <option value="linkedin">Linkedin</option>
-                  </select>
-                  <i
-                    class="uil uil-angle-down absolute right-2 pointer-events-none"
-                  ></i>
-                </div>
-                <input
-                  v-model="social.link"
-                  class="flex-1 rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                  autocomplete="off"
-                  autofocus="on"
-                  placeholder="https://facebook.com/pharmazell"
-                />
-                <i class="uil uil-times text-xl" @click="removesocial(i)"></i>
-              </div>
-              <button
-                class="text-xs text-primary"
-                type="button"
-                @click="addsocial"
-              >
-                <i class="uil uil-plus"></i> Add social network
-              </button>
-            </div> -->
-            <hr class="my-8" />
-
-            <legend class="font-medium mb-6">Company Address</legend>
-
-            <div class="grid grid-cosl-1 lg:grid-cols-2 gap-4">
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block"
-                  >Country
-                  <span class="text-red-500 pl-[.02rem]">*</span></label
-                >
-                <div class="relative">
-                  <FormsSelectComponent
-                    :options="allcountries"
-                    :showSearch="true"
-                    :value="form.country"
-                    @onGetData="getCountry"
-                    containerStyle="w-full"
-                    :classStyles="`${
-                      v$.country.$error && 'border-red-500'
-                    } rounded-lg appearance-none px-[14px] py-[10px] h-11 text-sm border w-full !bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
-                  />
                   <div
                     class="text-red-500 mt-1"
-                    v-for="error of v$.country.$errors"
+                    v-for="error of v$.logo.$errors"
+                    :key="error.$uid"
+                  >
+                    <div class="error-msg text-error text-xs font-semibold">
+                      {{ error.$message }}
+                    </div>
+                  </div>
+                </span>
+              </div>
+            </div>
+            <div>
+              <div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div class="mb-6">
+                    <label
+                      class="mb-2 font-medium text-sm text-[#344054] block"
+                    >
+                      Company name
+                      <span class="text-red-500 pl-[.02rem]">*</span></label
+                    >
+                    <input
+                      v-model="v$.companyName.$model"
+                      :class="{ 'border-red-500': v$.companyName.$error }"
+                      class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      autocomplete="off"
+                      autofocus="on"
+                      placeholder=""
+                    />
+                    <div
+                      class="text-red-500 mt-1"
+                      v-for="error of v$.companyName.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg text-error text-xs font-semibold">
+                        {{ error.$message }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-6">
+                    <label class="mb-2 font-medium text-sm text-[#344054] block"
+                      >Company sector
+                      <span class="text-red-500 pl-[.02rem]">*</span></label
+                    >
+
+                    <div class="flex relative items-center">
+                      <select
+                        v-model="v$.companyType.$model"
+                        :class="{ 'border-red-500': v$.companyType.$error }"
+                        class="appearance-none rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      >
+                        <option disabled value="">Select sector</option>
+                        <option
+                          v-for="item in sectors"
+                          :key="item.name"
+                          :value="item.name"
+                        >
+                          {{ item.name }}
+                        </option>
+                      </select>
+                      <i
+                        class="uil uil-angle-down absolute right-2 pointer-events-none"
+                      ></i>
+                    </div>
+                    <div
+                      class="text-red-500 mt-1"
+                      v-for="error of v$.companyType.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg text-error text-xs font-semibold">
+                        {{ error.$message }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div class="mb-6">
+                    <label class="mb-2 font-medium text-sm text-[#344054] block"
+                      >E-mail
+                      <span class="text-red-500 pl-[.02rem]">*</span></label
+                    >
+                    <input
+                      v-model="v$.email.$model"
+                      :class="{ 'border-red-500': v$.email.$error }"
+                      class="px-[14px] py-[10px] h-11 text-sm rounded-lg w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      autocomplete="off"
+                      autofocus="on"
+                    />
+                    <div
+                      class="text-red-500 mt-1"
+                      v-for="error of v$.email.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg text-error text-xs font-semibold">
+                        {{ error.$message }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-6">
+                    <label class="mb-2 font-medium text-sm text-[#344054] block"
+                      >Phone number
+                      <span class="text-red-500 pl-[.02rem]">*</span></label
+                    >
+                    <div class="flex relative rounded-lg h-11">
+                      <FormsPhoneCodes v-model="form.code" />
+
+                      <input
+                        :class="{ 'border-red-500': v$.phone.$error }"
+                        v-model="v$.phone.$model"
+                        class="flex-1 rounded-r-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                        autocomplete="off"
+                        autofocus="on"
+                        placeholder="08160723884"
+                        type="tel"
+                      />
+                    </div>
+                    <div
+                      class="text-red-500 mt-1"
+                      v-for="error of v$.phone.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg text-error text-xs font-semibold">
+                        {{ error.$message }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div class="mb-6">
+                    <label
+                      class="mb-2 font-medium text-sm text-[#344054] block"
+                    >
+                      Registration number
+                      <span class="text-red-500 pl-[.02rem]">*</span></label
+                    >
+                    <input
+                      v-model="v$.registrationNo.$model"
+                      :class="{ 'border-red-500': v$.registrationNo.$error }"
+                      class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      autocomplete="off"
+                      autofocus="on"
+                      placeholder=""
+                    />
+                    <div
+                      class="text-red-500 mt-1"
+                      v-for="error of v$.registrationNo.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg text-error text-xs font-semibold">
+                        {{ error.$message }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-6">
+                    <label class="mb-2 font-medium text-sm text-[#344054] block"
+                      >TIN number
+                      <span class="text-red-500 pl-[.02rem]">*</span></label
+                    >
+
+                    <input
+                      v-model="v$.tin.$model"
+                      :class="{ 'border-red-500': v$.tin.$error }"
+                      class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      autocomplete="off"
+                      autofocus="on"
+                      placeholder=""
+                    />
+                    <div
+                      class="text-red-500 mt-1"
+                      v-for="error of v$.tin.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg text-error text-xs font-semibold">
+                        {{ error.$message }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div class="mb-6 lg:col-span-2">
+                    <label class="mb-2 font-medium text-sm text-[#344054] block"
+                      >Company website</label
+                    >
+                    <input
+                      v-model="v$.website.$model"
+                      :class="{ 'border-red-500': v$.website.$error }"
+                      class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      autocomplete="off"
+                      autofocus="on"
+                      placeholder="https://www.example.com"
+                      type="url"
+                    />
+                    <div
+                      class="text-red-500 mt-1"
+                      v-for="error of v$.website.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg text-error text-xs font-semibold">
+                        {{ error.$message }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-6">
+                  <label class="mb-2 font-medium text-sm text-[#344054] block"
+                    >Description</label
+                  >
+                  <textarea
+                    v-model="v$.description.$model"
+                    :class="{ 'border-red-500': v$.description.$error }"
+                    rows="4"
+                    placeholder="Company description"
+                    class="rounded-lg px-[14px] py-[10px] w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                  ></textarea>
+                  <div
+                    class="text-red-500 mt-1"
+                    v-for="error of v$.description.$errors"
                     :key="error.$uid"
                   >
                     <div class="error-msg text-error text-xs font-semibold">
@@ -368,114 +269,155 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block"
-                  >State <span class="text-red-500 pl-[.02rem]">*</span></label
-                >
-                <FormsSelectComponent
-                  :options="mystates"
-                  :showSearch="true"
-                  :value="form.state"
-                  @onGetData="getState"
-                  containerStyle="w-full"
-                  :classStyles="`${
-                    v$.state.$error && 'border-red-500'
-                  } rounded-lg appearance-none px-[14px] py-[10px] h-11 text-sm border w-full !bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
-                />
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.state.$errors"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div class="mb-6">
+                    <label class="mb-2 font-medium text-sm text-[#344054] block"
+                      >Company Address
+                      <span class="text-red-500 pl-[.02rem]">*</span></label
+                    >
+                    <input
+                      v-model="v$.address.$model"
+                      :class="{ 'border-red-500': v$.address.$error }"
+                      class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      autocomplete="off"
+                      autofocus="on"
+                      placeholder="Company address"
+                    />
+                    <div
+                      class="text-red-500 mt-1"
+                      v-for="error of v$.address.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg text-error text-xs font-semibold">
+                        {{ error.$message }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-6">
+                    <label class="mb-2 font-medium text-sm text-[#344054] block"
+                      >City
+                      <span class="text-red-500 pl-[.02rem]">*</span></label
+                    >
+                    <input
+                      v-model="v$.city.$model"
+                      :class="{ 'border-red-500': v$.city.$error }"
+                      class="px-[14px] py-[10px] h-11 text-sm w-full border rounded-lg placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
+                      autocomplete="off"
+                      autofocus="on"
+                      placeholder="Company city"
+                    />
+                    <div
+                      class="text-red-500 mt-1"
+                      v-for="error of v$.city.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg text-error text-xs font-semibold">
+                        {{ error.$message }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div class="mb-6">
+                    <label class="mb-2 font-medium text-sm text-[#344054] block"
+                      >Country
+                      <span class="text-red-500 pl-[.02rem]">*</span></label
+                    >
+                    <div class="relative">
+                      <FormsSelectComponent
+                        :options="allcountries"
+                        :showSearch="true"
+                        :value="form.country"
+                        @onGetData="getCountry"
+                        containerStyle="w-full"
+                        :classStyles="`${
+                          v$.country.$error && 'border-red-500'
+                        } rounded-lg appearance-none px-[14px] py-[10px] h-11 text-sm border w-full ! placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
+                      />
+                      <div
+                        class="text-red-500 mt-1"
+                        v-for="error of v$.country.$errors"
+                        :key="error.$uid"
+                      >
+                        <div class="error-msg text-error text-xs font-semibold">
+                          {{ error.$message }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-6">
+                    <label class="mb-2 font-medium text-sm text-[#344054] block"
+                      >State
+                      <span class="text-red-500 pl-[.02rem]">*</span></label
+                    >
+                    <FormsSelectComponent
+                      :options="mystates"
+                      :showSearch="true"
+                      :value="form.state"
+                      @onGetData="getState"
+                      containerStyle="w-full"
+                      :classStyles="`${
+                        v$.state.$error && 'border-red-500'
+                      } rounded-lg appearance-none px-[14px] py-[10px] h-11 text-sm border w-full ! placeholder:text-[#B6B7B9] focus:outline-matta-black/20`"
+                    />
+                    <div
+                      class="text-red-500 mt-1"
+                      v-for="error of v$.state.$errors"
+                      :key="error.$uid"
+                    >
+                      <div class="error-msg text-error text-xs font-semibold">
+                        {{ error.$message }}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="grid grid-cosl-1 lg:grid-cols-2 gap-4">
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block"
-                  >City <span class="text-red-500 pl-[.02rem]">*</span></label
-                >
-                <input
-                  v-model="v$.city.$model"
-                  :class="{ 'border-red-500': v$.city.$error }"
-                  class="px-[14px] py-[10px] h-11 text-sm w-full border rounded-lg bg-[#F1F3F5] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                  autocomplete="off"
-                  autofocus="on"
-                  placeholder="Company city"
-                />
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.city.$errors"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
-                  </div>
-                </div>
-              </div>
-              <div class="mb-6">
-                <label class="mb-2 font-normal text-xs block"
-                  >Address
-                  <span class="text-red-500 pl-[.02rem]">*</span></label
-                >
-                <input
-                  v-model="v$.address.$model"
-                  :class="{ 'border-red-500': v$.address.$error }"
-                  class="rounded-lg px-[14px] py-[10px] h-11 text-sm w-full border border-[#DCDEE6] placeholder:text-[#B6B7B9] focus:outline-matta-black/20"
-                  autocomplete="off"
-                  autofocus="on"
-                  placeholder="Company address"
-                />
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.address.$errors"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="flex justify-center gap-x-4 items-center mt-16 w-full">
-              <router-link
-                to="/onboarding/company?onboarding_stage=1"
-                class="w-1/2 lg:w-auto"
-              >
-                <button
-                  type="button"
-                  class="appearance-none leading-none px-20 py-4 rounded-lg w-full lg:w-auto text-matta-black border border-[#E7EBEE] hover:bg-gray-100 text-[13px] uppercase"
-                >
-                  Back
-                </button>
-              </router-link>
-
-              <button
-                :disabled="v$.$silentErrors.length || isLoading"
-                :class="{
-                  'opacity-60 cursor-not-allowed': v$.$silentErrors.length,
-                }"
-                class="appearance-none leading-none px-20 py-4 grid-cols-1 w-1/2 lg:w-auto lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
-              >
-                <i
-                  class="fa fa-spinner fa-spin"
-                  v-show="isLoading"
-                  aria-hidden="true"
-                ></i>
-                <span v-show="!isLoading">Next</span>
-              </button>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
+    <div
+      class="flex justify-between gap-x-4 items-center mt-16 pt-6 border-t border-[#EAECF0] w-full "
+    >
+    
+        <button
+          type="button"
+          class="appearance-none leading-none px-10 py-[14px] rounded-lg w-full lg:w-auto text-primary-500 border border-primary-500 hover:bg-gray-100 text-[13px] capitalize"
+        >
+          Prevew
+        </button>
+   
+      <div class="flex justify-end gap-x-4 items-center">
+    
+          <button
+            type="button"
+            class="appearance-none leading-none px-10 py-[14px] rounded-lg w-full lg:w-auto text-matta-black border border-[#E7EBEE] hover:bg-gray-100 text-[13px] capitalize"
+          >
+            Cancel
+          </button>
+       
+
+        <button
+          :disabled="v$.$silentErrors.length || isLoading"
+          :class="{
+            'opacity-60 cursor-not-allowed': v$.$silentErrors.length,
+          }"
+          class="appearance-none leading-none px-10 py-4 grid-cols-1 lg:grid-cols-2 gap-4 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] capitalize"
+        >
+          <i
+            class="fa fa-spinner fa-spin"
+            v-show="isLoading"
+            aria-hidden="true"
+          ></i>
+          <span v-show="!isLoading">Next</span>
+        </button>
+      </div>
+    </div>
+  </form>
+
   <div>
     <TransitionRoot as="template" :show="open">
       <Dialog as="div" class="relative z-10" @close="open = false">
@@ -532,14 +474,14 @@
                   <div class="flex justify-end gap-x-2 items-center mt-8">
                     <button
                       @click="open = false"
-                      class="appearance-none leading-none px-8 py-3 rounded-lg text-matta-black hover:bg-gray-100 text-[13px] uppercase"
+                      class="appearance-none leading-none px-8 py-3 rounded-lg text-matta-black hover:bg-gray-100 text-[13px] capitalize"
                     >
                       Cancel
                     </button>
 
                     <button
                       @click="crop"
-                      class="appearance-none leading-none px-8 py-3 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] uppercase"
+                      class="appearance-none leading-none px-8 py-3 rounded-lg text-white bg-primary-500 hover:opacity-70 text-[13px] capitalize"
                     >
                       Save
                     </button>
@@ -577,7 +519,7 @@ import {
   numeric,
   minLength,
 } from "@vuelidate/validators";
-import { toast } from 'vue3-toastify';
+import { toast } from "vue3-toastify";
 import {
   additionalInfo,
   uploadfile,
@@ -589,6 +531,7 @@ import {
   updateCompanyProfile,
 } from "@/services/settingservices";
 
+const active = inject("active");
 const authStore = useAuthStore();
 const router = useRouter();
 const open = ref(false);
@@ -596,8 +539,6 @@ const img = ref("");
 const image = ref(null);
 const coordinate = ref(null);
 const cropper = ref(null);
-
-
 
 const form = reactive({
   companyName: "",
@@ -659,7 +600,7 @@ function addsocial() {
   });
 }
 onMounted(() => {
-  form.companyName =authStore.userInfo?.companyName;
+  form.companyName = authStore.userInfo?.companyName;
   getCompanyProfile().then((res) => {
     form.photo = image.value = res.data.data.photo;
     form.companyType = res.data.data.companyType;
@@ -737,7 +678,6 @@ const rules = {
   },
   website: {
     maxLength: maxLength(100),
-
   },
   country: {
     required,
@@ -800,7 +740,7 @@ async function handleSubmit() {
       invalidCredentials.value = true;
       isLoading.value = false;
 
-      toast.error((err.response.data.message || err.response.data.Message));
+      toast.error(err.response.data.message || err.response.data.Message);
     });
 }
 function removeImage() {
