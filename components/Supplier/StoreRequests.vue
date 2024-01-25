@@ -2,7 +2,7 @@
   <div class="flex flex-col bg-white rounded-[10px]">
     <!-- Top bar   -->
     <HeaderComponent
-      title="Requests"
+      title="Store Requests"
       className="!px-5"
       subtext="List of your requests for samples and documents."
     />

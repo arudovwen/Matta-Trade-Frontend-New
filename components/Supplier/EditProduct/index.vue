@@ -108,18 +108,7 @@ const product = ref({
   price: 0,
   unit: "",
   sampleAvailable: false,
-  packagesAvailable: [
-    {
-      package: {
-        id: create_UUID(),
-        title: "",
-      },
-      unit: selectedMeasurement.value ? selectedMeasurement.value.value : "",
-      size: null,
-      amount: null,
-      isAvailable: false,
-    },
-  ],
+  packagesAvailable: [],
   packages: [],
   hideProduct: false,
   hidePrice: false,
@@ -148,18 +137,7 @@ const form = reactive({
   gallery: [],
   price: 0,
   sampleAvailable: false,
-  packagesAvailable: [
-    {
-      package: {
-        id: create_UUID(),
-        title: "",
-      },
-      unit: selectedMeasurement.value ? selectedMeasurement.value.value : "",
-      size: null,
-      amount: null,
-      isAvailable: false,
-    },
-  ],
+  packagesAvailable: [],
   packages: [],
   hideProduct: false,
   hidePrice: false,

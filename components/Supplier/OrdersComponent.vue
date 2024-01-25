@@ -1,59 +1,33 @@
 <template>
-  <div class="gap-y-2 flex flex-col mb-4 bg-white rounded-[10px] pb-10">
-    <HeaderComponent title="Orders" />
-    <!-- Top bar   -->
-    <!-- <div class="p-6 lg:p-8 bg-white rounded-lg bg-img">
-      <div class="mb-12"><Breadcrumbs /></div>
-      <div class="">
-        <div class="flex gap-x-3 items-center mb-3">
-          <h1
-            class="text-3xl lg:text-[48px] text-matta-black col-span-1 font-medium capitalize"
-          >
-            Orders
-          </h1>
-          <span class="mt-3">/</span>
-          <span class="text-primary text-3xl lg:text-[48px]">{{
-            queryParams.totalCount || 0
-          }}</span>
-        </div>
-        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-y-6 md:gap-y-0">
-          <p class="text-sm lg:text-base">
-            List of orders received by your storefront.
-          </p>
-          <router-link to="/markets">
-            <button
-              class="px-6 py-3 rounded-lg text-white bg-matta-black hover:opacity-70 text-sm"
-            >
-              Create an order
-            </button>
-          </router-link>
-        </div>
-      </div>
-    </div> -->
-    <div class="p-6 lg:p-8 rounded-lg bg-white">
-      <div class="hidden lg:flex justify-between items-center mb-8">
+  <div class="mb-8 bg-white rounded-[10px] border border-[#F4F7FE]">
+    <HeaderComponent
+      title="Store Orders"
+      subtext=" List of orders received by your storefront."
+      btnText="Create order"
+      btnIcon="humbleicons:plus"
+      @onClick="router.push('/markets')"
+    />
+
+    <div class="py-8 rounded-lg bg-white">
+      <div class="hidden lg:flex justify-between items-center mb-8 px-5">
         <div class="flex gap-x-4">
           <div class="relative flex items-center">
+            <span class="absolute left-4 pointer-events-none text-[#667085]"
+              ><i class="uil uil-search"></i
+            ></span>
             <input
               v-model="queryParams.Search"
               @change="getData()"
               @keyup="debounceSearch"
-              :class="
-                queryParams.Search.length && 'pl-3 pr-10 rounded-lg w-[280px]'
-              "
-              class="border focus:pl-3 focus:pr-10 rounded-full focus:rounded-lg h-11 peer focus:w-[280px] focus:outline-matta-black/20 w-12 border-[#E7EBEE] transition ease-in-out duration-300"
+              placeholder="Search"
+              class="border border-[#E7E7E7] focus:pr-3 pl-10 rounded-lg w-[280px] text-sm focus:outline-none py-[10px] transition ease-in-out duration-300"
               type="search"
             />
-            <span
-              class="absolute right-4 peer-focus:right-3 pointer-events-none"
-              ><i class="uil uil-search"></i
-            ></span>
           </div>
           <div class="flex relative items-center">
             <select
-              @change="getData()"
               v-model="queryParams.Status"
-              class="appearance-none border border-[#E7EBEE] rounded-full px-8 py-3 focus:outline-matta-black/20"
+              class="appearance-none border border-[#E7E7E7] rounded-lg w-[150px] text-sm py-[10px] px-[14px] focus:outline-matta-black/20"
             >
               <option value="">Status</option>
               <option value="0">Pending</option>
@@ -63,40 +37,13 @@
               class="uil uil-angle-down absolute right-2 pointer-events-none"
             ></i>
           </div>
-          <!-- <div class="flex relative items-center">
-            <select
-              class="appearance-none border border-[#E7EBEE] rounded-full px-8 py-3"
-            >
-              <option>Payment Type</option>
-            </select>
-            <i
-              class="uil uil-angle-down absolute right-2 pointer-events-none"
-            ></i>
-          </div> -->
-          <div class="flex relative items-center">
-            <select
-              v-model="queryParams.PageSize"
-              class="appearance-none border border-[#E7EBEE] rounded-full px-8 py-3 focus:outline-matta-black/20"
-            >
-              <option value="" disabled>Total</option>
-              <option value="5">5 records</option>
-              <option value="10">10 records</option>
-              <option value="20">20 records</option>
-              <option value="30">30 records</option>
-              <option value="40">40 records</option>
-            </select>
-            <i
-              class="uil uil-angle-down absolute right-2 pointer-events-none"
-            ></i>
-          </div>
+
+          <AppButton
+            @click="queryParams.Status = ''"
+            text="Clear filter"
+            btnClass="text-xs text-[#98A2B3] font-normal"
+          />
         </div>
-        <span class="flex gap-x-3" @click="toggleOrder">
-          <span
-            class="flex items-center justify-center border border-[#E7EBEE] rounded-full h-11 w-12"
-          >
-             <img src="~/assets/img/sorting.svg" alt="alt"
-          /></span>
-        </span>
       </div>
       <div v-if="!isLoading">
         <div
@@ -109,7 +56,7 @@
                 <th
                   v-for="item in theads"
                   :key="item"
-                  class="uppercase text-[#B6B7B9] text-[13px] text-left font-normal border-b py-6 px-3 border-[#E7EBEE] whitespace-nowrap"
+                  class="capitalize text-[#475467] text-sm text-left font-medium border-b border-t py-3 px-6 border-[#EAECF0] whitespace-nowrap bg-[#F9FAFB]"
                 >
                   {{ item }}
                 </th>
@@ -125,9 +72,15 @@
                 </td>
                 <td
                   class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                ></td>
+                <td
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
                 >
                   {{ moment(item.orderDate).format("lll") }}
                 </td>
+                <td
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                ></td>
                 <td
                   class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
                 >
@@ -185,17 +138,20 @@
         />
       </div>
     </div>
+    <div class="text-center p-6 lg:p-8 my-20" v-if="isLoading">
+      <AppLoader />
+    </div>
+    <div class="p-5">
+      <PaginationSimple
+        :total="queryParams.totalCount"
+        :current="queryParams.PageNumber"
+        :per-page="queryParams.PageSize"
+        :pageRange="5"
+        @page-changed="queryParams.PageNumber = $event"
+      />
+    </div>
   </div>
-  <div class="text-center p-6 lg:p-8 my-20" v-if="isLoading">
-   <AppLoader />
-  </div>
-  <Pagination
-    :total="queryParams.totalCount"
-    :current="queryParams.PageNumber"
-    :per-page="queryParams.PageSize"
-    :pageRange="5"
-    @page-changed="queryParams.PageNumber = $event"
-  />
+
   <SideModal :isOpen="isOpen" @togglePopup="openModal">
     <template #content>
       <div
@@ -223,8 +179,7 @@ import {
   storefrontorderdetails,
 } from "~/services/storefrontservice";
 import moment from "moment";
-import { toast } from 'vue3-toastify';
-
+import { toast } from "vue3-toastify";
 
 onMounted(() => {
   getData();
@@ -253,7 +208,7 @@ function getData() {
     })
     .catch((err) => {
       isLoading.value = false;
-      toast.error((err.response.data.message || err.response.data.Message));
+      toast.error(err.response.data.message || err.response.data.Message);
     });
 }
 const route = useRoute();
@@ -271,7 +226,7 @@ function openOrder(val) {
     })
     .catch((err) => {
       isLoading.value = false;
-      toast.error((err.response.data.message || err.response.data.Message));
+      toast.error(err.response.data.message || err.response.data.Message);
     });
 }
 
@@ -279,7 +234,15 @@ function openModal() {
   isOpen.value = !isOpen.value;
 }
 
-const theads = ["order id", "created", "status", "scheduled delivery date", ""];
+const theads = [
+  "order id",
+  "customer name",
+  "created",
+  "amount",
+  "status",
+  "scheduled delivery",
+  "",
+];
 
 function next() {
   queryParams.PageNumber++;
@@ -302,7 +265,7 @@ const debounceSearch = debounce(() => {
 }, 800);
 
 watch(
-  () => [queryParams.PageNumber, queryParams.PageSize],
+  () => [queryParams.PageNumber, queryParams.PageSize, queryParams.Status],
   () => {
     getData();
   }

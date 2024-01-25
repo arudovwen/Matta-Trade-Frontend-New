@@ -267,7 +267,7 @@
                     title="Brief general information about the chemicals, its chemical composition, other names, important uses or any specificity"
                     class="cursor-pointer"
                   >
-                     <AppIcon icon="quill:info" iconClass="text-gray-600" />
+                    <AppIcon icon="quill:info" iconClass="text-gray-600" />
                   </span>
                 </label>
                 <textarea
@@ -359,7 +359,7 @@
           </div>
         </div>
 
-        <div class="overflow-y-auto max-h-[40vh] mb-3 grid gap-y-6">
+        <!-- <div class="overflow-y-auto max-h-[40vh] mb-3 grid gap-y-6">
           <div
             class="grid relative"
             v-for="(pack, i) in form.packagesAvailable"
@@ -430,17 +430,7 @@
                     </transition>
                   </div>
                 </Listbox>
-                <div
-                  class="text-red-500 mt-1"
-                  v-for="error of v$.packagesAvailable.$each.$response.$errors[
-                    i
-                  ].package"
-                  :key="error.$uid"
-                >
-                  <div class="error-msg text-error text-xs font-semibold">
-                    {{ error.$message }}
-                  </div>
-                </div>
+            
               </div>
               <div class="grid grid-cols-2 gap-x-4">
                 <div class="mb-6">
@@ -483,7 +473,7 @@
                       title="Please indicate price with respect to the selected unit of measurement"
                       class="cursor-pointer"
                     >
-                       <AppIcon icon="quill:info" iconClass="text-gray-600" />
+                      <AppIcon icon="quill:info" iconClass="text-gray-600" />
                     </span>
                   </label>
 
@@ -573,14 +563,73 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <button
           type="button"
           class="bg-primary-500 text-white rounded-lg px-[14px] py-[10px] text-sm text-left leading-[normal]"
-          @click="addnewpackage"
+          @click="handleAddingPackage"
         >
           <i class="uil uil-plus"></i> Add a package
         </button>
+        <div
+          class="border border-[#F4F7FE] rounded-[10px] overflow-hidden mt-6"
+        >
+          <table class="w-full" v-if="form.packagesAvailable?.length">
+            <thead>
+              <tr>
+                <th
+                  v-for="(item, i) in headers"
+                  :key="item"
+                  class="capitalize text-[#475467] text-sm text-left font-medium border-b border-t py-3 px-6 border-[#EAECF0] whitespace-nowrap bg-[#F9FAFB]"
+                >
+                  {{ item }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in form.packagesAvailable" :key="item.id">
+                <td
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                >
+                  {{ item?.package?.title }}
+                </td>
+                <td
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                >
+                  {{ item?.size }}
+                </td>
+                <td
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                >
+                  {{ currencyFormat(item?.amount) }}
+                </td>
+                <td
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                >
+                  {{ item?.color }}
+                </td>
+                <td
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                >
+                  {{ item?.purity }}5
+                </td>
+                <td
+                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                >
+                  <span class="flex gap-x-4">
+                    <span @click="removepackage(i)"
+                      ><AppIcon icon="fa-trash-o" iconClass="text-[#E53F3F]"
+                    /></span>
+                    <span
+                      ><AppIcon
+                        icon="prime:pencil"
+                        iconClass="text-[#475467]" /></span
+                  ></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
     <hr class="border-[#F4F7FE] my-10" />
@@ -887,6 +936,15 @@ let filteredProducers = computed(() =>
 );
 
 const form = inject("form");
+const headers = computed(() => [
+  "name",
+  `size (${form.unit})`,
+  `price / ${form.unit}`,
+  "color",
+  "purity",
+  "",
+]);
+
 const rules = {
   name: {
     required,
@@ -914,23 +972,6 @@ const rules = {
   productBrandName: { maxLength: maxLength(100) },
   packagesAvailable: {
     required,
-    $each: helpers.forEach({
-      purity: {
-        maxValue: maxValue(100),
-        minValue: minValue(0),
-        integerOrDecimal: or(integer, decimal),
-      },
-      amount: {
-        required,
-      },
-      size: {
-        required,
-        integerOrDecimal: or(integer, decimal),
-      },
-      package: {
-        required,
-      },
-    }),
   },
   gallery: {
     required: helpers.withMessage("At least 1 imaage is required", required),
@@ -1098,7 +1139,13 @@ function handleProducer() {
     }
   });
 }
+const typeForm = ref("");
+function handleAddingProducer() {
+  typeForm.value = "producer";
+  isAddingPackage.value = true;
+}
 function handleAddingPackage() {
+  typeForm.value = "package";
   isAddingPackage.value = true;
 }
 provide("images", form.gallery);

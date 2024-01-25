@@ -61,260 +61,242 @@
     </div> -->
 
     <div class="p-6 lg:p-8 rounded-lg bg-white">
-      <div  v-if="isShowing === 'all'">
-      <div
-        class="hidden lg:flex justify-between items-center mb-8"
-        v="!isEmpty"
-      >
-        <div class="flex gap-x-4">
-       
-          <div class="relative flex items-center">
-            <span class="absolute left-4 pointer-events-none text-[#667085]"
-              ><i class="uil uil-search"></i
-            ></span>
-            <input
-              v-model="queryParams.Search"
-              @change="getData()"
-              @keyup="debounceSearch"
-              placeholder="Search"
-           
-              class="border border-[#D0D5DD] focus:pr-3 pl-10 rounded-lg w-[280px] focus:outline-none py-[10px] transition ease-in-out duration-300"
-              type="search"
+      <div v-if="isShowing === 'all'">
+        <div
+          class="hidden lg:flex justify-between items-center mb-8"
+          v="!isEmpty"
+        >
+          <div class="flex gap-x-4">
+            <div class="relative flex items-center">
+              <span class="absolute left-4 pointer-events-none text-[#667085]"
+                ><i class="uil uil-search"></i
+              ></span>
+              <input
+                v-model="queryParams.Search"
+                @change="getData()"
+                @keyup="debounceSearch"
+                placeholder="Search"
+                class="border border-[#E7E7E7] text-sm focus:pr-3 pl-10 rounded-lg w-[280px] focus:outline-none py-[10px] transition ease-in-out duration-300"
+                type="search"
+              />
+            </div>
+            <div class="flex relative items-center">
+              <select
+                v-model="queryParams.Status"
+                class="appearance-none border border-[#E7E7E7] text-sm rounded-lg w-[180px] py-[10px] px-[14px] focus:outline-matta-black/20"
+              >
+                <option value="">Status</option>
+                <option value="0">Pending</option>
+                <option value="1">Completed</option>
+              </select>
+              <i
+                class="uil uil-angle-down absolute right-2 pointer-events-none"
+              ></i>
+            </div>
+
+            <AppButton
+              @click="queryParams.Status = ''"
+              text="Clear filter"
+              btnClass="text-xs text-[#98A2B3] font-normal"
             />
           </div>
-          <div class="flex relative items-center">
-            <select
-              @change="getData()"
-              v-model="queryParams.Status"
-              class="appearance-none border border-[#D0D5DD] rounded-lg w-[180px] py-[10px] px-[14px] focus:outline-matta-black/20"
-            >
-              <option value="">Status</option>
-              <option value="0">Pending</option>
-              <option value="1">Completed</option>
-            </select>
-            <i
-              class="uil uil-angle-down absolute right-2 pointer-events-none"
-            ></i>
-          </div>
-          <!-- <div class="flex relative items-center">
-            <select
-              class="appearance-none border border-[#E7EBEE] rounded-full px-8 py-3"
-            >
-              <option>Payment Type</option>
-            </select>
-            <i
-              class="uil uil-angle-down absolute right-2 pointer-events-none"
-            ></i>
-          </div> -->
-          <div class="flex relative items-center">
-            <select
-              v-model="queryParams.PageSize"
-              class="appearance-none border border-[#D0D5DD] rounded-lg w-[180px] py-[10px] px-[14px] focus:outline-none"
-            >
-              <option value="" disabled>Total</option>
-              <option value="5">5 records</option>
-              <option value="10">10 records</option>
-              <option value="20">20 records</option>
-              <option value="30">30 records</option>
-              <option value="40">40 records</option>
-            </select>
-            <i
-              class="uil uil-angle-down absolute right-2 pointer-events-none"
-            ></i>
-          </div>
         </div>
-      
-      </div>
-     <div>
-      <SupplierOrdersSingle v-for="item in orders" :key="item" :order="item"  @onClick="openOrder(item)" />
-     </div>
-      <div class="hidden" v-if="!isLoading">
-        <div
-          class="overflow-x-auto max-w-[80vw] lg:max-w-full"
-          v-if="orders.length"
-        >
-          <table class="w-full" v-if="orders.length">
-            <thead>
-              <tr>
-                <th
-                  v-for="item in theads"
-                  :key="item"
-                  class="uppercase text-[#B6B7B9] text-[13px] text-left font-normal border-b py-6 px-3 border-[#E7EBEE] whitespace-nowrap"
-                >
-                  {{ item }}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="item in orders" :key="item">
-                <td
-                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
-                >
-                  {{ item.orderNumber }}
-                </td>
-                <td
-                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
-                >
-                  {{ moment(item.orderDate).format("lll") }}
-                </td>
-                <td
-                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
-                >
-                  <span
-                    v-if="item.statusText == 'invoiced'"
-                    class="px-2 py-1 text-xs rounded-lg bg-[#E0F7B0]"
+        <div>
+          <SupplierOrdersSingle
+            v-for="item in orders"
+            :key="item"
+            :order="item"
+            @onClick="openOrder(item)"
+          />
+        </div>
+        <div class="hidden" v-if="!isLoading">
+          <div
+            class="overflow-x-auto max-w-[80vw] lg:max-w-full"
+            v-if="orders.length"
+          >
+            <table class="w-full" v-if="orders.length">
+              <thead>
+                <tr>
+                  <th
+                    v-for="item in theads"
+                    :key="item"
+                    class="uppercase text-[#B6B7B9] text-[13px] text-left font-normal border-b py-6 px-3 border-[#E7EBEE] whitespace-nowrap"
                   >
-                    Completed</span
+                    {{ item }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in orders" :key="item">
+                  <td
+                    class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
                   >
-                  <span
-                    v-if="item.statusText !== 'invoiced'"
-                    class="px-2 py-1 text-xs rounded-lg bg-[#FDD0AF]"
+                    {{ item.orderNumber }}
+                  </td>
+                  <td
+                    class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
                   >
-                    In progress</span
+                    {{ moment(item.orderDate).format("lll") }}
+                  </td>
+                  <td
+                    class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
                   >
-                </td>
-
-                <td
-                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
-                >
-                  {{
-                    item.scheduleDeilverDate
-                      ? moment(item.scheduleDeilverDate)?.format("lll")
-                      : moment()?.format("lll")
-                  }}
-                </td>
-
-                <td
-                  class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
-                >
-                  <Menu class="relative" as="div">
-                    <MenuButton class="outline-none">
-                      <i class="uil uil-ellipsis-v"></i>
-                    </MenuButton>
-                    <MenuItems
-                      class="absolute z-[999] bg-white shadow-[5px_12px_35px_rgba(44,44,44,0.12)] py-2 right-0 min-w-[140px] rounded-xl overflow-hidden"
+                    <span
+                      v-if="item.statusText == 'invoiced'"
+                      class="px-2 py-1 text-xs rounded-lg bg-[#E0F7B0]"
                     >
-                      <div
-                        class="py-2 px-4 hover:bg-gray-50 text-sm whitespace-nowrap"
-                        @click="openOrder(item)"
+                      Completed</span
+                    >
+                    <span
+                      v-if="item.statusText !== 'invoiced'"
+                      class="px-2 py-1 text-xs rounded-lg bg-[#FDD0AF]"
+                    >
+                      In progress</span
+                    >
+                  </td>
+
+                  <td
+                    class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                  >
+                    {{
+                      item.scheduleDeilverDate
+                        ? moment(item.scheduleDeilverDate)?.format("lll")
+                        : moment()?.format("lll")
+                    }}
+                  </td>
+
+                  <td
+                    class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
+                  >
+                    <Menu class="relative" as="div">
+                      <MenuButton class="outline-none">
+                        <i class="uil uil-ellipsis-v"></i>
+                      </MenuButton>
+                      <MenuItems
+                        class="absolute z-[999] bg-white shadow-[5px_12px_35px_rgba(44,44,44,0.12)] py-2 right-0 min-w-[140px] rounded-xl overflow-hidden"
                       >
-                        <i class="uil uil-box mr-2"></i> Open order
-                      </div>
-                    </MenuItems>
-                  </Menu>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                        <div
+                          class="py-2 px-4 hover:bg-gray-50 text-sm whitespace-nowrap"
+                          @click="openOrder(item)"
+                        >
+                          <i class="uil uil-box mr-2"></i> Open order
+                        </div>
+                      </MenuItems>
+                    </Menu>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <EmptyData
+            v-if="!orders.length"
+            url="/markets"
+            buttonText="go to catalog"
+            text="No orders have been placed"
+          />
         </div>
-        <EmptyData
-          v-if="!orders.length"
-          url="/markets"
-          buttonText="go to catalog"
-          text="No orders have been placed"
-        />
       </div>
-    
-    </div>
-    <div  v-if="isShowing === 'pending'">
-      <div
-        v-for="(item, idx) in pendingCheckout.items"
-        :key="idx"
-        class="p-6 relative rounded-lg bg-white border mb-4"
-      >
-        <p class="mb-1 text-[13px] uppercase">
-          {{ item.producer }}
-        </p>
-        <p class="mb-2 text-lg lg:text-xl font-medium">
-          {{ item.product }}
-        </p>
-        <!-- <p class="mb-6">
+      <div v-if="isShowing === 'pending'">
+        <div
+          v-for="(item, idx) in pendingCheckout.items"
+          :key="idx"
+          class="p-6 relative rounded-lg bg-white border mb-4"
+        >
+          <p class="mb-1 text-[13px] uppercase">
+            {{ item.producer }}
+          </p>
+          <p class="mb-2 text-lg lg:text-xl font-medium">
+            {{ item.product }}
+          </p>
+          <!-- <p class="mb-6">
           <i class="uil uil-store mr-1"></i>
         </p> -->
 
-        <span
-          class="top-3 right-3 absolute cursor-pointer"
-          @click="removeItem(item.id)"
-          ><i class="uil uil-times text-2xl text-matta-black"></i
-        ></span>
-        <div class="flex flex-col lg:flex-row items-center gap-3 mb-4 w-full">
-          <div
-            class="flex items-center bg-[#F1F3F5] rounded-lg relative flex-1 w-full lg:w-auto pr-4"
-          >
-            <div class="relative w-full flex justify-between items-center">
-              <div
-                class="py-4 text-[13px] px-6 bg-transparent capitlize md:uppercase text-matta-black w-full text-left"
-              >
-                <span class="text-[#101828] text-[13px]">{{
-                  item.selectedPackage
-                }}</span>
-              </div>
+          <span
+            class="top-3 right-3 absolute cursor-pointer"
+            @click="removeItem(item.id)"
+            ><i class="uil uil-times text-2xl text-matta-black"></i
+          ></span>
+          <div class="flex flex-col lg:flex-row items-center gap-3 mb-4 w-full">
+            <div
+              class="flex items-center bg-[#F1F3F5] rounded-lg relative flex-1 w-full lg:w-auto pr-4"
+            >
+              <div class="relative w-full flex justify-between items-center">
+                <div
+                  class="py-4 text-[13px] px-6 bg-transparent capitlize md:uppercase text-matta-black w-full text-left"
+                >
+                  <span class="text-[#101828] text-[13px]">{{
+                    item.selectedPackage
+                  }}</span>
+                </div>
 
-              <div
-                :class="[
-                  'relative text-matta-black flex items-center justify-between py-4 gap-x-4',
-                ]"
-              >
-                <span class="text-gray-700 whitespace-nowrap">
-                  <span class="text-[13px] whitespace-nowrap">
-                    {{ currencyFormat(item.packagePrice) }}</span
-                  >
-                  <!-- /<span class="text-[13px] whitespace-nowrap">
+                <div
+                  :class="[
+                    'relative text-matta-black flex items-center justify-between py-4 gap-x-4',
+                  ]"
+                >
+                  <span class="text-gray-700 whitespace-nowrap">
+                    <span class="text-[13px] whitespace-nowrap">
+                      {{ currencyFormat(item.packagePrice) }}</span
+                    >
+                    <!-- /<span class="text-[13px] whitespace-nowrap">
                       {{ cartItem.selectedPackageData.unit }}</span
                     > -->
-                </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex flex-col lg:flex-row gap-3 items-center w-full lg:w-auto"
+            >
+              <div
+                class="flex items-center justify-between lg:w-[250px] lg:justify-center gap-x-8 lg:gap-x-16 w-full rounded-lg bg-[#F1F3F5] relative py-4 text-[13px] px-6 uppercase text-matta-black"
+              >
+                <div class="w-[50px] text-center">x {{ item.quantity }}</div>
+              </div>
+              <div
+                class="font-medium text-xl text-center lg:text-right whitespace-nowrap w-[200px]"
+              >
+                {{ currencyFormat(item.subTotal) }}
               </div>
             </div>
           </div>
-          <div
-            class="flex flex-col lg:flex-row gap-3 items-center w-full lg:w-auto"
-          >
-            <div
-              class="flex items-center justify-between lg:w-[250px] lg:justify-center gap-x-8 lg:gap-x-16 w-full rounded-lg bg-[#F1F3F5] relative py-4 text-[13px] px-6 uppercase text-matta-black"
-            >
-              <div class="w-[50px] text-center">x {{ item.quantity }}</div>
-            </div>
-            <div
-              class="font-medium text-xl text-center lg:text-right whitespace-nowrap w-[200px]"
-            >
-              {{ currencyFormat(item.subTotal) }}
-            </div>
+        </div>
+        <div
+          class="flex justify-end gap-x-10 mb-10 items-center"
+          v-if="pendingCheckout?.items?.length"
+        >
+          <div class="text-[#ABABAB] text-sm uppercase">Item total</div>
+          <div class="text-2xl text-right font-medium">
+            {{ currencyFormat(pendingCheckout.cartTotal) }}
           </div>
         </div>
-      </div>
-      <div
-        class="flex justify-end gap-x-10 mb-10 items-center"
-        v-if="pendingCheckout?.items?.length"
-      >
-        <div class="text-[#ABABAB] text-sm uppercase">Item total</div>
-        <div class="text-2xl text-right font-medium">
-          {{ currencyFormat(pendingCheckout.cartTotal) }}
+        <div
+          class="flex justify-end mt-4"
+          v-if="pendingCheckout?.items?.length"
+        >
+          <router-link to="/checkout">
+            <button
+              class="uppercase text-white bg-primary-500 py-4 px-6 rounded-lg text-[13px] mb-6 disabled:bg-gray-400 disabled:text-white disabled:cursor-not-allowed"
+            >
+              Proceed to checkout
+            </button>
+          </router-link>
+        </div>
+        <div
+          v-if="!pendingCheckout?.items?.length"
+          class="text-center py-20 text-lg"
+        >
+          No pending checkout
         </div>
       </div>
-      <div class="flex justify-end mt-4" v-if="pendingCheckout?.items?.length">
-        <router-link to="/checkout">
-          <button
-            class="uppercase text-white bg-primary-500 py-4 px-6 rounded-lg text-[13px] mb-6 disabled:bg-gray-400 disabled:text-white disabled:cursor-not-allowed"
-          >
-            Proceed to checkout
-          </button>
-        </router-link>
-      </div>
-      <div
-        v-if="!pendingCheckout?.items?.length"
-        class="text-center py-20 text-lg"
-      >
-        No pending checkout
-      </div>
+    </div>
+    <div class="text-center p-6 lg:p-8 my-20" v-if="isLoading">
+      <AppLoader />
     </div>
   </div>
-  <div class="text-center p-6 lg:p-8 my-20" v-if="isLoading">
-    <AppLoader />
-  </div>
-    </div>
   <div class="p-5">
     <Pagination
-    
       :total="queryParams.totalCount"
       :current="queryParams.PageNumber"
       :per-page="queryParams.PageSize"
@@ -456,14 +438,9 @@ function prev() {
 const debounceSearch = debounce(() => {
   getData();
 }, 800);
+
 watch(
-  () => queryParams.PageSize,
-  () => {
-    getData();
-  }
-);
-watch(
-  () => queryParams.PageNumber,
+  () => [queryParams.PageNumber, queryParams.Status, queryParams.PageSiz],
   () => {
     getData();
   }
