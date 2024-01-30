@@ -149,4 +149,7 @@ export default defineNuxtConfig({
     installPrompt: true,
     periodicSyncForUpdates: 3600,
   },
+  router: {
+    mode: 'hash'
+  }
 });
