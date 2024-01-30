@@ -3,12 +3,12 @@
     <LandingBanner />
 
     <div class="bg-[#F4F4F4] darks:bg-gray-700 pt-8 sm:pt-[60px]">
-      <div class="hidden lg:block">
+      <div class="hidden lg:block  mb-6 sm:mb-10">
         <LandingBoard />
       </div>
       <div class="pb-8 xl:pb-[70px]">
         <LandingHot :content="hotDeals" tag="hotdeals" />
-        <div class="lg:hidden">
+        <div class="lg:hidden  mb-6 sm:mb-10">
           <LandingBoard />
         </div>
         <!-- <LandingRecommended tag="recommended" /> -->

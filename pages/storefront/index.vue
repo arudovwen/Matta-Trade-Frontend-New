@@ -9,6 +9,6 @@
 
 <script setup>
 definePageMeta({
-  layout: "dashboard",
+  layout: "default",
 });
 </script>

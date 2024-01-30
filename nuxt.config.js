@@ -78,7 +78,7 @@ export default defineNuxtConfig({
     },
   },
   ssr: true,
-  plugins: [],
+  // plugins: ["~/plugins/apexcharts.client.js"],
   // @ts-ignore
   googleSignIn: {
     clientId:
@@ -149,7 +149,4 @@ export default defineNuxtConfig({
     installPrompt: true,
     periodicSyncForUpdates: 3600,
   },
-  router: {
-    mode: 'hash'
-  }
 });

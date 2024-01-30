@@ -23,7 +23,7 @@
     </p>
     <AppButton
       @click="emits('btnFunction')"
-      v-if="btnText && btnFunction"
+      v-if="btnText"
       :text="btnText"
       btnClass="!py-[10px] bg-primary-500 text-white"
       :icon="btnIcon"

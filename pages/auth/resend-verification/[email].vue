@@ -76,6 +76,7 @@
 <script setup>
 definePageMeta({
   layout: "auth",
+  middleware: "auth",
 });
 
 import useVuelidate from "@vuelidate/core";

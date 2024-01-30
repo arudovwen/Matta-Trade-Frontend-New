@@ -11,12 +11,18 @@
           New content available, click on reload button to update.
         </span>
       </div>
-    <div class="flex items-center gap-x-6">
-      <button  class="btn btn-sm bg-primary-500 text-white text-sm px-3 py-2" v-if="$pwa.needRefresh" @click="$pwa.updateServiceWorker()">
-        Reload
-      </button>
-      <button  class="btn-sm text-sm"  @click="$pwa.cancelPrompt()">Close</button>
-    </div>
+      <div class="flex items-center gap-x-6">
+        <button
+          class="btn btn-sm bg-primary-500 text-white text-sm px-3 py-2"
+          v-if="$pwa.needRefresh"
+          @click="$pwa.updateServiceWorker()"
+        >
+          Reload
+        </button>
+        <button class="btn-sm text-sm" @click="$pwa.cancelPrompt()">
+          Close
+        </button>
+      </div>
     </div>
     <div
       v-if="
@@ -47,7 +53,7 @@
       'sticky top-0 opacity-95 fade-in-top pb-5 lg:pb-5 border-b border-[rgba(242, 242, 242, 1)] darks:border-gray-900':
         !view.atTopOfPage,
     }"
-    class="relative pt-6 pb-6 w-full bg-white darks:bg-gray-800 darks:text-white/90 z-[999] transition-all duration-500 ease-in-out"
+    class="relative pt-6 pb-6 w-full bg-white darks:bg-gray-800  z-[999] transition-all duration-500 ease-in-out"
   >
     <div class="container mx-auto">
       <div class="flex justify-between items-center gap-x-5">
@@ -72,6 +78,7 @@
               }`"
             >
               <Menu
+                v-if="!n.url"
                 v-slot="{ open }"
                 as="div"
                 class="relative inline-block text-left"
@@ -111,7 +118,7 @@
                         >
                           <button
                             :class="[
-                              'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap gap-x-2 text-[#333] darks:text-white/90',
+                              'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap gap-x-2 text-[#333] ',
                             ]"
                           >
                             <AppIcon
@@ -126,7 +133,7 @@
                         <button
                           v-else
                           :class="[
-                            'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap gap-x-2 text-[#333] darks:text-white/90',
+                            'group flex w-full items-center rounded-md px-[14px] py-[11px] text-sm hover:bg-[rgba(22,94,240,0.09)] whitespace-nowrap gap-x-2 text-[#333] ',
                           ]"
                         >
                           <AppIcon
@@ -142,11 +149,11 @@
                   </MenuItems>
                 </transition>
               </Menu>
-              <!-- <NuxtLink :to="n.url" v-else>
+              <NuxtLink :to="n.url" v-else>
                 <span class="cursor-pointer hover:text-[#165EF0]">
                   {{ n.name }}</span
                 >
-              </NuxtLink> -->
+              </NuxtLink>
             </li>
           </ul>
         </div>
@@ -179,37 +186,63 @@
               <option value="">English-NGN</option>
             </select></span
           > -->
-          <NuxtLink to="/cart" class="flex items-center gap-x-[6px] relative">
-            <span class="relative">
+          <NuxtLink to="/cart" class="flex items-center  relative">
+            <span
+              class="relative h-8 w-8 rounded-full bg-[#F7F7F7] flex items-center justify-center"
+            >
               <AppIcon
-                class="text-base text-[#333] darks:text-white/90"
-                icon="fa6-solid:cart-shopping"
+                class="text-lg text-[#484848] "
+                icon="akar-icons:search"
+              />
+          </span>
+          </NuxtLink>
+          <NuxtLink to="/cart" class="flex items-center  relative">
+            <span
+              class="relative h-8 w-8 rounded-full bg-[#F7F7F7] flex items-center justify-center"
+            >
+              <img
+                class="text-lg text-[#484848] "
+               
+                src="~/assets/images/chat.svg"
+              />
+           
+            </span>
+           
+          </NuxtLink>
+          <NuxtLink to="/cart" class="flex items-center relative">
+            <span
+              class="relative h-8 w-8 rounded-full bg-[#F7F7F7] flex items-center justify-center"
+            >
+              <AppIcon
+                class="text-lg text-[#484848] "
+                icon="lucide:shopping-cart"
               />
               <span
                 v-if="cartStore?.cartTotal > 0"
-                class="w-[14px] h-[14px] rounded-full bg-[#16F046] text-[8px] flex items-center justify-center absolute -top-[10px] -right-[6px]"
+                class="w-3 h-3 rounded-full bg-[#16F046] text-[8px] flex items-center justify-center absolute top-[4px] right-[4px]"
                 >{{ cartStore?.cartTotal }}</span
               >
             </span>
-            <span class="text-xs sm:text-sm font-medium inline-flex text-[#333]"
+            <!-- <span class="text-xs sm:text-sm font-medium inline-flex text-[#333]"
               >Cart</span
-            >
+            > -->
           </NuxtLink>
 
-          <div class="flex gap-x-3">
+          <div class="flex gap-x-3 ml-3">
+            <AppButton
+              v-if="!authStore.isLoggedIn"
+              link="/auth/login"
+              text="Log in"
+              btnClass="text-[#475467] !px-4 !sm:px-6 !py-[6px] !font-semibold text-xs sm:!text-base hidden md:flex"
+            />
+
             <AppButton
               v-if="!authStore.isLoggedIn"
               link="/auth/vendor-register"
               text="Become a Supplier"
-              btnClass="!text-[12px] md:!text-sm text-white  !font-normal !px-[15px] !py-[6px] !normal-case bg-[#f90] flex"
+              btnClass="!text-[12px] sm:!text-sm text-white  !font-semibold !px-[15px] !py-[6px] !normal-case bg-primary-500 flex"
             />
-            <AppButton
-              v-if="!authStore.isLoggedIn"
-              link="/auth/login"
-              text="Sign In"
-              btnClass="bg-primary-500  text-white !px-4 !sm:px-6 !py-[6px] !font-normal text-xs sm:text-sm hidden md:flex"
-            />
-
+           
             <Menu
               as="div"
               class="relative hidden lg:inline-flex text-left"
@@ -246,7 +279,7 @@
                     </div>
                     <div class="flex-1">
                       <span
-                        class="text-[#333] darks:text-white/90 text-[13px] font-semibold block capitalize"
+                        class="text-[#333]  text-[13px] font-semibold block capitalize"
                         >{{ authStore.userInfo?.fullName }}</span
                       >
                       <span

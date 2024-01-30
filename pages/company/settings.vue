@@ -5,7 +5,8 @@
 </template>
 <script setup>
 definePageMeta({
-  layout: "dashboard",
+ layout: "dashboard",
+  middleware: "auth",
 });
 useHead({
   title: "Company | Matta",

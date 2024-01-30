@@ -55,12 +55,4 @@
 <script setup>
 import AuthBg from "~/assets/images/authbg.png";
 
-const router = useRouter()
-const authStore = useAuthStore();
-onBeforeMount(()=>{
-  
-  if(authStore.isLoggedIn){
-    router.push("/")
-  }
-})
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div
+  <div v-if="isOpen"
     class="px-5 py-[14px] bg-[#333333] rounded-[5px] flex justify-between gap-x-40 relative mb-3"
   >
     <div class="flex gap-x-4 items-center">

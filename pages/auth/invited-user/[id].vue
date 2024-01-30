@@ -146,6 +146,7 @@
 <script setup>
 definePageMeta({
   layout: "auth",
+  middleware: "auth",
 });
 
 import { EyeIcon, EyeSlashIcon } from "@heroicons/vue/24/outline";

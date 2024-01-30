@@ -1,0 +1,73 @@
+<template>
+  <section class="">
+    <header class="h-[672px] bg-gray-600 mb-[70px]">
+      <NuxtImg
+        src="/images/financebanner.png"
+        class="w-full h-full object-cover"
+      />
+    </header>
+
+    <div class="container pb-20">
+      <h1 class="text-center font-semibold text-4xl mb-5 text-[#101828]">
+        All-in-one finance for any business
+      </h1>
+      <p
+        class="text-center text-xl text-[#475467] mb-[60px] max-w-[768px] mx-auto"
+      >
+        Get a deposit account, credit card, and spend management software—in one
+        refreshingly easy solution. No fees or minimums.
+      </p>
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-[50px]">
+        <article class="" v-for="n in content" :key="n.title">
+          <div class="h-[240px] text-left mb-5">
+            <NuxtImg
+              :src="n.img"
+              class="w-full h-full object-cover rounded-[10px]"
+            />
+          </div>
+          <div class="text-left">
+            <h2 class="mb-2 text-[#101828] text-2xl capitalize font-semibold">
+              {{ n.title }}
+            </h2>
+            <p class="text-[#475467] text-base mb-5">{{ n.text }}</p>
+            <AppButton
+              :link="n.url"
+              text="Get started"
+              btnClass="text-primary-500 !px-0 !py-0 font-semibold"
+            />
+          </div>
+        </article>
+      </div>
+    </div>
+    <LandingCall />
+  </section>
+</template>
+
+<script setup>
+const content = [
+  {
+    title: "trade finance",
+    img: "/images/finance1.png",
+    text: "How do you create compelling presentations that wow your colleagues and impress your managers?",
+    url: "/financing/requests/trade",
+  },
+  {
+    title: "supply finance",
+    img: "/images/finance2.png",
+    text: "How do you create compelling presentations that wow your colleagues and impress your managers?",
+    url: "/financing/requests/supply",
+  },
+  {
+    title: "import finance",
+    img: "/images/finance3.png",
+    text: "How do you create compelling presentations that wow your colleagues and impress your managers?",
+    url: "/financing/requests/import",
+  },
+  {
+    title: "export finance",
+    img: "/images/finance4.png",
+    text: "How do you create compelling presentations that wow your colleagues and impress your managers?",
+    url: "/financing/requests/export",
+  },
+];
+</script>

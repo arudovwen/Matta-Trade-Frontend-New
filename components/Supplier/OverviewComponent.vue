@@ -3,7 +3,7 @@
     <!-- Top bar   -->
     <div>
       <HeaderComponent
-        welcome="Welcome back, Andrei"
+        :welcome="`Welcome back, ${auth?.userInfo?.firstName}`"
         subtext="Your current sales summary and activity."
         className="!px-0 !py-0 pb-6 !border-none mb-[15px]"
       />
@@ -67,17 +67,17 @@
                   </div>
                 </div>
               </div>
-              <ClientOnly>
+              <client-only>
                 <apexchart
                   type="area"
                   height="300"
                   :options="chartOptions"
                   :series="series"
                 ></apexchart
-              ></ClientOnly>
+              ></client-only>
             </div>
           </div>
-          <div class="w-[200px] grid gap-y-5">
+          <div class="w-[200px] flex flex-col gap-y-6">
             <div class="leading-tight" v-for="n in Statistics" :key="n.title">
               <span
                 class="block text-[#475467] font-medium text-sm capitalize"
@@ -172,7 +172,7 @@
 import { useRoute } from "vue-router";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
-import VueApexCharts from "vue3-apexcharts";
+// import VueApexCharts from "vue3-apexcharts";
 import {
   getesfrontstats,
   getstorefronttrending,
@@ -181,6 +181,7 @@ import moment from "moment";
 import EmptyData from "~/components/EmptyData";
 import { getorderchart, getchart } from "~/services/chartservice";
 
+const auth = useAuthStore()
 const date = ref();
 const links = [
   {
@@ -189,7 +190,7 @@ const links = [
   },
   {
     title: "storefront",
-    url: "/storefront/overview",
+    url: "/overview",
   },
 ];
 const filters = [
@@ -313,7 +314,7 @@ function getAllCharts() {
     }
   });
 }
-const apexchart = VueApexCharts;
+// const apexchart = VueApexCharts;
 const route = useRoute();
 
 const series = computed(() => {

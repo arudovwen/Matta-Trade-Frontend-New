@@ -78,7 +78,7 @@ const links = [
   },
   {
     title: "storefront",
-    url: "/storefront/overview",
+    url: "/overview",
   },
   {
     title: "products",

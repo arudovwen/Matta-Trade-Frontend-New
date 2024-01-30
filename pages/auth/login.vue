@@ -80,6 +80,7 @@ import { GoogleSignInButton } from "vue3-google-signin";
 
 definePageMeta({
   layout: "auth",
+  middleware: "auth",
 });
 useHead({
   title: "Login | Matta",
@@ -129,10 +130,6 @@ const onSubmit = handleSubmit((values) => {
           window.location.replace(route.query.redirected_from);
           return;
         }
-        if (route.query.redirect_to) {
-          window.location.replace(route.query.redirect_to);
-          return;
-        }
 
         window.location.replace("/");
       }
@@ -148,7 +145,9 @@ const onSubmit = handleSubmit((values) => {
           "Email has not verified yet"
         )
       ) {
-        router.push(`/auth/resend-verification/${encodeURIComponent(values.email)}`);
+        router.push(
+          `/auth/resend-verification/${encodeURIComponent(values.email)}`
+        );
       }
     });
 });

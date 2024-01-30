@@ -126,7 +126,7 @@ const navigation = [
     subs: [
       {
         name: "Overview",
-        url: "/storefront/overview",
+        url: "/overview",
       },
       {
         name: "Products",

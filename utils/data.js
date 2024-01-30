@@ -117,7 +117,7 @@ export const navigations = [
   {
     name: "Finance",
     key: "finance",
-    url: null,
+    url: "/financing",
   },
 ];
 export const mobileNavigation = [
@@ -168,7 +168,7 @@ export const mobileMenu = [
     name: "Storefront",
     key: "storefront",
     icon: "fa6-solid:store",
-    url: "/storefront/overview",
+    url: "/overview",
   },
   {
     name: "Company settings",
