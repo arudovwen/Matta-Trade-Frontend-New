@@ -18,16 +18,16 @@
       <span
         class="h-4 w-4 border flex-none border-slate-200 darks:border-slate-800 rounded inline-flex mr-3 relative transition-all duration-150"
         :class="
-          ck
+          localValue.includes(value)
             ? activeClass + ' border-none '
             : 'bg-white border border-[rgba(223,223,223,1)] darks:bg-slate-600 darks:border-slate-600'
         "
       >
-         <NuxtImg
+        <img
           src="~/assets/images/icon/ck-white.svg"
           alt="image"
           class="h-[10px] w-[10px] block m-auto"
-          v-if="ck"
+          v-if="localValue.includes(value)"
         />
       </span>
       <span
@@ -95,11 +95,11 @@ export default defineComponent({
       get: () => props.modelValue,
       set: (newValue) => context.emit("update:modelValue", newValue),
     });
-    watch(localValue, () => {
-      if (typeof localValue.value === "object" && !localValue.value.length) {
-        ck.value = false;
-      }
-    });
+    // watch(localValue, () => {
+    //   if (typeof localValue.value === "object" && !localValue.value.length) {
+    //     ck.value = false;
+    //   }
+    // });
     return { localValue, ck, onChange };
   },
 });
