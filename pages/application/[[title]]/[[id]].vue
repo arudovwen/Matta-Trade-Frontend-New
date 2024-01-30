@@ -28,6 +28,9 @@
   </div>
 </template>
 <script setup>
+definePageMeta({
+  layout: "default",
+});
 import { getProducts, getProducers } from "~/services/productservices";
 import { useProductStore } from "~/stores/products";
 

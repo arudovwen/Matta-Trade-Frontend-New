@@ -19,6 +19,9 @@
   </div>
 </template>
 <script setup>
+definePageMeta({
+  layout: "default",
+});
 useHead({
   title: "Cart | Matta",
   meta: [{ name: "description", content: "Cart" }],

@@ -44,6 +44,9 @@
 </template>
 
 <script setup>
+definePageMeta({
+  layout: "default",
+});
 const content = [
   {
     title: "trade finance",
