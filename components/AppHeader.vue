@@ -47,6 +47,7 @@
       </div>
     </div>
   </ClientOnly>
+
   <nav
     :class="{
       relative: view.atTopOfPage,
@@ -61,10 +62,8 @@
           <NuxtLink to="/">
             <NuxtImg
               src="/images/logo.png"
-              width="100"
-              height="26"
               alt="Matta"
-              class="w-20 md:w-[100px] h-auto"
+              class="w-20 md:w-[100px] h-auto object-contain"
           /></NuxtLink>
           <ul class="lg:flex items-center gap-x-6 hidden">
             <li
