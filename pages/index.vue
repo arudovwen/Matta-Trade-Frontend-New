@@ -25,4 +25,8 @@
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+definePageMeta({
+  layout: "default",
+});
+</script>
