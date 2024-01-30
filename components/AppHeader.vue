@@ -11,12 +11,18 @@
           New content available, click on reload button to update.
         </span>
       </div>
-    <div class="flex items-center gap-x-6">
-      <button  class="btn btn-sm bg-primary-500 text-white text-sm px-3 py-2" v-if="$pwa.needRefresh" @click="$pwa.updateServiceWorker()">
-        Reload
-      </button>
-      <button  class="btn-sm text-sm"  @click="$pwa.cancelPrompt()">Close</button>
-    </div>
+      <div class="flex items-center gap-x-6">
+        <button
+          class="btn btn-sm bg-primary-500 text-white text-sm px-3 py-2"
+          v-if="$pwa.needRefresh"
+          @click="$pwa.updateServiceWorker()"
+        >
+          Reload
+        </button>
+        <button class="btn-sm text-sm" @click="$pwa.cancelPrompt()">
+          Close
+        </button>
+      </div>
     </div>
     <div
       v-if="
@@ -41,6 +47,7 @@
       </div>
     </div>
   </ClientOnly>
+
   <nav
     :class="{
       relative: view.atTopOfPage,
@@ -55,10 +62,8 @@
           <NuxtLink to="/">
             <NuxtImg
               src="/images/logo.png"
-              width="100"
-              height="26"
               alt="Matta"
-              class="w-20 md:w-[100px] h-auto"
+              class="w-20 md:w-[100px] h-auto object-contain"
           /></NuxtLink>
           <ul class="lg:flex items-center gap-x-6 hidden">
             <li

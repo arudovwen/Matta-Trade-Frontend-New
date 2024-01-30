@@ -47,7 +47,7 @@
         />
         <AppButton
           :disabled="isReady"
-          @click="() => login()"
+         
           text="Sign in with Google"
           icon="flat-color-icons:google"
           btnClass="btn-dark !py-3 disabled:opacity-50"
@@ -75,8 +75,7 @@ import * as yup from "yup";
 import { toast } from "vue3-toastify";
 
 import { loginUser, sociallogin } from "~/services/authservices";
-
-import { GoogleSignInButton } from "vue3-google-signin";
+// import { GoogleSignInButton } from "vue3-google-signin";
 
 definePageMeta({
   layout: "auth",
@@ -129,10 +128,6 @@ const onSubmit = handleSubmit((values) => {
           window.location.replace(route.query.redirected_from);
           return;
         }
-        if (route.query.redirect_to) {
-          window.location.replace(route.query.redirect_to);
-          return;
-        }
 
         window.location.replace("/");
       }
@@ -148,7 +143,9 @@ const onSubmit = handleSubmit((values) => {
           "Email has not verified yet"
         )
       ) {
-        router.push(`/auth/resend-verification/${encodeURIComponent(values.email)}`);
+        router.push(
+          `/auth/resend-verification/${encodeURIComponent(values.email)}`
+        );
       }
     });
 });
