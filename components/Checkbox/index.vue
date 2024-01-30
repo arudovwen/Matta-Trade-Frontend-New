@@ -23,7 +23,7 @@
             : 'bg-white border border-[rgba(223,223,223,1)] darks:bg-slate-600 darks:border-slate-600'
         "
       >
-         <NuxtImg
+         <img
           src="~/assets/images/icon/ck-white.svg"
           alt="image"
           class="h-[10px] w-[10px] block m-auto"
@@ -39,6 +39,7 @@
     </label>
   </div>
 </template>
+
 <script>
 import { computed, defineComponent, ref } from "vue";
 export default defineComponent({
@@ -63,7 +64,7 @@ export default defineComponent({
     activeClass: {
       type: String,
       default:
-        " ring-black-500  bg-slate-900 darks:bg-slate-700 darks:ring-slate-700 ",
+        "ring-black-500  bg-slate-900 dark:bg-slate-700 dark:ring-slate-700 ",
     },
     labelClass: {
       type: String,
@@ -95,11 +96,7 @@ export default defineComponent({
       get: () => props.modelValue,
       set: (newValue) => context.emit("update:modelValue", newValue),
     });
-    watch(localValue, () => {
-      if (typeof localValue.value === "object" && !localValue.value.length) {
-        ck.value = false;
-      }
-    });
+
     return { localValue, ck, onChange };
   },
 });
