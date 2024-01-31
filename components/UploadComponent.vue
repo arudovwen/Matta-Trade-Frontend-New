@@ -10,15 +10,16 @@
        <AppIcon icon="bytesize:upload" iconClass="text-xl text-[#344054]" />
       </div>
 
-      <p class="text-sm mb-1">
+      <p class="text-sm mb-2">
        
         <label
           for="file"
-          class="text-primary-500 font-medium cursor-pointer ml-1"
+          class="!text-primary-500 font-medium cursor-pointer ml-1"
           >Click to upload</label
         > or Drag & Drop Files
       </p>
-      <p class="text-xs text-[#ABABAB]"  v-if="support">{{ support }}</p>
+      <p class="text-xs text-[#ABABAB] mb-1"  v-if="support">{{ support }}</p>
+      <p class="text-xs text-[#ABABAB]"  v-if="recommended">{{ recommended }}</p>
     </div>
   </div>
   <input
@@ -67,6 +68,9 @@ const props = defineProps({
   type: { default: "image" },
   gallery: { default: [] },
   support:{
+    default:""
+  },
+  recommended:{
     default:""
   }
 });

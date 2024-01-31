@@ -236,7 +236,7 @@ const query = reactive({
   top: 10,
 });
 
-const active = ref(12);
+const active = ref(null);
 const stats = ref(null);
 const trending = ref([]);
 const thisyear = ref([]);

@@ -136,6 +136,7 @@
 
         <div class="flex justify-end gap-x-4 items-center mt-12">
           <button
+          type="button"
             @click="emits('toggleBar', 2)"
             class="appearance-none leading-none px-10 py-4 rounded-lg text-matta-black bg-[#F1F3F5] hover:bg-gray-100 text-[13px] uppercase"
           >

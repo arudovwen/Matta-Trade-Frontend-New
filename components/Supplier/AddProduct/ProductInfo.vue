@@ -945,6 +945,7 @@ function addnewpackage() {
     purity: "",
   });
 }
+const typeForm = ref("")
 function removepackage(val) {
   form.packagesAvailable.splice(val, 1);
 }

@@ -98,8 +98,8 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   opacity: 0.9;
 }
-label{
-  color:#344054;
+label, .input-label{
+  color:#344054 !important;
   font-size: 14px;
 }
 </style>

@@ -726,6 +726,7 @@
     >
       <template #content>
         <form
+          v-if="typeForm === 'producer'"
           class="bg-white px-4 pt-5 pb-8 sm:p-6 sm:pb-4 w-[500px] rounded-lg"
           @submit.prevent="handleProducer"
         >
@@ -814,8 +815,12 @@
               Save
             </button>
           </div>
-        </form></template
-      >
+        </form>
+        <PackageForm
+          v-if="typeForm === 'package'"
+          @close="isAddingPackage = false"
+        />
+      </template>
     </IndexModal>
   </div>
 </template>
