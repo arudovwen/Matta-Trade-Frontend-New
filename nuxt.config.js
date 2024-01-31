@@ -28,35 +28,35 @@ export default defineNuxtConfig({
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-swiper",
     "@nuxt/image",
-    "nuxt-security",
+    // "nuxt-security",
     "@nuxt/devtools",
     "nuxt-ssr-cache",
     "@vite-pwa/nuxt",
   ],
 
-  security: {
-    hidePoweredBy: false,
-    headers: {
-      crossOriginEmbedderPolicy: "unsafe-none",
-      contentSecurityPolicy: {
-        "img-src": [
-          "'self'",
-          "https:",
-          "data:",
-          "https://gateway.matta.trade",
-          "https://res.cloudinary.com",
-        ],
-        "script-src": [
-          "'self'",
-          "https:",
-          "'unsafe-inline'",
-          "'strict-dynamic'",
-          "'nonce-{{nonce}}'",
-        ],
-      },
-      xFrameOptions: "deny",
-    },
-  },
+  // security: {
+  //   hidePoweredBy: false,
+  //   headers: {
+  //     crossOriginEmbedderPolicy: "unsafe-none",
+  //     contentSecurityPolicy: {
+  //       "img-src": [
+  //         "'self'",
+  //         "https:",
+  //         "data:",
+  //         "https://gateway.matta.trade",
+  //         "https://res.cloudinary.com",
+  //       ],
+  //       "script-src": [
+  //         "'self'",
+  //         "https:",
+  //         "'unsafe-inline'",
+  //         "'strict-dynamic'",
+  //         "'nonce-{{nonce}}'",
+  //       ],
+  //     },
+  //     xFrameOptions: "deny",
+  //   },
+  // },
   cache: {
     useHostPrefix: false,
     pages: ["/"],

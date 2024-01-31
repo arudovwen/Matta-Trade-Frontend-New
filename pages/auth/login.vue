@@ -53,10 +53,6 @@
           btnClass="btn-dark !py-3 disabled:opacity-50"
           type="button"
         />
-        <!-- <GoogleSignInButton
-          @success="handleLoginSuccess"
-          @error="handleLoginError"
-        ></GoogleSignInButton> -->
       </div>
       <span
         class="flex items-center text-center text-sm text-[#333] darks:text-white/80 gap-x-1 justify-center"
@@ -73,10 +69,7 @@
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 import { toast } from "vue3-toastify";
-
 import { loginUser, sociallogin } from "~/services/authservices";
-
-import { GoogleSignInButton } from "vue3-google-signin";
 
 definePageMeta({
   layout: "auth",
@@ -153,7 +146,7 @@ const onSubmit = handleSubmit((values) => {
 });
 
 const handleLoginSuccess = (response) => {
-  console.log("🚀 ~ handleLoginSuccess ~ response:", response)
+  console.log("🚀 ~ handleLoginSuccess ~ response:", response);
   const { access_token } = response;
   let data = {
     provider: "GOOGLE",
