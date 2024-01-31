@@ -46,7 +46,7 @@
           btnClass="btn-primary !py-3"
         />
         <AppButton
-          :disabled="isReady"
+          :disabled="!isReady"
           @click="() => login()"
           text="Sign in with Google"
           icon="flat-color-icons:google"
@@ -153,6 +153,7 @@ const onSubmit = handleSubmit((values) => {
 });
 
 const handleLoginSuccess = (response) => {
+  console.log("🚀 ~ handleLoginSuccess ~ response:", response)
   const { access_token } = response;
   let data = {
     provider: "GOOGLE",

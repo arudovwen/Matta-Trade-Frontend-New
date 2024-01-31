@@ -74,7 +74,7 @@ const navigation = [
   },
   {
     name: "Storefront",
-    url: "/storefront/store",
+    url: "/storefront",
     icon: "solar:shop-outline",
     key:"storefront"
   },
