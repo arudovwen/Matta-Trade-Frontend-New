@@ -383,12 +383,12 @@
       class="flex justify-between gap-x-4 items-center mt-16 pt-6 border-t border-[#EAECF0] w-full "
     >
     
-        <button
+        <!-- <button
           type="button"
           class="appearance-none leading-none px-10 py-[14px] rounded-lg w-full lg:w-auto text-primary-500 border border-primary-500 hover:bg-gray-100 text-[13px] capitalize"
         >
           Prevew
-        </button>
+        </button> -->
    
       <div class="flex justify-end gap-x-4 items-center">
     

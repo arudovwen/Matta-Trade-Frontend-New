@@ -1,5 +1,5 @@
 <template>
-    {{route.params.type}}
+   <SupplierFinanceRequestTrade />
 </template>
 <script setup>
 definePageMeta({

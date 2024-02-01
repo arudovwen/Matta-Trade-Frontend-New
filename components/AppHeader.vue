@@ -199,12 +199,10 @@
             <span
               class="relative h-8 w-8 rounded-full bg-[#F7F7F7] flex items-center justify-center"
             >
-              <img
+            <AppIcon
                 class="text-lg text-[#484848] "
-               
-                src="~/assets/images/chat.svg"
+                icon="mingcute:message-2-line"
               />
-           
             </span>
            
           </NuxtLink>

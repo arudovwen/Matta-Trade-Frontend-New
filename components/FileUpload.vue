@@ -13,13 +13,13 @@
       />
    
       <button
-        type="buton"
+        type="button"
         @click="triggerFileInput"
         class="text-xs text-white border border-[#98A2B3] bg-[#98A2B3] rounded px-5 py-[6px] active:scale-[.95] leading-normal  flex justify-center"
       >
         <div
           v-if="loading"
-          class="loader border-t-4 border-blue-500 border-solid rounded-full h-3 w-3 animate-spin whitespace-nowrap"
+          class="loader border-t-2 border-white border-solid rounded-full h-3 w-3 animate-spin whitespace-nowrap"
         ></div>
         <span v-else>{{ btnText || "Select file" }}</span>
       </button>   <div class="flex-1 px-4">

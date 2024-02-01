@@ -1,30 +1,39 @@
 <template>
   <div
     @drop.prevent="onDrop"
-    class="border mb-6 flex-1 border-[#EAECF0]  rounded-[12px] px-6 py-10 flex items-center justify-center text-center"
+    class="border mb-6 flex-1 border-[#EAECF0] rounded-[12px] px-6 py-10 flex items-center justify-center text-center relative group overflow-hidden min-h-[190px]"
   >
-    <div>
+    <div
+      :class="`relative z-20 ${
+        !isMultiple && image ? 'invisible group-hover:visible' : 'visible'
+      }`"
+    >
       <div
         class="text-center mb-3 h-10 w-10 flex mx-auto items-center justify-center rounded-[10px] border border-primary"
       >
-       <AppIcon icon="bytesize:upload" iconClass="text-xl text-[#344054]" />
+        <AppIcon icon="bytesize:upload" iconClass="text-xl text-[#344054]" />
       </div>
 
       <p class="text-sm mb-2">
-       
         <label
-          for="file"
+          :for="id"
           class="!text-primary-500 font-medium cursor-pointer ml-1"
           >Click to upload</label
-        > or Drag & Drop Files
+        >
+        or Drag & Drop Files
       </p>
-      <p class="text-xs text-[#ABABAB] mb-1"  v-if="support">{{ support }}</p>
-      <p class="text-xs text-[#ABABAB]"  v-if="recommended">{{ recommended }}</p>
+      <p class="text-xs text-[#ABABAB] mb-1" v-if="support">{{ support }}</p>
+      <p class="text-xs text-[#ABABAB]" v-if="recommended">{{ recommended }}</p>
     </div>
+    <img
+      v-if="!isMultiple && image"
+      :src="image"
+      class="w-full h-full object-cover absolute z-10 group-hover:opacity-10 backdrop-blur-sm"
+    />
   </div>
   <input
     type="file"
-    id="file"
+    :id="id"
     class="hidden"
     :accept="accepts"
     @change="handleFile"
@@ -32,7 +41,7 @@
   />
   <div
     class="bg-white flex flex-wrap gap-2 max-h-full overflow-y-auto rounded-lg"
-    v-if="type === 'image'"
+    v-if="type === 'image' && isMultiple"
   >
     <span v-for="(n, i) in gallery" :key="i">
       <span
@@ -61,20 +70,24 @@ import { ref, onMounted, defineProps, defineEmits, computed } from "vue";
 import { uploadfile, uploaddocument } from "~/services/onboardingservices";
 // import axios from "axios";
 const images = ref([]);
+const image = ref("");
 const documents = ref([]);
 const emits = defineEmits(["onGetFiles", "removeFile"]);
 const props = defineProps({
   isMultiple: { default: true },
   type: { default: "image" },
   gallery: { default: [] },
-  support:{
-    default:""
+  support: {
+    default: "",
   },
-  recommended:{
-    default:""
+  recommended: {
+    default: "",
+  },
+  id: {
+    default: "file"
   }
 });
-const events = ["dragenter", "dragover", "dragleave", "drop",];
+const events = ["dragenter", "dragover", "dragleave", "drop"];
 onMounted(() => {
   events.forEach((eventName) => {
     document.body.addEventListener(eventName, preventDefaults);
@@ -123,6 +136,7 @@ function handleFile(e) {
           base64: base64String.replace("data:", "").replace(/^.+,/, ""),
         }).then((res) => {
           emits("onGetFiles", res.data.message);
+          image.value = res.data.message;
           isLoading.value = false;
         });
       } else {

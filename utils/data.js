@@ -117,7 +117,7 @@ export const navigations = [
   {
     name: "Finance",
     key: "finance",
-    url: "/financing",
+    url: "/finance",
   },
 ];
 export const mobileNavigation = [

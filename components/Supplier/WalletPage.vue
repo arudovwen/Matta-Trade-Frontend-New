@@ -1,26 +1,9 @@
 <template>
   <div class="gap-y-2 flex flex-col bg-white rounded-[10px] pb-10">
     <!-- Top bar   -->
-    <HeaderComponent title="Wallet" />
-   <div class="px-[30px] py-[30px]">
-    <div>
-      <div class="flex justify-between flex-col gap-y-4 sm:flex-row">
-        <div class="w-full sm:w-auto">
-          <button
-            v-if="hasWallet && !details?.kycCompleted"
-            @click="
-              () => {
-                isTopup = isCreatingWallet = isWithdraw = false;
-                isAddingKyc = isOpen = true;
-              }
-            "
-            :disabled="!hasWallet"
-            class="w-full sm:w-auto border border-matta-black py-3 text-xs md:text-[13px] px-6 flex justify-center text-matta-black rounded-lg items-center hover:bg-matta-black/80 uppercase font-normal leading-[normal] gap-x-1 disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            <i class="uil uil-plus"></i> Update KYC
-          </button>
-        </div>
-        <div class="flex justify-end gap-4">
+    <HeaderComponent title="Wallet">
+      <template #button>
+        <div class="flex justify-end gap-x-4">
           <button
             @click="
               () => {
@@ -29,7 +12,7 @@
               }
             "
             :disabled="!hasWallet"
-            class="w-full sm:w-auto border border-matta-black py-3 text-xs md:text-[13px] px-3 sm:px-6 flex justify-center text-matta-black rounded-lg items-center hover:bg-matta-black/80 uppercase font-normal leading-[normal] gap-x-1 disabled:opacity-60 disabled:cursor-not-allowed"
+            class="w-full sm:w-auto border border-matta-black py-[10px] text-xs md:text-[13px] px-3 sm:px-6 flex justify-center text-matta-black rounded-lg items-center hover:bg-matta-black/80 capitalize font-normal leading-[normal] gap-x-1 disabled:opacity-60 disabled:cursor-not-allowed"
           >
             <i class="uil uil-top-arrow-to-top"></i> Top up
           </button>
@@ -41,78 +24,98 @@
               }
             "
             :disabled="!hasWallet"
-            class="w-full sm:w-auto border border-matta-black bg-matta-black py-3 text-xs md:text-[13px] px-3 sm:px-6 flex justify-center text-white rounded-lg items-center hover:bg-matta-black/80 uppercase font-normal leading-[normal] gap-x-1 disabled:opacity-60 disabled:cursor-not-allowed"
+            class="w-full sm:w-auto border border-matta-black bg-matta-black py-[10px] text-xs md:text-[13px] px-3 sm:px-6 flex justify-center text-white rounded-lg items-center hover:bg-matta-black/80 capitalize font-normal leading-[normal] gap-x-1 disabled:opacity-60 disabled:cursor-not-allowed"
           >
             <i class="uil uil-arrow-to-bottom text-white"></i> Withdraw
           </button>
         </div>
-      </div>
-    </div>
-
-    <div
-      class="grid sm:grid-cols-2 lg:grid-cols-2 gap-2"
-      v-if="hasWallet && !isLoading"
+      </template></HeaderComponent
     >
-      <div class="p-6 lg:p-8 bg-white rounded-lg">
-        <span class="font-medium text-sm block mb-4">Wallet Balance</span>
-        <span class="font-bold block text-4xl">{{
-          currencyFormat(details.walletBalance)
-        }}</span>
-      </div>
-      <div class="p-6 lg:p-8 bg-white rounded-lg">
-        <span class="font-bold text-[15px] block mb-3">Wallet details</span>
-        <div class="grid grid-cols-2 mb-1 gap-x-4">
-          <span class="text-sm font-medium">Bank name :</span>
-          <span class="text-base">{{ details.bankName }}</span>
-        </div>
-        <div class="grid grid-cols-2 mb-1 gap-x-4">
-          <span class="text-sm font-medium">Account name :</span>
-          <span class="text-base">{{ details.accountName }}</span>
-        </div>
-        <div class="grid grid-cols-2 gap-x-4">
-          <span class="text-sm font-medium">Account number :</span>
-          <span class="text-base"
-            ><span>{{ details.accountNumber }}</span
-            ><button
-              v-clipboard="details.accountNumber"
-              @click="toast.success('Copied')"
-              class="cursor-pointer ml-2"
+    <div class=" py-[30px]">
+      <div>
+        <div class="flex justify-between flex-col gap-y-4 sm:flex-row">
+          <div class="w-full sm:w-auto">
+            <button
+              v-if="hasWallet && !details?.kycCompleted"
+              @click="
+                () => {
+                  isTopup = isCreatingWallet = isWithdraw = false;
+                  isAddingKyc = isOpen = true;
+                }
+              "
+              :disabled="!hasWallet"
+              class="w-full sm:w-auto border border-matta-black py-3 text-xs md:text-[13px] px-6 flex justify-center text-matta-black rounded-lg items-center hover:bg-matta-black/80 capitalize font-normal leading-[normal] gap-x-1 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              <i class="uil uil-copy"></i></button
-          ></span>
+              <i class="uil uil-plus"></i> Update KYC
+            </button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="grid lg:grid-cols-2 gap-x-2" v-if="hasWallet && !isLoading">
-      <div class="p-6 lg:p-8 bg-white rounded-lg">
-        <SupplierWalletLastTransactions />
-      </div>
-      <div class="p-6 lg:p-8 bg-white rounded-lg">
-        <SupplierWalletBeneficiaryPage />
-      </div>
-    </div>
-    <div
-      class="flex justify-center flex-col items-center p-8 min-h-[30vh]"
-      v-if="!hasWallet && !isLoading"
-    >
-      <p class="mb-3 text-lg">You don't have an active wallet</p>
-      <button
-        @click="
-          () => {
-            isWithdraw = isTopup = false;
-            isCreatingWallet = isOpen = true;
-          }
-        "
-        class="border border-matta-black bg-matta-black py-3 text-xs md:text-[13px] px-6 flex justify-center text-white rounded-lg items-center hover:bg-matta-black/80 uppercase font-normal gap-x-1"
+      <div
+        class="grid sm:grid-cols-2 lg:grid-cols-2 gap-2"
+        v-if="hasWallet && !isLoading"
       >
-        Create your wallet
-      </button>
+        <div class="p-6 lg:p-8 bg-white rounded-lg">
+          <span class="font-medium text-sm block mb-4">Wallet Balance</span>
+          <span class="font-bold block text-4xl">{{
+            currencyFormat(details.walletBalance)
+          }}</span>
+        </div>
+        <div class="p-6 lg:p-8 bg-white rounded-lg">
+          <span class="font-bold text-[15px] block mb-3">Wallet details</span>
+          <div class="grid grid-cols-2 mb-1 gap-x-4">
+            <span class="text-sm font-medium">Bank name :</span>
+            <span class="text-base">{{ details.bankName }}</span>
+          </div>
+          <div class="grid grid-cols-2 mb-1 gap-x-4">
+            <span class="text-sm font-medium">Account name :</span>
+            <span class="text-base">{{ details.accountName }}</span>
+          </div>
+          <div class="grid grid-cols-2 gap-x-4">
+            <span class="text-sm font-medium">Account number :</span>
+            <span class="text-base"
+              ><span>{{ details.accountNumber }}</span
+              ><button
+                v-clipboard="details.accountNumber"
+                @click="toast.success('Copied')"
+                class="cursor-pointer ml-2"
+              >
+                <i class="uil uil-copy"></i></button
+            ></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-x-2" v-if="hasWallet && !isLoading">
+        <div class="p-6 lg:p-8 bg-white rounded-lg">
+          <SupplierWalletLastTransactions />
+        </div>
+        <div class="p-6 lg:p-8 bg-white rounded-lg">
+          <SupplierWalletBeneficiaryPage />
+        </div>
+      </div>
+      <div
+        class="flex justify-center flex-col items-center p-8 min-h-[30vh]"
+        v-if="!hasWallet && !isLoading"
+      >
+        <p class="mb-3 text-lg">You don't have an active wallet</p>
+        <button
+          @click="
+            () => {
+              isWithdraw = isTopup = false;
+              isCreatingWallet = isOpen = true;
+            }
+          "
+          class="border border-matta-black bg-matta-black py-3 text-xs md:text-[13px] px-6 flex justify-center text-white rounded-lg items-center hover:bg-matta-black/80 capitalize font-normal gap-x-1"
+        >
+          Create your wallet
+        </button>
+      </div>
+      <div class="text-center p-6 lg:p-8 my-24" v-if="isLoading">
+        <AppLoader />
+      </div>
     </div>
-    <div class="text-center p-6 lg:p-8 my-24" v-if="isLoading">
-      <AppLoader />
-    </div>
-   </div>
   </div>
 
   <IndexModal :isOpen="isOpen" @togglePopup="handleClose">

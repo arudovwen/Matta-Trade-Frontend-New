@@ -201,7 +201,7 @@
                   :disabled="isLoading"
                   :class="isLoading && 'bg-primary/80'"
                   type="submit"
-                  class="border-2 border-primary-500 text-[13px] bg-primary-500 text-white rounded-[10px] block w-full lg:w-auto px-12 font-semibold py-3 hover:bg-primary/80"
+                  class="border border-primary-500 text-sm bg-primary-500 text-white rounded-[10px] block w-full lg:w-auto px-10 font-semibold py-[10px] hover:bg-primary/80"
                 >
                   Save changes
                 </button>

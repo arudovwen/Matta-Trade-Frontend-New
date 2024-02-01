@@ -6,7 +6,7 @@
     <div>
       <h1
         v-if="title"
-        class="text-lg text-[#101828] col-span-1 font-semibold flex gap-x-3 items-center"
+        class="text-lg text-[#101828] col-span-1 font-semibold flex gap-x-3 items-center capitalize"
       >
         <span class="cursor-pointer" v-if="canGoback" @click="router.go(-1)"><AppIcon icon="ph:arrow-left-bold" /></span>
         {{ title }}
@@ -17,11 +17,14 @@
       >
         {{ welcome }}
       </h1>
+     <slot name="subtext">
       <p v-if="subtext" class="text-sm text-[#475467]">
         {{ subtext }}
       </p>
+     </slot>
     </div>
     <div>
+     <slot name="button">
       <AppButton
         v-if="btnText"
         @click="emits('onClick')"
@@ -29,6 +32,7 @@
         :icon="btnIcon"
         btnClass="!px-[14px] !py-[10px] bg-primary-500 !text-white !text-sm"
       />
+     </slot>
     </div>
   </div>
 </template>

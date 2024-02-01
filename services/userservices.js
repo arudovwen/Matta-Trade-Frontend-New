@@ -21,6 +21,10 @@ export async function deleteInvite(data) {
 export async function resendInvite(data) {
   return await post(`${urls.RESEND_INVITE_USERS}`, data, config);
 }
+export async function customizeVendor(data) {
+  return await post(`${urls.CUSTOMIZE_VENDOR_INFO}`, data, config);
+}
+
 
 export async function deleteUser(data) {
   return await post(`${urls.DELETE_USER}?email=${data.email}`, data, config);

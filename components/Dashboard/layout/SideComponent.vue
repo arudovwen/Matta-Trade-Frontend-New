@@ -87,7 +87,7 @@ const navigation = [
   },
   {
     name: "User Management",
-    url: "/company/user-management",
+    url: "/user-management",
     icon: "lucide:users",
     key:"user"
   },

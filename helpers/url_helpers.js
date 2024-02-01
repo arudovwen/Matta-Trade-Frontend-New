@@ -188,5 +188,7 @@ const urls = {
 
   // Contact
   CONTACT_USER: "v1/contact/send",
+
+  CUSTOMIZE_VENDOR_INFO: "v1/customize/vendor",
 };
 export default urls;

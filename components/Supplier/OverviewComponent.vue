@@ -197,18 +197,22 @@ const filters = [
   {
     title: "12 months",
     value: 12,
+    duration: "months"
   },
   {
     title: "30 days",
     value: 30,
+    duration: "days"
   },
   {
     title: "7 days",
     value: 7,
+    duration: "days"
   },
   {
     title: "24 hours",
-    value: 24,
+    value: 1,
+    duration: "day"
   },
 ];
 const Statistics = [
