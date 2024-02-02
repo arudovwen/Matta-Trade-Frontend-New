@@ -26,7 +26,7 @@
       @click="emits('btnFunction')"
       v-if="btnText"
       :text="btnText"
-      btnClass="!py-[10px] bg-primary-500 text-white mt-3"
+      btnClass="!py-[10px] bg-primary-500 text-white mt-3 !rounded-lg"
       :icon="btnIcon"
     />
   </div>

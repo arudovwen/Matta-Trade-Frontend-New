@@ -48,7 +48,7 @@ useHead({
     },
   ],
 });
-
+const vendorInfo = ref(null);
 const query = reactive({
   PageNumber: 1,
   PageSize: 20,
@@ -134,4 +134,5 @@ watch(
   }
 );
 provide("query", query);
+provide("vendorInfo", vendorInfo);
 </script>

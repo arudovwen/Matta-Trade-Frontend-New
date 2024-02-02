@@ -21,8 +21,8 @@
           <Textinput
             placeholder=""
             label="Store url"
-            name="storeUrl"
-            :modelValue="formValues.storeUrl"
+            name="storeSlug"
+            :modelValue="formValues.storeSlug"
             disabled
             isReadonly
           />
@@ -98,7 +98,7 @@ const authStore = useAuthStore()
 const isLoading = ref(false);
 const formValues = reactive({
   storeName: "",
-  storeUrl: "",
+  storeSlug: "tech-store",
   bannerUrl: "",
   campaignBanner: "",
   businessId: authStore.userId,
@@ -108,7 +108,7 @@ const schema = yup.object({
   storeName: yup.string().required("Your store name is required"),
 });
 
-const { handleSubmit, defineField, errors, setFieldValue } = useForm({
+const { handleSubmit, defineField, errors, setFieldValue,setValues } = useForm({
   validationSchema: schema,
   initialValues: formValues,
 });
@@ -125,7 +125,9 @@ const [storeName, storeNameAtt] = defineField("storeName");
 const vendorInfo = ref(null);
 onMounted(() => {
   getVendorInfo().then((res) => {
-    vendorinfo.value = res.data.data;
+    vendorInfo.value = res.data;
+    setValues(res.data)
+    // formValues.storeSlug = res.data.storeSlug
   });
 });
 const onSubmit = handleSubmit((values) => {
@@ -146,8 +148,8 @@ const onSubmit = handleSubmit((values) => {
 });
 const getProfileData = debounce(() => {
   postStoreName({ slug: storeName }).then((res) => {
-    formValues.storeUrl = res.data.data;
-    setFieldValue("storeUrl", res.data.data);
+    formValues.storeSlug = res.data;
+    setFieldValue("storeSlug", res.data);
   });
 }, 1000);
 ``;

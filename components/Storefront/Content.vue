@@ -16,7 +16,7 @@
       />
     </div>
   </div>
-  <div>
+  <div v-if="vendorInfo?.campaignBanner">
     <LandingBoard />
   </div>
   <div v-if="!loading">
@@ -31,7 +31,13 @@
         :detail="n"
       />
     </div>
-    <EmptyData v-if="!productsData.length" />
+    <EmptyData
+      v-if="!productsData.length"
+      title="No product available"
+      btnText="New product"
+      btnIcon="humbleicons:plus"
+      @btn-function="navigateTo('/storefront/products/add-product')"
+    />
   </div>
   <IndexModal :isOpen="open" @togglePopup="togglePopup">
     <template #content>
@@ -39,7 +45,11 @@
         class="grid grid-cols-1 gap-y-[14px] w-full px-6 pt-6 pb-10 min-w-[300px] max-w-[320px]"
       >
         <p class="text-base text-[#18273AF0] font-bold">Filter</p>
-        <SelectVueSelect label="Price" :options="options" v-model.number="sortOrder" />
+        <SelectVueSelect
+          label="Price"
+          :options="options"
+          v-model.number="sortOrder"
+        />
         <SelectVueSelect
           label="Area of application"
           :options="
@@ -78,6 +88,7 @@
 <script setup>
 import { useProductStore } from "~/stores/products";
 
+const vendorInfo = inject("vendorInfo");
 const store = useProductStore();
 const supplierStore = useSupplierStore();
 const marketStore = useMarketStore();

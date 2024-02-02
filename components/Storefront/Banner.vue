@@ -84,10 +84,10 @@ const options = [
     value: 1,
   },
 ];
-const vendorInfo = ref(null);
+const vendorInfo = inject("vendorInfo");
 onMounted(() => {
   getVendorInfo().then((res) => {
-    vendorInfo.value = res.data.data;
+    vendorInfo.value = res.data;
   });
   getCompanyProfile().then((res) => {
     detail.value = res.data.data;

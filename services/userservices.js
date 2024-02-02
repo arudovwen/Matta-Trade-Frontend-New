@@ -49,8 +49,8 @@ export async function getRoles() {
 export async function getVendorInfo() {
   return await get(`${urls.GET_VENDOR_STORE}`, config);
 }
-export async function updateVendorInfo() {
-  return await get(`${urls.UPDATE_VENDOR_STORE}`, config);
+export async function updateVendorInfo(data) {
+  return await post(`${urls.UPDATE_VENDOR_STORE}`,data, config);
 }
 export async function postStoreName(data) {
   return await post(`${urls.POST_VENDOR_STORE_NAME}`, data, config);
