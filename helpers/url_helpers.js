@@ -192,6 +192,6 @@ const urls = {
   CUSTOMIZE_VENDOR_INFO: "v1/customize/vendor",
   GET_VENDOR_STORE: "v1/storefront/get-store",
   UPDATE_VENDOR_STORE: "v1/storefront/update-store",
-  POST_VENDOR_STORE_NAME: "v1/post-store-name"
+  POST_VENDOR_STORE_NAME: "v1/storefront/search-name"
 };
 export default urls;

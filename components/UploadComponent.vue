@@ -5,7 +5,7 @@
   >
     <div
       :class="`relative z-20 ${
-        !isMultiple && image ? 'invisible group-hover:visible' : 'visible'
+        !isMultiple && (image || url) ? 'invisible group-hover:visible' : 'visible'
       }`"
     >
       <div
@@ -26,8 +26,8 @@
       <p class="text-xs text-[#ABABAB]" v-if="recommended">{{ recommended }}</p>
     </div>
     <img
-      v-if="!isMultiple && image"
-      :src="image"
+      v-if="!isMultiple && (image || url)"
+      :src="image || url"
       class="w-full h-full object-cover absolute z-10 group-hover:opacity-10 backdrop-blur-sm"
     />
   </div>
@@ -85,6 +85,9 @@ const props = defineProps({
   },
   id: {
     default: "file"
+  },
+  url:{
+    default:""
   }
 });
 const events = ["dragenter", "dragover", "dragleave", "drop"];

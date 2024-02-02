@@ -17,7 +17,7 @@
     </div>
   </div>
   <div v-if="vendorInfo?.campaignBanner">
-    <LandingBoard />
+    <LandingBoard :url="vendorInfo?.campaignBanner" />
   </div>
   <div v-if="!loading">
     <div

@@ -39,6 +39,7 @@
             support="SVG, PNG, JPG (max. 800x400px)"
             :is-multiple="false"
             id="bannerUrl"
+            :url="formValues.bannerUrl"
           />
         </div>
 
@@ -58,6 +59,7 @@
             recommended="Recommended size: 1000px by 150px"
             :is-multiple="false"
             id="campaignBanner"
+            :url="formValues.campaignBanner"
           />
         </div>
 
@@ -92,13 +94,17 @@ import debounce from "lodash/debounce";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 import { toast } from "vue3-toastify";
-import { updateVendorInfo, postStoreName,getVendorInfo } from "~/services/userservices";
+import {
+  updateVendorInfo,
+  postStoreName,
+  getVendorInfo,
+} from "~/services/userservices";
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 const isLoading = ref(false);
 const formValues = reactive({
   storeName: "",
-  storeSlug: "tech-store",
+  storeSlug: "",
   bannerUrl: "",
   campaignBanner: "",
   businessId: authStore.userId,
@@ -108,10 +114,12 @@ const schema = yup.object({
   storeName: yup.string().required("Your store name is required"),
 });
 
-const { handleSubmit, defineField, errors, setFieldValue,setValues } = useForm({
-  validationSchema: schema,
-  initialValues: formValues,
-});
+const { handleSubmit, defineField, errors, setFieldValue, setValues } = useForm(
+  {
+    validationSchema: schema,
+    initialValues: formValues,
+  }
+);
 const onGetBanner = (value) => {
   formValues.bannerUrl = value;
   setFieldValue("bannerUrl", value);
@@ -125,9 +133,11 @@ const [storeName, storeNameAtt] = defineField("storeName");
 const vendorInfo = ref(null);
 onMounted(() => {
   getVendorInfo().then((res) => {
-    vendorInfo.value = res.data;
-    setValues(res.data)
-    // formValues.storeSlug = res.data.storeSlug
+    vendorInfo.value = res.data.data;
+    setValues(res.data.data);
+    formValues.storeSlug = res.data.data.storeSlug
+    formValues.bannerUrl = res.data.data.bannerUrl
+    formValues.campaignBanner = res.data.data.campaignBanner
   });
 });
 const onSubmit = handleSubmit((values) => {
@@ -147,9 +157,9 @@ const onSubmit = handleSubmit((values) => {
     });
 });
 const getProfileData = debounce(() => {
-  postStoreName({ slug: storeName }).then((res) => {
-    formValues.storeSlug = res.data;
-    setFieldValue("storeSlug", res.data);
+  postStoreName(storeName.value).then((res) => {
+    // formValues.storeSlug = res.data.data;
+    // setFieldValue("storeSlug", res.data);
   });
 }, 1000);
 ``;

@@ -53,5 +53,5 @@ export async function updateVendorInfo(data) {
   return await post(`${urls.UPDATE_VENDOR_STORE}`,data, config);
 }
 export async function postStoreName(data) {
-  return await post(`${urls.POST_VENDOR_STORE_NAME}`, data, config);
+  return await get(`${urls.POST_VENDOR_STORE_NAME}?storename=${data}`, config);
 }
