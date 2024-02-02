@@ -292,7 +292,7 @@
       </div>
     </div>
     <hr class="border-[#F4F7FE] my-10" />
-    <div class="flex gap-x-[78px] justify-between">
+    <div class="flex gap-x-[78px] justify-between flex-col lg:flex-row gap-y-7 lg:gap-y-">
       <div class="w-[300px]">
         <h2 class="text-sm text-[#101828] font-semibold">
           Packages & Availability <span class="text-red-500 mr-[.5px]">*</span>
@@ -633,7 +633,7 @@
       </div>
     </div>
     <hr class="border-[#F4F7FE] my-10" />
-    <div class="flex gap-x-[78px] justify-between">
+    <div class="flex gap-x-[78px] justify-between flex-col lg:flex-row gap-y-7 lg:gap-y-">
       <div class="w-[300px]">
         <h2 class="text-sm text-[#101828] font-semibold">Gallery</h2>
         <p class="text-xs text-[#475467]">

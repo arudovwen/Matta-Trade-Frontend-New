@@ -1,7 +1,7 @@
 <!-- eslint-disable no-useless-escape -->
 <template>
-  <form @submit.prevent="handleSubmit" class="w-full px-[30px]">
-    <div class="flex gap-x-[76px] pt-[30px] justify-between">
+  <form @submit.prevent="handleSubmit" class="w-full px-4 lg:px-[30px]">
+    <div class="flex gap-x-[76px] pt-[30px] justify-between flex-col lg:flex-row gap-y-7 lg:gap-y-">
       <div class="w-[300px]">
         <h2 class="text-sm text-[#101828] font-semibold">Company Documents</h2>
         <p class="text-xs text-[#475467]">
