@@ -36,10 +36,9 @@
           <UploadComponent
             @onGetFiles="onGetBanner"
             @removeFile="removeFile"
-            :gallery="formValues.banner"
             support="SVG, PNG, JPG (max. 800x400px)"
             :is-multiple="false"
-            id="banner"
+            id="bannerUrl"
           />
         </div>
 
@@ -49,17 +48,16 @@
             <span class="text-[#B9B9B9]">(Optional)</span></label
           >
           <p class="mb-2 text-xs text-[#555555]">
-            Campaign banners can be used to show you’re running a discount
+            Campaign bannerUrls can be used to show you’re running a discount
             promotion
           </p>
           <UploadComponent
             @onGetFiles="onGetCampaign"
             @removeFile="removeFile"
-            :gallery="formValues.campaign"
             support="SVG, PNG, JPG (max. 800x400px)"
             recommended="Recommended size: 1000px by 150px"
             :is-multiple="false"
-            id="campaign"
+            id="campaignBanner"
           />
         </div>
 
@@ -90,17 +88,20 @@
 </template>
 
 <script setup>
+import debounce from "lodash/debounce";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 import { toast } from "vue3-toastify";
-import { customizeVendor } from "~/services/userservices";
+import { updateVendorInfo, postStoreName,getVendorInfo } from "~/services/userservices";
 
+const authStore = useAuthStore()
 const isLoading = ref(false);
 const formValues = reactive({
   storeName: "",
-  storeUrl: "https://matta.trade/storename",
-  banner: [],
-  campaign: [],
+  storeUrl: "",
+  bannerUrl: "",
+  campaignBanner: "",
+  businessId: authStore.userId,
 });
 
 const schema = yup.object({
@@ -112,19 +113,24 @@ const { handleSubmit, defineField, errors, setFieldValue } = useForm({
   initialValues: formValues,
 });
 const onGetBanner = (value) => {
-  formValues.banner = [...value];
-  setFieldValue("banner", [value]);
+  formValues.bannerUrl = value;
+  setFieldValue("bannerUrl", value);
 };
 const onGetCampaign = (value) => {
-  formValues.campaign = [value];
-  setFieldValue("campaign", [value]);
+  formValues.campaignBanner = value;
+  setFieldValue("campaignBanner", value);
 };
 const removeFile = () => {};
 const [storeName, storeNameAtt] = defineField("storeName");
-
+const vendorInfo = ref(null);
+onMounted(() => {
+  getVendorInfo().then((res) => {
+    vendorinfo.value = res.data.data;
+  });
+});
 const onSubmit = handleSubmit((values) => {
   isLoading.value = true;
-  customizeVendor(values)
+  updateVendorInfo(values)
     .then((res) => {
       if (res.status === 200) {
         toast.success("Information saved");
@@ -138,8 +144,21 @@ const onSubmit = handleSubmit((values) => {
       }
     });
 });
-
-const togglePreview = () => {};
+const getProfileData = debounce(() => {
+  postStoreName({ slug: storeName }).then((res) => {
+    formValues.storeUrl = res.data.data;
+    setFieldValue("storeUrl", res.data.data);
+  });
+}, 1000);
+``;
+watch(
+  () => [storeName.value],
+  () => {
+    if (storeName.value.length > 3) {
+      getProfileData();
+    }
+  }
+);
 </script>
 
 <style lang="scss" scoped>

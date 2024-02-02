@@ -37,16 +37,14 @@ import { useProductStore } from "~/stores/products";
 const store = useProductStore();
 const { productsData, loading } = storeToRefs(store);
 const route = useRoute();
+
+const { vendor, id } = route.params;
 useHead({
-  title: `${ucFirst(
-    route.query.title || route.query.search_query || "Market"
-  )} | Matta`,
+  title: `${ucFirst(vendor)} | Matta`,
   meta: [
     {
       name: "description",
-      content: `${ucFirst(
-        route.query.title || route.query.search_query || "Market"
-      )}`,
+      content: `${ucFirst(vendor)}`,
     },
   ],
 });
@@ -69,6 +67,7 @@ const query = reactive({
   totalData: 0,
   sortOrder: "",
   sortBy: 0,
+  storelug: vendor,
 });
 const tagQuery = reactive({
   PageNumber: 1,

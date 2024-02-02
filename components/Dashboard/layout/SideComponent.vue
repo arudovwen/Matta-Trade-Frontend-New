@@ -62,7 +62,7 @@ const navigation = [
   },
   {
     name: "Financing requests",
-    url: "/financing/requests",
+    url: "/financing",
     icon: "f7:tag",
     key:"financing"
   },

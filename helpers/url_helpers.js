@@ -190,5 +190,8 @@ const urls = {
   CONTACT_USER: "v1/contact/send",
 
   CUSTOMIZE_VENDOR_INFO: "v1/customize/vendor",
+  GET_VENDOR_STORE: "v1/storefront/get-store",
+  UPDATE_VENDOR_STORE: "v2/storefront/update-store",
+  POST_VENDOR_STORE_NAME: "v1/post-store-name"
 };
 export default urls;

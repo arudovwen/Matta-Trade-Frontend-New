@@ -9,6 +9,7 @@
         v-if="type == 'shipping'"
       />
       <img src="~/assets/images/emptyuser.png" v-else-if="type == 'user'" />
+      <img src="/images/campaign.png" v-else-if="type == 'campaign'" />
 
       <img src="~/assets/images/empty.svg" v-else />
     </div>
@@ -17,7 +18,7 @@
     </p>
     <p
       v-if="subtext"
-      class="text-sm text-[#475467] mb-8 max-w-[352px] mx-auto text-center"
+      class="text-sm text-[#475467] max-w-[352px] mx-auto text-center"
     >
       {{ subtext }}
     </p>
@@ -25,7 +26,7 @@
       @click="emits('btnFunction')"
       v-if="btnText"
       :text="btnText"
-      btnClass="!py-[10px] bg-primary-500 text-white"
+      btnClass="!py-[10px] bg-primary-500 text-white mt-3"
       :icon="btnIcon"
     />
   </div>

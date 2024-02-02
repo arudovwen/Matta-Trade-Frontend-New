@@ -41,7 +41,7 @@
   />
   <div
     class="bg-white flex flex-wrap gap-2 max-h-full overflow-y-auto rounded-lg"
-    v-if="type === 'image' && isMultiple"
+    v-if="type === 'image' && isMultiple && gallery.length"
   >
     <span v-for="(n, i) in gallery" :key="i">
       <span

@@ -25,7 +25,6 @@ export async function customizeVendor(data) {
   return await post(`${urls.CUSTOMIZE_VENDOR_INFO}`, data, config);
 }
 
-
 export async function deleteUser(data) {
   return await post(`${urls.DELETE_USER}?email=${data.email}`, data, config);
 }
@@ -46,4 +45,13 @@ export async function getInvites({
 }
 export async function getRoles() {
   return await get(`${urls.GET_ROLES}`, config);
+}
+export async function getVendorInfo() {
+  return await get(`${urls.GET_VENDOR_STORE}`, config);
+}
+export async function updateVendorInfo() {
+  return await get(`${urls.UPDATE_VENDOR_STORE}`, config);
+}
+export async function postStoreName(data) {
+  return await post(`${urls.POST_VENDOR_STORE_NAME}`, data, config);
 }

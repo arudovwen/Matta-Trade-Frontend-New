@@ -4,41 +4,14 @@
   >
     <!-- Top bar   -->
 
-    <HeaderComponent title="Financing">
-      <template #subtext>
-        <p class="text-sm text-[#475467]">
-          Request for financing for your business.
-          <NuxtLink to="/financing"
-            ><span class="text-primary-500 font-medium"
-              >Learn more</span
-            ></NuxtLink
-          >
-        </p>
-      </template>
-      <template #button>
-        <Menu class="relative" as="div">
-          <MenuButton
-          id="request"
-            class="shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] font-semibold outline-none !px-[14px] !py-[10px] bg-primary-500 !text-white !text-sm rounded-lg border border-primary-500 flex items-center gap-x-1"
-          >
-            <AppIcon icon="humbleicons:plus" /> Request Financing
-          </MenuButton>
-          <MenuItems
-            class="absolute z-[999] bg-white shadow-[5px_12px_35px_rgba(44,44,44,0.12)] py-2 right-0 min-w-[180px] rounded-xl overflow-hidden flex flex-col"
-          >
-            <MenuItem
-              v-for="n in FinancesOptions"
-              :key="n.title"
-              class="py-2 px-5 hover:bg-gray-50 text-sm whitespace-nowrap capitalize"
-            >
-             <NuxtLink :to="n.url">
-              {{ n.title }}
-             </NuxtLink>
-            </MenuItem>
-          </MenuItems>
-        </Menu>
-      </template>
-    </HeaderComponent>
+    <HeaderComponent
+      title="Campaign Management"
+      subtext="Manage all marketing and sales campaign"
+      btnText="New campaign"
+      btnIcon="humbleicons:plus"
+      @onClick="navigateTo('/campaign/new')"
+    />
+
     <div class="pt-5">
       <div v-if="!docLoading">
         <div class="flex justify-between items-center mb-8">
@@ -56,6 +29,25 @@
                 type="search"
               />
             </div>
+            <div class="flex relative items-center">
+              <select
+                v-model="queryParams.Status"
+                class="appearance-none border border-[#E7E7E7] rounded-lg w-[150px] text-sm py-[10px] px-[14px] focus:outline-matta-black/20"
+              >
+                <option value="">Status</option>
+                <option value="0">Pending</option>
+                <option value="1">Completed</option>
+              </select>
+              <i
+                class="uil uil-angle-down absolute right-2 pointer-events-none"
+              ></i>
+            </div>
+
+            <AppButton
+              @click="queryParams.Search = queryParams.Status = ''"
+              text="Clear filter"
+              btnClass="text-xs text-[#98A2B3] font-normal"
+            />
           </div>
         </div>
         <div v-if="financeData.length">
@@ -136,7 +128,10 @@
                   class="capitalize text-matta-black text-sm font-normal border-b py-4 px-6 border-[#EAECF0] whitespace-nowrap"
                 >
                   <Menu class="relative" as="div">
-                    <MenuButton :id="`${item.productName}+option`" class="outline-none">
+                    <MenuButton
+                      :id="`${item.productName}+option`"
+                      class="outline-none"
+                    >
                       <i class="uil uil-ellipsis-v"></i>
                     </MenuButton>
                     <MenuItems
@@ -146,20 +141,32 @@
                         class="py-2 px-5 hover:bg-gray-50 text-sm whitespace-nowrap"
                         @click="openRequest(item)"
                       >
-                        View request
+                        View transaction
                       </div>
 
                       <div
                         @click="cancelRequest"
                         class="py-2 px-5 hover:bg-gray-50 text-sm whitespace-nowrap"
                       >
-                        Edit request
+                        Edit campaign
                       </div>
                       <div
-                        @click="cancelRequest"
+                        @click="withdrawRequest(item.id)"
                         class="py-2 px-5 hover:bg-gray-50 text-sm whitespace-nowrap"
                       >
-                        Cancel request
+                        Delete campaign
+                      </div>
+                      <div
+                        @click="withdrawRequest(item.id)"
+                        class="py-2 px-5 hover:bg-gray-50 text-sm whitespace-nowrap"
+                      >
+                        Activate campaign
+                      </div>
+                      <div
+                        @click="withdrawRequest(item.id)"
+                        class="py-2 px-5 hover:bg-gray-50 text-sm whitespace-nowrap"
+                      >
+                        Deactivate campaign
                       </div>
                     </MenuItems>
                   </Menu>
@@ -168,7 +175,14 @@
             </tbody>
           </table>
         </div>
-        <EmptyData v-else title="No finance request available" />
+        <EmptyData
+          v-else
+          title="No campaign has been created"
+          type="campaign"
+          btnText="New campaign"
+          btnIcon="humbleicons:plus"
+          @btnFunction="navigateTo('/campaign/new')"
+        />
       </div>
       <div class="text-center p-6 lg:p-8 my-20" v-if="docLoading">
         <AppLoader />
@@ -185,25 +199,29 @@
       </div>
     </div>
   </div>
+  <DeleteModal
+    @deleteItem="handleDelete"
+    @close="open = false"
+    title="Delete campaign"
+    text="Are you sure you want to withdraw this application? This action cannot be undone."
+    :open="open"
+    btnText="Delete campaign"
+  />
 </template>
 <script setup>
-definePageMeta({
-  layout: "dashboard",
-  middleware: "auth",
-});
-
 import moment from "moment";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { sellerdoc, sellerdocdetails } from "~/services/requestservice";
 import debounce from "lodash/debounce";
 
+const id = ref(null);
+const open = ref(false);
 const route = useRoute();
 const theads = [
-  "request id",
-  "customer name",
-  "finanncing type",
-  "created",
-  "amount",
+  "campaign name",
+  "cmpaign code",
+  "discount value",
+  "expiration",
   "status",
   "",
 ];
@@ -243,6 +261,10 @@ function openRequest(item) {
     isOpen.value = true;
   });
 }
+function withdrawRequest(value) {
+  id.value = value;
+  open.value = true;
+}
 const document = ref({});
 function next() {
   queryParams.PageNumber++;
@@ -258,19 +280,11 @@ function prev() {
   if (queryParams.PageNumber == 1) return;
   queryParams.PageNumber--;
 }
-const statusOptions = [
-  {
-    id: 0,
-    text1: "New",
-  },
-  {
-    id: 1,
-    text1: "In Progress",
-  },
-];
+
 const debounceSearch = debounce(() => {
   getFinanceData();
 }, 800);
+const handleDelete = () => {};
 watch(
   () => ({ ...queryParams }),
   () => {

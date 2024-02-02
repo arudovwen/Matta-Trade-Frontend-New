@@ -172,7 +172,7 @@
 import { useRoute } from "vue-router";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
-// import VueApexCharts from "vue3-apexcharts";
+
 import {
   getesfrontstats,
   getstorefronttrending,

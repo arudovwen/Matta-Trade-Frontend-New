@@ -8,8 +8,12 @@
           <FileUpload label="Proforma Invoice" id="proformaInvoice" />
         </FormGroup>
         <FormGroup :error="errors.other" class="col-span-2">
+          <FileUpload label="Evidence of previously successful supply contracts (PO and Paid Invoices)" id="evidence" />
+        </FormGroup>
+        <FormGroup :error="errors.other" class="col-span-2">
           <FileUpload label="Other documents" id="other" />
         </FormGroup>
+        
         <div class="md:col-span-2">
           <Textinput
             placeholder=""
@@ -61,6 +65,7 @@
     other: "",
     bankStatement: "",
     proformaInvoice: "",
+    evidence: ""
   });
   const active = inject("active");
   
@@ -70,6 +75,7 @@
   other: yup.string(), // Optional field, no specific validation provided
   bankStatement: yup.string().required('Bank Statement is required'),
   proformaInvoice: yup.string().required('Proforma Invoice is required'),
+  evidence: yup.string().required('Evidence is required'),
 });
   
   const { handleSubmit, defineField, errors, setFieldValue } = useForm({

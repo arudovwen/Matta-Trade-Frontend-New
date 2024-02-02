@@ -8,7 +8,7 @@
     >
       <!-- <VerificationBox /> -->
     </div>
-    <router-view></router-view>
+    <NuxtPage />
   </section>
 </template>
 <script setup>

@@ -7,7 +7,11 @@
       <div class="bg-gray-400 rounded-[5px]">
         <div class="h-[160px] md:h-[210px] w-full">
           <NuxtImg
-            src="/images/amosban.png"
+            :src="
+              vendorInfo?.bannerUrl
+                ? vendorInfo.bannerUrl
+                : '/images/amosban.png'
+            "
             class="w-full h-full rounded-t-[5px]"
           />
         </div>
@@ -17,11 +21,14 @@
           <div
             class="absolute w-20 h-20 rounded-[5px] overflow-hidden left-10 bg-white top-0 translate-y-[-60%] flex items-center justify-center border border-[#F5F5F5]"
           >
-            <img src="/images/matta-icon.png" class="" />
+            <img
+              :src="detail?.logo ? detail?.logo : '/images/matta-icon.png'"
+              class=""
+            />
           </div>
           <div>
             <h1 class="text-[#202939] text-xl font-bold capitalize mb-1">
-              Amos Best Enterprises
+              {{ vendorInfo?.storeName || detail?.companyName }}
             </h1>
             <p class="text-sm text-[#364152] font-medium">
               {{ total }} Products
@@ -42,11 +49,13 @@
 </template>
 
 <script setup>
+import { getCompanyProfile } from "~/services/settingservices";
+import { getVendorInfo } from "~/services/userservices";
 import { useProductStore } from "~/stores/products";
 const query = inject("query");
 const store = useProductStore();
 const { total } = storeToRefs(store);
-
+const detail = ref(null);
 const router = useRoute();
 const { vendor, id } = router.params;
 
@@ -75,4 +84,13 @@ const options = [
     value: 1,
   },
 ];
+const vendorInfo = ref(null);
+onMounted(() => {
+  getVendorInfo().then((res) => {
+    vendorInfo.value = res.data.data;
+  });
+  getCompanyProfile().then((res) => {
+    detail.value = res.data.data;
+  });
+});
 </script>

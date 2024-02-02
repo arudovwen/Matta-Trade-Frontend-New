@@ -1,6 +1,21 @@
 <template>
-  <div  class="w-full mt-6">
-    <form @submit.prevent="onSubmit" class="grid grid-cols-2 gap-x-[25px] gap-y-4 mb-[50px]">
+  <div class="w-full mt-6">
+    <form
+      @submit.prevent="onSubmit"
+      class="grid grid-cols-2 gap-x-[25px] gap-y-4 mb-[50px]"
+    >
+      <FormGroup
+        label="Select a director from your profile or add a new director"
+        name="selected"
+        class="col-span-2"
+      >
+        <Select
+          v-model="selected"
+          :options="directorOptions"
+          placeholder="Select director"
+          :classInput="`min-w-[180px] !bg-white  !rounded-lg !text-[#475467] !h-11 cursor-pointer`"
+        />
+      </FormGroup>
       <Textinput
         placeholder=""
         label="Full Name"
@@ -131,6 +146,7 @@
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 
+const selected = ref("");
 const isLoading = ref(false);
 const directors = ref([]);
 const formValues = reactive({
@@ -178,28 +194,27 @@ function handleChange(id, value) {
   setFieldValue(id, value);
 }
 
-const formData = inject("formData")
+const formData = inject("formData");
 const onSubmit = handleSubmit((values) => {
   console.log("🚀 ~ onSubmit ~ values:", values);
-  directors.value = [...directors.value, values]
-  formData.directors = directors.value
-
+  directors.value = [...directors.value, values];
+  formData.directors = directors.value;
 });
-const  handleNext=() => {
-
-  active.value = 4
+const handleNext = () => {
+  active.value = 4;
 };
 
-const options = [
+const directorOptions = [
   {
-    label: "1 month",
+    label: "James Bond",
     value: 0,
   },
   {
-    label: "3 month",
+    label: "Jason Momoa",
     value: 1,
   },
 ];
+
 provide("handleChange", handleChange);
 </script>
 
