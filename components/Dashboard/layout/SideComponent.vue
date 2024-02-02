@@ -4,7 +4,7 @@
       class="bg-white py-[11px] rounded-[10px] border border-[#F4F7FE] shadow-[0px_2px_4px_0px_rgba(0,0,0,0.04)]"
     >
       <ul>
-        <li v-for="item in mappedNav" :key="item.name">
+        <li v-for="item in navigation" :key="item.name">
           <NuxtLink
             :to="item.url"
             class="text-sm flex items-center px-5 border-r-[3px] border-transparent"

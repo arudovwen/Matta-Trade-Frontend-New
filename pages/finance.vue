@@ -1,10 +1,10 @@
 <template>
   <section class="">
     <header class="h-[672px] bg-gray-600 mb-[70px]">
-      <NuxtImg
+      <!-- <NuxtImg
         src="/images/financebanner.png"
         class="w-full h-full object-cover"
-      />
+      /> -->
     </header>
 
     <div class="container pb-20">
