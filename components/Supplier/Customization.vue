@@ -22,7 +22,7 @@
             placeholder=""
             label="Store url"
             name="storeSlug"
-            :modelValue="formValues.storeSlug"
+            :modelValue="`https://matta.trade/${formValues.storeSlug}`"
             disabled
             isReadonly
           />
@@ -158,8 +158,8 @@ const onSubmit = handleSubmit((values) => {
 });
 const getProfileData = debounce(() => {
   postStoreName(storeName.value).then((res) => {
-    // formValues.storeSlug = res.data.data;
-    // setFieldValue("storeSlug", res.data);
+    formValues.storeSlug = res.data.data;
+    setFieldValue("storeSlug", res.data.data);
   });
 }, 1000);
 ``;
