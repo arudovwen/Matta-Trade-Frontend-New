@@ -22,8 +22,7 @@
 </template>
 <script setup>
 import {
-  updateVendorInfo,
-  postStoreName,
+ 
   getVendorInfo,
 } from "~/services/userservices";
 
@@ -32,7 +31,7 @@ const formValues = reactive({
 });
 onMounted(() => {
   getVendorInfo().then((res) => {
-    formValues.storeSlug = res.data.data.storeName;
+    formValues.storeSlug = res.data.data.storeSlug;
   });
 });
 const authstore = useAuthStore();
@@ -90,7 +89,7 @@ const navigation = [
   },
   {
     name: "Storefront",
-    url: "/tech-store",
+    url: "/company/customization",
     icon: "solar:shop-outline",
     key: "storefront",
   },
@@ -101,6 +100,12 @@ const navigation = [
     icon: "mingcute:building-5-line",
     key: "company",
   },
+  // {
+  //   name: "Company Customization",
+  //   url: "/company/customization",
+  //   icon: "mingcute:building-5-line",
+  //   key: "company",
+  // },
   {
     name: "User Management",
     url: "/user-management",
@@ -118,7 +123,7 @@ const mappedNav = computed(() => {
   return navigation.map((i) => {
     return {
       ...i,
-      url: i.key === "storefront" ? `/${formValues.storeUrl}` : i.url,
+      url: i.key === "storefront" ? `/${formValues.storeSlug}` : i.url,
     };
   });
 });

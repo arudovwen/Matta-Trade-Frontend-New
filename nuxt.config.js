@@ -78,6 +78,9 @@ export default defineNuxtConfig({
     },
   },
   ssr: true,
+  navigationFallback: {
+    rewrite: "index.html",
+  },
   // plugins: ["~/plugins/apexcharts.client.js"],
   // @ts-ignore
   googleSignIn: {
